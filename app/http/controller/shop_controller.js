@@ -128,11 +128,6 @@ module.exports = new (class Shoping_controller {
                 member_id: user._id,
                 payment_code: result.authority,
             });
-            //------ delete failed payments
-            await Payment.findOneAndRemove({
-                succes: false
-            })
-            //-----
             await payment.save();
             res.send(result.url);
         }
@@ -167,12 +162,7 @@ module.exports = new (class Shoping_controller {
                 res.send(payment);
             }
         } else {
-            setTimeout(async function () {
-                await Payment.findOneAndRemove({
-                    payment_code
-                })
-            }, 5 * 60 * 1000);
-            res.send(paymnet);
+            res.send(payment);
         }
     }
     async factor(req, res) {

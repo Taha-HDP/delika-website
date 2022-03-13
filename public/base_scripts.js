@@ -80,7 +80,7 @@ $(document).ready(function () {
             for (var i = 0; i < 3; i++) {
                 var option = document.createElement("li");
                 var txt = document.createElement("a");
-                txt.href=`../courses/course_list.html?place=${learning_classes[i]}` ;
+                txt.href = `../courses/course_list.html?place=${learning_classes[i]}`;
                 txt.innerHTML = learning_classes_fa[i];
                 option.id = learning_classes[i];
                 option.appendChild(txt);
@@ -1337,36 +1337,68 @@ function check_out() {
     }
 }
 function bill_result() {
+    const mode = new URLSearchParams(window.location.search).get("for");
     const Authority = new URLSearchParams(window.location.search).get("Authority");
     const Status = new URLSearchParams(window.location.search).get("Status");
-    axios.get("http://localhost:3000/api/payment/verification?Authority=" + Authority + "&Status=" + Status, {
-        headers: {
-            'x-auth-token': localStorage.getItem("token")
-        }
-    }).then(res => {
-        if (res.data.succes == true) {
-            document.getElementById("pay_status").innerHTML = "از خرید شما متشکریم";
-            document.getElementById("payedStatus").innerHTML = "موفق";
-            document.getElementById("payment_emoji").style.backgroundImage = "url('../public/images/icons8-happy-100.png')"
-            document.getElementById("paymentCode").innerHTML = res.data.refID;
-            document.getElementById("gotoprofile").href = "../profileView/orders.html";
-            localStorage.removeItem("basket");
-            load_basket();
-        } else {
-            document.getElementById("pay_status").innerHTML = "پرداخت با خطا مواجه شد";
-            document.getElementById("payedStatus").innerHTML = "ناموفق";
-            document.getElementById("payment_emoji").style.backgroundImage = "url('../public/images/icons8-sad-100.png')"
-            document.getElementsByClassName("textLine")[3].innerHTML = "";
-            document.getElementById("gotoprofile_button").innerHTML = "بازگشت به سبد خرید";
-            document.getElementById("gotoprofile").href = "./bag.html";
-        }
-        document.getElementById("memberName").innerHTML = res.data.buyer_name;
-        document.getElementById("payed").innerHTML = res.data.total_price + " تومان";
+    if (mode && mode == "course") {
+        axios.get("http://localhost:3000/api/course/verification?Authority=" + Authority + "&Status=" + Status, {
+            headers: {
+                'x-auth-token': localStorage.getItem("token")
+            }
+        }).then(res => {
+            if (res.data.succes == true) {
+                document.getElementById("pay_status").innerHTML = "از خرید شما متشکریم";
+                document.getElementById("payedStatus").innerHTML = "موفق";
+                document.getElementById("payment_emoji").style.backgroundImage = "url('../public/images/icons8-happy-100.png')"
+                document.getElementById("paymentCode").innerHTML = res.data.refID;
+                document.getElementById("gotoprofile").href = "../profileView/orders.html";
+                document.getElementById("gotoprofile_button").innerHTML = "مشاهده جزئیات";
+                document.getElementById("gotoprofile").href = "./profile/my_courses.html";
+            } else {
+                document.getElementById("pay_status").innerHTML = "پرداخت با خطا مواجه شد";
+                document.getElementById("payedStatus").innerHTML = "ناموفق";
+                document.getElementById("payment_emoji").style.backgroundImage = "url('../public/images/icons8-sad-100.png')"
+                document.getElementsByClassName("textLine")[3].innerHTML = "";
+                document.getElementById("gotoprofile_button").innerHTML = "بازگشت به کلاس ها ";
+                document.getElementById("gotoprofile").href = "./learning_classes.html";
+            }
+            document.getElementById("memberName").innerHTML = res.data.buyer_name;
+            document.getElementById("payed").innerHTML = res.data.total_price + " تومان";
 
-    }).catch(err => {
-        const text = "ارسال اطلاعات با خطا مواجه شده است";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
-    });
+        }).catch(err => {
+            const text = "ارسال اطلاعات با خطا مواجه شده است";
+            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        });
+    } else {
+        axios.get("http://localhost:3000/api/payment/verification?Authority=" + Authority + "&Status=" + Status, {
+            headers: {
+                'x-auth-token': localStorage.getItem("token")
+            }
+        }).then(res => {
+            if (res.data.succes == true) {
+                document.getElementById("pay_status").innerHTML = "از خرید شما متشکریم";
+                document.getElementById("payedStatus").innerHTML = "موفق";
+                document.getElementById("payment_emoji").style.backgroundImage = "url('../public/images/icons8-happy-100.png')"
+                document.getElementById("paymentCode").innerHTML = res.data.refID;
+                document.getElementById("gotoprofile").href = "../profileView/orders.html";
+                localStorage.removeItem("basket");
+                load_basket();
+            } else {
+                document.getElementById("pay_status").innerHTML = "پرداخت با خطا مواجه شد";
+                document.getElementById("payedStatus").innerHTML = "ناموفق";
+                document.getElementById("payment_emoji").style.backgroundImage = "url('../public/images/icons8-sad-100.png')"
+                document.getElementsByClassName("textLine")[3].innerHTML = "";
+                document.getElementById("gotoprofile_button").innerHTML = "بازگشت به سبد خرید";
+                document.getElementById("gotoprofile").href = "./bag.html";
+            }
+            document.getElementById("memberName").innerHTML = res.data.buyer_name;
+            document.getElementById("payed").innerHTML = res.data.total_price + " تومان";
+
+        }).catch(err => {
+            const text = "ارسال اطلاعات با خطا مواجه شده است";
+            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        });
+    }
 }
 //--------------------- basket
 var total = 0, factor_offer = 0;

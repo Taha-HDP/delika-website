@@ -62,6 +62,19 @@ function load_course() {
             });
     }
 }
-function enrolling_class(){
-
+function enrolling_class() {
+    const placeID = new URLSearchParams(window.location.search).get("place");
+    if (!placeID) {
+        window.location.href = "./learning_classes.html";
+    } else {
+        axios.get("http://localhost:3000/api/courses/enrolling_class/" + placeID, {
+            headers: {
+                'x-auth-token': localStorage.getItem("token")
+            }
+        }).then(res => {
+            window.location.assign(res.data);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
 }
