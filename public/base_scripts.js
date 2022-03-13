@@ -1353,7 +1353,7 @@ function bill_result() {
                 document.getElementById("paymentCode").innerHTML = res.data.refID;
                 document.getElementById("gotoprofile").href = "../profileView/orders.html";
                 document.getElementById("gotoprofile_button").innerHTML = "مشاهده جزئیات";
-                document.getElementById("gotoprofile").href = "./profile/my_courses.html";
+                document.getElementById("gotoprofile").href = "./profileView/my_courses.html";
             } else {
                 document.getElementById("pay_status").innerHTML = "پرداخت با خطا مواجه شد";
                 document.getElementById("payedStatus").innerHTML = "ناموفق";
