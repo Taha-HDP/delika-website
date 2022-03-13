@@ -1,0 +1,78 @@
+#create_class{
+    margin-right: 0.8%;
+    width: 95%;
+    background: rgb(241, 241, 241);
+    padding: 2%;
+    height: fit-content;
+}
+#create_class h3{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+form{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+}
+#course_image{
+    display: none;
+}
+#uploadLabel {
+    background-color: white;
+    width: 30%;
+    padding: 14% 0;
+    text-align: center;
+    cursor: pointer;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+#filld{
+    margin-top: 1rem;
+    width: 70%;
+    display: inline-flex;
+}
+.right ,
+.left{
+    width: 48%;
+}
+#filld input ,
+#filld select ,
+#filld textarea{
+    width: 80%;
+    height: 2.5rem;
+    margin: 1rem 0;
+    padding-right: 2%;
+    border: none;
+    font-family: inherit;
+    background-color: white;
+    transition: 400ms;
+}
+#filld textarea{
+    resize: none;
+    height: 8rem;
+}
+#filld input:hover ,
+#filld select:hover ,
+#filld textarea:hover{
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.5);
+    transition: 400ms;
+}
+#filld .button{
+    margin-top: 2rem;
+    border: 1px solid black !important;
+    font-family: inherit;
+    background-color: black !important;
+    color: white !important;
+    transition: 400ms;
+}
+#filld .button:hover{
+    cursor: pointer;
+    background-color: white !important;
+    color: black !important;
+    transition: 400ms;
+}

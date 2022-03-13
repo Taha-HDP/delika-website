@@ -1,0 +1,67 @@
+#mid{
+    margin-top: 14rem;
+    width: 30%;
+    background: rgb(241, 241, 241);
+    margin-right: 30%;
+    padding: 5%;
+}
+#mid h2{
+    font-size: 2rem;
+    text-align: center;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid rgb(180,180,180);
+    margin-bottom: 2rem;
+}
+#pay_status{
+    text-align: center;
+    width: 100%;
+    font-size: 1.3rem;
+
+}
+#payment_emoji{
+    width: 100px;
+    height: 100px;
+    margin: 1rem 0;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 42%;
+
+}
+
+#payment_information{
+    margin-top: 2rem;
+    line-height: 2;
+    font-size: 1rem;
+}
+.textLine{
+    display: flex;
+    justify-content: space-between;
+}
+
+#gotoHome  button,
+#gotoprofile button{
+    margin-top: 2rem;
+    font-family: inherit;
+    border: 1px solid black;
+    color: white;
+    background-color: black;
+    width: 40%;
+    height: 3rem;
+    transition: 400ms;
+    margin-right: 5%;
+}
+#gotoHome button{
+    color: white;
+    background-color: black;   
+}
+#gotoprofile button{
+    color: black;
+    background-color: white;
+}
+#gotoHome button:hover ,
+#gotoprofile button:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.5);
+    transition: 400ms;
+}

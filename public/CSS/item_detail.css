@@ -1,0 +1,211 @@
+.item_detail{
+    margin: 12rem 5% 0 5%;
+    width: 85%;
+    background: rgb(241, 241, 241);
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.item_information{
+    width: 65%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0 0 5%;
+}
+.item_picture{
+    width: 30%;
+}
+.picture{
+    margin-top: 2rem;
+    width: 100%;
+    height: 440px;
+    background: white;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.item_detail h2{
+    width: 100%;
+    font-size: 2rem;
+}
+.item_box{
+    margin: 2rem 5%;
+    width: 40%;
+}
+.item_box h4{
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+.item_data{
+    background: white;
+    padding: 1rem 5%;
+    width: 90%;
+    color: rgb(88 88 88);
+}
+.shape_box ,
+.info_box{
+    width: 100%;
+}
+.shape_box .item_data{
+    display: inline-block;
+    width: 37%;
+}
+.x{
+    margin-left: 5%;
+}
+.info_data{
+    line-height: 1.5;
+    height: 5rem;
+}
+.item_price{
+    margin: 2rem 5%;
+    width: 80%;
+    padding: 1rem 5%;
+    background: white;
+}
+.item_price h4{
+    display: inline;
+    font-size: 1.3rem;
+    margin-left: 5%;
+}
+.item_price p{
+    display: inline;
+    font-size: 1.3rem;
+    vertical-align: sub;
+}
+.item_picture button{
+    border: 1px solid black;
+    font-family: inherit;
+    width: 80% !important;
+    margin: 1rem 10%;
+    height: 4rem;
+    background-color: black;
+    color: white;
+    transition: 400ms;
+}
+.item_picture button:hover{
+    color: black;
+    background-color: white;
+    transition: 400ms;
+    cursor: pointer;
+}
+
+.comments{
+    margin: 1rem 5% 0 5%;
+    width: 85%;
+    background: rgb(241, 241, 241);
+    padding: 2%;
+}
+#comment_header{
+    display: inline-block;
+    font-size: 1.6rem;
+    vertical-align: top;
+    margin: 1rem 1% 0 0;
+}
+#comment_pic{
+    display: inline-block;
+    width: 3%;
+    height: 48px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../public/images/comment_icon.png");
+}
+.new_comment{
+    display: inline-block;
+    width: 40%;
+    margin: 2rem 0;
+    border-left: 1px solid rgb(112 112 112);
+}
+#name_lable{
+    width: 20%;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+.new_comment input{
+    font-family: inherit;
+    border: none;
+    width: 50%;
+    height: 3rem;
+    padding-right: 1%;
+    transition : 400ms ;
+}
+.new_comment input:hover ,
+.new_comment textarea:hover{
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    transition : 400ms ;
+}
+#comment_lable{
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+.new_comment textarea{
+    font-family: inherit;
+    resize: none;
+    border: none;
+    width: 80%;
+    transition : 400ms ;
+}
+.new_comment button{
+    font-family: inherit;
+    border: 1px solid black;
+    background: black;
+    color: white;
+    margin-top: 1.5rem;
+    width: 45%;
+    padding: 0.7rem 0;
+    transition : 400ms ;
+}
+.new_comment button:hover {
+    background-color: white;
+    color: black;
+    transition : 400ms ;
+    cursor: pointer;
+}
+.posted_comment{
+    display: inline-block;
+    width: 50%;
+    padding-right: 5%;
+    vertical-align: top;
+}
+.comment_box{
+    width: 90%;
+    background: white;
+    padding: 4%;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+.sender_name{
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 0 1rem 0;
+}
+.comment_box p{
+    display: inline-block;
+    margin-right: 5%;
+    border-right: 1px solid rgb(112 112 112);
+    padding-right: 5%;
+    color: rgb(112 112 112);
+    font-size: 0.8rem;
+}
+.comment_txt_box{
+    line-height: 1.6;
+}
+.posted_comment button{
+    border: 1px solid black;
+    font-family: inherit;
+    width: 40% !important;
+    margin: 1rem 0;
+    height: 4rem;
+    background-color: black;
+    color: white;
+    transition: 400ms;
+}
+.posted_comment button:hover{
+    color: black;
+    background-color: white;
+    transition: 400ms;
+    cursor: pointer;
+}
+

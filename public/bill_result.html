@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="Fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./public/fonts/vazir/vazir_font.css">
+    <link rel="stylesheet" href="./public/fonts/shabnam/shabnam_font.css">
+    <link rel="stylesheet" href="./CSS/reset.css">
+    <link rel="stylesheet" href="./CSS/bill_result.css">
+    <link rel="stylesheet" href="./CSS/header&footer.css">
+    <link rel="icon" href="./public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>گالری دلیکا - فاکتور</title>
+</head>
+
+<body onload="check_auth() , load_basket() , bill_result()">
+    <header id="top">
+        <div class="first-header">
+            <a href="./bag.html" id="bag_icon">
+                <div class="icon" id="shop">
+                    <div id="bag_pic">
+                        <div id="up"></div>
+                        <div id="down"></div>
+                    </div>
+                    <div id="bag">
+                        <h3>سبد خرید</h3>
+                    </div>
+                </div>
+            </a>
+            <div id="bag_preview">
+                <h3 id="item_count">سبد خرید : 0</h3>
+                <div id="Data"> </div>
+                <div class="checkout_box">
+                    <h4 class="total">مجموع :</h4>
+                    <h4 class="total_money">0</h4>
+                    <a href="./bag.html" class="button">
+                        <button>رفتن به سبد خرید</button>
+                    </a>
+                </div>
+            </div>
+            <a href="./profileView/specification.html" class="icon" id="profile">
+                <h3>پروفایل</h3>
+            </a>
+            <div id="contact">
+                <h3 onclick="contact_us()">ارتباط با ما</h3>
+            </div>
+            <div id="lang" onclick="lang_list_transform()">زبان : فارسی</div>
+            <div id="lang-list">
+                <h4>انتخاب زبان</h4>
+                <label for="languages">فارسی (FA)</label>
+                <input type="radio" name="languages" id="persian" checked>
+                <label for="languages">انگلیسی (EN)</label>
+                <input type="radio" name="languages" id="english">
+                <label for="languages">چینی (元)</label>
+                <input type="radio" name="languages" id="chineese">
+                <button id="submit" onclick="current_lang()">تایید</button>
+            </div>
+        </div>
+        <div id="delika_logo"></div>
+        <div class="middle_header">
+            <div id="web-name" onclick="lang_list_close()">
+                <h1>گالری دلیکا</h1>
+            </div>
+            <div class="secound-header">
+                <ul id="menu">
+                    <li> <a href="./index.html" id="home-page">صفحه اصلی</a> </li>
+                    <li id="Painting"> <a href="./paint.html" id="painting">نقاشی</a> </li>
+                    <li id="Pottery"> <a href="./pottery.html" id="pottery">سفال</a> </li>
+                    <li id="Sculpture"> <a href="./sculpture.html" id="sculpture">مجسمه</a> </li>
+                    <li id="Learning"> <a href="./learning_classes.html" id="learning">کلاس های حضوری</a> </li>
+                    <li> <a href="./self_request.html" id="self-request">سفارش طرح شخصی</a> </li>
+                    <li> <a href="./help_request.html" id="help-request">درخواست مشاوره</a> </li>
+                </ul>
+            </div>
+        </div>
+        <div id="secound-header-list">
+            <ul id="list"></ul>
+        </div>
+
+    </header>
+    <article id="hiden_contact">
+        <h2>ارتباط با ما
+            <div class="back" onclick="backToHome('block')">
+                <div class="xy"></div>
+                <div class="yx"></div>
+            </div>
+        </h2>
+        <div id="ways">
+            <div id="call" class="items">
+                <div class="contact-picture"></div>
+                <h3>تلفن</h3>
+                <p>از شنبه تا پنجشنبه <br> ساعت 9 الی 21</p>
+                <a href="tel:+989120760484" class="call-box">
+                    <p>98-9120760484+</p>
+                </a>
+            </div>
+            <div id="email" class="items">
+                <div class="contact-picture"></div>
+                <h3>ایمیل</h3>
+                <p>شما میتوانید از طریق ایمیل به راحتی با ما در ارتباط باشید delika.gallery@gmail.com</p>
+                <p></p>
+                <a href="mailto:taha.hoveidapour@gmail.com" class="call-box">
+                    <p>ارسال ایمیل</p>
+                </a>
+            </div>
+            <div id="instagram" class="items">
+                <div class="contact-picture"></div>
+                <h3>اینستاگرام</h3>
+                <p>شما میتوانید از طریق دایرکت اینستاگرام به صورت تمام وق با ما در ارتباط باشید</p>
+                <a href="#" class="call-box">
+                    <p>@deliak_gallery</p>
+                </a>
+            </div>
+        </div>
+    </article>
+    <div id="notfication"></div>
+    <article id="mid" onclick="lang_list_close()">
+        <h2>فاکتور</h2>
+        <h3 id="pay_status"></h3>
+        <div id="payment_emoji"></div>
+        <div id="payment_information">
+            <div class="textLine">
+                <h4>نام و نام خانوادگی</h4>
+                <p id="memberName"></p>
+            </div>
+            <div class="textLine">
+                <h4>مبلغ</h4>
+                <p id="payed"></p>
+            </div>
+            <div class="textLine">
+                <h4>وضعیت پرداخت</h4>
+                <p id="payedStatus"></p>
+            </div>
+            <div class="textLine">
+                <h4>شماره رهگیری</h4>
+                <p id="paymentCode"></p>
+            </div>
+            <a id="gotoHome" href="./index.html">
+                <button id="gotoHome_button">بازگشت به صفحه اصلی</button>
+            </a>
+            <a id="gotoprofile" href="#">
+                <button id="gotoprofile_button">بخش سفارشات</button>
+            </a>
+        </div>
+    </article>
+    <footer>
+        <div class="ending">
+            <div class="titr">
+                <h3>درباره دلیکا</h3>
+                <hr>
+                <p>دلیکا یک گالری هنریه که کارش چیزایی مثل نقاشی روی سفاله (حالا اسم دقیقش مثلا) و یه مشت حرف دیگه </p>
+            </div>
+            <div class="titr">
+                <h3>بخش های سایت</h3>
+                <hr>
+                <ul>
+                    <li> <a href="./index.html" id="home-page">صفحه اصلی</a> </li>
+                    <li> <a href="./paint.html" id="painting">نقاشی</a> </li>
+                    <li> <a href="./pottery.html" id="pottery">سفال</a> </li>
+                    <li> <a href="./sculpture.html" id="sculpture">مجسمه</a> </li>
+                    <li> <a href="./learning_classes.html" id="Learning_Classes">کلاس های حضوری</a> </li>
+                    <li> <a href="./self-request.html" id="self-request">سفارش طرح شخصی</a> </li>
+                </ul>
+            </div>
+            <div class="titr">
+                <h3>ارتباط با ما</h3>
+                <hr>
+                <ul class="contact">
+                    <li>
+                        <div class="contact-pic" id="email-pic"></div>
+                        <p>ایمیل : </p>
+                        <a href="#">deliak_gallery@gmail.com</a>
+                    </li>
+                    <li>
+                        <div class="contact-pic" id="instagram-pic"></div>
+                        <p>آی دی اینستاگرام : </p>
+                        <a href="#">@deliak_gallery</a>
+                    </li>
+                    <li>
+                        <div class="contact-pic" id="call-pic"></div>
+                        <p>شماره تماس : </p>
+                        <a href="tel:+989120760484">98-9120760484+</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="coppyright">
+            <p>کليه حقوق محصولات و محتوای اين سایت متعلق به دلیکا می باشد و هر گونه کپی برداری از محتوا و محصولات سایت
+                غیر مجاز و بدون رضایت ماست.</p>
+        </div>
+    </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./base_scripts.js"> </script>
+
+</html>

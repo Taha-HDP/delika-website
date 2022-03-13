@@ -1,0 +1,205 @@
+#mid{
+    margin-top: 12rem;
+    background-color: rgb(241,241,241);
+    padding-bottom: 3rem;
+}
+#mid h2{
+    font-size: 2rem;
+    padding: 2%;
+    text-align: center;
+}
+.main{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+#mid input{
+    font-family: inherit;
+    height: 2rem;
+    padding-right: 5%;
+    width: 50%;
+    transition: 400ms;
+    border: 1px solid black;
+    margin: 1rem 0;
+}
+#mid textarea{
+    resize: none;
+    font-family: inherit;
+    padding : 0.6rem 5% ;
+    width: 85%;
+    height: 4rem;
+    margin: 1rem 0;
+    border: 1px solid black;
+    transition: 400ms;
+}
+#mid input:hover ,
+#mid textarea:hover{
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    transition: 400ms;
+}
+
+.send_setting{
+    background-color: white;
+    width: 20%;
+    padding: 2%;
+    margin: 0px 2% 1rem 0;
+    height: fit-content;
+}
+.send_setting h3{
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 2%;
+    border-bottom: 2px solid rgb(170,170,170);
+}
+.send_setting input{
+    width: 90% !important;
+}
+
+.factor{
+    background-color: white;
+    width: 20%;
+    padding: 2%;
+    margin: 0px 2% 1rem 0;
+    height: fit-content;
+}
+.factor h3{
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 2%;
+    border-bottom: 2px solid rgb(170,170,170);
+}
+
+
+.factorObject {
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+#checkout{
+    font-family: inherit;
+    border: 1px solid black;
+    width: 80%;
+    height: 3rem;
+    background-color: black;
+    color: white;
+    transition: 400ms;
+    margin: 1rem 10% 4rem 0;
+}
+#checkout:hover{
+    color: black;
+    background-color: white;
+    transition: 400ms;
+}
+
+#offer_box{
+    margin-bottom: 1rem;
+    width: 95%;
+    border-bottom: 1px solid rgb(170,170,170);
+}
+#offer_box button{
+    width: 20%;
+    font-family: inherit;
+    height: 2.3rem;
+    border: 1px solid;
+    background-color: black;
+    color: white;
+    transition: 400ms;
+}
+#offer_box button:hover{
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    transition: 400ms;
+}
+#offer_box input{
+    width: 70%;
+}
+#offer_box button:hover{
+    color: black;
+    background-color: white;
+    transition: 400ms;
+} 
+
+#object_info{
+    margin-right: 2%;
+    width: 40%;
+    padding: 0 1%;
+    border-top: 1px solid rgb(170,170,170);
+}
+.object_box{
+    border-bottom: 1px solid rgb(170,170,170);
+    padding: 1rem 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.object_picture{
+    direction: ltr;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+.basket_object_info{
+    width: -webkit-fill-available;
+}
+.objectDetail{
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 5%;
+}
+.object_name{
+    font-size: 1.05;
+    margin-bottom: 0.5rem;
+}
+.object_type ,
+.object_class ,
+.object_shapes {
+    font-weight: 300;
+    margin-bottom: 0.7rem;
+}
+.remove_object{
+    margin-left: 5%;
+    position: relative;
+    width: 80px;
+    display: inline-block;
+    height: fit-content;
+}
+.remove_object h3{
+    vertical-align: super;
+    display: inline-block;
+}
+.close {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    display: inline-block;
+}
+.remove_object:hover{
+    cursor: pointer;
+}
+.remove_object:hover .close{
+    opacity: 1; 
+}
+.remove_object:hover h3{
+    text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+}
+.close:before, .close:after {
+    position: absolute;
+    content: ' ';
+    right: 9px;
+    height: 20px;
+    width: 2px;
+    background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}

@@ -1,0 +1,174 @@
+#mid{
+    margin-top: 12rem;
+}
+#mid h2{
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+#classes{
+    padding: 2%;
+    display: inline-flex;
+    width: 96%;
+    flex-wrap: wrap;
+}
+.class{
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#pottery_classes{
+    flex-direction: row-reverse;
+}
+.class_pic{
+    width: 30%;
+    height: 32rem;
+    margin: 0 5%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../public/images/cartoon_painting.png);
+}
+#paintin-picture{
+    background-image: url(../public/images/cartoon_painting.png);
+}
+#pottery-picture{
+    margin: 0 2%;
+    background-image: url(../public/images/cartoon_painting_pottery.png);
+}
+#sculpture-picture{
+    background-image: url(../public/images/cartoon_sculpture.jpg);
+}
+.class_txt{
+    text-align: center;
+    padding-top: 8rem;
+    width: 60% ;
+}
+.class_name{
+    text-align: right;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+}
+.class_info{
+    width: 80%;
+    line-height: 1.8;
+}
+#classes button{
+    border: 1px solid black;
+    color: white;
+    background-color: black;
+    font-family: inherit;
+    width: 25%;
+    margin: 5% 30%;
+    padding: 1.5%;
+    transition: 400ms;
+}
+#classes button:hover{
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    transition: 400ms;
+}
+@media (max-width: 83.125rem) {
+    #classes button{
+        width: 40%;
+    }
+    .class_pic{
+        width: 39%;
+        margin: 0 0.5%;
+    }
+    #pottery-picture{
+        margin: 0 0;
+    }
+}
+@media (max-width: 64rem) {
+    .class_pic{
+        width: 30%;
+        height: 20rem;
+        margin: 0 5%;
+    }
+    #pottery-picture{
+        margin: 0 2%;
+    }
+    .class_txt{
+        padding-top: 3rem;
+    }
+}
+@media (max-width: 48rem) {
+    .class_pic{
+        width: 27%;
+        height: 15rem;
+        margin: 0 5%;
+    }
+    #pottery-picture{
+        margin: 0 4%;
+    }
+    .class_txt{
+        width: 63%;
+    }
+}
+@media (max-width: 34.75rem) {
+    .class_pic{
+        width: 25%;
+        height: 10rem;
+        margin: 0 6%;
+    }
+    .class_txt{
+        width: 63%;
+        font-size: 0.7rem;
+    }
+    .class_name{
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    #classes button{
+        font-size: 0.6rem;
+        width: 50%;
+        margin: 5% 10%;
+    }
+}
+@media (max-width: 26.5625rem) {
+    #mid{
+        margin-top: 9rem;
+    }
+    #mid h2{
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    .class_pic{
+        width: 55%;
+        height: 15rem;
+        margin: 0px 22.5%;
+    }
+    #pottery-picture{
+        margin: 0 22.5%;
+    }
+    .class_txt{
+        width: 90%;
+        margin-right: 5%;
+        font-size: 0.7rem;
+        text-align: right;
+        padding-top: 0rem;
+    }
+    .class_name{
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    .class_info{
+        padding-right: 5%;
+        width: 90%;
+        line-height: 1.8;
+    }
+}
+@media (max-width: 20rem) {
+    #pottery-picture{
+        margin: 0 22.5%;
+    }
+    .class_pic{
+        width: 70%;
+        margin: 0px 15%;
+    }
+    
+
+}

@@ -1,0 +1,61 @@
+#mid{
+    width: 77%;
+    margin-top: 13rem;
+}
+#member-list{
+    margin-right: 0.8%;
+    width: 95%;
+    background: rgb(241, 241, 241);
+    padding: 1%;
+    height: fit-content;
+}
+#member-list h3{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+#number ,
+#item-x ,
+#item-y{
+    width: 5%;
+}
+#item-price ,
+#item-type{
+    width: 10%;
+}
+#item-name ,
+#item-class {
+    width: 16%;
+}
+#item-pic{
+    width: 10%;
+}
+#item-info{
+    width: 23% ;
+}
+.delete_button{
+    padding: 0.5rem 5%;
+    width: 40%;
+    border: none;
+    background-color: rgb(255, 73, 73);
+    font-family: inherit;
+    font-size: 0.7rem;
+    margin-left: 10%;
+    transition: 400ms;
+}
+.info_button{
+    padding: 0.5rem 5%;
+    width: 40%;
+    border: none;
+    background-color: rgb(73, 146, 255);
+    font-family: inherit;
+    font-size: 0.7rem;
+    transition: 400ms;
+}
+.delete_button:hover ,
+.info_button:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    transition: 400ms;
+}

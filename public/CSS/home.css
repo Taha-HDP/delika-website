@@ -1,0 +1,175 @@
+#picture-box{
+    background-image: url(../public/images/picture_box_1.png) ;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: 50% 50%;
+    width: 96%;
+    margin: 2%;
+    margin-top: 10%;
+    height: 750px;
+    box-sizing: border-box;
+    position: relative;
+}
+#picture_logo{
+    position: absolute;
+    background-image: url(../public/images/DELIKA-01.png);
+    width: 15%;
+    height: 10rem;
+    left: 0%;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: 50% 50%;
+}
+@media (max-width: 30rem) {
+    #picture-box{
+        height: 500px;
+    }
+}
+#new ,
+#bestselling{
+    padding: 4%;
+    width: 92%;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 4rem;
+}
+#new h2 ,
+#bestselling h2{
+    margin-bottom: 2rem;
+}
+#ware , 
+#ware_2{
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.items{
+    background: rgb(241, 241, 241);
+    margin: 0 0.5% 2rem 0.5%;
+    width: 24%;
+    height: 400px;
+    text-align: center;
+    align-items: center;
+}
+.item:hover{
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+}
+.item-picture{
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 10% 15%;
+    width: 75%;
+    height: 65%;
+}
+.item-name{
+    margin: 1rem 0;
+    font-size: 1rem;
+}
+.item-price{
+    font-size: 0.7rem;
+}
+
+
+.mahsoolat .button{
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid black;
+    width: 30%;
+    height: 2.5rem;
+    margin: 2rem 80% 0 0;
+    padding-top: 1rem;
+    transition: 500ms;
+    background-color: black;
+    color: white;
+}
+.mahsoolat .button:hover{
+    background-color: white;
+    color: black ;
+    transition: 500ms;
+}
+.mid-picture{
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: 50% 50%;
+    width: 35%;
+    height: 450px;
+}
+#self_request .mid-picture{
+    background-image: url(../public/images/learninng.webp);
+}
+#classes .mid-picture{
+    background-image: url(../public/images/class-image.png);
+}
+#help_request .mid-picture{
+    background-image: url(../public/images/help_image.jpg);
+}
+.txt{
+    width: 43%;
+    padding: 5%;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+#self_request ,
+#help_request{
+    width: 90%;
+    margin-right: 5%;
+    display: inline-flex;
+    align-items: flex-end;
+}
+#classes{
+    width: 90%;
+    margin: 10% 5%;
+    display: inline-flex;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+}
+#bestselling{
+    border-top: 2px solid rgb(180,180,180);
+    border-bottom: 2px solid rgb(180,180,180);
+}
+#classes .txt{
+    margin-left: 12%;
+}
+@media (max-width: 64rem) {
+    .mid-picture{
+        height: 300px;
+    }
+}
+@media (max-width: 48rem) {
+    .mid-picture{
+        height: 200px;
+    }
+    .txt{
+        padding: 2%;
+        margin-bottom: 0rem;
+        font-size: 1rem;
+    }
+}
+@media (max-width: 31rem) {
+    #classes,
+    #self_request{
+        flex-direction: column;
+        align-items: center;
+    }
+    .mid-picture{
+        width: 60%;
+        height: 200px;
+    }
+    #classes .txt{
+        margin-left: 0;
+    }
+    .mahsoolat .button{
+        font-size: 0.7rem;
+        font-weight: 400;
+        border: 1px solid black;
+        box-sizing: border-box;
+        width: 20%;
+        height: 30px;
+        margin: 0rem 70% 0 0 ;
+        padding-top: 1%;
+    }
+}
+

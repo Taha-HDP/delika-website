@@ -1,0 +1,48 @@
+#talk-req{
+    margin-right: 0.8%;
+    width: 95%;
+    background: rgb(241, 241, 241);
+    padding: 1%;
+    height: fit-content;
+}
+#talk-req h3{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.status_select ,
+.money_status ,
+.DateInput{
+    font-family: inherit;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+}
+#number{
+    width: 5%;
+}
+#member-name{
+    width: 10%;
+}
+#member-phone{
+    width: 10%;
+}
+#date{
+    width: 15%;
+}
+#final-date{
+    width: 15%;
+}
+#status{
+    width: 10%;
+}
+#money-status{
+    width: 10%;
+}
+#detail{
+    width: 25%;
+}
+

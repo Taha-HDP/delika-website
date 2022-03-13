@@ -1,0 +1,10 @@
+const router = require("express").Router() ;
+const customer_routes = require("./customer_route");
+const shop_routes = require("./shop_route");
+const admin_routes = require("./admin_route") ;
+const course_routes = require("./course_route") ;
+router.use(admin_routes) ;
+router.use(shop_routes) ;
+router.use(customer_routes) ;
+router.use(course_routes) ;
+module.exports = router ;

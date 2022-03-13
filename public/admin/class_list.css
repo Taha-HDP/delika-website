@@ -1,0 +1,86 @@
+#class-list{
+    margin-right: 0.8%;
+    width: 95%;
+    background: rgb(241, 241, 241);
+    padding: 1%;
+    height: fit-content;
+}
+table{
+    text-align: center !important;
+}
+#class-list h3{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+#number{
+    width: 5% ;
+}
+#class_type ,
+#class_member ,
+#class_length ,
+#class_time ,
+#class_price{
+    width: 10% ;
+}
+#class_detail ,
+#class_status ,
+#class_name{
+    width:15% ;
+}
+.detail_button{
+    padding: 0.5rem 5%;
+    width: 40%;
+    border: none;
+    background-color: rgb(95, 255, 108);
+    font-family: inherit;
+    font-size: 0.7rem;
+    margin-left: 10%;
+    transition: 400ms;
+}
+.info_button{
+    padding: 0.5rem 5%;
+    width: 40%;
+    border: none;
+    background-color: rgb(73, 146, 255);
+    font-family: inherit;
+    font-size: 0.7rem;
+    transition: 400ms;
+}
+.detail_button:hover ,
+.info_button:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    transition: 400ms;
+}
+#courseDetail{
+    display: none;
+    background: rgb(241, 241, 241);
+    padding: 5%;
+}
+#courseDetail table{
+    text-align: right !important;
+}
+#detail-head{
+    font-size: 1.7rem;
+    margin: 0 3% 2rem;
+    display: inline-block;
+}
+#back-button{
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-right: 70%;
+    transition: 400ms;
+}
+#back-button:hover{
+    cursor: pointer;
+    text-shadow: 0px 0px 5px rgba(0,0,0,.5);
+    transition: 400ms;
+}
+img{
+    width: 190px !important;
+}
+img:hover{
+    cursor:unset  !important;
+}

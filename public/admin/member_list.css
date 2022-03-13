@@ -1,0 +1,74 @@
+#member-list{
+    margin-right: 0.8%;
+    width: 95%;
+    background: rgb(241, 241, 241);
+    padding: 1%;
+    height: fit-content;
+}
+#member-list h3{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+#number ,
+#member-gender ,
+#member-purchases ,
+#member-detail{
+    width: 5%;
+}
+#member-firstname ,
+#member-phone ,
+#member-lastname ,
+#member-birth{
+    width: 10%;
+}
+#member-username {
+    width: 15%;
+}
+#ember-email{
+    width: 25% ;
+}
+.detail{
+    font-size: 0.7rem;
+    border : 1px solid black ;
+    font-family: inherit;
+    background-color: black;
+    color: white;
+    transition: 400ms;
+}
+.detail:hover{
+    cursor: pointer;
+    color: black;
+    background-color: white ;
+    transition: 400ms;
+    
+}
+#memberDetail{
+    display: none;
+    background: rgb(241, 241, 241);
+    padding: 5%;
+}
+#detail-head{
+    font-size: 1.7rem;
+    margin: 0 3% 2rem;
+    display: inline-block;
+}
+#back-button{
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-right: 70%;
+}
+#back-button:hover{
+    cursor: pointer;
+}
+#change_role{
+    padding: 0 1%;
+}
+#change_role input{
+    font-family: inherit;
+    background-color: rgb(241, 241, 241);
+    border: none;
+    font-size: 1rem;
+    width: 100%;
+}

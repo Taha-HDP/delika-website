@@ -1,0 +1,3 @@
+{
+    "databaseaddress" : "mongodb://localhost:27017/delika_gallery" 
+}

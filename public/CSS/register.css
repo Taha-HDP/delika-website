@@ -1,0 +1,121 @@
+article{
+    display: flex;
+    background: rgb(241, 241, 241);
+}
+@media (max-width: 48rem) {
+    article{
+        flex-direction : column ;
+    }
+}
+article h2{
+    font-weight: 500;
+    font-size: 2rem;
+    margin: 2rem auto;
+    width: fit-content;
+}
+.login{
+    width: 30%;
+    margin: 11rem 10%;
+}
+.signin{
+    width: 30%;
+    margin: 11rem 10%;
+}
+@media (max-width: 64rem) {
+    .login{
+        margin: 11rem 3%;
+        width: 100%;
+    }
+    .signin{
+        margin: 11rem 3%;
+        width: 100%;
+    }
+}
+@media (max-width: 48rem) {
+    .login{
+        margin: 8rem 10% 0 0;
+        width: 80%;
+    }
+    .signin{
+        margin: 7rem 10%;
+        width: 80%;
+    }
+}
+@media (max-width: 24rem) {
+    .login{
+        margin: 6rem 5% 0 0;
+        width: 90%;
+    }
+    .signin{
+        margin: 2rem 5%;
+        width: 90%;
+    }
+}
+.login a{
+    font-size: 1rem;
+}
+.login a:hover{
+    text-decoration: underline;
+}
+ form{
+    width: 80%;
+    margin: 1rem auto;
+    display: grid;
+    justify-items: stretch;
+    font-family: Vazir;
+    font-size: 1.3rem;
+}
+ input,
+ select{
+    font-family: inherit;
+    font-size: 1rem ;
+    padding: 0.5rem;
+    border: 0px;
+    background-color: white;
+    transition: 500ms ;
+}
+ form p{
+    color: rgb(243, 21, 21);
+    font-size: 1rem ;
+    margin: 0% 2% 3%;
+    display: none
+}
+.button{
+    font-family: inherit;
+    font-size: 1rem ;
+    padding: 0.5rem;
+    border: none;
+
+    background-color: black !important;
+    color: white;
+    transition: 1s transform ;
+}
+ select:hover ,
+ input:hover ,
+.button:hover{
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    transform: scale(1.05);
+    transition: 500ms ;
+}
+ select:focus ,
+ input:focus{
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    transform: scale(1.05);
+    transition: 500ms ;
+}
+ .signin button{
+    margin-bottom: 5%;
+}
+@media (max-width: 24rem) {
+    article h2{
+        font-size: 1.5rem ;
+    }
+    article form{
+        font-size: 1rem ;
+        width: 90%;
+    }
+}
+form i {
+    margin-left: -30px;
+    cursor: pointer;
+}

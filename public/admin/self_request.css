@@ -1,0 +1,30 @@
+#self-req{
+    margin-right: 0.8%;
+    width: 95%;
+    background: rgb(241, 241, 241);
+    padding: 1%;
+    height: fit-content;
+}
+#self-req h3{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+#number{
+    width: 5%;
+}
+#item-price ,
+#type{
+    width: 10%;
+}
+#member-name {
+    width: 20% ;
+}
+#date{
+    width: 18% ;
+}
+#status{
+    width: 15%;
+}
+
