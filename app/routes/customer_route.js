@@ -17,4 +17,7 @@ router.post("/sendRequest", auth ,Customer_controller.send_request);
 
 router.get("/profile/orders", auth , Customer_controller.orderList);
 router.get("/profile/orders/:id", auth , Customer_controller.orderDetail);
+
+router.get("/profile/my_course", auth , Customer_controller.my_course);
+
 module.exports = router;

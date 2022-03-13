@@ -2,10 +2,11 @@ const Customer = require("../../models/customer_model");
 const Shop = require("../../models/shop_model");
 const Request = require("../../models/help_request_model");
 const Payment = require("../../models/payment_model");
-const Offer = require("../../models/offer_model") ;
+const Offer = require("../../models/offer_model");
 const bcrypt = require("bcrypt");
 const dateTime = require('node-datetime');
-
+const Course_payment = require("../../models/course_payment_model");
+const Course = require("../../models/course_model");
 module.exports = new (class Customer_controller {
     async register(req, res) {
         const user_phone = await Customer.findOne({ phone: req.body.phone });
@@ -190,23 +191,39 @@ module.exports = new (class Customer_controller {
         const order = await Payment.findById(req.params.id);
         if (!order)
             return res.status(404).send();
-        let Items = [] ;
-        for(let i=0 ; i< order.item_id.length ; i++){
+        let Items = [];
+        for (let i = 0; i < order.item_id.length; i++) {
             Items.push(await Shop.findById(order.item_id[i]))
         }
         const body = {
-            name : order.buyer_name ,
-            address : order.address ,
-            post_code : order.post_code ,
-            refID : order.refID ,
-            shipping_cost : order.shipping_cost ,
-            total_price : order.total_price ,
-            offer : order.offer ,
-            items : Items ,
-            date : order.date ,
-            status : order.status ,
+            name: order.buyer_name,
+            address: order.address,
+            post_code: order.post_code,
+            refID: order.refID,
+            shipping_cost: order.shipping_cost,
+            total_price: order.total_price,
+            offer: order.offer,
+            items: Items,
+            date: order.date,
+            status: order.status,
         }
-        res.send(body) ;
+        res.send(body);
+    }
+    async my_course(req, res) {
+        const courses = await Course_payment.find({
+            member_id: req.user._id,
+            succes: true
+        });
+        let course = [];
+        if (courses) {
+            for (let i = 0; i < courses.length; i++) {
+                const air = await Course.findById(courses[i].course_id);
+                if (air) {
+                    course.push(air);
+                }
+            }
+        }
+        res.send(course);
     }
 });
 

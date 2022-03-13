@@ -387,7 +387,7 @@ module.exports = new (class Admin_controller {
     async create_course(req, res) {
         const uniqe = await Course.findOne({ name: req.body.name });
         if (uniqe) {
-            return res.status(400).send("قبلا ثبت شده");
+            return res.status(400).send();
         }
         const new_item = new Course({
             name: req.body.name,
@@ -398,7 +398,7 @@ module.exports = new (class Admin_controller {
             time: req.body.time,
             info: req.body.info,
             picture: req.file.path,
-            status: "به زودی",
+            status: "waiting",
             hours: req.body.hours,
             members: 0,
             place: req.body.place,

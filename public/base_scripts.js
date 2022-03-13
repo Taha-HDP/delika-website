@@ -501,6 +501,9 @@ function change_password() {
     }
 }
 function member_help_requests() {
+    const auth = localStorage.getItem("token");
+    if (!auth)
+        return window.location.assign(home_pg_link);
     const father = document.querySelector("tbody");
     axios.get("http://localhost:3000/api/profile/help_request_list", {
         headers: {
@@ -541,6 +544,9 @@ function member_help_requests() {
     });
 }
 function load_oreder() {
+    const auth = localStorage.getItem("token");
+    if (!auth)
+        return window.location.assign(home_pg_link);
     const father = document.querySelector("tbody");
     axios.get("http://localhost:3000/api/profile/orders", {
         headers: {
@@ -655,6 +661,80 @@ function backToOrders() {
     document.getElementsByTagName("table")[0].style.display = "table";
     document.getElementById("orderPage").style.display = "none";
     document.getElementById("orderList_header").style.display = "block";
+}
+function load_my_course() {
+    const auth = localStorage.getItem("token");
+    if (!auth)
+        return window.location.assign(home_pg_link);
+    axios.get("http://localhost:3000/api/profile/my_course", {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        res.data.reverse();
+        res.data.map((item, index) => {
+            var tr = document.createElement("tr");
+            tr.style.backgroundColor = "rgb(220,220,220)";
+            //----- translate section
+            let status;
+            switch (item.status) {
+                case "ongoing":
+                    status = "در حال برگزاری";
+                    break;
+                case "done":
+                    status = "تمام شده";
+                    break;
+                case "waiting":
+                    status = "به زودی";
+                    break;
+            }
+            //-------
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.length}</td>
+                <td>${item.time}</td>
+                <td>${status}</td>
+                <td>${item.hours}</td>
+                <td>${item.start_date}</td>
+                <td><button class="detail_button" onclick="member_courses_detail('${item._id}')">جزئیات</button></td>`;
+            let father;
+            if (item.status == "ongoing")
+                father = document.querySelector("#ongoing_courses tbody");
+            else if (item.status == "done")
+                father = document.querySelector("#done_courses tbody");
+            else if (item.status == "waiting")
+                father = document.querySelector("#waiting_courses tbody");
+            father.appendChild(tr);
+            if (document.querySelector("#ongoing_courses tbody").innerHTML == "") {
+                document.querySelector("#ongoing_courses").style.display = "none";
+                document.getElementById("1").style.display = "none";
+            } else {
+                document.querySelector("#ongoing_courses").style.display = "table";
+                document.getElementById("1").style.display = "block";
+            }
+            if (document.querySelector("#done_courses tbody").innerHTML == "") {
+                document.querySelector("#done_courses").style.display = "none";
+                document.getElementById("2").style.display = "none";
+            } else {
+                document.querySelector("#done_courses").style.display = "table";
+                document.getElementById("2").style.display = "block";
+            }
+            if (document.querySelector("#waiting_courses tbody").innerHTML == "") {
+                document.querySelector("#waiting_courses").style.display = "none";
+                document.getElementById("0").style.display = "none";
+            } else {
+                document.querySelector("#waiting_courses").style.display = "table";
+                document.getElementById("0").style.display = "block";
+            }
+
+        });
+    }).catch(err => {
+        console.log(err);
+    });
+}
+function member_courses_detail() {
+
 }
 //------------------------ help request page
 function help_request_data() {

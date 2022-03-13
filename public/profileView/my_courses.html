@@ -13,7 +13,7 @@
     <title>گالری دلیکا - دوره های من</title>
 </head>
 
-<body onload=" load_basket()  , check_role()">
+<body onload=" load_basket()  , check_role() , load_my_course()">
     <header id="top">
         <div class="first-header">
             <a href="./bag.html" id="bag_icon">
@@ -130,8 +130,8 @@
         </aside>
         <main>
             <h2 id="orderList_header">دوره های من</h2>
+            <h3 id="0">دوره های در انتظار</h3>
             <table id="waiting_courses">
-                <h3>دوره های در انتظار</h3>
                 <thead>
                     <tr>
                         <th class="number">ردیف</th>
@@ -146,8 +146,8 @@
                 </thead>
                 <tbody></tbody>
             </table>
+            <h3 id="1">دوره های در حال برگزاری</h3>
             <table id="ongoing_courses">
-                <h3>دوره های در حال برگزاری</h3>
                 <thead>
                     <tr>
                         <th class="number">ردیف</th>
@@ -162,8 +162,8 @@
                 </thead>
                 <tbody></tbody>
             </table>
+            <h3 id="2">دوره های تمام شده</h3>
             <table id="done_courses">
-                <h3>دوره های تمام شده</h3>
                 <thead>
                     <tr>
                         <th class="number">ردیف</th>
