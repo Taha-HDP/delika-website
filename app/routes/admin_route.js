@@ -47,6 +47,8 @@ router.post("/admin/newOffer", [auth, admin], Admin_controller.create_offer);
 router.get("/admin/offers", [auth, admin], Admin_controller.offer_list);
 //----- courses
 router.get("/admin/courses", [auth, admin], Admin_controller.course_list);
+router.get("/admin/courses/payments", [auth, admin], Admin_controller.course_payments);
+router.get("/admin/courses/payment/:refID", [auth, admin], Admin_controller.findCourse);
 router.get("/admin/coursedetail/:id", [auth, admin], Admin_controller.get_course);
 router.post("/admin/create_course", [auth, admin, upload.single("picture")], Admin_controller.create_course);
 router.put("/admin/edit_course/:id", [auth, admin], Admin_controller.edit_course);

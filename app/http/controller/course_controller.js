@@ -3,27 +3,47 @@ const Payment = require("../../models/course_payment_model");
 const Offer = require("../../models/offer_model");
 const Course = require("../../models/course_model");
 const dateTime = require('node-datetime');
+const config = require("config");
+const jwt = require("jsonwebtoken");
 const ZarinpalCheckout = require('zarinpal-checkout');
 const zarinpal = ZarinpalCheckout.create('00000000-0000-0000-0000-000000000000', true);
 module.exports = new (class Course_controller {
     async courses(req, res) {
         const courses = await Course.find({
-            type: req.params.type
+            type: req.params.type,
+            status: "waiting"
         });
         if (!courses)
             return res.status(404).send();
         res.send(courses);
     }
     async get_course(req, res) {
-        const course = await Course.findById(req.params.id);
+        let course = await Course.findById(req.params.id);
         if (!course)
             return res.status(404).send();
-        res.send(course);
+        const token = req.header("x-auth-token");
+        let user , history;
+        if (token) {
+            user = jwt.verify(token, config.get("jwtPrivetKey"));
+            for (let i = 0; i < course.members_id.length; i++) {
+                if (user._id == course.members_id[i]) {
+                    history = "false";
+                    break;
+                }
+            }
+        }
+        const body = {
+            course ,
+            history : history
+        }
+        res.send(body);
     }
     async enrolling_class(req, res) {
         const course = await Course.findById(req.params.id);
         if (!course)
             return res.status(404).send();
+        if (course.status == "done" || course.status == "ongoing")
+            return res.status(400).send();
         const user = await Customer.findById(req.user._id);
         if (!user)
             return res.status(404).send();
@@ -62,8 +82,8 @@ module.exports = new (class Course_controller {
                 payment.refID = result.RefID;
                 payment.succes = "true";
                 await payment.save();
-                const course = await Course.findById(payment.course_id) ;
-                course.members ++;
+                const course = await Course.findById(payment.course_id);
+                course.members++;
                 course.members_id.push(req.user._id);
                 await course.save();
                 res.send(payment);

@@ -42,24 +42,48 @@ function load_course() {
     if (!placeID) {
         window.location.href = "./learning_classes.html";
     } else {
-        axios.get("http://localhost:3000/api/course_detail/" + placeID)
-            .then(res => {
-                document.getElementById("course_price").innerHTML = res.data.price + " تومان";
-                document.getElementById("course_teacher_name").innerHTML = res.data.teacher;
-                document.getElementById("course_time").innerHTML = res.data.time;
-                document.getElementById("course_length").innerHTML = res.data.length + " جلسه";
-                document.getElementById("course_hours").innerHTML = res.data.hours;
-                document.getElementById("course_status").innerHTML = res.data.status;
-                document.getElementById("course_start_date").innerHTML = res.data.start_date;
-                document.getElementById("course_name").innerHTML = res.data.name;
-                document.getElementById("course_info").innerHTML = res.data.info;
-                document.getElementById("course_place").innerHTML = res.data.place;
-                const array = res.data.picture.split("\\");
-                const picture = array[3];
-                document.getElementById("course_picture").style.backgroundImage = ` url('../public/image/${picture}')`
-            }).catch(err => {
-                console.log(err);
-            });
+        axios.get("http://localhost:3000/api/course_detail/" + placeID, {
+            headers: {
+                'x-auth-token': localStorage.getItem("token")
+            }
+        }).then(res => {
+            console.log(res.data.history);
+            if (res.data.history == "false") {
+                document.getElementById("enrolling_button").innerHTML = "رفتن به کلاس";
+                document.getElementById("enrolling_button").onclick = () => {
+                    window.location.href = "../profileView/my_courses.html";
+                }
+            }
+            document.getElementById("course_price").innerHTML = res.data.course.price + " تومان";
+            document.getElementById("course_teacher_name").innerHTML = res.data.course.teacher;
+            document.getElementById("course_time").innerHTML = res.data.course.time;
+            document.getElementById("course_length").innerHTML = res.data.course.length + " جلسه";
+            document.getElementById("course_hours").innerHTML = res.data.course.hours;
+            //------ translate section
+            let status ;
+            switch(res.data.course.status){
+                case "ongoing" : 
+                    status = "درحال برگزاری" ;
+                break ;
+                case "waiting" : 
+                    status = "به زودی" ;
+                break ;
+                case "done" : 
+                    status = "تمام شده" ;
+                break ;
+            }
+            //------
+            document.getElementById("course_status").innerHTML = status;
+            document.getElementById("course_start_date").innerHTML = res.data.course.start_date;
+            document.getElementById("course_name").innerHTML = res.data.course.name;
+            document.getElementById("course_info").innerHTML = res.data.course.info;
+            document.getElementById("course_place").innerHTML = res.data.course.place;
+            const array = res.data.course.picture.split("\\");
+            const picture = array[3];
+            document.getElementById("course_picture").style.backgroundImage = ` url('../public/image/${picture}')`
+        }).catch(err => {
+            console.log(err);
+        });
     }
 }
 function enrolling_class() {

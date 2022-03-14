@@ -440,6 +440,9 @@ function load_aside_list(active) {
         <li id="aside_class_list">
             <a href="../admin/class_list.html">لیست کلاس ها</a>
         </li>
+        <li id="aside_class_payment">
+            <a href="../admin/class_payment.html">لیست پرداخت کلاس ها</a>
+        </li>
         <li id="aside_members">
             <a href="../admin/member_list.html">لیست کاربران</a>
         </li>
@@ -773,30 +776,26 @@ function order_list() {
                     tr.style.backgroundColor = "rgb(241, 241, 241)";
                 }
                 tr.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${item.refID}</td>
-                <td>${item.buyer_name}</td>
-                <td>${item.total_price} تومان</td>
-                <td>${item.date}</td>
-                <td style="background : ${status_color}">
-                <select class="status_select" onchange="change_order_status('${item._id}','${index}')">
-                <option value="${item.status}" selected disabled hidden>${item.status}</option>
-                <option value="انجام شده"> انجام شده</option>
-                <option value="ارسال شده">ارسال شده</option>
-                <option value="در حال آماده سازی">در حال آماده سازی</option>
-                <option value="در حال بررسی">در حال بررسی</option>
-            </select>
-                </td>
-                <td>
-                    <button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button>
-                </td>` ;
+                    <td>${index + 1}</td>
+                    <td>${item.refID}</td>
+                    <td>${item.buyer_name}</td>
+                    <td>${item.total_price} تومان</td>
+                    <td>${item.date}</td>
+                    <td style="background : ${status_color}">
+                        <select class="status_select" onchange="change_order_status('${item._id}','${index}')">
+                            <option value="${item.status}" selected disabled hidden>${item.status}</option>
+                            <option value="انجام شده"> انجام شده</option>
+                            <option value="ارسال شده">ارسال شده</option>
+                            <option value="در حال آماده سازی">در حال آماده سازی</option>
+                            <option value="در حال بررسی">در حال بررسی</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button>
+                    </td>` ;
                 father.appendChild(tr);
             });
-        } else {
-            document.getElementsByTagName("main")[0].innerHTML = `
-            <h4 id="empty">شما هیچ درخواستی ثبت نکردید</h4>
-            `;
-        }
+        }   
 
     }).catch(err => {
         window.location.assign(home_pg_link);
@@ -1216,5 +1215,67 @@ function edit_course() {
         }).catch(err => {
             window.location.assign(home_pg_link);
         });
+    }
+}
+function load_course_payment() {
+    const father = document.querySelector("tbody");
+    axios.get("http://localhost:3000/api/admin/courses/payments", {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        res.data.reverse();
+        res.data.map((item, index) => {
+            var tr = document.createElement("tr");
+            if (index % 2 == 0) {
+                tr.style.backgroundColor = "rgb(200,200,200)";
+            } else {
+                tr.style.backgroundColor = "rgb(241, 241, 241)";
+            }
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${item.buyer_name}</td>
+                <td>${item.refID}</td>
+                <td>${item.total_price} تومان</td>
+                <td>${item.date}</td>
+                <td>${item.member_id}</td>
+                <td>${item.course_id}</td>`;
+            father.appendChild(tr);
+        });
+    }).catch(err => {
+        window.location.assign(home_pg_link);
+    });
+}
+function find_course_payment(){
+    const father = document.querySelector("tbody");
+    father.innerHTML = '';
+    const search = document.getElementById("wanted").value;
+    if (search == ""){
+        load_course_payment() ;
+    }else{
+        axios.get("http://localhost:3000/api/admin/courses/payment/" + search, {
+            headers: {
+                'x-auth-token': localStorage.getItem("token")
+            }
+        }).then(res => {
+            res.data.reverse();
+            res.data.map((item, index) => {
+                var tr = document.createElement("tr");
+                if (index % 2 == 0) {
+                    tr.style.backgroundColor = "rgb(200,200,200)";
+                } else {
+                    tr.style.backgroundColor = "rgb(241, 241, 241)";
+                }
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.buyer_name}</td>
+                    <td>${item.refID}</td>
+                    <td>${item.total_price} تومان</td>
+                    <td>${item.date}</td>
+                    <td>${item.member_id}</td>
+                    <td>${item.course_id}</td>`;
+                father.appendChild(tr);
+            });
+        })
     }
 }

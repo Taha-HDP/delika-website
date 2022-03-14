@@ -18,3 +18,5 @@
 {"level":"error","message":"Cannot read properties of null (reading 'total_price')"}
 {"level":"error","message":"Cannot read properties of undefined (reading 'push')"}
 {"level":"error","message":"Cannot read properties of undefined (reading 'push')"}
+{"level":"error","message":"waiting is not defined"}
+{"level":"error","message":"token is not defined"}

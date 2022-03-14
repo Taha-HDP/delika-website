@@ -4,7 +4,8 @@ const Requests = require("../../models/help_request_model");
 const Payment = require("../../models/payment_model");
 const Site_data = require("../../models/site_data_model");
 const Offer = require("../../models/offer_model");
-const Course = require("../../models/course_model")
+const Course = require("../../models/course_model");
+const Course_payment = require("../../models/course_payment_model");
 const dateTime = require('node-datetime');
 const fs = require("fs");
 module.exports = new (class Admin_controller {
@@ -466,6 +467,18 @@ module.exports = new (class Admin_controller {
         course.status = req.body.status;
         await course.save();
         res.send();
+    }
+    async course_payments(req, res) {
+        const payment = await Course_payment.find( {
+                succes: true
+            });
+        res.send(payment);
+    }
+    async findCourse(req, res) {
+        const course = await Course_payment.find({ 
+            refID : req.params.refID
+        });
+        res.send(course) ;
     }
 });
 
