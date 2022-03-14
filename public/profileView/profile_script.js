@@ -314,12 +314,12 @@ function load_my_course() {
         }
     }).then(res => {
         res.data.reverse();
-        res.data.map((item, index) => {
+        res.data.map((course, index) => {
             var tr = document.createElement("tr");
             tr.style.backgroundColor = "rgb(220,220,220)";
             //----- translate section
             let status;
-            switch (item.status) {
+            switch (course.status) {
                 case "ongoing":
                     status = "در حال برگزاری";
                     break;
@@ -333,19 +333,19 @@ function load_my_course() {
             //-------
             tr.innerHTML = `
                 <td>${index + 1}</td>
-                <td>${item.name}</td>
-                <td>${item.length}</td>
-                <td>${item.time}</td>
+                <td>${course.name}</td>
+                <td>${course.length}</td>
+                <td>${course.time}</td>
                 <td>${status}</td>
-                <td>${item.hours}</td>
-                <td>${item.start_date}</td>
-                <td><button class="detail_button" onclick="member_courses_detail('${item._id}')">جزئیات</button></td>`;
+                <td>${course.hours}</td>
+                <td>${course.start_date}</td>
+                <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">جزئیات</button></a></td>`;
             let father;
-            if (item.status == "ongoing")
+            if (course.status == "ongoing")
                 father = document.querySelector("#ongoing_courses tbody");
-            else if (item.status == "done")
+            else if (course.status == "done")
                 father = document.querySelector("#done_courses tbody");
-            else if (item.status == "waiting")
+            else if (course.status == "waiting")
                 father = document.querySelector("#waiting_courses tbody");
             father.appendChild(tr);
             if (document.querySelector("#ongoing_courses tbody").innerHTML == "") {
@@ -374,7 +374,4 @@ function load_my_course() {
     }).catch(err => {
         console.log(err);
     });
-}
-function member_courses_detail() {
-
 }
