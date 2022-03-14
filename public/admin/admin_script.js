@@ -201,7 +201,7 @@ function item_list() {
             father.appendChild(tr);
         });
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function delete_item(id) {
@@ -216,7 +216,7 @@ function delete_item(id) {
             call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
             item_list();
         }).catch(err => {
-            window.location.assign(home_pg_link);
+            window.location.assign("/");
         });
     }
 }
@@ -249,7 +249,7 @@ function edit_item() {
             document.getElementById("uploadLabel").style.color = "rgba(0,0,0,0)";
             document.getElementById("submit_button").value = "ویرایش";
         }).catch(err => {
-            window.location.assign(home_pg_link);
+            window.location.assign("/");
         });
     }
 }
@@ -334,7 +334,7 @@ function find_item() {
                 });
             }
         }).catch(err => {
-            window.location.assign(home_pg_link);
+            window.location.assign("/");
         });
     }
 }
@@ -346,7 +346,7 @@ function check_admin() {
         }
     }).then(res => {
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 //---- data
@@ -371,7 +371,7 @@ function admin_data() {
         document.getElementById("waitting-requests").innerHTML = res.data.waiting_requests;
 
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function site_data() {
@@ -495,7 +495,7 @@ function member_list() {
             father.appendChild(tr);
         });
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function member_detail(id) {
@@ -571,7 +571,7 @@ function member_detail(id) {
         </table> ` ;
         check_super_admin(item.role, item._id);
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function back_detail() {
@@ -628,7 +628,7 @@ function help_request_list() {
             father.appendChild(tr);
         });
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function change_help_request(id, index) {
@@ -720,7 +720,7 @@ function comment_list() {
             father.appendChild(tr);
         });
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function accept_comment(id) {
@@ -736,7 +736,7 @@ function accept_comment(id) {
         call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
         comment_list();
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function delete_comment(id) {
@@ -750,7 +750,7 @@ function delete_comment(id) {
             call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
             comment_list();
         }).catch(err => {
-            window.location.assign(home_pg_link);
+            window.location.assign("/");
         });
     }
 }
@@ -798,7 +798,7 @@ function order_list() {
         }   
 
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function change_order_status(id, index) {
@@ -813,7 +813,7 @@ function change_order_status(id, index) {
         const text = "با موفقیت ذخیره شد";
         call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function find_payment() {
@@ -903,7 +903,7 @@ function load_offer() {
             father.appendChild(tr);
         });
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 //----- course
@@ -1072,7 +1072,7 @@ function load_courses() {
             document.getElementsByClassName(item.status)[index].selected = true;
         });
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function course_status(id, index) {
@@ -1165,7 +1165,7 @@ function courses_detail(id) {
             </tbody>
         </table> ` ;
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function backToCourse() {
@@ -1213,7 +1213,7 @@ function edit_course() {
             document.getElementById("uploadLabel").style.color = "rgba(0,0,0,0)";
 
         }).catch(err => {
-            window.location.assign(home_pg_link);
+            window.location.assign("/");
         });
     }
 }
@@ -1243,7 +1243,7 @@ function load_course_payment() {
             father.appendChild(tr);
         });
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function find_course_payment(){

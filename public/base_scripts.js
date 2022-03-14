@@ -3,30 +3,328 @@ script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
 script.src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
 script.type = 'text/javascript';
 document.getElementsByTagName('body')[0].appendChild(script);
-
-const home_pg_link = "/index.html";
+//------------- header & footer data
+function loadHeaderAndFooter(mode) {
+    if (mode == "home") {
+        document.querySelector("header#top").innerHTML = `
+            <div class="first-header">
+                <a href="./bag.html" id="bag_icon">
+                    <div class="icon" id="shop">
+                        <div id="bag_pic">
+                            <div id="up"></div>
+                            <div id="down"></div>
+                        </div>
+                        <div id="bag">
+                            <h3>سبد خرید</h3>
+                        </div>
+                    </div>
+                </a>
+                <div id="bag_preview">
+                    <h3 id="item_count">سبد خرید : 0</h3>
+                    <div id="Data"> </div>
+                    <div class="checkout_box">
+                        <h4 class="total">مجموع :</h4>
+                        <h4 class="total_money">0</h4>
+                        <a href="./bag.html" class="button">
+                            <button>رفتن به سبد خرید</button>
+                        </a>
+                    </div>
+                </div>
+                <a href="./profileView/specification.html" class="icon" id="profile">
+                    <h3>پروفایل</h3>
+                </a>
+                <div id="contact">
+                    <h3 onclick="contact_us()">ارتباط با ما</h3>
+                </div>
+                <div id="lang" onclick="lang_list_transform()">زبان : فارسی</div>
+                <div id="lang-list">
+                    <h4>انتخاب زبان</h4>
+                    <label for="languages">فارسی (FA)</label>
+                    <input type="radio" name="languages" id="persian" checked>
+                    <label for="languages">انگلیسی (EN)</label>
+                    <input type="radio" name="languages" id="english">
+                    <label for="languages">چینی (元)</label>
+                    <input type="radio" name="languages" id="chineese">
+                    <button id="submit" onclick="current_lang()">تایید</button>
+                </div>
+            </div>
+            <div id="delika_logo"></div>
+            <div class="middle_header">
+                <div id="web-name" onclick="lang_list_close()">
+                    <h1>گالری دلیکا</h1>
+                </div>
+                <div class="secound-header">
+                    <ul id="menu">
+                        <li> <a href="/" id="home-page">صفحه اصلی</a> </li>
+                        <li id="Painting"> <a href="./paint.html" id="painting">نقاشی</a> </li>
+                        <li id="Pottery"> <a href="./pottery.html" id="pottery">سفال</a> </li>
+                        <li id="Sculpture"> <a href="./sculpture.html" id="sculpture">مجسمه</a> </li>
+                        <li id="Learning"> <a href="./learning_classes.html" id="learning">کلاس های حضوری</a> </li>
+                        <li> <a href="./self_request.html" id="self-request">سفارش طرح شخصی</a> </li>
+                        <li> <a href="./help_request.html" id="help-request">درخواست مشاوره</a> </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="secound-header-list">
+                <ul id="list"></ul>
+            </div>
+        ` ;
+        document.querySelector("article#hiden_contact").innerHTML = `
+        <h2>ارتباط با ما
+            <div class="back" onclick="backToHome('block')">
+                <div class="xy"></div>
+                <div class="yx"></div>
+            </div>
+        </h2>
+        <div id="ways">
+            <div id="call" class="items">
+                <div class="contact-picture"></div>
+                <h3>تلفن</h3>
+                <p>از شنبه تا پنجشنبه <br> ساعت 9 الی 21</p>
+                <a href="tel:+989120760484" class="call-box">
+                    <p>98-9120760484+</p>
+                </a>
+            </div>
+            <div id="email" class="items">
+                <div class="contact-picture"></div>
+                <h3>ایمیل</h3>
+                <p>شما میتوانید از طریق ایمیل به راحتی با ما در ارتباط باشید delika.gallery@gmail.com</p>
+                <p></p>
+                <a href="mailto:taha.hoveidapour@gmail.com" class="call-box">
+                    <p>ارسال ایمیل</p>
+                </a>
+            </div>
+            <div id="instagram" class="items">
+                <div class="contact-picture"></div>
+                <h3>اینستاگرام</h3>
+                <p>شما میتوانید از طریق دایرکت اینستاگرام به صورت تمام وق با ما در ارتباط باشید</p>
+                <a href="#" class="call-box">
+                    <p>@deliak_gallery</p>
+                </a>
+            </div>
+        </div>
+        ` ;
+        document.getElementsByTagName("footer")[0].innerHTML = `
+            <div class="ending">
+                <div class="titr">
+                    <h3>درباره دلیکا</h3>
+                    <hr>
+                    <p>دلیکا یک گالری هنریه که کارش چیزایی مثل نقاشی روی سفاله (حالا اسم دقیقش مثلا) و یه مشت حرف دیگه </p>
+                </div>
+                <div class="titr">
+                    <h3>بخش های سایت</h3>
+                    <hr>
+                    <ul>
+                        <li> <a href="/" id="home-page">صفحه اصلی</a> </li>
+                        <li> <a href="./painting.html" id="painting">نقاشی</a> </li>
+                        <li> <a href="./pottery.html" id="pottery">سفال</a> </li>
+                        <li> <a href="./sculpture.html" id="sculpture">مجسمه</a> </li>
+                        <li> <a href="./learning_classes.html" id="Learning_Classes">کلاس های حضوری</a> </li>
+                        <li> <a href="./self-request.html" id="self-request">سفارش طرح شخصی</a> </li>
+                    </ul>
+                </div>
+                <div class="titr">
+                    <h3>ارتباط با ما</h3>
+                    <hr>
+                    <ul class="contact">
+                        <li>
+                            <div class="contact-pic" id="email-pic"></div>
+                            <p>ایمیل : </p>
+                            <a href="#">deliak_gallery@gmail.com</a>
+                        </li>
+                        <li>
+                            <div class="contact-pic" id="instagram-pic"></div>
+                            <p>آی دی اینستاگرام : </p>
+                            <a href="#">@deliak_gallery</a>
+                        </li>
+                        <li>
+                            <div class="contact-pic" id="call-pic"></div>
+                            <p>شماره تماس : </p>
+                            <a href="tel:+989120760484">98-9120760484+</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="coppyright">
+                <p>کليه حقوق محصولات و محتوای اين سایت متعلق به دلیکا می باشد و هر گونه کپی برداری از محتوا و محصولات سایت
+                    غیر مجاز و بدون رضایت ماست.</p>
+            </div>
+        ` ;
+        if (!localStorage.getItem("token")) {
+            document.getElementById("profile").href = "./register.html";
+            document.getElementById("profile").innerHTML = "<h3> ثبت نام / ورود  </h3>";
+        }
+    } else if (mode == "foolder") {
+        document.querySelector("header#top").innerHTML = `
+        <div class="first-header">
+            <a href="./bag.html" id="bag_icon">
+                <div class="icon" id="shop">
+                    <div id="bag_pic">
+                        <div id="up"></div>
+                        <div id="down"></div>
+                    </div>
+                    <div id="bag">
+                        <h3>سبد خرید</h3>
+                    </div>
+                </div>
+            </a>
+            <div id="bag_preview">
+                <h3 id="item_count">سبد خرید : 0</h3>
+                <div id="Data"> </div>
+                <div class="checkout_box">
+                    <h4 class="total">مجموع :</h4>
+                    <h4 class="total_money">0</h4>
+                    <a href="../bag.html" class="button">
+                        <button>رفتن به سبد خرید</button>
+                    </a>
+                </div>
+            </div>
+            <a href="./specification.html" class="icon" id="profile">
+                <h3>پروفایل</h3>
+            </a>
+            <div id="contact">
+                <h3 onclick="contact_us()">ارتباط با ما</h3>
+            </div>
+            <div id="lang" onclick="lang_list_transform()">زبان : فارسی</div>
+            <div id="lang-list">
+                <h4>انتخاب زبان</h4>
+                <label for="languages">فارسی (FA)</label>
+                <input type="radio" name="languages" id="persian" checked>
+                <label for="languages">انگلیسی (EN)</label>
+                <input type="radio" name="languages" id="english">
+                <label for="languages">چینی (元)</label>
+                <input type="radio" name="languages" id="chineese">
+                <button id="submit" onclick="current_lang()">تایید</button>
+            </div>
+        </div>
+        <div id="delika_logo"></div>
+        <div class="middle_header">
+            <div id="web-name" onclick="lang_list_close()">
+                <h1>گالری دلیکا</h1>
+            </div>
+            <div class="secound-header">
+                <ul id="menu">
+                    <li> <a href="/" id="home-page">صفحه اصلی</a> </li>
+                    <li id="Painting"> <a href="../paint.html" id="painting">نقاشی</a> </li>
+                    <li id="Pottery"> <a href="../pottery.html" id="pottery">سفال</a> </li>
+                    <li id="Sculpture"> <a href="../sculpture.html" id="sculpture">مجسمه</a> </li>
+                    <li id="Learning"> <a href="../learning_classes.html" id="learning">کلاس های حضوری</a> </li>
+                    <li> <a href="../self_request.html" id="self-request">سفارش طرح شخصی</a> </li>
+                    <li> <a href="../help_request.html" id="help-request">درخواست مشاوره</a> </li>
+                </ul>
+            </div>
+        </div>
+        <div id="secound-header-list">
+            <ul id="list"></ul>
+        </div>
+    ` ;
+    document.querySelector("article#hiden_contact").innerHTML = `
+    <h2>ارتباط با ما
+            <div class="back" onclick="backToHome('flex')">
+                <div class="xy"></div>
+                <div class="yx"></div>
+            </div>
+        </h2>
+        <div id="ways">
+            <div id="call" class="items">
+                <div class="contact-picture"></div>
+                <h3>تلفن</h3>
+                <p>از شنبه تا پنجشنبه <br> ساعت 9 الی 21</p>
+                <a href="tel:+989120760484" class="call-box">
+                    <p>98-9120760484+</p>
+                </a>
+            </div>
+            <div id="email" class="items">
+                <div class="contact-picture"></div>
+                <h3>ایمیل</h3>
+                <p>شما میتوانید از طریق ایمیل به راحتی با ما در ارتباط باشید delika.gallery@gmail.com</p>
+                <p></p>
+                <a href="mailto:taha.hoveidapour@gmail.com" class="call-box">
+                    <p>ارسال ایمیل</p>
+                </a>
+            </div>
+            <div id="instagram" class="items">
+                <div class="contact-picture"></div>
+                <h3>اینستاگرام</h3>
+                <p>شما میتوانید از طریق دایرکت اینستاگرام به صورت تمام وق با ما در ارتباط باشید</p>
+                <a href="#" class="call-box">
+                    <p>@deliak_gallery</p>
+                </a>
+            </div>
+        </div>
+    ` ;
+    document.getElementsByTagName("footer")[0].innerHTML = `
+        <div class="ending">
+        <div class="titr">
+            <h3>درباره دلیکا</h3>
+            <hr>
+            <p>دلیکا یک گالری هنریه که کارش چیزایی مثل نقاشی روی سفاله (حالا اسم دقیقش مثلا) و یه مشت حرف دیگه </p>
+        </div>
+        <div class="titr">
+            <h3>بخش های سایت</h3>
+            <hr>
+            <ul>
+                <li> <a href="/" id="home-page">صفحه اصلی</a> </li>
+                <li> <a href="../paint.html" id="painting">نقاشی</a> </li>
+                <li> <a href="../pottery.html" id="pottery">سفال</a> </li>
+                <li> <a href="../sculpture.html" id="sculpture">مجسمه</a> </li>
+                <li> <a href="../learning_classes.html" id="Learning_Classes">کلاس های حضوری</a> </li>
+                <li> <a href="../self-request.html" id="self-request">سفارش طرح شخصی</a> </li>
+            </ul>
+        </div>
+        <div class="titr">
+            <h3>ارتباط با ما</h3>
+            <hr>
+            <ul class="contact">
+                <li>
+                    <div class="contact-pic" id="email-pic"></div>
+                    <p>ایمیل : </p>
+                    <a href="#">deliak_gallery@gmail.com</a>
+                </li>
+                <li>
+                    <div class="contact-pic" id="instagram-pic"></div>
+                    <p>آی دی اینستاگرام : </p>
+                    <a href="#">@deliak_gallery</a>
+                </li>
+                <li>
+                    <div class="contact-pic" id="call-pic"></div>
+                    <p>شماره تماس : </p>
+                    <a href="tel:+989120760484">98-9120760484+</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="coppyright">
+        <p>کليه حقوق محصولات و محتوای اين سایت متعلق به دلیکا می باشد و هر گونه کپی برداری از محتوا و محصولات سایت
+            غیر مجاز و بدون رضایت ماست.</p>
+    </div>
+    ` ;
+    if (!localStorage.getItem("token")) {
+        document.getElementById("profile").href = "../register.html";
+        document.getElementById("profile").innerHTML = "<h3> ثبت نام / ورود  </h3>";
+    }
+    }
+}
 //--------------- header popout list
 var check_list;
 $(document).ready(function () {
-    var father_element = document.getElementById("list");
-    var all = document.getElementById("secound-header-list");
     $(document).mousemove(function () {
         $("#Painting").mouseenter(function () {
             create_underline("Painting");
             for (var i = 1; i < 40; i++) {
                 var option = document.createElement("li");
-                var txt = document.createElement("h4");
-                txt.innerHTML = painting_art_fa[i];
                 option.id = painting_art[i];
-                option.appendChild(txt);
-                father_element.appendChild(option);
+                option.innerHTML = `
+                <h4>${painting_art_fa[i]}</h4>
+                ` ;
+                document.querySelector("#list").appendChild(option);
                 option.addEventListener("click", function () {
                     localStorage.setItem("homeTypeSelected", this.id);
                     window.location.href = "./paint.html";
                 }, false);
             }
-            all.style.transform = "translateY(0)";
-            all.style.transition = "transform 400ms";
+            document.querySelector("#secound-header-list").style.transform = "translateY(0)";
+            document.querySelector("#secound-header-list").style.transition = "transform 400ms";
             check_list = true;
         })
         $("#Pottery").mouseenter(function () {
@@ -37,14 +335,14 @@ $(document).ready(function () {
                 txt.innerHTML = pottery_art_fa[i];
                 option.id = pottery_art[i];
                 option.appendChild(txt);
-                father_element.appendChild(option);
+                document.querySelector("#list").appendChild(option);
                 option.addEventListener("click", function () {
                     localStorage.setItem("homeTypeSelected", this.id);
                     window.location.href = "./pottery.html";
                 }, false);
             }
-            all.style.transform = "translateY(0)";
-            all.style.transition = "transform 400ms";
+            document.querySelector("#secound-header-list").style.transform = "translateY(0)";
+            document.querySelector("#secound-header-list").style.transition = "transform 400ms";
             check_list = true;
         })
         $("#Sculpture").mouseenter(function () {
@@ -55,14 +353,14 @@ $(document).ready(function () {
                 txt.innerHTML = sculpture_art_fa[i];
                 option.id = sculpture_art[i];
                 option.appendChild(txt);
-                father_element.appendChild(option);
+                document.querySelector("#list").appendChild(option);
                 option.addEventListener("click", function () {
                     localStorage.setItem("homeTypeSelected", this.id);
                     window.location.href = "./sculpture.html";
                 }, false);
             }
-            all.style.transform = "translateY(0)";
-            all.style.transition = "transform 400ms";
+            document.querySelector("#secound-header-list").style.transform = "translateY(0)";
+            document.querySelector("#secound-header-list").style.transition = "transform 400ms";
             check_list = true;
         })
         $("#Learning").mouseenter(function () {
@@ -84,10 +382,10 @@ $(document).ready(function () {
                 txt.innerHTML = learning_classes_fa[i];
                 option.id = learning_classes[i];
                 option.appendChild(txt);
-                father_element.appendChild(option);
+                document.querySelector("#list").appendChild(option);
             }
-            all.style.transform = "translateY(0)";
-            all.style.transition = "transform 400ms";
+            document.querySelector("#secound-header-list").style.transform = "translateY(0)";
+            document.querySelector("#secound-header-list").style.transition = "transform 400ms";
             check_list = true;
         })
         $("#bag_icon").mouseenter(function () {
@@ -102,8 +400,8 @@ $(document).ready(function () {
         })
         if (check_list == true) {
             $("#secound-header-list").mouseenter(function () {
-                all.style.transform = "translateY(0)";
-                all.style.transition = "transform 400ms";
+                document.querySelector("#secound-header-list").style.transform = "translateY(0)";
+                document.querySelector("#secound-header-list").style.transition = "transform 400ms";
             }).mouseleave(secound_header_list_back);
             $("#mid").mouseenter(secound_header_list_back);
             $("#hiden_contact").mouseenter(secound_header_list_back);
@@ -142,6 +440,7 @@ function clear_underline() {
         titr[i].style.paddingBottom = "0rem";
     }
 }
+
 //---- register form check
 function add_member() {
     const email = document.forms["signin"]["email"].value;
@@ -183,7 +482,7 @@ function add_member() {
             localStorage.setItem("token", res.headers["x-auth-token"]);
             localStorage.removeItem('setupTime');
             localStorage.setItem('setupTime', new Date().getDay());
-            window.location.assign(home_pg_link);
+            window.location.assign("/");
             return false;
         }).catch(err => {
             console.log(err);
@@ -213,7 +512,7 @@ function login_member() {
             localStorage.setItem("token", res.headers["x-auth-token"]);
             localStorage.removeItem('setupTime');
             localStorage.setItem('setupTime', new Date().getDay());
-            window.location.assign(home_pg_link);
+            window.location.assign("/");
         }).catch(err => {
             window.scroll(0, 0);
             let text = "کاربری با این اطلاعات یافت نشد .";
@@ -223,7 +522,7 @@ function login_member() {
 }
 function check_loged() {
     if (localStorage.getItem("token")) {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     }
 }
 //----------------------- language setting
@@ -260,12 +559,15 @@ function current_lang() {
     var chineese = document.getElementById("chineese");
     if (persian.checked) {
         language.innerHTML = "زبان : فارسی";
+        window.location.href = '#fa';
         lang_list_close();
     } else if (english.checked) {
-        window.location.href = '#';
+        language.innerHTML = "language : english";
+        window.location.href = '#en';
         lang_list_close();
     } else if (chineese.checked) {
-        window.location.href = '#';
+        language.innerHTML = "زبان : فارسی";
+        window.location.href = '#ch';
         lang_list_close();
     }
 }
@@ -1036,6 +1338,10 @@ function check_out() {
     }
 }
 function bill_result() {
+    if (!localStorage.getItem("token")) {
+        window.location.assign("/");
+        return 0;
+    }
     const mode = new URLSearchParams(window.location.search).get("for");
     const Authority = new URLSearchParams(window.location.search).get("Authority");
     const Status = new URLSearchParams(window.location.search).get("Status");

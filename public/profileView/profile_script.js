@@ -1,7 +1,7 @@
 function load_profile_data() {
     const id = localStorage.getItem("token");
     if (!id) {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     } else {
         axios.get(`http://localhost:3000/api/profile/detail`, {
             headers: {
@@ -38,7 +38,7 @@ function load_profile_data() {
             if (Data.birth)
                 document.forms["member-detail"]["birth"].value = res.data.birth;
         }).catch(err => {
-            window.location.assign(home_pg_link);
+            window.location.assign("/");
         });
     }
 
@@ -46,7 +46,7 @@ function load_profile_data() {
 function edit_profile() {
     const id = localStorage.getItem("token");
     if (!id) {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     } else {
         const info = {
             first_name: document.forms["member-detail"]["first-name"].value,
@@ -85,13 +85,13 @@ function exit_req() {
     if (confirm("میخواهید از حساب کاربری خود خارج شوید ؟")) {
         localStorage.removeItem("token");
         localStorage.removeItem('basket');
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     }
 }
 function check_role() {
     const id = localStorage.getItem("token");
     if (!id) {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     } else {
         axios.get(`http://localhost:3000/api/profile/detail`, {
             headers: {
@@ -145,7 +145,7 @@ function change_password() {
 function member_help_requests() {
     const auth = localStorage.getItem("token");
     if (!auth)
-        return window.location.assign(home_pg_link);
+        return window.location.assign("/");
     const father = document.querySelector("tbody");
     axios.get("http://localhost:3000/api/profile/help_request_list", {
         headers: {
@@ -182,13 +182,13 @@ function member_help_requests() {
         }
 
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function load_oreder() {
     const auth = localStorage.getItem("token");
     if (!auth)
-        return window.location.assign(home_pg_link);
+        return window.location.assign("/");
     const father = document.querySelector("tbody");
     axios.get("http://localhost:3000/api/profile/orders", {
         headers: {
@@ -220,7 +220,7 @@ function load_oreder() {
         }
 
     }).catch(err => {
-        window.location.assign(home_pg_link);
+        window.location.assign("/");
     });
 }
 function order_detail(id) {
@@ -307,7 +307,7 @@ function backToOrders() {
 function load_my_course() {
     const auth = localStorage.getItem("token");
     if (!auth)
-        return window.location.assign(home_pg_link);
+        return window.location.assign("/");
     axios.get("http://localhost:3000/api/profile/my_course", {
         headers: {
             'x-auth-token': localStorage.getItem("token")

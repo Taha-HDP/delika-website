@@ -22,19 +22,25 @@ module.exports = new (class Course_controller {
         if (!course)
             return res.status(404).send();
         const token = req.header("x-auth-token");
-        let user , history;
+        let user, history;
         if (token) {
-            user = jwt.verify(token, config.get("jwtPrivetKey"));
-            for (let i = 0; i < course.members_id.length; i++) {
-                if (user._id == course.members_id[i]) {
-                    history = "false";
-                    break;
+            try {
+                user = jwt.verify(token, config.get("jwtPrivetKey"));
+                for (let i = 0; i < course.members_id.length; i++) {
+                    if (user._id == course.members_id[i]) {
+                        history = "false";
+                        break;
+                    }
                 }
+            } catch (error) {
+                history = "true";
             }
+
+
         }
         const body = {
-            course ,
-            history : history
+            course,
+            history: history
         }
         res.send(body);
     }

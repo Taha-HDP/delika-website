@@ -47,7 +47,13 @@ function load_course() {
                 'x-auth-token': localStorage.getItem("token")
             }
         }).then(res => {
-            console.log(res.data.history);
+            const token = localStorage.getItem("token");
+            if (!token) {
+                document.getElementById("enrolling_button").innerHTML = "برای ثبت نام در کلاس وارد شوید";
+                document.getElementById("enrolling_button").onclick = () => {
+                    window.location.href = "../register.html";
+                }
+            }
             if (res.data.history == "false") {
                 document.getElementById("enrolling_button").innerHTML = "رفتن به کلاس";
                 document.getElementById("enrolling_button").onclick = () => {
@@ -60,17 +66,17 @@ function load_course() {
             document.getElementById("course_length").innerHTML = res.data.course.length + " جلسه";
             document.getElementById("course_hours").innerHTML = res.data.course.hours;
             //------ translate section
-            let status ;
-            switch(res.data.course.status){
-                case "ongoing" : 
-                    status = "درحال برگزاری" ;
-                break ;
-                case "waiting" : 
-                    status = "به زودی" ;
-                break ;
-                case "done" : 
-                    status = "تمام شده" ;
-                break ;
+            let status;
+            switch (res.data.course.status) {
+                case "ongoing":
+                    status = "درحال برگزاری";
+                    break;
+                case "waiting":
+                    status = "به زودی";
+                    break;
+                case "done":
+                    status = "تمام شده";
+                    break;
             }
             //------
             document.getElementById("course_status").innerHTML = status;

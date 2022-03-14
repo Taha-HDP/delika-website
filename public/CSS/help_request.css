@@ -1,5 +1,5 @@
 #mid{
-    margin: 11rem 9%;
+    margin: 12rem 9%;
     padding: 2rem 5%;
     width: 70%;
     background: rgb(241, 241, 241);
@@ -53,6 +53,7 @@
 #mid textarea:hover ,
 #request_phone:hover,
 #request_name:hover{
+    cursor: pointer;
     box-shadow: 0px 0px 8px rgba(0,0,0,0.5);
 }
 #mid button{
