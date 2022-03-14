@@ -392,7 +392,7 @@ function site_data() {
         document.getElementById("sitePhone4").value = res.data.phone_4;
         document.getElementById("about_delika").value = res.data.about;
     }).catch(err => {
-        console.log(err) ;
+        console.log(err);
     })
 }
 function change_setting(id) {
@@ -956,7 +956,7 @@ function create_course() {
                 info.value = "";
                 place.value = "";
                 hours.value = "";
-                start_date.value = "" ;
+                start_date.value = "";
                 image.files[0] = "";
                 document.getElementById("uploadLabel").style.backgroundImage = "none";
                 document.getElementById("uploadLabel").style.color = "black";
@@ -994,7 +994,7 @@ function create_course() {
                     call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
                     window.location.href = "./class_list.html";
                 }).catch(err => {
-                    const text = "ارسال اطلاعات با خطا مواجه شد" ;
+                    const text = "ارسال اطلاعات با خطا مواجه شد";
                     call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
                 });
             } else {
@@ -1019,7 +1019,7 @@ function create_course() {
                     call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
                     window.location.href = "./class_list.html";
                 }).catch(err => {
-                    const text = "ارسال اطلاعات با خطا مواجه شد" ;
+                    const text = "ارسال اطلاعات با خطا مواجه شد";
                     call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
                 });
             }
@@ -1041,7 +1041,7 @@ function load_courses() {
             } else {
                 tr.style.backgroundColor = "rgb(241, 241, 241)";
             }
-            let type ;
+            let type;
             switch (item.type) {
                 case "paint":
                     type = "نقاشی";
@@ -1060,14 +1060,34 @@ function load_courses() {
                 <td>${item.members} نفر</td>
                 <td>${item.length}</td>
                 <td>${item.time}</td>
-                <td>${item.status}</td>
+                <td>
+                    <select class="select_status" onchange="course_status('${item._id}' , '${index}')">
+                        <option class="waiting" value="waiting">به زودی</option>
+                        <option class="done" value="done">تمام شده</option>
+                        <option class="ongoing" value="ongoing">در حال برگزاری</option>
+                    </select>
+                </td>
                 <td>${item.price} تومان</td>
                 <td><button class="detail_button" onclick="courses_detail('${item._id}')">جزئیات</button> <button class="info_button" onclick="gotoEditCourse('${item._id}')">ویرایش</button></td>`;
             father.appendChild(tr);
+            document.getElementsByClassName(item.status)[index].selected = true;
         });
     }).catch(err => {
         window.location.assign(home_pg_link);
     });
+}
+function course_status(id, index) {
+    const status = document.getElementsByClassName("select_status")[index].value
+    axios.put("http://localhost:3000/api/admin/course_status/" + id, { status }, {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        const text = "با موفقیت ذخیره شد";
+        call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+    }).catch(err => {
+        console.log(err);
+    })
 }
 function courses_detail(id) {
     document.getElementById("class-list").style.display = "none";

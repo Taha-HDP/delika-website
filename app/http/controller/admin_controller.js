@@ -459,7 +459,14 @@ module.exports = new (class Admin_controller {
         await item.save();
         res.status(200).send();
     }
-
+    async course_status(req, res) {
+        const course = await Course.findById(req.params.id);
+        if (!course)
+            return res.status(404).send();
+        course.status = req.body.status;
+        await course.save();
+        res.send();
+    }
 });
 
 

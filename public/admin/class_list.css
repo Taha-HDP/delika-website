@@ -14,6 +14,12 @@ table{
     font-size: 1.2rem;
     font-weight: 600;
 }
+#mid select{
+    font-family: inherit;
+    width: 80%;
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
 #number{
     width: 5% ;
 }

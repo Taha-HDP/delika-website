@@ -51,6 +51,7 @@ router.get("/admin/coursedetail/:id", [auth, admin], Admin_controller.get_course
 router.post("/admin/create_course", [auth, admin, upload.single("picture")], Admin_controller.create_course);
 router.put("/admin/edit_course/:id", [auth, admin], Admin_controller.edit_course);
 router.put("/admin/edit_courseP/:id", [auth, admin, upload.single("picture")], Admin_controller.edit_courseP);
+router.put("/admin/course_status/:id", [auth, admin], Admin_controller.course_status);
 
 router.get("/admin/clear_catch", Admin_controller.clear_catch);
 module.exports = router;
