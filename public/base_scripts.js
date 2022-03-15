@@ -482,7 +482,6 @@ function add_member() {
             window.location.assign("/");
             return false;
         }).catch(err => {
-            console.log(err);
             window.scroll(0, 0);
             let text = "این شماره /ایمیل/نام کاربری قبلا در سیستم ثبت شده !";
             call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
@@ -684,7 +683,7 @@ function help_request_data() {
             document.getElementById("request_phone").value = res.data.phone;
             document.getElementById("request_name").value = res.data.name;
         }).catch(err => {
-            console.log(err);
+            window.location.assign("/500.html")
         });
     }
 }
@@ -716,7 +715,6 @@ function send_help_request() {
             call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
             window.location.href = "./profileView/help_request.html"
         }).catch(err => {
-            console.log(err);
             const text = "شما یک درخواست باز دارید ، برای مشاهده ، به قسمت درخواست ها در پروفایل بروید ";
             call_cs_popup(text, 5000, "black", "rgba(255, 38, 38, 0.59)");
         });
@@ -1346,8 +1344,7 @@ function check_out() {
             }).then(res => {
                 window.location.assign(res.data);
             }).catch(err => {
-                const text = "ارسال اطلاعات با خطا مواجه شده است";
-                call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+                window.location.assign("/500.html")
             });
         }
     }
@@ -1386,8 +1383,7 @@ function bill_result() {
             document.getElementById("payed").innerHTML = res.data.total_price + " تومان";
 
         }).catch(err => {
-            const text = "ارسال اطلاعات با خطا مواجه شده است";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            window.location.assign("/500.html")
         });
     } else {
         axios.get("http://localhost:3000/api/payment/verification?Authority=" + Authority + "&Status=" + Status, {
@@ -1415,8 +1411,7 @@ function bill_result() {
             document.getElementById("payed").innerHTML = res.data.total_price + " تومان";
 
         }).catch(err => {
-            const text = "ارسال اطلاعات با خطا مواجه شده است";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            window.location.assign("/500.html")
         });
     }
 }
@@ -1510,7 +1505,7 @@ function load_basket(mode) {
                     load_factor("none")
                 }
             }).catch(err => {
-                console.log(err);
+                window.location.assign("/500.html");
             });
         });
         if (mode == "page") {
@@ -1657,8 +1652,7 @@ function send_request() {
         document.getElementById("uploadLabel").style.backgroundImage = "none";
         document.getElementById("uploadLabel").style.color = "black";
     }).catch(err => {
-        const text = "ارسال اطلاعات با خطا مواجه شد";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        window.location.assign("/500.html")
     });
 
 }

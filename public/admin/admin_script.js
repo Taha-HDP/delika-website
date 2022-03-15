@@ -270,8 +270,7 @@ function item_detail(id){
             </tbody>
         </table> ` ;
     }).catch(err => {
-        console.log(err)
-        //window.location.assign("/");
+        window.location.assign("/");
     });
 }
 function backToItems() {
@@ -472,7 +471,7 @@ function site_data() {
         document.getElementById("sitePhone4").value = res.data.phone_4;
         document.getElementById("about_delika").value = res.data.about;
     }).catch(err => {
-        console.log(err);
+        window.location.assign("/500.html")
     })
 }
 function change_setting(id) {
@@ -1213,8 +1212,7 @@ function order_detail(id) {
             document.getElementById("object_info").appendChild(item_box);
         })
     }).catch(err => {
-        const text = "ارسال اطلاعات با خطا مواجه شد";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        window.location.assign("/500.html")
     });
 }
 function backToOrders() {
@@ -1359,8 +1357,7 @@ function create_course() {
                     call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
                     window.location.href = "./class_list.html";
                 }).catch(err => {
-                    const text = "ارسال اطلاعات با خطا مواجه شد";
-                    call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+                    window.location.assign("/500.html")
                 });
             } else {
                 const body = new FormData();
@@ -1384,8 +1381,7 @@ function create_course() {
                     call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
                     window.location.href = "./class_list.html";
                 }).catch(err => {
-                    const text = "ارسال اطلاعات با خطا مواجه شد";
-                    call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+                    window.location.assign("/500.html")
                 });
             }
         }
@@ -1451,7 +1447,7 @@ function course_status(id, index) {
         const text = "با موفقیت ذخیره شد";
         call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
     }).catch(err => {
-        console.log(err);
+        window.location.assign("/500.html")
     })
 }
 function courses_detail(id) {

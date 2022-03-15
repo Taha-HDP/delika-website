@@ -295,8 +295,7 @@ function order_detail(id) {
             document.getElementById("object_info").appendChild(item_box);
         })
     }).catch(err => {
-        const text = "ارسال اطلاعات با خطا مواجه شد";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        window.location.assign("/500.html")
     });
 }
 function backToOrders() {
@@ -372,6 +371,6 @@ function load_my_course() {
 
         });
     }).catch(err => {
-        console.log(err);
+        window.location.assign("/500.html")
     });
 }
