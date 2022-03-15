@@ -11,18 +11,74 @@
     <link rel="stylesheet" href="./CSS/self_request.css">
     <link rel="stylesheet" href="./CSS/header&footer.css">
     <link rel="icon" href="./public/images/DELIKA-01.png" sizes="32X32" type="image/png">
-    <title>گالری دلیکا - </title>
+    <title>گالری دلیکا - سفارش شخصی</title>
 </head>
 
 <body onload="loadHeaderAndFooter('home') ,check_auth() , load_basket()">
     <header id="top"></header>
     <article id="hiden_contact"></article>
+    <div id="notfication"></div>
     <article id="mid" onclick="lang_list_close()">
-        
+        <h2>سفارش طرح شخصی شخصی</h2>
+        <p>برای شخصی سازی کردن یک محصول میتوانید از این بخش اقدام کنید ، اگر قصد تغییر ابعاد طرح اورجینال را دارید از بخش
+            مشاوره اقدام کنید تا مطابق نظرتان پیش برود ، اما اگر قصد ارسال تصویر و ساخت طرح مورد نظر خود را دارید فرم
+            زیر را کامل کنید و کلید ارسال را بزنید . <br>
+            بعد از ارسال اطلاعات برای ادامه فرایند خرید با شما تماس گرفته می شود .
+        </p>
+        <div id="request_data">
+            <form method="post">
+                <div class="right">
+                    <label for="name">نام و نام خانوادگی خود را وارد کنید :</label>
+                    <br>
+                    <input type="text" name="name" placeholder="نام و نام خانوادگی" id="coustomer_name">
+                    <br>
+                    <label for="type">دسته بندی خود را انتخاب کنید :</label>
+                    <br>
+                    <select name="type" id="type">
+                        <option value="paint">نقاشی</option>
+                        <option value="pottery">سفال</option>
+                    </select>
+                    <br>
+                    <label for="shapes">ابعاد :</label>
+                    <br>
+                    <input type="number" placeholder="طول" name="shapes" id="shapes_x">
+                    <input type="number" placeholder="عرض" name="shapes" id="shapes_y">
+                    <br>
+                    <label for="info">توضیحات :</label>
+                    <br>
+                    <textarea name="info" id="info" cols="30" rows="10" placeholder="توضیحات"></textarea>
+                    <br>
+                    <input type="button" onclick="send_request()" id="send_button" value="ارسال">
+                </div>
+                <label id="uploadLabel">
+                    <input type="file" id="image" name="image" accept="image/png , image/jpeg"
+                        onchange="change_item_picture(this)">
+                    تصویر
+                </label>
+            </form>
+        </div>
     </article>
     <footer></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./base_scripts.js"> </script>
+<script>
+    function change_item_picture(elem) {
+        var length = elem.files.length;
+        if (!length) {
+            return false;
+        }
+        changeBackground(elem);
+    }
+    function changeBackground(img) {
+        var reader = new FileReader();
+        reader.onload = imageIsLoaded;
+        reader.readAsDataURL(img.files[0]);
+        function imageIsLoaded(e) {
+            document.getElementById("uploadLabel").style.backgroundImage = "url(" + e.target.result + ")";
+            document.getElementById("uploadLabel").style.color = "rgba(0,0,0,0)";
+        }
+    }
+</script>
 
 </html>

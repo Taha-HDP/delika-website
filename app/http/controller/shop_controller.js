@@ -1,11 +1,13 @@
 const Shop = require("../../models/shop_model");
 const Customer = require("../../models/customer_model");
-const dateTime = require('node-datetime');
 const Payment = require("../../models/payment_model");
 const Site_data = require("../../models/site_data_model");
 const Offer = require("../../models/offer_model");
+const Self_request = require("../../models/self_request_model");
+const dateTime = require('node-datetime');
 const ZarinpalCheckout = require('zarinpal-checkout');
 const zarinpal = ZarinpalCheckout.create('00000000-0000-0000-0000-000000000000', true);
+
 module.exports = new (class Shoping_controller {
     async get_item_list(req, res) {
         if (req.body.type) {
@@ -204,6 +206,30 @@ module.exports = new (class Shoping_controller {
             offer_money = 0;
         }
         res.send(`${offer_money}`);
+    }
+    async send_self_request(req, res) {
+        const history = await Self_request.find({
+            member_id: req.user._id,
+        })
+        if (history) {
+            for (let i = 0; i < history.length; i++) {
+                if (history[i].status != "done") {
+                    return res.send("false");
+                }
+            }
+        }
+        const new_request = new Self_request({
+            name: req.body.name,
+            type: req.body.type,
+            x: req.body.x,
+            y: req.body.y,
+            info: req.body.info,
+            picture: req.file.path,
+            send_date: dateTime.create().format('Y-m-d'),
+            member_id: req.user._id,
+        });
+        await new_request.save();
+        res.send();
     }
 });
 

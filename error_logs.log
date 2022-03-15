@@ -22,3 +22,4 @@
 {"level":"error","message":"token is not defined"}
 {"level":"error","message":"Cannot read properties of null (reading 'total_price')"}
 {"level":"error","message":"Cannot read properties of null (reading 'total_price')"}
+{"level":"error","message":"user is not defined"}

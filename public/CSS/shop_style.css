@@ -120,7 +120,7 @@ li .pointer ,
 .item-picture{
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     margin: 10% 15%;
     width: 75%;
     height: 65%;

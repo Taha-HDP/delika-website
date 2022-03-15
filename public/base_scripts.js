@@ -218,7 +218,7 @@ function loadHeaderAndFooter(mode) {
             <ul id="list"></ul>
         </div>
     ` ;
-    document.querySelector("article#hiden_contact").innerHTML = `
+        document.querySelector("article#hiden_contact").innerHTML = `
     <h2>ارتباط با ما
             <div class="back" onclick="backToHome('flex')">
                 <div class="xy"></div>
@@ -253,7 +253,7 @@ function loadHeaderAndFooter(mode) {
             </div>
         </div>
     ` ;
-    document.getElementsByTagName("footer")[0].innerHTML = `
+        document.getElementsByTagName("footer")[0].innerHTML = `
         <div class="ending">
         <div class="titr">
             <h3>درباره دلیکا</h3>
@@ -299,10 +299,10 @@ function loadHeaderAndFooter(mode) {
             غیر مجاز و بدون رضایت ماست.</p>
     </div>
     ` ;
-    if (!localStorage.getItem("token")) {
-        document.getElementById("profile").href = "../register.html";
-        document.getElementById("profile").innerHTML = "<h3> ثبت نام / ورود  </h3>";
-    }
+        if (!localStorage.getItem("token")) {
+            document.getElementById("profile").href = "../register.html";
+            document.getElementById("profile").innerHTML = "<h3> ثبت نام / ورود  </h3>";
+        }
     }
 }
 //--------------- header popout list
@@ -1594,6 +1594,57 @@ function load_factor(code) {
             document.getElementById("final_total").innerHTML = factor_total + " تومان";
             document.getElementById("offer").innerHTML = factor_offer + " تومان";
         })
+
+}
+//--------------------- sekf request
+function send_request() {
+    if (!localStorage.getItem("token")) {
+        let text = "برای ثبت درخواست باید وارد حساب کاربری شوید";
+        call_cs_popup(text, 3000, "black", "rgba(255, 38, 38, 0.59)");
+        return 0;
+    }
+    const name = document.querySelector("#coustomer_name");
+    const type = document.querySelector("#type");
+    const x = document.querySelector("#shapes_x");
+    const y = document.querySelector("#shapes_y");
+    const info = document.querySelector("#info");
+    const image = document.getElementById("image");
+    if (!name.value || !type.value || !x.value || !y.value || !image.files[0]) {
+        let text = "شما باید همه ی قسمت ها را کامل کنید";
+        call_cs_popup(text, 3000, "black", "rgba(255, 38, 38, 0.59)");
+        return 0;
+    }
+    const body = new FormData();
+    body.append("name", name.value);
+    body.append("type", type.value);
+    body.append("x", x.value);
+    body.append("y", y.value);
+    body.append("info", info.value);
+    body.append("picture", image.files[0]);
+    axios.post("http://localhost:3000/api/shop/sendSelfRequest", body, {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        if (res.data == false) {
+            const text = "شما یک درخواست تمام نشده دارید برای مشاهده به پروفایل ، بخش طرح های شخصی بروید";
+            call_cs_popup(text, 5000, "black", "rgba(255, 38, 38, 0.59)");
+        }else{
+            const text = "درخواست شما با موفقیت ثبت شد";
+            call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+        }
+        name.value = "";
+        type.value = "none";
+        x.value = "";
+        y.value = "";
+        info.value = "";
+        image.files[0] = "";
+        document.getElementById("uploadLabel").style.backgroundImage = "none";
+        document.getElementById("uploadLabel").style.color = "black";
+    }).catch(err => {
+        const text = "ارسال اطلاعات با خطا مواجه شد";
+        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+    });
 
 }
 //--------------------- notif

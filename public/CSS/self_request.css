@@ -1,3 +1,107 @@
 #mid{
     margin-top: 13rem;
 }
+#mid h2{
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem 0;
+}
+#mid p{
+    line-height: 1.8;
+    padding: 1rem 5%;
+    text-align: right;
+    width: 74%;
+    margin: 1rem 8%;
+    border-radius: 10px;
+    background-color: rgb(199 199 199);
+}
+#mid img{
+    width: 50px;
+    height: 40px;
+}
+#request_data{
+    width: 80%;
+    padding: 2rem 2%;
+    margin: 0 8%;
+    background-color: rgb(241, 241, 241);
+}
+#mid form{
+    display: flex;
+    flex-wrap: wrap;
+}
+.right{
+    width: 49%;
+    border-left: 2px solid rgb(180,180,180);
+}
+#coustomer_name ,
+#type ,
+#shapes_x ,
+#shapes_y{
+    padding-right: 2%;
+    font-family: inherit;
+    border: none;
+    height: 2rem;
+    margin: 1rem 0;
+    width: 30%;
+    transition : 400ms ;
+}
+#mid select{
+    width: 42%;
+}
+#coustomer_name{
+    width: 40% !important;
+}
+#mid textarea{
+    padding-right: 2%;
+    font-family: inherit;
+    border: none;
+    margin: 1rem 0;
+    width: 66%;
+    height: 10rem;
+    resize: none;
+    transition : 400ms ;
+}
+#shapes_x{
+    margin-left: 3% !important;
+}
+#coustomer_name:hover ,
+#type:hover ,
+#shapes_x:hover ,
+#shapes_y:hover ,
+#mid textarea:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    transition: 400ms;
+}
+#send_button{
+    font-family: inherit ;
+    background-color: black ;
+    color: white ;
+    width: 33% ;
+    margin-right: 15% !important;
+    margin-top: 1.5rem ;
+    padding: 0.7rem 0 ;
+    border: 1px solid ;
+    transition: 400ms;
+}
+#send_button:hover{
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    transition: 400ms;
+}
+#image{
+    display: none;
+}
+#uploadLabel {
+    margin: 2rem 7.5%;
+    background-color: white;
+    padding: 14rem 0;
+    width: 35%;
+    height: fit-content;
+    text-align: center;
+    cursor: pointer;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

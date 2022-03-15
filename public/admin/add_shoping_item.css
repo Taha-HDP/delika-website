@@ -34,7 +34,7 @@
     cursor: pointer;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
   }
 #filld{
     margin-top: 1rem;
