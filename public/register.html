@@ -30,16 +30,19 @@
                 <label for="pass">رمز عبور خود را وارد کنید :</label>
                 <br>
                 <input type="password" name="password" id="pass" placeholder="رمز عبور">
-                <br>
-                <a href="./forget_password.html">رمز عبور خود را فراموش کردید ؟</a>
-                <br><br>
+                <label for="login_eye" class="eye_lable">
+                    نمایش رمز عبور
+                    <input type="checkbox" name="login_eye" class="eye" onchange="password_mode(this.id)"
+                        id="login_eye">
+                </label>
                 <input type="button" class="button" value="ورود" onclick="login_member()">
+                <a href="./forget_password.html">رمز عبور خود را فراموش کردید ؟</a>
             </form>
         </div>
         <div class="signin">
             <h2>ثبت نام</h2>
             <form name="signin" method="post" autocomplete="off">
-               <p class="alert">* شما باید همه ی گزینه ها را کامل کنید !</p>
+                <p class="alert">* شما باید همه ی گزینه ها را کامل کنید !</p>
                 <p class="alert">* یک کاربر با این شماره / ایمیل / یوزر قبلا ثبت شده</p>
                 <label for="email">ایمیل خود را وارد کنید :</label>
                 <br>
@@ -57,6 +60,11 @@
                 <br>
                 <input type="password" name="password-check" id="password-check" placeholder="تکرار رمز عبور">
                 <br>
+                <label for="signin_eye" class="eye_lable">
+                    نمایش رمز عبور
+                    <input type="checkbox" name="signin_eye" class="eye" onchange="password_mode(this.id)"
+                        id="signin_eye">
+                </label>
                 <label for="phone">شماره همراه خود را وارد کنید</label>
                 <br>
                 <input type="text" maxlength="11" name="phone" id="phone" placeholder="---- --- --09">
@@ -80,4 +88,5 @@
     <script src="./jquery.js"></script>
     <script src="./base_scripts.js"> </script>
 </body>
+
 </html>

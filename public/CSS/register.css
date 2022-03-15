@@ -13,37 +13,31 @@ article h2{
     margin: 2rem auto;
     width: fit-content;
 }
-.login{
-    width: 30%;
-    margin: 11rem 10%;
-}
+.login,
 .signin{
-    width: 30%;
-    margin: 11rem 10%;
+    width: 40%;
+    margin: 12rem 5%;
 }
 @media (max-width: 64rem) {
-    .login{
-        margin: 11rem 3%;
-        width: 100%;
-    }
+    .login ,
     .signin{
-        margin: 11rem 3%;
+        margin: 12rem 3%;
         width: 100%;
     }
 }
 @media (max-width: 48rem) {
     .login{
-        margin: 8rem 10% 0 0;
+        margin: 10rem 10% 0 0;
         width: 80%;
     }
     .signin{
-        margin: 7rem 10%;
+        margin: 3rem 10%;
         width: 80%;
     }
 }
 @media (max-width: 24rem) {
     .login{
-        margin: 6rem 5% 0 0;
+        margin: 8rem 5% 0 0;
         width: 90%;
     }
     .signin{
@@ -53,6 +47,8 @@ article h2{
 }
 .login a{
     font-size: 1rem;
+    margin-top: 1rem;
+    margin-right: 2%;
 }
 .login a:hover{
     text-decoration: underline;
@@ -60,19 +56,25 @@ article h2{
  form{
     width: 80%;
     margin: 1rem auto;
-    display: grid;
-    justify-items: stretch;
-    font-family: Vazir;
+    display: flex;
     font-size: 1.3rem;
+    flex-wrap: wrap;
 }
  input,
  select{
     font-family: inherit;
     font-size: 1rem ;
-    padding: 0.5rem;
+    padding-right: 2%;
+    padding-left: 1%;
+    height: 3rem;
     border: 0px;
     background-color: white;
     transition: 500ms ;
+    width: 96%;
+    margin: 1rem 0;
+}
+select{
+    width: 99%;
 }
  form p{
     color: rgb(243, 21, 21);
@@ -80,12 +82,36 @@ article h2{
     margin: 0% 2% 3%;
     display: none
 }
+.eye_lable{
+    display: inline-block;
+    width: 100%;
+    font-size: 1rem !important;
+    transition: 500ms ;
+    text-shadow: none !important;
+}
+.eye_lable:hover{
+    cursor: pointer;
+    text-shadow: 0px 0px 5px rgba(0,0,0,0.3) !important;
+    transition: 500ms ;
+}
+.eye{
+    height: fit-content;
+    width: fit-content;
+    margin: 0rem 3% 1rem 50%;
+    vertical-align: sub;
+}
+.eye:hover{
+    cursor: pointer;
+}
+.eye:focus{
+    box-shadow: none !important;
+}
 .button{
     font-family: inherit;
     font-size: 1rem ;
     padding: 0.5rem;
     border: none;
-
+    width: 99% !important;
     background-color: black !important;
     color: white;
     transition: 1s transform ;
@@ -114,8 +140,4 @@ article h2{
         font-size: 1rem ;
         width: 90%;
     }
-}
-form i {
-    margin-left: -30px;
-    cursor: pointer;
 }

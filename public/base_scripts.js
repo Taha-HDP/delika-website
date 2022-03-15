@@ -438,8 +438,7 @@ function clear_underline() {
         titr[i].style.paddingBottom = "0rem";
     }
 }
-
-//---- register form check
+//--------------------- register form check
 function add_member() {
     const email = document.forms["signin"]["email"].value;
     const password = document.forms["signin"]["password"].value;
@@ -521,6 +520,24 @@ function login_member() {
 function check_loged() {
     if (localStorage.getItem("token")) {
         window.location.assign("/");
+    }
+}
+function password_mode(id) {
+    const eye = document.getElementById(id);
+    if (eye.checked == true) {
+        if (id == "login_eye") {
+            document.getElementById("pass").type = "text" ;
+        } else if (id == "signin_eye") {
+            document.getElementById("password").type = "text" ;
+            document.getElementById("password-check").type = "text" ;
+        }
+    } else {
+        if (id == "login_eye") {
+            document.getElementById("pass").type = "password" ;
+        } else if (id == "signin_eye") {
+            document.getElementById("password").type = "password" ;
+            document.getElementById("password-check").type = "password" ;
+        }
     }
 }
 //----------------------- language setting
@@ -807,18 +824,18 @@ const pottery_art_fa = ["همه"
     , "نقاشی زیر لعاب"
     , "نقاشی آکریلیک"];
 const pottery_art = ["all"
-    , "special-glaze"
-    , "lace"
-    , "bubbles"
-    , "mandala"
-    , "resin"
-    , "spray"
-    , "silk-mesh"
-    , "adhesive-tape"
-    , "paper"
-    , "sponge"
-    , "under-glaze"
-    , "acrylic"];
+    , "Painting on pottery with special glaze"
+    , "Painting using lace"
+    , "Painting on ceramics with bubbles"
+    , "Painting with mandala technique"
+    , "Floyd Art Painting or Resin Abstract"
+    , "Painting on pottery by spray painting"
+    , "Painting using silk mesh"
+    , "Painting using adhesive tape"
+    , "Painting on pottery with drawing paper"
+    , "Painting using sponge"
+    , "Painting under glaze"
+    , "Acrylic Painting"]
 const sculpture_art_fa = ["همه"
     , "کوبیسم"
     , "انتزاعی هندسی"
@@ -831,16 +848,16 @@ const sculpture_art_fa = ["همه"
     , "پاپ آرت"
     , "مینیمالیسم و هنر مفهومی"];
 const sculpture_art = ["all"
-    , "cubism"
-    , "geometric_abstract"
-    , "supermatism"
-    , "structure"
-    , "dadaism"
-    , "surrealism"
-    , "futurism"
-    , "abstract_expressionism"
-    , "pop"
-    , "minimalism_and_conceptual"];
+    , "Cubism"
+    , "Geometric abstrac"
+    , "Supermatism"
+    , "Structure"
+    , "Dadaism"
+    , "Surrealism"
+    , "Futurism"
+    , "Abstract expressionism"
+    , "Pop Art"
+    , "Minimalism and Conceptual Art"];
 let painting_sort = "", pottery_sort = "", sculpture_sort = "";
 //---------------------- sort list functions
 var sort_option = [
