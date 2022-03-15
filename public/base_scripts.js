@@ -1,7 +1,5 @@
 var script = document.createElement('script');
-script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
 script.src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
-script.type = 'text/javascript';
 document.getElementsByTagName('body')[0].appendChild(script);
 //------------- header & footer data
 function loadHeaderAndFooter(mode) {
@@ -1629,7 +1627,7 @@ function send_request() {
         if (res.data == false) {
             const text = "شما یک درخواست تمام نشده دارید برای مشاهده به پروفایل ، بخش طرح های شخصی بروید";
             call_cs_popup(text, 5000, "black", "rgba(255, 38, 38, 0.59)");
-        }else{
+        } else {
             const text = "درخواست شما با موفقیت ثبت شد";
             call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
         }
