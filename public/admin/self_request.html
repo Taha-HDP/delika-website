@@ -15,158 +15,35 @@
     <title>گالری دلیکا - لیست سفارش های شخصی</title>
 </head>
 
-<body onload="check_admin() ,loadHeaderAndFooter('foolder') ,load_aside_list('aside_self_req'), load_basket()">
+<body onload="check_admin() ,loadHeaderAndFooter('foolder') ,load_aside_list('aside_self_req') ,self_request_list(), load_basket()">
     <header id="top"></header>
     <article id="hiden_contact"></article>
+    <div id="notfication"></div>
     <main>
-        <aside>
-            <h3>پنل ادمین</h3>
-            <ul id="sidebar">
-                <li>
-                    <a href="../admin/admin_pannel.html">پنل اصلی</a>
-                </li>
-                <li id="add-item">
-                    <a href="../admin/add_shoping_item.html">افزودن کالا</a>
-                </li>
-                <li id="item_lists">
-                    <a href="../admin/item_list.html">لیست محصولات</a>
-                </li>
-                <li>
-                    <a href="../admin/saled_item.html">لیست کالا های فروخته شده</a>
-                </li>
-                <li class="active">
-                    <a href="../admin/self_request.html">لیست سفارش های شخصی</a>
-                </li>
-                <li>
-                    <a href="../admin/talk_request.html">لیست درخواست های مشاوره</a>
-                </li>
-                <li>
-                    <a href="../admin/learning_class.html">کلاس های حضوری</a>
-                </li>
-                <li>
-                    <a href="../admin/member_list.html">لیست کاربران</a>
-                </li>
-                <li>
-                    <a href="../admin/comments.html">نظرات تایید نشده</a>
-                </li>
-                <li>
-                    <a href="../admin/offer_list.html">تخفیف ها</a>
-                </li>
-                <li>
-                    <a href="../admin/setting.html">تنظیمات سایت</a>
-                </li>
-            </ul>
-        </aside>
+        <aside> </aside>
         <article id="mid" onclick="lang_list_close()">
             <div id="self-req">
                 <h3>کالا های فروخته شده</h3>
+                <div id="search_box">
+                    <div id="search_button" onclick="find_request()"></div>
+                    <input onchange="find_request()" id="wanted" class="search__input" type="text" placeholder="جست و جو (نام کاربری / آی دی)">
+                </div>
                 <table>
-                    <tr>
-                        <th id="number">ردیف</th>
-                        <th id="type">دسته بندی</th>
-                        <th id="member-name">نام خریدار</th>
-                        <th id="item-price">قیمت</th>
-                        <th id="date">تاریخ</th>
-                        <th id="status">وضعیت</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>نقاشی</td>
-                        <td>طاها</td>
-                        <td>200000</td>
-                        <td>2/22/2022 - 12:30</td>
-                        <td>در حال بررسی</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>مجسمه</td>
-                        <td>eli.hdp</td>
-                        <td>3200000</td>
-                        <td>2/10/2022 - 11:00</td>
-                        <td>ارسال شده</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>سفال</td>
-                        <td>احسان میرزایی</td>
-                        <td>140000</td>
-                        <td>1/5/2022 - 2:43</td>
-                        <td>در حال ساخت</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>مجسمه</td>
-                        <td>جلال الدین محمد احمدی بلخی</td>
-                        <td>50000000</td>
-                        <td>1/1/0001 - 00:00</td>
-                        <td>انجام شده</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>نقاشی</td>
-                        <td>طاها</td>
-                        <td>200000</td>
-                        <td>2/22/2022 - 12:30</td>
-                        <td>در حال بررسی</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>مجسمه</td>
-                        <td>eli.hdp</td>
-                        <td>3200000</td>
-                        <td>2/10/2022 - 11:00</td>
-                        <td>ارسال شده</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>سفال</td>
-                        <td>احسان میرزایی</td>
-                        <td>140000</td>
-                        <td>1/5/2022 - 2:43</td>
-                        <td>در حال ساخت</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>مجسمه</td>
-                        <td>جلال الدین محمد احمدی بلخی</td>
-                        <td>50000000</td>
-                        <td>1/1/0001 - 00:00</td>
-                        <td>انجام شده</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>نقاشی</td>
-                        <td>طاها</td>
-                        <td>200000</td>
-                        <td>2/22/2022 - 12:30</td>
-                        <td>در حال بررسی</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>مجسمه</td>
-                        <td>eli.hdp</td>
-                        <td>3200000</td>
-                        <td>2/10/2022 - 11:00</td>
-                        <td>ارسال شده</td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td>سفال</td>
-                        <td>احسان میرزایی</td>
-                        <td>140000</td>
-                        <td>1/5/2022 - 2:43</td>
-                        <td>در حال ساخت</td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>مجسمه</td>
-                        <td>جلال الدین محمد احمدی بلخی</td>
-                        <td>50000000</td>
-                        <td>1/1/0001 - 00:00</td>
-                        <td>انجام شده</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th id="number">ردیف</th>
+                            <th id="type">دسته بندی</th>
+                            <th id="member-name">نام خریدار</th>
+                            <th id="member-username">نام کاربری خریدار</th>
+                            <th id="date">تاریخ</th>
+                            <th id="status">وضعیت</th>
+                            <th id="request_detail">جزئیات</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
                 </table>
             </div>
+            <div id="requestDetail"></div>
         </article>
     </main>
     <footer> </footer>

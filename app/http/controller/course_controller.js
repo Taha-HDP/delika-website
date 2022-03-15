@@ -35,8 +35,6 @@ module.exports = new (class Course_controller {
             } catch (error) {
                 history = "true";
             }
-
-
         }
         const body = {
             course,

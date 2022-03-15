@@ -578,6 +578,211 @@ function back_detail() {
     document.getElementById("member-list").style.display = "block";
     document.getElementById("memberDetail").style.display = "none";
 }
+//---- self requests
+function self_request_list() {
+    const father = document.querySelector("tbody");
+    axios.get("http://localhost:3000/api/admin/self_request_list", {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        res.data.reverse();
+        res.data.map((request, index) => {
+            let status_color;
+            switch (request.status) {
+                case "checking":
+                    status_color = "rgb(255 182 108 / 92%)";
+                    break;
+                case "creating":
+                    status_color = "rgb(233 243 86 / 92%)";
+                    break;
+                case "sended":
+                    status_color = "rgb(102 207 247 / 92%)";
+                    break;
+                case "done":
+                    status_color = "rgb(79 255 85 / 92%)";
+                    break;
+            }
+            var tr = document.createElement("tr");
+            if (index % 2 == 0) {
+                tr.style.backgroundColor = "rgb(200,200,200)";
+            } else {
+                tr.style.backgroundColor = "rgb(241, 241, 241)";
+            }
+            tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${request.type}</td>
+            <td>${request.name}</td>
+            <td>${request.username}</td>
+            <td>${request.send_date}</td>
+            <td style="background : ${status_color}">
+                <select class="status_select" onchange="change_self_request('${request._id}','${index}')">
+                    <option class="request_checking" value="checking">در حال بررسی</option>
+                    <option class="request_creating" value="creating">در حال ساخت</option>
+                    <option class="request_sended" value="sended">ارسال شده</option>
+                    <option class="request_done" value="done">انجام شده</option>
+                </select>
+            </td>
+            <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">جزئیات</button></td>`;
+            father.appendChild(tr);
+            document.getElementsByClassName("request_" + request.status)[index].selected = true;
+        });
+    }).catch(err => {
+        window.location.assign("/");
+    });
+}
+function change_self_request(id, index) {
+    const status = document.getElementsByClassName("status_select")[index].value;
+    const body = {
+        "id": id,
+        "status": status,
+    }
+    axios.put("http://localhost:3000/api/admin/self_request_edit", body, {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        const text = "با موفقیت ذخیره شد";
+        call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+    }).catch(err => {
+        const text = "ارسال داده با خطا مواجه شده است";
+        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+    });
+}
+function self_request_dateil(id) {
+    document.getElementById("self-req").style.display = "none";
+    document.getElementById("requestDetail").style.display = "block";
+    axios.get("http://localhost:3000/api/admin/requestDetail/" + id, {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        const request = res.data;
+        const array = request.picture.split("\\");
+        const picture = array[3];
+        document.getElementById("requestDetail").innerHTML = `
+        <h3 id="detail-head">جزئیات دوره</h3>
+        <h3 id="back-button" onclick="backToRequests()">بازگشت</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>آی دی درخواست</td>
+                    <td>${request._id}</td>
+                </tr>
+                <tr>
+                    <td>آی دی کاربر</td>
+                    <td>${request.member_id}</td>
+                </tr>
+                <tr>
+                    <td>نام خریدار</td>
+                    <td>${request.name}</td>
+                </tr>
+                <tr>
+                    <td>نام کاربری خریدار</td>
+                    <td>${request.username}</td>
+                </tr>
+                <tr>
+                    <td>شماره</td>
+                    <td>${request.phone}</td>
+                </tr>
+                <tr>
+                    <td>ایمیل</td>
+                    <td>${request.email}</td>
+                </tr>
+                <tr>
+                    <td>دسته بندی</td>
+                    <td>${request.type}</td>
+                </tr>
+                <tr>
+                    <td>طول</td>
+                    <td>${request.x}</td>
+                </tr>
+                <tr>
+                    <td>عرض</td>
+                    <td>${request.y}</td>
+                </tr>
+                <tr>
+                    <td>تاریخ ارسال</td>
+                    <td>${request.send_date}</td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td>${request.info}</td>
+                </tr>
+                <tr>
+                    <td>تصویر</td>
+                    <td>
+                        <img src="../public/image/${picture}">
+                    </td>
+                </tr>
+            </tbody>
+        </table> ` ;
+    }).catch(err => {
+        window.location.assign("/");
+    });
+}
+function backToRequests() {
+    document.getElementById("self-req").style.display = "block";
+    document.getElementById("requestDetail").style.display = "none";
+}
+function find_request() {
+    const father = document.querySelector("tbody");
+    father.innerHTML = '';
+    const search = document.getElementById("wanted").value;
+    if(search==""){
+        self_request_list() ;
+        return 0 ;
+    }
+    axios.get("http://localhost:3000/api/admin/request/" + search, {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        if (res.data.length > 0) {
+            res.data.reverse();
+            res.data.map((request, index) => {
+                let status_color;
+                switch (request.status) {
+                    case "checking":
+                        status_color = "rgb(255 182 108 / 92%)";
+                        break;
+                    case "creating":
+                        status_color = "rgb(233 243 86 / 92%)";
+                        break;
+                    case "sended":
+                        status_color = "rgb(102 207 247 / 92%)";
+                        break;
+                    case "done":
+                        status_color = "rgb(79 255 85 / 92%)";
+                        break;
+                }
+                var tr = document.createElement("tr");
+                if (index % 2 == 0) {
+                    tr.style.backgroundColor = "rgb(200,200,200)";
+                } else {
+                    tr.style.backgroundColor = "rgb(241, 241, 241)";
+                }
+                tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${request.type}</td>
+                <td>${request.name}</td>
+                <td>${request.username}</td>
+                <td>${request.send_date}</td>
+                <td style="background : ${status_color}">
+                    <select class="status_select" onchange="change_self_request('${request._id}','${index}')">
+                        <option class="request_checking" value="checking">در حال بررسی</option>
+                        <option class="request_creating" value="creating">در حال ساخت</option>
+                        <option class="request_sended" value="sended">ارسال شده</option>
+                        <option class="request_done" value="done">انجام شده</option>
+                    </select>
+                </td>
+                <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">جزئیات</button></td>`;
+                father.appendChild(tr);
+                document.getElementsByClassName("request_" + request.status)[index].selected = true;
+            });
+        }
+    })
+}
 //---- help requests
 function help_request_list() {
     const father = document.querySelector("tbody");
@@ -795,7 +1000,7 @@ function order_list() {
                     </td>` ;
                 father.appendChild(tr);
             });
-        }   
+        }
 
     }).catch(err => {
         window.location.assign("/");
@@ -1246,13 +1451,13 @@ function load_course_payment() {
         window.location.assign("/");
     });
 }
-function find_course_payment(){
+function find_course_payment() {
     const father = document.querySelector("tbody");
     father.innerHTML = '';
     const search = document.getElementById("wanted").value;
-    if (search == ""){
-        load_course_payment() ;
-    }else{
+    if (search == "") {
+        load_course_payment();
+    } else {
         axios.get("http://localhost:3000/api/admin/courses/payment/" + search, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")

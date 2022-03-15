@@ -218,6 +218,7 @@ module.exports = new (class Shoping_controller {
                 }
             }
         }
+        const user = await Customer.findById(req.user._id) ;
         const new_request = new Self_request({
             name: req.body.name,
             type: req.body.type,
@@ -225,11 +226,14 @@ module.exports = new (class Shoping_controller {
             y: req.body.y,
             info: req.body.info,
             picture: req.file.path,
+            username : user.username ,
+            phone : user.phone ,
+            email : user.email ,
             send_date: dateTime.create().format('Y-m-d'),
-            member_id: req.user._id,
+            member_id: user._id,
         });
         await new_request.save();
-        res.send();
+        res.send("true");
     }
 });
 

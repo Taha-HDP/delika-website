@@ -24,6 +24,11 @@ router.put("/super_admin/change_role/:id", [auth, admin], Admin_controller.chang
 //----- requests
 router.get("/admin/help_request_list", [auth, admin], Admin_controller.help_request_list);
 router.put("/admin/help_request_edit", [auth, admin], Admin_controller.help_request_edit);
+
+router.get("/admin/self_request_list", [auth, admin], Admin_controller.self_request_list);
+router.put("/admin/self_request_edit", [auth, admin], Admin_controller.self_request_edit);
+router.get("/admin/request/:id", [auth, admin], Admin_controller.find_self_request);
+router.get("/admin/requestDetail/:id", [auth, admin], Admin_controller.get_self_request);
 //----- items section
 router.get("/admin/items", [auth, admin], Admin_controller.getItemList);
 router.get("/admin/orders", [auth, admin], Admin_controller.getOrdersList);
