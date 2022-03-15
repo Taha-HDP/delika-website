@@ -337,10 +337,29 @@ module.exports = new (class Admin_controller {
         res.status(200).send();
     }
     async findPayment(req, res) {
-        let payment = await Payment.find({
-            refID: req.params.id
-        });
-        res.send(payment);
+        let payment = await Payment.find({ refID: req.params.id });
+        if (payment.length == 0) {
+            payment = await Payment.find({ buyer_name: req.params.id });
+            if (payment.length == 0) {
+                if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) { //its validate for object id
+                    payment = await Payment.find({ _id: req.params.id });
+                }
+                if (payment.length == 0) {
+                    payment = await Payment.find({ member_id: req.params.id });
+                    if (payment.length == 0) {
+                        res.status(200).send();
+                    } else {
+                        res.send(payment);
+                    }
+                } else {
+                    res.send(payment);
+                }
+            } else {
+                res.send(payment);
+            }
+        } else {
+            res.send(payment);
+        }
     }
     //----- comments
     async comment_list(req, res) {

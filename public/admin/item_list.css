@@ -2,60 +2,88 @@
     width: 77%;
     margin-top: 13rem;
 }
-#member-list{
+#item-list{
     margin-right: 0.8%;
     width: 95%;
     background: rgb(241, 241, 241);
     padding: 1%;
     height: fit-content;
 }
-#member-list h3{
+#item-list h3{
     text-align: center;
     padding: 1rem;
     font-size: 1.2rem;
     font-weight: 600;
 }
-#number ,
-#item-x ,
-#item-y{
+#number{
     width: 5%;
 }
 #item-price ,
 #item-type{
-    width: 10%;
+    width: 12%;
 }
 #item-name ,
 #item-class {
-    width: 16%;
+    width: 20%;
 }
-#item-pic{
-    width: 10%;
+#item-buttons{
+    width: 21%;
 }
-#item-info{
-    width: 23% ;
+.delete_button ,
+.detail_button ,
+.info_button{
+    padding: 0.5rem 2%;
+    width: 26%;
+    border: none;
+    font-family: inherit;
+    font-size: 0.7rem;
+    margin: 0 2.5%;
+    transition: 400ms;
+}
+.detail_button{
+    background-color: rgb(139, 255, 93);
 }
 .delete_button{
-    padding: 0.5rem 5%;
-    width: 40%;
-    border: none;
     background-color: rgb(255, 73, 73);
-    font-family: inherit;
-    font-size: 0.7rem;
-    margin-left: 10%;
-    transition: 400ms;
 }
 .info_button{
-    padding: 0.5rem 5%;
-    width: 40%;
-    border: none;
     background-color: rgb(73, 146, 255);
-    font-family: inherit;
-    font-size: 0.7rem;
-    transition: 400ms;
 }
 .delete_button:hover ,
-.info_button:hover{
+.info_button:hover ,
+.detail_button:hover{
     cursor: pointer;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
     transition: 400ms;
+}
+
+#itemDetail{
+    display: none;
+    background: rgb(241, 241, 241);
+    padding: 5%;
+}
+#itemDetail table{
+    text-align: right !important;
+}
+#detail-head{
+    font-size: 1.7rem;
+    margin: 0 3% 2rem;
+    display: inline-block;
+}
+#back-button{
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-right: 70%;
+    transition: 400ms;
+}
+#back-button:hover{
+    cursor: pointer;
+    text-shadow: 0px 0px 5px rgba(0,0,0,.5);
+    transition: 400ms;
+}
+#itemDetail img{
+    width: 190px !important;
+}
+#itemDetail img:hover{
+    cursor:unset  !important;
 }

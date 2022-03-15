@@ -194,15 +194,89 @@ function item_list() {
             <td>${type}</td>
             <td>${Class}</td>
             <td>${item.price} تومان</td>
-            <td>${item.x}</td>
-            <td>${item.y}</td>
-            <td>${item.info}</td>
-            <td><button class="delete_button" onclick="delete_item('${item._id}')">حذف</button> <button class="info_button" onclick="gotoEditItem('${item._id}')">ویرایش</button></td>`
+            <td>
+                <button class="delete_button" onclick="delete_item('${item._id}')">حذف</button>
+                <button class="info_button" onclick="gotoEditItem('${item._id}')">ویرایش</button>
+                <button class="detail_button" onclick="item_detail('${item._id}')">جزئیات</button>
+            </td>`
             father.appendChild(tr);
         });
     }).catch(err => {
         window.location.assign("/");
     });
+}
+function item_detail(id){
+    document.getElementById("item-list").style.display = "none";
+    document.getElementById("itemDetail").style.display = "block";
+    axios.get("http://localhost:3000/api/admin/item/"+id , {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        const item = res.data;
+        const array = item.picture.split("\\");
+        const picture = array[3];
+        document.getElementById("itemDetail").innerHTML = `
+        <h3 id="detail-head">جزئیات کالا</h3>
+        <h3 id="back-button" onclick="backToItems()">بازگشت</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>آی دی کالا</td>
+                    <td>${item._id}</td>
+                </tr>
+                <tr>
+                    <td>نام کالا</td>
+                    <td>${item.name}</td>
+                </tr>
+                <tr>
+                    <td>دسته بندی</td>
+                    <td>${item.type}</td>
+                </tr>
+                <tr>
+                    <td>سبک</td>
+                    <td>${item.class}</td>
+                </tr>
+                <tr>
+                    <td>طول</td>
+                    <td>${item.x}</td>
+                </tr>
+                <tr>
+                    <td>عرض</td>
+                    <td>${item.y}</td>
+                </tr>
+                <tr>
+                    <td>قیمت</td>
+                    <td>${item.price}</td>
+                </tr>
+                <tr>
+                    <td>تاریخ ساخت</td>
+                    <td>${item.create_date}</td>
+                </tr>
+                <tr>
+                    <td>تعداد فروش</td>
+                    <td>${item.salesNumber}</td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td>${item.info}</td>
+                </tr>
+                <tr>
+                    <td>تصویر</td>
+                    <td>
+                        <img src="../public/image/${picture}">
+                    </td>
+                </tr>
+            </tbody>
+        </table> ` ;
+    }).catch(err => {
+        console.log(err)
+        //window.location.assign("/");
+    });
+}
+function backToItems() {
+    document.getElementById("item-list").style.display = "block";
+    document.getElementById("itemDetail").style.display = "none";
 }
 function delete_item(id) {
 
@@ -661,7 +735,7 @@ function self_request_dateil(id) {
         const array = request.picture.split("\\");
         const picture = array[3];
         document.getElementById("requestDetail").innerHTML = `
-        <h3 id="detail-head">جزئیات دوره</h3>
+        <h3 id="detail-head">جزئیات درخواست</h3>
         <h3 id="back-button" onclick="backToRequests()">بازگشت</h3>
         <table>
             <tbody>
@@ -729,9 +803,9 @@ function find_request() {
     const father = document.querySelector("tbody");
     father.innerHTML = '';
     const search = document.getElementById("wanted").value;
-    if(search==""){
-        self_request_list() ;
-        return 0 ;
+    if (search == "") {
+        self_request_list();
+        return 0;
     }
     axios.get("http://localhost:3000/api/admin/request/" + search, {
         headers: {
@@ -1060,6 +1134,87 @@ function find_payment() {
             });
         }
     })
+}
+function order_detail(id) {
+    document.getElementsByTagName("table")[0].style.display = "none";
+    document.getElementById("orderList_header").style.display = "none";
+    document.getElementById("orderPage").style.display = "block";
+    axios.get("http://localhost:3000/api/profile/orders/" + id, {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        document.getElementById("F&Lname").innerHTML = res.data.name;
+        document.getElementById("send_address").innerHTML = res.data.address;
+        document.getElementById("post_code").innerHTML = res.data.post_code;
+        document.getElementById("send_money").innerHTML = res.data.shipping_cost + " تومان";
+        document.getElementById("offer").innerHTML = res.data.offer + " تومان";
+        document.getElementById("final_total").innerHTML = res.data.total_price + " تومان";
+        document.getElementById("refID").innerHTML = res.data.refID;
+        document.getElementById("date").innerHTML = res.data.date;
+        document.getElementById("status").innerHTML = res.data.status;
+        document.getElementById("items_total").innerHTML = (res.data.total_price - res.data.shipping_cost - res.data.offer) + " تومان";
+        document.getElementById("object_info").innerHTML = `
+        <h3>محصولات سفارش داده شده </h3>  
+        ` ;
+        res.data.items.map((item) => {
+            const item_box = document.createElement("div");
+            item_box.classList.add("object_box");
+            const array = item.picture.split("\\");
+            const picture = array[3];
+            let type, Class;
+            switch (item.type) {
+                case "painting":
+                    type = "نقاشی";
+                    for (var i = 0; i < painting_art.length; i++) {
+                        if (item.class == painting_art[i]) {
+                            Class = painting_art_fa[i];
+                            break;
+                        }
+                    }
+                    break;
+                case "pottery":
+                    type = "سفال";
+                    for (var i = 0; i < pottery_art.length; i++) {
+                        if (item.class == pottery_art[i]) {
+                            Class = pottery_art_fa[i];
+                            break;
+                        }
+                    }
+                    break;
+                case "sculpture":
+                    type = "مجسمه";
+                    for (var i = 0; i < sculpture_art.length; i++) {
+                        if (item.class == sculpture_art[i]) {
+                            Class = sculpture_art_fa[i];
+                            break;
+                        }
+                    }
+                    break;
+            }
+            item_box.innerHTML = `
+                    <div class="basket_object_info">
+                        <div class="object_picture" style="background-image : url('../public/image/${picture}')"></div>
+                        <div class="objectDetail">
+                            <h4 class="object_name">${item.name}</h4>
+                            <h4 class="object_type">دسته بندی : ${type}</h4>
+                            <h4 class="object_class">سبک : ${Class}</h4>
+                            <h4 class="object_shapes">ابعاد : ${item.x}x${item.y}</h4>
+                        </div>
+                    </div>
+                    <h4 class="object_price">${item.price}</h4>
+                    ` ;
+            document.getElementById("object_info").appendChild(item_box);
+        })
+    }).catch(err => {
+        const text = "ارسال اطلاعات با خطا مواجه شد";
+        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+    });
+}
+function backToOrders() {
+    document.getElementsByTagName("table")[0].style.display = "table";
+    document.getElementById("orderPage").style.display = "none";
+    document.getElementById("orderList_header").style.display = "block";
 }
 //----- offer
 function create_offer() {
