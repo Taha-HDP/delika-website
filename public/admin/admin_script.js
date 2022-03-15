@@ -363,6 +363,11 @@ function find_item() {
                 res.data.reverse();
                 res.data.map((item, index) => {
                     var tr = document.createElement("tr");
+                    if (index % 2 == 0) {
+                        tr.style.backgroundColor = "rgb(200,200,200)";
+                    } else {
+                        tr.style.backgroundColor = "rgb(241, 241, 241)";
+                    }
                     let type, Class;
                     switch (item.type) {
                         case "painting":
@@ -399,11 +404,12 @@ function find_item() {
                     <td><a href="${href}">${item.name}</a></td>
                     <td>${type}</td>
                     <td>${Class}</td>
-                    <td>${item.price}</td>
-                    <td>${item.x}</td>
-                    <td>${item.y}</td>
-                    <td>${item.info}</td>
-                    <td><button class="delete_button" onclick="delete_item('${item._id}')">حذف</button> <button class="info_button" onclick="gotoEditItem('${item._id}')">ویرایش</button></td>`
+                    <td>${item.price} تومان</td>
+                    <td>
+                        <button class="delete_button" onclick="delete_item('${item._id}')">حذف</button>
+                        <button class="info_button" onclick="gotoEditItem('${item._id}')">ویرایش</button>
+                        <button class="detail_button" onclick="item_detail('${item._id}')">جزئیات</button>
+                    </td>`
                     father.appendChild(tr);
                 });
             }
