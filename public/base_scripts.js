@@ -179,7 +179,7 @@ function loadHeaderAndFooter(mode) {
                     </a>
                 </div>
             </div>
-            <a href="./specification.html" class="icon" id="profile">
+            <a href="../profileView/specification.html" class="icon" id="profile">
                 <h3>پروفایل</h3>
             </a>
             <div id="contact">
