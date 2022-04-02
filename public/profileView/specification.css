@@ -68,6 +68,9 @@ main h3{
     margin: 1rem 0;
     transition: 400ms;
 }
+#information select{
+    width: 64%;
+}
 #information #address{
     resize: none;
     height: 5rem;
@@ -87,11 +90,13 @@ main h3{
     background-color: black;
     color: white;
     transition: 400ms;
+    width: 64% !important;
 }
 #button:hover{
     border: 1px solid black;
     color: black;
     background-color: white;
+    cursor: pointer;
     transition: 400ms;
 }
 #change-password{
@@ -101,7 +106,7 @@ main h3{
     font-family: inherit;
     border: none;
     height: 3rem;
-    width: 30%;
+    width: 30% !important;
     padding-right: 2%;
     padding-left: 2%;
     margin: 1rem 0;

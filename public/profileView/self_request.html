@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
     <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
     <link rel="stylesheet" href="../CSS/reset.css">
-    <link rel="stylesheet" href="./help_request.css">
+    <link rel="stylesheet" href="./self_request.css">
     <link rel="stylesheet" href="../CSS/header&footer.css">
     <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
-    <title>گالری دلیکا - درخواست ها</title>
+    <title>گالری دلیکا - طرح های شخصی</title>
 </head>
 
-<body onload="loadHeaderAndFooter('foolder') ,check_role(), load_basket()  , member_help_requests()">
+<body onload="loadHeaderAndFooter('foolder') ,check_role(), load_basket()  , member_self_requests()">
     <header id="top"></header>
     <article id="hiden_contact"></article>
     <div id="notfication"></div>
@@ -26,30 +26,32 @@
                 <li><a href="../bag.html">سبد خرید</a> </li>
                 <li><a href="./orders.html">تاریخچه سفارشات</a> </li>
                 <li><a href="./my_courses.html">دوره های من</a> </li>
-                <li class="active"><a href="./help_request.html">درخواست ها</a> </li>
-                <li><a href="./self_request.html">طرح های شخصی</a> </li>
+                <li><a href="./help_request.html">درخواست ها</a> </li>
+                <li class="active"><a href="./self_request.html">طرح های شخصی</a> </li>
                 <li id="admin_option"><a href="../admin/admin_pannel.html">پنل ادمین</a></li>
                 <li><a href="./change_password.html">تغییر رمز</a> </li>
                 <li onclick="exit_req()">خروج</li>
             </ul>
         </aside>
         <main>
-            <h3>درخواست ها</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th id="number">ردیف</th>
-                        <th id="member-name">نام وارد شده</th>
-                        <th id="member-phone">شماره وارد شده</th>
-                        <th id="date">تاریخ درخواست</th>
-                        <th id="final-date">تاریخ هماهنگ شده</th>
-                        <th id="status">وضعیت</th>
-                        <th id="money-status">وضعیت پرداخت</th>
-                        <th id="detail">توضیحات</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div id="self-req">
+                <h3>طرح های شخصی</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="number">ردیف</th>
+                            <th id="name">نام و نام خانوادگی</th>
+                            <th id="type">دسته بندی</th>
+                            <th id="shapes">ابعاد</th>
+                            <th id="status">وضعیت</th>
+                            <th id="send_date">تاریخ ارسال</th>
+                            <th id="detail">جزئیات</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="requestDetail"></div>
         </main>
     </article>
     <footer></footer>
@@ -57,4 +59,5 @@
     <script src="../base_scripts.js"> </script>
     <script src="./profile_script.js"> </script>
 </body>
+
 </html>

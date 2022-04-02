@@ -306,6 +306,19 @@ function loadHeaderAndFooter(mode) {
 //--------------- header popout list
 var check_list;
 $(document).ready(function () {
+    window.scroll(0, 0);
+    var now = new Date().getDay();
+    var setupTime = localStorage.getItem('setupTime');
+    if (setupTime) {
+        if (parseInt(now) - parseInt(setupTime) > 5) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('basket');
+            localStorage.removeItem('setupTime');
+        } else {
+            localStorage.removeItem('setupTime');
+            localStorage.setItem('setupTime', now);
+        }
+    }
     $(document).mousemove(function () {
         $("#Painting").mouseenter(function () {
             create_underline("Painting");
@@ -525,17 +538,17 @@ function password_mode(id) {
     const eye = document.getElementById(id);
     if (eye.checked == true) {
         if (id == "login_eye") {
-            document.getElementById("pass").type = "text" ;
+            document.getElementById("pass").type = "text";
         } else if (id == "signin_eye") {
-            document.getElementById("password").type = "text" ;
-            document.getElementById("password-check").type = "text" ;
+            document.getElementById("password").type = "text";
+            document.getElementById("password-check").type = "text";
         }
     } else {
         if (id == "login_eye") {
-            document.getElementById("pass").type = "password" ;
+            document.getElementById("pass").type = "password";
         } else if (id == "signin_eye") {
-            document.getElementById("password").type = "password" ;
-            document.getElementById("password-check").type = "password" ;
+            document.getElementById("password").type = "password";
+            document.getElementById("password-check").type = "password";
         }
     }
 }
@@ -1248,8 +1261,6 @@ function item_page() {
         } else {
             console.log("no comment")
         }
-
-
     }).catch(err => {
         let text = "انتقال دیتا با خطا مواجه شده است";
         call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
@@ -1667,22 +1678,5 @@ function call_cs_popup(text, time, color, background) {
         setTimeout(() => {
             notif.style.transform = "translateX(-1000px)";
         }, time);
-    }
-}
-
-$(document).ready(function () {
-    window.scroll(0, 0);
-});
-
-var now = new Date().getDay();
-var setupTime = localStorage.getItem('setupTime');
-if (setupTime) {
-    if (parseInt(now) - parseInt(setupTime) > 5) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('basket');
-        localStorage.removeItem('setupTime');
-    } else {
-        localStorage.removeItem('setupTime');
-        localStorage.setItem('setupTime', now);
     }
 }

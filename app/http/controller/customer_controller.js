@@ -2,6 +2,7 @@ const Customer = require("../../models/customer_model");
 const Shop = require("../../models/shop_model");
 const Request = require("../../models/help_request_model");
 const Payment = require("../../models/payment_model");
+const Self_request = require("../../models/self_request_model");
 const Offer = require("../../models/offer_model");
 const bcrypt = require("bcrypt");
 const dateTime = require('node-datetime');
@@ -173,6 +174,16 @@ module.exports = new (class Customer_controller {
         if (!user) return res.status(404).send("کاربر مورد نظر یافت نشد");
         const requests = await Request.find({ person: user._id });
         res.send(requests);
+    }
+    async self_request_list(req, res) {
+        const requests = await Self_request.find();
+        res.send(requests);
+    }
+    async self_request_detail(req, res) {
+        const request = await Self_request.findById(req.params.id);
+        if (!request)
+            return res.status(404).send();
+        res.send(request);
     }
     async orderList(req, res) {
         const user = await Customer.findById(req.user._id);

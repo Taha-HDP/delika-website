@@ -7,6 +7,9 @@ router.get("/profile/detail" , auth , Customer_controller.member_info) ;
 router.put("/profile/edit" , auth , Customer_controller.edit_member_info) ;
 router.put("/profile/changePassword" , auth , Customer_controller.change_password) ;
 router.get("/profile/help_request_list", auth , Customer_controller.help_request_list);
+router.get("/profile/self_request_list", auth , Customer_controller.self_request_list);
+router.get("/profile/requestDetail/:id", auth , Customer_controller.self_request_detail);
+
 router.post("/register", Customer_controller.register);
 router.post("/login", Customer_controller.login);
 router.post("/forgetPassword", Customer_controller.forgetPassword);

@@ -185,6 +185,143 @@ function member_help_requests() {
         window.location.assign("/");
     });
 }
+function member_self_requests() {
+    const auth = localStorage.getItem("token");
+    if (!auth)
+        return window.location.assign("/");
+    const father = document.querySelector("tbody");
+    axios.get("http://localhost:3000/api/profile/self_request_list", {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        if (res.data.length > 0) {
+            res.data.reverse();
+            res.data.map((request, index) => {
+                let status_color, status;
+                switch (request.status) {
+                    case "checking":
+                        status_color = "rgb(255 182 108 / 92%)";
+                        status = "درحال بررسی";
+                        break;
+                    case "creating":
+                        status_color = "rgb(233 243 86 / 92%)";
+                        status = "در حال ساخت";
+                        break;
+                    case "sended":
+                        status_color = "rgb(102 207 247 / 92%)";
+                        status = "ارسال شده";
+                        break;
+                    case "done":
+                        status_color = "rgb(79 255 85 / 92%)";
+                        status = "انجام شده";
+                        break;
+                }
+                let type;
+                if (request.type == "paint") {
+                    type = "نقاشی";
+                } else {
+                    type = "سفال";
+                }
+                var tr = document.createElement("tr");
+                if (index % 2 == 0) {
+                    tr.style.backgroundColor = "rgb(200,200,200)";
+                } else {
+                    tr.style.backgroundColor = "rgb(241, 241, 241)";
+                }
+                tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${request.name}</td>
+            <td>${type}</td>
+            <td>
+                طول = ${request.x} | عرض = ${request.y}
+            </td>
+            <td style="background : ${status_color}">${status}</td>
+            <td>${request.send_date}</td>
+            <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">جزئیات</button></td>`;
+                father.appendChild(tr);
+            });
+        } else {
+            document.getElementsByTagName("main")[0].innerHTML = `
+            <h4 id="empty">شما هیچ درخواستی ثبت نکردید</h4>
+            `;
+        }
+    }).catch(err => {
+        window.location.assign("/500.html");
+    });
+}
+function self_request_dateil(id) {
+    document.getElementById("self-req").style.display = "none";
+    document.getElementById("requestDetail").style.display = "block";
+    axios.get("http://localhost:3000/api/profile/requestDetail/" + id, {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        const request = res.data;
+        const array = request.picture.split("\\");
+        const picture = array[3];
+        document.getElementById("requestDetail").innerHTML = `
+        <h3 id="detail-head">جزئیات درخواست</h3>
+        <h3 id="back-button" onclick="backToRequests()">بازگشت</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>آی دی درخواست</td>
+                    <td>${request._id}</td>
+                </tr>
+                <tr>
+                    <td>نام و نام خانوادگی</td>
+                    <td>${request.name}</td>
+                </tr>
+                <tr>
+                    <td>شماره</td>
+                    <td>${request.phone}</td>
+                </tr>
+                <tr>
+                    <td>ایمیل</td>
+                    <td>${request.email}</td>
+                </tr>
+                <tr>
+                    <td>دسته بندی</td>
+                    <td>${request.type}</td>
+                </tr>
+                <tr>
+                    <td>وضعیت</td>
+                    <td>${request.status}</td>
+                </tr>
+                <tr>
+                    <td>طول</td>
+                    <td>${request.x}</td>
+                </tr>
+                <tr>
+                    <td>عرض</td>
+                    <td>${request.y}</td>
+                </tr>
+                <tr>
+                    <td>تاریخ ارسال</td>
+                    <td>${request.send_date}</td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td>${request.info}</td>
+                </tr>
+                <tr>
+                    <td>تصویر</td>
+                    <td>
+                        <img src="../public/image/${picture}">
+                    </td>
+                </tr>
+            </tbody>
+        </table> ` ;
+    }).catch(err => {
+        window.location.assign("/500.html");
+    });
+}
+function backToRequests(){
+    document.getElementById("self-req").style.display = "block";
+    document.getElementById("requestDetail").style.display = "none";
+}
 function load_oreder() {
     const auth = localStorage.getItem("token");
     if (!auth)
