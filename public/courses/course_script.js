@@ -4,7 +4,7 @@ function load_class_list() {
         window.location.href = "./learning_classes.html";
     } else {
         const father = document.getElementsByClassName("classes")[0];
-        axios.get("http://localhost:3000/api/courses/" + placeID)
+        axios.get("http://"+domain+"/api/courses/" + placeID)
             .then(res => {
                 if (res.data && res.data.length > 0) {
                     res.data.reverse();
@@ -42,7 +42,7 @@ function load_course() {
     if (!placeID) {
         window.location.href = "./learning_classes.html";
     } else {
-        axios.get("http://localhost:3000/api/course_detail/" + placeID, {
+        axios.get("http://"+domain+"/api/course_detail/" + placeID, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -97,7 +97,7 @@ function enrolling_class() {
     if (!placeID) {
         window.location.href = "./learning_classes.html";
     } else {
-        axios.get("http://localhost:3000/api/courses/enrolling_class/" + placeID, {
+        axios.get("http://"+domain+"/api/courses/enrolling_class/" + placeID, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }

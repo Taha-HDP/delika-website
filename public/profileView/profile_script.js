@@ -3,7 +3,7 @@ function load_profile_data() {
     if (!id) {
         window.location.assign("/");
     } else {
-        axios.get(`http://localhost:3000/api/profile/detail`, {
+        axios.get("http://"+domain+"/api/profile/detail", {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -63,7 +63,7 @@ function edit_profile() {
             call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
             load_profile_data();
         }
-        axios.put("http://localhost:3000/api/profile/edit", info, {
+        axios.put("http://"+domain+"/api/profile/edit", info, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -93,7 +93,7 @@ function check_role() {
     if (!id) {
         window.location.assign("/");
     } else {
-        axios.get(`http://localhost:3000/api/profile/detail`, {
+        axios.get("http://"+domain+"/api/profile/detail", {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -126,7 +126,7 @@ function change_password() {
         const text = "رمز وارد شده باید حداقل 6 حرف باشد";
         call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
     } else {
-        axios.put("http://localhost:3000/api/profile/changePassword", { new_password, current }, {
+        axios.put("http://"+domain+"/api/profile/changePassword", { new_password, current }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -147,7 +147,7 @@ function member_help_requests() {
     if (!auth)
         return window.location.assign("/");
     const father = document.querySelector("tbody");
-    axios.get("http://localhost:3000/api/profile/help_request_list", {
+    axios.get("http://"+domain+"/api/profile/help_request_list", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -190,7 +190,7 @@ function member_self_requests() {
     if (!auth)
         return window.location.assign("/");
     const father = document.querySelector("tbody");
-    axios.get("http://localhost:3000/api/profile/self_request_list", {
+    axios.get("http://"+domain+"/api/profile/self_request_list", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -253,7 +253,7 @@ function member_self_requests() {
 function self_request_dateil(id) {
     document.getElementById("self-req").style.display = "none";
     document.getElementById("requestDetail").style.display = "block";
-    axios.get("http://localhost:3000/api/profile/requestDetail/" + id, {
+    axios.get("http://"+domain+"/api/profile/requestDetail/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -327,7 +327,7 @@ function load_oreder() {
     if (!auth)
         return window.location.assign("/");
     const father = document.querySelector("tbody");
-    axios.get("http://localhost:3000/api/profile/orders", {
+    axios.get("http://"+domain+"/api/profile/orders", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -364,7 +364,7 @@ function order_detail(id) {
     document.getElementsByTagName("table")[0].style.display = "none";
     document.getElementById("orderList_header").style.display = "none";
     document.getElementById("orderPage").style.display = "block";
-    axios.get("http://localhost:3000/api/profile/orders/" + id, {
+    axios.get("http://"+domain+"/api/profile/orders/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -444,7 +444,7 @@ function load_my_course() {
     const auth = localStorage.getItem("token");
     if (!auth)
         return window.location.assign("/");
-    axios.get("http://localhost:3000/api/profile/my_course", {
+    axios.get("http://"+domain+"/api/profile/my_course", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
