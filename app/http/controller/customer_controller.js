@@ -4,11 +4,17 @@ const Request = require("../../models/help_request_model");
 const Payment = require("../../models/payment_model");
 const Self_request = require("../../models/self_request_model");
 const Offer = require("../../models/offer_model");
+const Site_data = require("../../models/site_data_model");
 const bcrypt = require("bcrypt");
 const dateTime = require('node-datetime');
 const Course_payment = require("../../models/course_payment_model");
 const Course = require("../../models/course_model");
 module.exports = new (class Customer_controller {
+    async site_data(req, res) {
+        const data = await Site_data.find();
+        res.send(data[0]);
+    }
+
     async register(req, res) {
         const user_phone = await Customer.findOne({ phone: req.body.phone });
         const user_email = await Customer.findOne({ email: req.body.email });

@@ -15,7 +15,7 @@
     <title>گالری دلیکا - لیست کالا های فروخته شده</title>
 </head>
 
-<body onload="check_admin(),loadHeaderAndFooter('foolder') ,load_aside_list('aside_setting') , load_basket() , site_data()">
+<body onload="check_admin(),loadHeaderAndFooter() ,load_aside_list('aside_setting') , load_basket() , site_data()">
     <header id="top"></header>
     <article id="hiden_contact"></article>
     <div id="notfication"></div>
@@ -30,11 +30,19 @@
                     <input dir="ltr" onchange="change_setting(this.id)" type="email" name="siteEmail" id="siteEmail"
                         placeholder="ایمیل">
                 </div>
+                <div class="site_info_box" style="border: none; background-color: white;">
+                </div>
                 <div class="site_info_box">
                     <label for="siteInstagram">آی دی اینستاگرام :</label>
                     <br>
                     <input dir="ltr" onchange="change_setting(this.id)" type="text" name="siteInstagram"
                         id="siteInstagram" placeholder="آی دی اینستاگرام">
+                </div>
+                <div class="site_info_box">
+                    <label for="siteInstagramLink">لینک اینستاگرام :</label>
+                    <br>
+                    <input dir="ltr" onchange="change_setting(this.id)" type="text" name="siteInstagramLink"
+                        id="siteInstagramLink" placeholder="لینک اینستاگرام">
                 </div>
                 <div class="site_info_box">
                     <label for="sitePhone">شماره تلفن :</label>
@@ -46,18 +54,6 @@
                     <label for="sitePhone2">شماره تلفن 2 :</label>
                     <br>
                     <input dir="ltr" onchange="change_setting(this.id)" type="text" name="sitePhone2" id="sitePhone2"
-                        placeholder="تلفن">
-                </div>
-                <div class="site_info_box">
-                    <label for="sitePhone3">شماره تلفن 3 :</label>
-                    <br>
-                    <input dir="ltr" onchange="change_setting(this.id)" type="text" name="sitePhone3" id="sitePhone3"
-                        placeholder="تلفن">
-                </div>
-                <div class="site_info_box">
-                    <label for="sitePhone4">شماره تلفن 4 :</label>
-                    <br>
-                    <input dir="ltr" onchange="change_setting(this.id)" type="text" name="sitePhone4" id="sitePhone4"
                         placeholder="تلفن">
                 </div>
                 <div class="site_info_box">
@@ -101,4 +97,5 @@
     <script src="../base_scripts.js"> </script>
     <script src="./admin_script.js"></script>
 </body>
+
 </html>

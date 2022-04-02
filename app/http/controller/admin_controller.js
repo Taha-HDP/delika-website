@@ -100,6 +100,9 @@ module.exports = new (class Admin_controller {
             case "siteInstagram":
                 result.instagram = req.body.data;
                 break;
+            case "siteInstagramLink":
+                result.instagramLink = req.body.data;
+                break;
             case "sitePhone":
                 result.phone = req.body.data;
                 break;
@@ -111,15 +114,6 @@ module.exports = new (class Admin_controller {
                 break;
             case "siteAdresss2":
                 result.address_2 = req.body.data;
-                break;
-            case "sitePhone3":
-                result.phone_3 = req.body.data;
-                break;
-            case "sitePhone4":
-                result.phone_4 = req.body.data;
-                break;
-            case "siteAdresss3":
-                result.address_3 = req.body.data;
                 break;
             case "localTransport":
                 result.local_transport = req.body.data;

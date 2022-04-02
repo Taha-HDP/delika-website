@@ -2,11 +2,10 @@ var script = document.createElement('script');
 script.src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
 document.getElementsByTagName('body')[0].appendChild(script);
 //------------- header & footer data
-function loadHeaderAndFooter(mode) {
-    if (mode == "home") {
-        document.querySelector("header#top").innerHTML = `
+function loadHeaderAndFooter() {
+    document.querySelector("header#top").innerHTML = `
             <div class="first-header">
-                <a href="./bag.html" id="bag_icon">
+                <a href="/bag.html" id="bag_icon">
                     <div class="icon" id="shop">
                         <div id="bag_pic">
                             <div id="up"></div>
@@ -28,7 +27,7 @@ function loadHeaderAndFooter(mode) {
                         </a>
                     </div>
                 </div>
-                <a href="./profileView/specification.html" class="icon" id="profile">
+                <a href="/profileView/specification.html" class="icon" id="profile">
                     <h3>پروفایل</h3>
                 </a>
                 <div id="contact">
@@ -54,12 +53,12 @@ function loadHeaderAndFooter(mode) {
                 <div class="secound-header">
                     <ul id="menu">
                         <li> <a href="/" id="home-page">صفحه اصلی</a> </li>
-                        <li id="Painting"> <a href="./paint.html" id="painting">نقاشی</a> </li>
-                        <li id="Pottery"> <a href="./pottery.html" id="pottery">سفال</a> </li>
-                        <li id="Sculpture"> <a href="./sculpture.html" id="sculpture">مجسمه</a> </li>
-                        <li id="Learning"> <a href="./learning_classes.html" id="learning">کلاس های حضوری</a> </li>
-                        <li> <a href="./self_request.html" id="self-request">سفارش طرح شخصی</a> </li>
-                        <li> <a href="./help_request.html" id="help-request">درخواست مشاوره</a> </li>
+                        <li id="Painting"> <a href="/paint.html" id="painting">نقاشی</a> </li>
+                        <li id="Pottery"> <a href="/pottery.html" id="pottery">سفال</a> </li>
+                        <li id="Sculpture"> <a href="/sculpture.html" id="sculpture">مجسمه</a> </li>
+                        <li id="Learning"> <a href="/learning_classes.html" id="learning">کلاس های حضوری</a> </li>
+                        <li> <a href="/self_request.html" id="self-request">سفارش طرح شخصی</a> </li>
+                        <li> <a href="/help_request.html" id="help-request">درخواست مشاوره</a> </li>
                     </ul>
                 </div>
             </div>
@@ -67,7 +66,7 @@ function loadHeaderAndFooter(mode) {
                 <ul id="list"></ul>
             </div>
         ` ;
-        document.querySelector("article#hiden_contact").innerHTML = `
+    document.querySelector("article#hiden_contact").innerHTML = `
         <h2>ارتباط با ما
             <div class="back" onclick="backToHome('block')">
                 <div class="xy"></div>
@@ -79,8 +78,8 @@ function loadHeaderAndFooter(mode) {
                 <div class="contact-picture"></div>
                 <h3>تلفن</h3>
                 <p>از شنبه تا پنجشنبه <br> ساعت 9 الی 21</p>
-                <a href="tel:+989120760484" class="call-box">
-                    <p>98-9120760484+</p>
+                <a id="phone_href_1" href="#" class="call-box">
+                    <p></p>
                 </a>
             </div>
             <div id="email" class="items">
@@ -88,7 +87,7 @@ function loadHeaderAndFooter(mode) {
                 <h3>ایمیل</h3>
                 <p>شما میتوانید از طریق ایمیل به راحتی با ما در ارتباط باشید delika.gallery@gmail.com</p>
                 <p></p>
-                <a href="mailto:taha.hoveidapour@gmail.com" class="call-box">
+                <a id="email_address" href="#" class="call-box">
                     <p>ارسال ایمیل</p>
                 </a>
             </div>
@@ -97,211 +96,92 @@ function loadHeaderAndFooter(mode) {
                 <h3>اینستاگرام</h3>
                 <p>شما میتوانید از طریق دایرکت اینستاگرام به صورت تمام وق با ما در ارتباط باشید</p>
                 <a href="#" class="call-box">
-                    <p>@deliak_gallery</p>
+                    <p id="insta_id"></p>
                 </a>
             </div>
         </div>
         ` ;
-        document.getElementsByTagName("footer")[0].innerHTML = `
-            <div class="ending">
-                <div class="titr">
-                    <h3>درباره دلیکا</h3>
-                    <hr>
-                    <p>دلیکا یک گالری هنریه که کارش چیزایی مثل نقاشی روی سفاله (حالا اسم دقیقش مثلا) و یه مشت حرف دیگه </p>
-                </div>
-                <div class="titr">
-                    <h3>بخش های سایت</h3>
-                    <hr>
-                    <ul>
-                        <li> <a href="/" id="home-page">صفحه اصلی</a> </li>
-                        <li> <a href="./painting.html" id="painting">نقاشی</a> </li>
-                        <li> <a href="./pottery.html" id="pottery">سفال</a> </li>
-                        <li> <a href="./sculpture.html" id="sculpture">مجسمه</a> </li>
-                        <li> <a href="./learning_classes.html" id="Learning_Classes">کلاس های حضوری</a> </li>
-                        <li> <a href="./self-request.html" id="self-request">سفارش طرح شخصی</a> </li>
-                    </ul>
-                </div>
-                <div class="titr">
-                    <h3>ارتباط با ما</h3>
-                    <hr>
-                    <ul class="contact">
-                        <li>
-                            <div class="contact-pic" id="email-pic"></div>
-                            <p>ایمیل : </p>
-                            <a href="#">deliak_gallery@gmail.com</a>
-                        </li>
-                        <li>
-                            <div class="contact-pic" id="instagram-pic"></div>
-                            <p>آی دی اینستاگرام : </p>
-                            <a href="#">@deliak_gallery</a>
-                        </li>
-                        <li>
-                            <div class="contact-pic" id="call-pic"></div>
-                            <p>شماره تماس : </p>
-                            <a href="tel:+989120760484">98-9120760484+</a>
-                        </li>
-                    </ul>
-                </div>
+    document.getElementsByTagName("footer")[0].innerHTML = `
+        <div class="ending">
+            <div class="titr">
+                <h3>درباره دلیکا</h3>
+                <hr>
+                <p id="about_site"></p>
             </div>
-            <div class="coppyright">
-                <p>کليه حقوق محصولات و محتوای اين سایت متعلق به دلیکا می باشد و هر گونه کپی برداری از محتوا و محصولات سایت
-                    غیر مجاز و بدون رضایت ماست.</p>
+            <div class="titr">
+                <h3>بخش های سایت</h3>
+                <hr>
+                <ul>
+                    <li> <a href="/">صفحه اصلی</a> </li>
+                    <li> <a href="/paint.html" >نقاشی</a> </li>
+                    <li> <a href="/pottery.html">سفال</a> </li>
+                    <li> <a href="/sculpture.html">مجسمه</a> </li>
+                    <li> <a href="/learning_classes.html">کلاس های حضوری</a> </li>
+                    <li> <a href="/self_request.html">سفارش طرح شخصی</a> </li>
+                    <li> <a href="/help_request.html">درخواست مشاوره</a> </li>
+                </ul>
             </div>
-        ` ;
-        if (!localStorage.getItem("token")) {
-            document.getElementById("profile").href = "./register.html";
-            document.getElementById("profile").innerHTML = "<h3> ثبت نام / ورود  </h3>";
-        }
-    } else if (mode == "foolder") {
-        document.querySelector("header#top").innerHTML = `
-        <div class="first-header">
-            <a href="./bag.html" id="bag_icon">
-                <div class="icon" id="shop">
-                    <div id="bag_pic">
-                        <div id="up"></div>
-                        <div id="down"></div>
-                    </div>
-                    <div id="bag">
-                        <h3>سبد خرید</h3>
-                    </div>
-                </div>
-            </a>
-            <div id="bag_preview">
-                <h3 id="item_count">سبد خرید : 0</h3>
-                <div id="Data"> </div>
-                <div class="checkout_box">
-                    <h4 class="total">مجموع :</h4>
-                    <h4 class="total_money">0</h4>
-                    <a href="../bag.html" class="button">
-                        <button>رفتن به سبد خرید</button>
-                    </a>
-                </div>
-            </div>
-            <a href="../profileView/specification.html" class="icon" id="profile">
-                <h3>پروفایل</h3>
-            </a>
-            <div id="contact">
-                <h3 onclick="contact_us()">ارتباط با ما</h3>
-            </div>
-            <div id="lang" onclick="lang_list_transform()">زبان : فارسی</div>
-            <div id="lang-list">
-                <h4>انتخاب زبان</h4>
-                <label for="languages">فارسی (FA)</label>
-                <input type="radio" name="languages" id="persian" checked>
-                <label for="languages">انگلیسی (EN)</label>
-                <input type="radio" name="languages" id="english">
-                <label for="languages">چینی (元)</label>
-                <input type="radio" name="languages" id="chineese">
-                <button id="submit" onclick="current_lang()">تایید</button>
-            </div>
-        </div>
-        <div id="delika_logo"></div>
-        <div class="middle_header">
-            <div id="web-name" onclick="lang_list_close()">
-                <h1>گالری دلیکا</h1>
-            </div>
-            <div class="secound-header">
-                <ul id="menu">
-                    <li> <a href="/" id="home-page">صفحه اصلی</a> </li>
-                    <li id="Painting"> <a href="../paint.html" id="painting">نقاشی</a> </li>
-                    <li id="Pottery"> <a href="../pottery.html" id="pottery">سفال</a> </li>
-                    <li id="Sculpture"> <a href="../sculpture.html" id="sculpture">مجسمه</a> </li>
-                    <li id="Learning"> <a href="../learning_classes.html" id="learning">کلاس های حضوری</a> </li>
-                    <li> <a href="../self_request.html" id="self-request">سفارش طرح شخصی</a> </li>
-                    <li> <a href="../help_request.html" id="help-request">درخواست مشاوره</a> </li>
+            <div class="titr">
+                <h3>ارتباط با ما</h3>
+                <hr>
+                <ul class="contact">
+                    <li>
+                        <div class="contact-pic" id="email-pic"></div>
+                        <p>ایمیل : </p>
+                        <a href="#" id="site_email"></a>
+                    </li>
+                    <li>
+                        <div class="contact-pic" id="instagram-pic"></div>
+                        <p>آی دی اینستاگرام : </p>
+                        <a href="#" id="site_instagram"></a>
+                    </li>
+                    <li>
+                        <div class="contact-pic" id="call-pic"></div>
+                        <p>شماره تماس : </p>
+                        <a href="#" id="phone_number_1"></a>
+                    </li>
                 </ul>
             </div>
         </div>
-        <div id="secound-header-list">
-            <ul id="list"></ul>
+        <div class="coppyright">
+            <p>کليه حقوق محصولات و محتوای اين سایت متعلق به دلیکا می باشد و هر گونه کپی برداری از محتوا و محصولات سایت
+                غیر مجاز و بدون رضایت ماست.</p>
         </div>
-    ` ;
-        document.querySelector("article#hiden_contact").innerHTML = `
-    <h2>ارتباط با ما
-            <div class="back" onclick="backToHome('flex')">
-                <div class="xy"></div>
-                <div class="yx"></div>
-            </div>
-        </h2>
-        <div id="ways">
-            <div id="call" class="items">
-                <div class="contact-picture"></div>
-                <h3>تلفن</h3>
-                <p>از شنبه تا پنجشنبه <br> ساعت 9 الی 21</p>
-                <a href="tel:+989120760484" class="call-box">
-                    <p>98-9120760484+</p>
-                </a>
-            </div>
-            <div id="email" class="items">
-                <div class="contact-picture"></div>
-                <h3>ایمیل</h3>
-                <p>شما میتوانید از طریق ایمیل به راحتی با ما در ارتباط باشید delika.gallery@gmail.com</p>
-                <p></p>
-                <a href="mailto:taha.hoveidapour@gmail.com" class="call-box">
-                    <p>ارسال ایمیل</p>
-                </a>
-            </div>
-            <div id="instagram" class="items">
-                <div class="contact-picture"></div>
-                <h3>اینستاگرام</h3>
-                <p>شما میتوانید از طریق دایرکت اینستاگرام به صورت تمام وق با ما در ارتباط باشید</p>
-                <a href="#" class="call-box">
-                    <p>@deliak_gallery</p>
-                </a>
-            </div>
-        </div>
-    ` ;
-        document.getElementsByTagName("footer")[0].innerHTML = `
-        <div class="ending">
-        <div class="titr">
-            <h3>درباره دلیکا</h3>
-            <hr>
-            <p>دلیکا یک گالری هنریه که کارش چیزایی مثل نقاشی روی سفاله (حالا اسم دقیقش مثلا) و یه مشت حرف دیگه </p>
-        </div>
-        <div class="titr">
-            <h3>بخش های سایت</h3>
-            <hr>
-            <ul>
-                <li> <a href="/" id="home-page">صفحه اصلی</a> </li>
-                <li> <a href="../paint.html" id="painting">نقاشی</a> </li>
-                <li> <a href="../pottery.html" id="pottery">سفال</a> </li>
-                <li> <a href="../sculpture.html" id="sculpture">مجسمه</a> </li>
-                <li> <a href="../learning_classes.html" id="Learning_Classes">کلاس های حضوری</a> </li>
-                <li> <a href="../self-request.html" id="self-request">سفارش طرح شخصی</a> </li>
-            </ul>
-        </div>
-        <div class="titr">
-            <h3>ارتباط با ما</h3>
-            <hr>
-            <ul class="contact">
-                <li>
-                    <div class="contact-pic" id="email-pic"></div>
-                    <p>ایمیل : </p>
-                    <a href="#">deliak_gallery@gmail.com</a>
-                </li>
-                <li>
-                    <div class="contact-pic" id="instagram-pic"></div>
-                    <p>آی دی اینستاگرام : </p>
-                    <a href="#">@deliak_gallery</a>
-                </li>
-                <li>
-                    <div class="contact-pic" id="call-pic"></div>
-                    <p>شماره تماس : </p>
-                    <a href="tel:+989120760484">98-9120760484+</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="coppyright">
-        <p>کليه حقوق محصولات و محتوای اين سایت متعلق به دلیکا می باشد و هر گونه کپی برداری از محتوا و محصولات سایت
-            غیر مجاز و بدون رضایت ماست.</p>
-    </div>
-    ` ;
-        if (!localStorage.getItem("token")) {
-            document.getElementById("profile").href = "../register.html";
-            document.getElementById("profile").innerHTML = "<h3> ثبت نام / ورود  </h3>";
-        }
+        ` ;
+    if (!localStorage.getItem("token")) {
+        document.getElementById("profile").href = "/register.html";
+        document.getElementById("profile").innerHTML = "<h3> ثبت نام / ورود  </h3>";
     }
+    axios.get("http://localhost:3000/api/site_data").then(res => {
+        document.getElementById("about_site").innerHTML = res.data.about;
+        document.getElementById("site_instagram").innerHTML = res.data.instagram;
+        document.getElementById("insta_id").innerHTML = res.data.instagram;
+        document.getElementById("insta_id").style.direction = "ltr";
+        document.getElementById("site_instagram").href = res.data.instagramLink;
+        document.getElementById("site_instagram").style.direction = "ltr";
+        document.getElementsByClassName("call-box")[2].href = res.data.instagramLink ;
+        document.getElementById("site_email").innerHTML = res.data.email;
+        document.getElementById("site_email").href = "mailto:" + res.data.email;
+        document.getElementById("email_address").href = "mailto:" + res.data.email;
+        document.getElementById("phone_number_1").innerHTML = res.data.phone;
+        document.getElementById("phone_number_1").style.direction = "ltr";
+        document.getElementById("phone_number_1").href = "tel:" + res.data.phone;
+        document.getElementById("phone_href_1").href = "tel:" + res.data.phone;
+        document.querySelector("#phone_href_1 p").innerHTML = res.data.phone;
+        document.querySelector("#phone_href_1 p").style.direction = "ltr";
+        if (res.data.phone_2 != "") {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <div class="contact-pic" id="call-pic"></div>
+                <p>شماره تماس : </p>
+                <a href="tel:${res.data.phone_2}">${res.data.phone_2}</a>
+            ` ;
+            document.getElementsByClassName("contact")[0].appendChild(li)
+        }
+    }).catch(err => {
+        console.log("err:" + err)
+        //window.location.assign("/500.html");
+    });
 }
 //--------------- header popout list
 var check_list;

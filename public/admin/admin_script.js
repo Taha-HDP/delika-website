@@ -461,14 +461,13 @@ function site_data() {
     }).then(res => {
         document.getElementById("siteEmail").value = res.data.email;
         document.getElementById("siteInstagram").value = res.data.instagram;
+        document.getElementById("siteInstagramLink").value = res.data.instagramLink;
         document.getElementById("sitePhone").value = res.data.phone;
         document.getElementById("siteAdresss").value = res.data.address;
         document.getElementById("sitePhone2").value = res.data.phone_2;
         document.getElementById("siteAdresss2").value = res.data.address_2;
         document.getElementById("localTransport").value = res.data.local_transport;
         document.getElementById("globalTransprot").value = res.data.global_transport;
-        document.getElementById("sitePhone3").value = res.data.phone_3;
-        document.getElementById("sitePhone4").value = res.data.phone_4;
         document.getElementById("about_delika").value = res.data.about;
     }).catch(err => {
         window.location.assign("/500.html")

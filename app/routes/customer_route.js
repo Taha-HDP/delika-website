@@ -3,6 +3,8 @@ const router = express.Router();
 const Customer_controller = require("../http/controller/customer_controller");
 const auth = require("../http/middleware/auth");
 
+router.get("/site_data" , Customer_controller.site_data) ;
+
 router.get("/profile/detail" , auth , Customer_controller.member_info) ;
 router.put("/profile/edit" , auth , Customer_controller.edit_member_info) ;
 router.put("/profile/changePassword" , auth , Customer_controller.change_password) ;
