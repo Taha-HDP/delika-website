@@ -1,4 +1,6 @@
 const express = require("express");
+const https = require("https");
+const fs = require("fs");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -54,18 +56,14 @@ class Application {
     }
     setup_express() {
         const port = process.env.myPort || 3000;
-        app.listen(port, (err) => {
+        var options = {
+            key: fs.readFileSync('F:/!Taha/work out/delika website/cert/key.pem'),
+            cert: fs.readFileSync('F:/!Taha/work out/delika website/cert/cert.pem')
+        };
+        https.createServer(options, app).listen(port, (err) => {
             if (err) console.log(err)
             else console.log("router listen to port :" + port);
         });
-        /* for https
-        const port = process.env.myPort || 3000;
-        var options = {
-            key: fs.readFileSync('privateKey.key'),
-            cert: fs.readFileSync('certificate.crt')
-          };
-          https.createServer(options, app).listen(port);
-          */
     }
     clear_catch() {
         const mid_night = new Date('Sept 1, 1 22:0:0').getHours();

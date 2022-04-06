@@ -3,7 +3,6 @@ const Shop = require("../../models/shop_model");
 const Request = require("../../models/help_request_model");
 const Payment = require("../../models/payment_model");
 const Self_request = require("../../models/self_request_model");
-const Offer = require("../../models/offer_model");
 const Site_data = require("../../models/site_data_model");
 const bcrypt = require("bcrypt");
 const dateTime = require('node-datetime');

@@ -23,7 +23,7 @@ function add_new_item() {
             body.append("price", price.value);
             body.append("info", info.value);
             body.append("picture", image.files[0]);
-            axios.post("http://"+domain+"/api/admin/add_new_item", body, {
+            axios.post(domain+"/api/admin/add_new_item", body, {
                 headers: {
                     'x-auth-token': localStorage.getItem("token")
                 }
@@ -59,7 +59,7 @@ function add_new_item() {
                     price: price.value,
                     info: info.value
                 }
-                axios.put("http://"+domain+"/api/admin/edit_item/" + placeID, body, {
+                axios.put(domain+"/api/admin/edit_item/" + placeID, body, {
                     headers: {
                         'x-auth-token': localStorage.getItem("token")
                     }
@@ -81,7 +81,7 @@ function add_new_item() {
                 body.append("price", price.value);
                 body.append("info", info.value);
                 body.append("picture", image.files[0]);
-                axios.put("http://"+domain+"/api/admin/edit_itemP/" + placeID, body, {
+                axios.put(domain+"/api/admin/edit_itemP/" + placeID, body, {
                     headers: {
                         'x-auth-token': localStorage.getItem("token")
                     }
@@ -144,7 +144,7 @@ function changeBackground(img) {
 function item_list() {
     const father = document.querySelector("tbody");
     father.innerHTML = "";
-    axios.get("http://"+domain+"/api/admin/items", {
+    axios.get(domain+"/api/admin/items", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -208,7 +208,7 @@ function item_list() {
 function item_detail(id){
     document.getElementById("item-list").style.display = "none";
     document.getElementById("itemDetail").style.display = "block";
-    axios.get("http://"+domain+"/api/admin/item/"+id , {
+    axios.get(domain+"/api/admin/item/"+id , {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -280,7 +280,7 @@ function backToItems() {
 function delete_item(id) {
 
     if (confirm("آیا از این کار خود اطمینان دارید ؟")) {
-        axios.delete("http://"+domain+"/api/admin/remove_item/" + id, {
+        axios.delete(domain+"/api/admin/remove_item/" + id, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -302,7 +302,7 @@ function edit_item() {
         document.getElementById("add-item").classList.remove("active");
         document.getElementById("item_lists").classList.add("active");
         document.getElementById("mid_titr").innerText = "ویرایش";
-        axios.get("http://"+domain+"/api/admin/item/" + placeID, {
+        axios.get(domain+"/api/admin/item/" + placeID, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -352,7 +352,7 @@ function find_item() {
                 break;
             }
         }
-        axios.post("http://"+domain+"/api/admin/findItem", { wanted: result }, {
+        axios.post(domain+"/api/admin/findItem", { wanted: result }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -419,7 +419,7 @@ function find_item() {
 }
 //---- auth check
 function check_admin() {
-    axios.get("http://"+domain+"/api/admincheck", {
+    axios.get(domain+"/api/admincheck", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -430,7 +430,7 @@ function check_admin() {
 }
 //---- data
 function admin_data() {
-    axios.get("http://"+domain+"/api/admin/allData", {
+    axios.get(domain+"/api/admin/allData", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -454,7 +454,7 @@ function admin_data() {
     });
 }
 function site_data() {
-    axios.get("http://"+domain+"/api/admin/site_setting", {
+    axios.get(domain+"/api/admin/site_setting", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -478,7 +478,7 @@ function change_setting(id) {
         type: id,
         data: document.getElementById(id).value
     }
-    axios.put("http://"+domain+"/api/admin/site_setting", body, {
+    axios.put(domain+"/api/admin/site_setting", body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -540,7 +540,7 @@ function load_aside_list(active) {
 //---- members section
 function member_list() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/memberList", {
+    axios.get(domain+"/api/admin/memberList", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -579,7 +579,7 @@ function member_list() {
 function member_detail(id) {
     document.getElementById("member-list").style.display = "none";
     document.getElementById("memberDetail").style.display = "block";
-    axios.post("http://"+domain+"/api/admin/memberdetail", { id: id }, {
+    axios.post(domain+"/api/admin/memberdetail", { id: id }, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -659,7 +659,7 @@ function back_detail() {
 //---- self requests
 function self_request_list() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/self_request_list", {
+    axios.get(domain+"/api/admin/self_request_list", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -715,7 +715,7 @@ function change_self_request(id, index) {
         "id": id,
         "status": status,
     }
-    axios.put("http://"+domain+"/api/admin/self_request_edit", body, {
+    axios.put(domain+"/api/admin/self_request_edit", body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -730,7 +730,7 @@ function change_self_request(id, index) {
 function self_request_dateil(id) {
     document.getElementById("self-req").style.display = "none";
     document.getElementById("requestDetail").style.display = "block";
-    axios.get("http://"+domain+"/api/admin/requestDetail/" + id, {
+    axios.get(domain+"/api/admin/requestDetail/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -811,7 +811,7 @@ function find_request() {
         self_request_list();
         return 0;
     }
-    axios.get("http://"+domain+"/api/admin/request/" + search, {
+    axios.get(domain+"/api/admin/request/" + search, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -864,7 +864,7 @@ function find_request() {
 //---- help requests
 function help_request_list() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/help_request_list", {
+    axios.get(domain+"/api/admin/help_request_list", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -924,7 +924,7 @@ function change_help_request(id, index) {
         "status": status,
         "money_status": money_status,
     }
-    axios.put("http://"+domain+"/api/admin/help_request_edit", body, {
+    axios.put(domain+"/api/admin/help_request_edit", body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -938,7 +938,7 @@ function change_help_request(id, index) {
 }
 //---- role setting
 function check_super_admin(default_role, id) {
-    axios.get("http://"+domain+"/api/superAdmincheck", {
+    axios.get(domain+"/api/superAdmincheck", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -956,7 +956,7 @@ function change_role(old_role, id) {
         const body = {
             role: new_role.value
         }
-        axios.put("http://"+domain+"/api/super_admin/change_role/" + id, body, {
+        axios.put(domain+"/api/super_admin/change_role/" + id, body, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -976,7 +976,7 @@ function change_role(old_role, id) {
 function comment_list() {
     const father = document.querySelector("tbody");
     father.innerHTML = "";
-    axios.get("http://"+domain+"/api/admin/comments", {
+    axios.get(domain+"/api/admin/comments", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1010,7 +1010,7 @@ function accept_comment(id) {
     const body = {
         status: "accepted",
     }
-    axios.put("http://"+domain+"/api/admin/comments/" + id, body, {
+    axios.put(domain+"/api/admin/comments/" + id, body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1024,7 +1024,7 @@ function accept_comment(id) {
 }
 function delete_comment(id) {
     if (confirm("ایا از این کار اطمینان دارید ؟")) {
-        axios.delete("http://"+domain+"/api/admin/comments/" + id, {
+        axios.delete(domain+"/api/admin/comments/" + id, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -1040,7 +1040,7 @@ function delete_comment(id) {
 //---- orders tab
 function order_list() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/orders", {
+    axios.get(domain+"/api/admin/orders", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1088,7 +1088,7 @@ function change_order_status(id, index) {
     const body = {
         status: document.getElementsByClassName("status_select")[index].value,
     }
-    axios.put("http://"+domain+"/api/admin/orders/" + id, body, {
+    axios.put(domain+"/api/admin/orders/" + id, body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1103,7 +1103,7 @@ function find_payment() {
     const father = document.querySelector("tbody");
     father.innerHTML = '';
     const search = document.getElementById("wanted").value;
-    axios.get("http://"+domain+"/api/admin/orders/" + search, {
+    axios.get(domain+"/api/admin/orders/" + search, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1143,7 +1143,7 @@ function order_detail(id) {
     document.getElementsByTagName("table")[0].style.display = "none";
     document.getElementById("orderList_header").style.display = "none";
     document.getElementById("orderPage").style.display = "block";
-    axios.get("http://"+domain+"/api/profile/orders/" + id, {
+    axios.get(domain+"/api/profile/orders/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1230,7 +1230,7 @@ function create_offer() {
         const text = "شما باید همه ی گزینه ها را پر کنید";
         call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
     } else {
-        axios.post("http://"+domain+"/api/admin/newOffer", body, {
+        axios.post(domain+"/api/admin/newOffer", body, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -1244,7 +1244,7 @@ function create_offer() {
 }
 function load_offer() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/offers", {
+    axios.get(domain+"/api/admin/offers", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1302,7 +1302,7 @@ function create_course() {
             body.append("hours", hours.value);
             body.append("start_date", start_date.value);
             body.append("picture", image.files[0]);
-            axios.post("http://"+domain+"/api/admin/create_course", body, {
+            axios.post(domain+"/api/admin/create_course", body, {
                 headers: {
                     'x-auth-token': localStorage.getItem("token")
                 }
@@ -1347,7 +1347,7 @@ function create_course() {
                     hours: hours.value,
                     start_date: start_date.value,
                 }
-                axios.put("http://"+domain+"/api/admin/edit_course/" + placeID, body, {
+                axios.put(domain+"/api/admin/edit_course/" + placeID, body, {
                     headers: {
                         'x-auth-token': localStorage.getItem("token")
                     }
@@ -1371,7 +1371,7 @@ function create_course() {
                 body.append("hours", hours.value);
                 body.append("start_date", start_date.value);
                 body.append("picture", image.files[0]);
-                axios.put("http://"+domain+"/api/admin/edit_courseP/" + placeID, body, {
+                axios.put(domain+"/api/admin/edit_courseP/" + placeID, body, {
                     headers: {
                         'x-auth-token': localStorage.getItem("token")
                     }
@@ -1388,7 +1388,7 @@ function create_course() {
 }
 function load_courses() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/courses", {
+    axios.get(domain+"/api/admin/courses", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1438,7 +1438,7 @@ function load_courses() {
 }
 function course_status(id, index) {
     const status = document.getElementsByClassName("select_status")[index].value
-    axios.put("http://"+domain+"/api/admin/course_status/" + id, { status }, {
+    axios.put(domain+"/api/admin/course_status/" + id, { status }, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1452,7 +1452,7 @@ function course_status(id, index) {
 function courses_detail(id) {
     document.getElementById("class-list").style.display = "none";
     document.getElementById("courseDetail").style.display = "block";
-    axios.get("http://"+domain+"/api/admin/coursedetail/" + id, {
+    axios.get(domain+"/api/admin/coursedetail/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1553,7 +1553,7 @@ function edit_course() {
         const place = document.forms["course"]["course_place"];
         const hours = document.forms["course"]["course_hours"];
         const start_date = document.forms["course"]["start_date"];
-        axios.get("http://"+domain+"/api/admin/coursedetail/" + placeID, {
+        axios.get(domain+"/api/admin/coursedetail/" + placeID, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -1580,7 +1580,7 @@ function edit_course() {
 }
 function load_course_payment() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/courses/payments", {
+    axios.get(domain+"/api/admin/courses/payments", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1614,7 +1614,7 @@ function find_course_payment() {
     if (search == "") {
         load_course_payment();
     } else {
-        axios.get("http://"+domain+"/api/admin/courses/payment/" + search, {
+        axios.get(domain+"/api/admin/courses/payment/" + search, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }

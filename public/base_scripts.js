@@ -2,7 +2,7 @@ var script = document.createElement('script');
 script.src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
 document.getElementsByTagName('body')[0].appendChild(script);
 
-const domain = "localhost:3000" ;
+const domain = "https://localhost:3000" ;
 //------------- header & footer data
 function loadHeaderAndFooter() {
     document.querySelector("header#top").innerHTML = `
@@ -87,7 +87,7 @@ function loadHeaderAndFooter() {
             <div id="email" class="items">
                 <div class="contact-picture"></div>
                 <h3>ایمیل</h3>
-                <p>شما میتوانید از طریق ایمیل به راحتی با ما در ارتباط باشید delika.gallery@gmail.com</p>
+                <p>شما میتوانید از طریق ایمیل به راحتی با ما در ارتباط باشید</p>
                 <p></p>
                 <a id="email_address" href="#" class="call-box">
                     <p>ارسال ایمیل</p>
@@ -96,7 +96,7 @@ function loadHeaderAndFooter() {
             <div id="instagram" class="items">
                 <div class="contact-picture"></div>
                 <h3>اینستاگرام</h3>
-                <p>شما میتوانید از طریق دایرکت اینستاگرام به صورت تمام وق با ما در ارتباط باشید</p>
+                <p>شما میتوانید از طریق دایرکت اینستاگرام به صورت تمام وقت با ما در ارتباط باشید</p>
                 <a href="#" class="call-box">
                     <p id="insta_id"></p>
                 </a>
@@ -154,7 +154,7 @@ function loadHeaderAndFooter() {
         document.getElementById("profile").href = "/register.html";
         document.getElementById("profile").innerHTML = "<h3> ثبت نام / ورود  </h3>";
     }
-    axios.get("http://"+domain+"/api/site_data").then(res => {
+    axios.get(domain+"/api/site_data").then(res => {
         document.getElementById("about_site").innerHTML = res.data.about;
         document.getElementById("site_instagram").innerHTML = res.data.instagram;
         document.getElementById("insta_id").innerHTML = res.data.instagram;
@@ -370,7 +370,7 @@ function add_member() {
             "gender": gender,
             "birth": birth,
         }
-        axios.post("http://"+domain+"/api/register", body).then(res => {
+        axios.post(domain+"/api/register", body).then(res => {
             localStorage.setItem("token", res.headers["x-auth-token"]);
             localStorage.removeItem('setupTime');
             localStorage.setItem('setupTime', new Date().getDay());
@@ -399,7 +399,7 @@ function login_member() {
         let text = "رمز عبور باید حداقل 6 حرف باشد";
         call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
     } else {
-        axios.post("http://"+domain+"/api/login", { username, password }).then(res => {
+        axios.post(domain+"/api/login", { username, password }).then(res => {
             localStorage.setItem("token", res.headers["x-auth-token"]);
             localStorage.removeItem('setupTime');
             localStorage.setItem('setupTime', new Date().getDay());
@@ -515,7 +515,7 @@ function forget_password() {
             call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
             return false;
         }
-        axios.post("http://"+domain+"/api/forgetPassword", { phone: user_phone.value }, {
+        axios.post(domain+"/api/forgetPassword", { phone: user_phone.value }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -553,7 +553,7 @@ function forget_password() {
             const text = "رمز عبور باید بیشتر از 6 حرف باشد";
             call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
         } else {
-            axios.put("http://"+domain+"/api/newPassword", {
+            axios.put(domain+"/api/newPassword", {
                 password: new_password,
                 phone: forgetPassPhone,
             }).then(res => {
@@ -926,7 +926,7 @@ function load_sculpture_item() {
 function load_item(mode, body, sort) {
     if (body == "all") {
         document.getElementById("ware").innerHTML = "";
-        axios.post("http://"+domain+"/api/items", { type: mode })
+        axios.post(domain+"/api/items", { type: mode })
             .then(res => {
                 let item = res.data;
                 if (sort == "news")
@@ -954,7 +954,7 @@ function load_item(mode, body, sort) {
                 console.log(err.message);
             });
     } else {
-        axios.post("http://"+domain+"/api/sorted_items", { type: mode, class: body }).then(res => {
+        axios.post(domain+"/api/sorted_items", { type: mode, class: body }).then(res => {
             let item = res.data;
             if (sort == "news")
                 item.reverse();
@@ -1056,7 +1056,7 @@ function find_item(type) {
                 }
                 break;
         }
-        axios.post("http://"+domain+"/api/admin/findItem", { wanted: result }, {
+        axios.post(domain+"/api/admin/findItem", { wanted: result }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -1079,7 +1079,7 @@ function find_item(type) {
 }
 function item_page() {
     const placeID = new URLSearchParams(window.location.search).get("place");
-    axios.get("http://"+domain+"/api/items/" + placeID).then(res => {
+    axios.get(domain+"/api/items/" + placeID).then(res => {
         document.getElementById("item_name").innerHTML = res.data.name;
         let type, Class;
         switch (res.data.type) {
@@ -1158,7 +1158,7 @@ function add_comment() {
         call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
     } else {
         const placeID = new URLSearchParams(window.location.search).get("place");
-        axios.post("http://"+domain+"/api/items/addComment/" + placeID, body).then(res => {
+        axios.post(domain+"/api/items/addComment/" + placeID, body).then(res => {
             const text = "نظر شما با موفقیت ثبت شد و بعد از بررسی توسط ادمین نمایش داده می شود";
             call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
             document.getElementById("name").value = "";
@@ -1171,7 +1171,7 @@ function add_comment() {
 
 }
 function load_intro_items() {
-    axios.post("http://"+domain+"/api/items").then(res => {
+    axios.post(domain+"/api/items").then(res => {
         res.data.reverse();
         for (let i = 0; i < 4; i++) {
             create_shop_item(res.data[i].picture, res.data[i].name, res.data[i].price, res.data[i]._id);
@@ -1230,7 +1230,7 @@ function check_out() {
             const text = "شما باید همه ی قسمت ها را کامل کنید";
             call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
         } else {
-            axios.post("http://"+domain+"/api/basket/checkOut", body, {
+            axios.post(domain+"/api/basket/checkOut", body, {
                 headers: {
                     'x-auth-token': localStorage.getItem("token")
                 }
@@ -1251,7 +1251,7 @@ function bill_result() {
     const Authority = new URLSearchParams(window.location.search).get("Authority");
     const Status = new URLSearchParams(window.location.search).get("Status");
     if (mode && mode == "course") {
-        axios.get("http://"+domain+"/api/course/verification?Authority=" + Authority + "&Status=" + Status, {
+        axios.get(domain+"/api/course/verification?Authority=" + Authority + "&Status=" + Status, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -1279,7 +1279,7 @@ function bill_result() {
             window.location.assign("/500.html")
         });
     } else {
-        axios.get("http://"+domain+"/api/payment/verification?Authority=" + Authority + "&Status=" + Status, {
+        axios.get(domain+"/api/payment/verification?Authority=" + Authority + "&Status=" + Status, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -1323,7 +1323,7 @@ function load_basket(mode) {
         }
     } else if (basket_item) {
         basket_item.map((item) => {
-            axios.get("http://"+domain+"/api/items/" + item).then(res => {
+            axios.get(domain+"/api/items/" + item).then(res => {
                 let type, Class;
                 switch (res.data.type) {
                     case "painting":
@@ -1467,7 +1467,7 @@ function check_offer(mode) {
             factor_offer = 0;
         }
     } else {
-        axios.post("http://"+domain+"/api/payment/offer_check/" + code)
+        axios.post(domain+"/api/payment/offer_check/" + code)
             .then(res => {
                 if (res.data != 0) {
                     load_factor(parseInt(res.data));
@@ -1485,7 +1485,7 @@ function load_factor(code) {
     let body = {
         country: document.getElementById("countrys").value,
     }
-    axios.post("http://"+domain+"/api/payment/factor", body)
+    axios.post(domain+"/api/payment/factor", body)
         .then(res => {
             factor_transport = res.data.transport;
             if (code != "none") {
@@ -1524,7 +1524,7 @@ function send_request() {
     body.append("y", y.value);
     body.append("info", info.value);
     body.append("picture", image.files[0]);
-    axios.post("http://"+domain+"/api/shop/sendSelfRequest", body, {
+    axios.post(domain+"/api/shop/sendSelfRequest", body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }

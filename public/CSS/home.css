@@ -121,7 +121,7 @@
 }
 #classes{
     width: 90%;
-    margin: 10% 5%;
+    margin: 5rem 5%;
     display: inline-flex;
     align-items: flex-end;
     flex-direction: row-reverse;

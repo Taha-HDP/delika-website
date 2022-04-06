@@ -1,6 +1,5 @@
 const Customer = require("../../models/customer_model");
 const Payment = require("../../models/course_payment_model");
-const Offer = require("../../models/offer_model");
 const Course = require("../../models/course_model");
 const dateTime = require('node-datetime');
 const config = require("config");
