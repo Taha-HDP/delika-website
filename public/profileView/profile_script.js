@@ -60,7 +60,7 @@ function edit_profile() {
         }
         if (!info.username || !info.email || !info.phone) {
             const text = "نام کاربری ، ایمیل و شماره الزامی است";
-            call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             load_profile_data();
         }
         axios.put(domain + "/api/profile/edit", info, {
@@ -71,12 +71,12 @@ function edit_profile() {
             .then(res => {
                 load_profile_data();
                 const text = "با موفقیت زخیره شد";
-                call_cs_popup(text, 4000, "#277539", "#DAFFE6" , "#20A740");
+                call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
 
             }).catch(err => {
                 load_profile_data();
                 const text = "نام کاربری / شماره / ایمیل تکراری می باشد";
-                call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             });
     }
 
@@ -117,28 +117,32 @@ function change_password() {
     let new_password = document.getElementById("new-password").value;
     let check_password = document.getElementById("check-password").value;
     if (!new_password || !current || !check_password) {
-        const text = "شما باید همه ی گزینه هارا پر کنید";
-        call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
+        const text = "شما باید همه ی گزینه ها را پر کنید";
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else if (new_password != check_password) {
         const text = "رمز های وارد شده مشابه نیست";
-        call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else if (new_password.length < 6) {
         const text = "رمز وارد شده باید حداقل 6 حرف باشد";
-        call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else {
         axios.put(domain + "/api/profile/changePassword", { new_password, current }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
         }).then(res => {
-            const text = "با موفقیت زخیره شد";
-            call_cs_popup(text, 4000, "#277539", "#DAFFE6" , "#20A740");
-            document.getElementById("current-password").value = "";
-            document.getElementById("new-password").value = "";
-            document.getElementById("check-password").value = "";
+            if(res.data == "not found"){
+                const text = "رمز وارد شده اشتباه است";
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+            }else{
+                const text = "با موفقیت زخیره شد";
+                call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
+                document.getElementById("current-password").value = "";
+                document.getElementById("new-password").value = "";
+                document.getElementById("check-password").value = "";
+            }
         }).catch(err => {
-            const text = "رمز وارد شده اشتباه است";
-            call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
+            window.location.assign("/500.html") ;
         });
     }
 }
@@ -506,13 +510,13 @@ function load_my_course() {
                     document.querySelector("#waiting_courses").style.display = "table";
                     document.getElementById("0").style.display = "block";
                 }
-                if (document.querySelector("#ongoing_courses tbody").innerHTML == ""){
+                if (document.querySelector("#ongoing_courses tbody").innerHTML == "") {
                     document.querySelector("#ongoing_courses").style.display = "none";
                 }
-                else if(document.querySelector("#done_courses tbody").innerHTML == ""){
+                else if (document.querySelector("#done_courses tbody").innerHTML == "") {
                     document.querySelector("#done_courses").style.display = "none";
                 }
-                else if(document.querySelector("#waiting_courses tbody").innerHTML == ""){
+                else if (document.querySelector("#waiting_courses tbody").innerHTML == "") {
                     document.querySelector("#waiting_courses").style.display = "none";
                 }
             });
@@ -524,4 +528,16 @@ function load_my_course() {
     }).catch(err => {
         window.location.assign("/500.html")
     });
+}
+function change_password_mode() {
+    const eye = document.getElementById("password_eye");
+    if (eye.checked == true) {
+        document.getElementById("current-password").type = "text";
+        document.getElementById("new-password").type = "text";
+        document.getElementById("check-password").type = "text";
+    } else {
+        document.getElementById("current-password").type = "password";
+        document.getElementById("new-password").type = "password";
+        document.getElementById("check-password").type = "password";
+    }
 }

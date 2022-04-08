@@ -106,11 +106,24 @@ main h3{
     font-family: inherit;
     border: none;
     height: 3rem;
-    width: 30% !important;
+    width: 30%;
     padding-right: 2%;
     padding-left: 2%;
     margin: 1rem 0;
     transition: 400ms;
+}
+#button{
+    width: 34% !important;
+}
+#password_eye{
+    width: 2% !important;
+    height: unset !important;
+    margin: 0 0 1.5rem 0 !important;
+}
+#password_eye:hover ,
+#eye_lable:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.5) !important;
 }
 #change-password input:hover{
     box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
@@ -121,14 +134,4 @@ main h3{
 }
 #forget:hover{
     color: rgb(39, 1, 143);
-}
-#notfication{
-    z-index: 2;
-    position: fixed;
-    left: 0%;
-    bottom: 2rem;
-    width: 15%;
-    padding: 1%;
-    transition: transform 600ms ;
-    transform: translateX(-1000px);
 }

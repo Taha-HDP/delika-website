@@ -92,16 +92,16 @@ module.exports = new (class Customer_controller {
     }
     async change_password(req, res) {
         let user = await Customer.findById(req.user._id);
-        if (!user) return res.status(404).send("کاربر مورد نظر یافت نشد");
+        if (!user) return res.status(404).send();
         const result = await bcrypt.compare(req.body.current, user.password);
         if (!result) {
-            return res.status(404).send("کاربری با این پسوورد یافت نشد");
+            return res.send("not found");
         } else {
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(req.body.new_password, salt);
             await user.save((err) => {
                 if (err) {
-                    return res.status(400).send();
+                    return res.status(500).send();
                 } else {
                     res.status(200).send();
                 }
