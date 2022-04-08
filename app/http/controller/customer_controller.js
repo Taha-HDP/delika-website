@@ -59,8 +59,9 @@ module.exports = new (class Customer_controller {
 
     }
     async forgetPassword(req, res) {
-        const user = await Customer.findOne({ phone: req.body.phone });
-        if (!user) res.status(404).send("کاربری با این شماره یافت نشد");
+        const user = await Customer.findOne({ email: req.body.email });
+        if (!user)
+            return res.send("not found");
         const code = Math.floor(1000 + Math.random() * 9000);
         res.status(200).send({ code });
     }
@@ -108,7 +109,7 @@ module.exports = new (class Customer_controller {
         }
     }
     async newPassword(req, res) {
-        let user = await Customer.findOne({ phone: req.body.phone });
+        let user = await Customer.findOne({ email: req.body.email });
         if (!user)
             res.status(404).send("کاربر مورد نظر یافت نشد");
         const salt = await bcrypt.genSalt(10);
@@ -179,7 +180,7 @@ module.exports = new (class Customer_controller {
     }
     async self_request_list(req, res) {
         const requests = await Self_request.find({
-            member_id : req.user._id
+            member_id: req.user._id
         });
         res.send(requests);
     }

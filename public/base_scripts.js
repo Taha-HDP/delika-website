@@ -498,34 +498,32 @@ function check_auth() {
         document.getElementById("profile").innerHTML = "<h3> ثبت نام / ورود  </h3>";
     }
 }
-let sended_code, forgetPassPhone, forgetPasswordProj = 0;
+let sended_code, forgetPassEmail, forgetPasswordProj = 0;
 function forget_password() {
     const information = document.getElementById("information");
     const label = document.getElementsByTagName("label")[3];
-    const user_phone = document.getElementsByTagName("input")[3];
+    const user_email = document.getElementsByTagName("input")[3];
     if (forgetPasswordProj == 0) {
-        forgetPassPhone = user_phone.value;
-        if (user_phone.value.length != 11) {
-            window.scroll(0, 0);
-            let text = "شماره وارد شده معتبر نمی باشد";
-            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
-            return false;
-        }
-        axios.post(domain + "/api/forgetPassword", { phone: user_phone.value }, {
+        forgetPassEmail = user_email.value;
+        axios.post(domain + "/api/forgetPassword", { email: user_email.value }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
         }).then(res => {
-            sended_code = res.data.code;
-            information.innerHTML = "کد ارسال شده در این قسمت وارد کنید :";
-            label.innerHTML = "";
-            user_phone.value = "";
-            user_phone.placeholder = "_ _ _ _";
-            forgetPasswordProj = 1;
-            console.log(sended_code);
+            if (res.data == "not found") {
+                const text = "هیچ حسابی با این شماره ثبت نشده است";
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+            } else {
+                sended_code = res.data.code;
+                information.innerHTML = "کد ارسال شده در این قسمت وارد کنید :";
+                label.innerHTML = "";
+                user_email.value = "";
+                user_email.placeholder = "_ _ _ _";
+                forgetPasswordProj = 1;
+                console.log(sended_code);
+            }
         }).catch(err => {
-            const text = "هیچ حسابی با این شماره ثبت نشده است";
-            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+            window.location.assign("/500.html");
         });
     } else if (forgetPasswordProj == 1) {
         const member_code = document.getElementsByTagName("input")[3];
@@ -538,10 +536,8 @@ function forget_password() {
             const text = "مقدار وارد شده اشتباه است !";
             call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         }
-
     } else if (forgetPasswordProj == 2) {
         const new_password = document.getElementsByTagName("input")[3].value;
-        console.log(forgetPassPhone);
         if (!new_password) {
             const text = "رمز عبور خود را وارد کنید !";
             call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
@@ -551,12 +547,16 @@ function forget_password() {
         } else {
             axios.put(domain + "/api/newPassword", {
                 password: new_password,
-                phone: forgetPassPhone,
+                email: forgetPassEmail,
             }).then(res => {
-                window.location.href = "./register.html";
+                const text = "رمز عبور یا موفقیت ثبت شد";
+                call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
+                setTimeout(()=>{
+                    window.location.href = "/";
+                },3000);
             }).catch(err => {
-                const text = "ارسال داده با خطا مواجه شد !";
-                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+                console.log(err) ;
+                //window.location.assign("/500.html");
             });
         }
 
@@ -604,7 +604,9 @@ function send_help_request() {
         }).then(res => {
             const text = "درخواست شما با موفقیت ارسال شد";
             call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
-            window.location.href = "./profileView/help_request.html"
+            setTimeout(()=>{
+                window.location.href = "/profileView/help_request.html" ;
+            },4000);
         }).catch(err => {
             const text = "شما یک درخواست باز دارید ، برای مشاهده ، به قسمت درخواست ها در پروفایل بروید ";
             call_cs_popup(text, 5000, "#5D101D", "#ffd5da", "#390b1b");
