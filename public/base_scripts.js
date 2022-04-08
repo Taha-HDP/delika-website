@@ -520,7 +520,6 @@ function forget_password() {
                 user_email.value = "";
                 user_email.placeholder = "_ _ _ _";
                 forgetPasswordProj = 1;
-                console.log(sended_code);
             }
         }).catch(err => {
             window.location.assign("/500.html");
@@ -551,11 +550,11 @@ function forget_password() {
             }).then(res => {
                 const text = "رمز عبور یا موفقیت ثبت شد";
                 call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
-                setTimeout(()=>{
+                setTimeout(() => {
                     window.location.href = "/";
-                },3000);
+                }, 3000);
             }).catch(err => {
-                console.log(err) ;
+                console.log(err);
                 //window.location.assign("/500.html");
             });
         }
@@ -604,9 +603,9 @@ function send_help_request() {
         }).then(res => {
             const text = "درخواست شما با موفقیت ارسال شد";
             call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
-            setTimeout(()=>{
-                window.location.href = "/profileView/help_request.html" ;
-            },4000);
+            setTimeout(() => {
+                window.location.href = "/profileView/help_request.html";
+            }, 4000);
         }).catch(err => {
             const text = "شما یک درخواست باز دارید ، برای مشاهده ، به قسمت درخواست ها در پروفایل بروید ";
             call_cs_popup(text, 5000, "#5D101D", "#ffd5da", "#390b1b");

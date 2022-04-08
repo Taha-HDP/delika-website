@@ -4,6 +4,7 @@ const Request = require("../../models/help_request_model");
 const Payment = require("../../models/payment_model");
 const Self_request = require("../../models/self_request_model");
 const Site_data = require("../../models/site_data_model");
+const Emailer = require('nodemailer');
 const bcrypt = require("bcrypt");
 const dateTime = require('node-datetime');
 const Course_payment = require("../../models/course_payment_model");
@@ -63,6 +64,40 @@ module.exports = new (class Customer_controller {
         if (!user)
             return res.send("not found");
         const code = Math.floor(1000 + Math.random() * 9000);
+        let Delika = await Site_data.findById("6224ae26ddaefcc2ae18ba2a");
+        const transporter = Emailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: Delika.email,
+                pass: 'tahahdp0760484'
+            }
+        });
+        const message = `
+        <html>
+            <body>
+                <p style="direction: ltr;width: 100%; height: fit-content;color: black !important; text-align: center;font-size: 1.5rem;">
+                Hello <strong>${user.username}</strong><br>
+                Looks like you've forgotten your password. <br><br>
+                this is your code : <strong>${code}</strong> .<br><br>
+                enter this code in website and reset your password. <br><br>
+                If you didn't make the request then simply ignore and delete this email. <br>
+                </p>
+            </body>
+        </html>
+        `
+        const mailOptions = {
+            from: {
+                name: 'Delika_Gallery',
+                address: Delika.email
+            },
+            to: user.email,
+            subject: 'Change Password',
+            html: message
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error)
+                return res.status(500).send();
+        });
         res.status(200).send({ code });
     }
     async member_info(req, res) {
