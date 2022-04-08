@@ -116,3 +116,10 @@ table button:hover{
     transition : 400ms ;
 }
 
+#empty{
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 2rem;
+    color: rgb(116 116 116);
+}
+

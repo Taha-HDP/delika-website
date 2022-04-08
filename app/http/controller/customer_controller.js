@@ -13,7 +13,6 @@ module.exports = new (class Customer_controller {
         const data = await Site_data.find();
         res.send(data[0]);
     }
-
     async register(req, res) {
         const user_phone = await Customer.findOne({ phone: req.body.phone });
         const user_email = await Customer.findOne({ email: req.body.email });
@@ -25,9 +24,7 @@ module.exports = new (class Customer_controller {
             email: req.body.email,
             password: req.body.password,
             username: req.body.username,
-            gender: req.body.gender,
             phone: req.body.phone,
-            birth: req.body.birth,
             create_date: dateTime.create().format('Y-m-d'),
         });
         const salt = await bcrypt.genSalt(10);
@@ -181,7 +178,9 @@ module.exports = new (class Customer_controller {
         res.send(requests);
     }
     async self_request_list(req, res) {
-        const requests = await Self_request.find();
+        const requests = await Self_request.find({
+            member_id : req.user._id
+        });
         res.send(requests);
     }
     async self_request_detail(req, res) {

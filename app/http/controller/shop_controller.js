@@ -112,7 +112,7 @@ module.exports = new (class Shoping_controller {
             const final_address = req.body.country + "-" + req.body.address;
             const result = await zarinpal.PaymentRequest({
                 Amount: total_money,
-                CallbackURL: 'http://localhost:3000/bill_result.html',
+                CallbackURL: 'https://localhost:3000/bill_result.html',
                 Description: 'پرداخت دلیکا',
                 Email: user.email,
                 Mobile: user.phone,

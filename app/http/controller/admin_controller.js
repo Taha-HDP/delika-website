@@ -521,16 +521,15 @@ module.exports = new (class Admin_controller {
     //---- reset cath
     async clear_catch() {
         const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
-        const all_payments = await Payment.find();
-        let space = diffDays(new Date(all_payments.create_date), new Date(new_date));
-        if (space > all_payments.expire_time) {
-            all_payments.status = false
+        const offers = await Offer.find();
+        let new_date = dateTime.create().format('Y-m-d');
+        for (var i = 0; i < offers.length; i++) {
+            let space = diffDays(new Date(offers[i].create_date), new Date(new_date));
+            if (space > offers[i].expire_time) {
+                await Offer.findByIdAndRemove(offers[i]._id);
+            }
         }
-        await all_payments.save();
-        const payments = await Offer.find({
-            status: false
-        });
-        const offers = await Offer.find({
+        const payments = await Payment.find({
             status: false
         });
         if (payments && payments.length > 0) {
@@ -538,12 +537,7 @@ module.exports = new (class Admin_controller {
                 await Payment.findByIdAndRemove(payments[i]._id);
             }
         }
-        if (offers && offers.length > 0) {
-            for (let i = 0; i < offers.length; i++) {
-                await Offer.findByIdAndRemove(offers[i]._id);
-            }
-        }
-        console.log("all failed payments & offer deleted")
+        console.log("all failed payments & offers were deleted") ;
     }
 });
 

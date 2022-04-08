@@ -339,8 +339,6 @@ function add_member() {
     const password = document.forms["signin"]["password"].value;
     const username = document.forms["signin"]["username"].value;
     const phone = document.forms["signin"]["phone"].value;
-    const gender = document.forms["signin"]["gender"].value;
-    const birth = document.forms["signin"]["birth"].value;
     if (!email || !password || !username || !phone) {
         window.scroll(0, 0);
         let text = "شما باید همه ی قسمت ها را کامل کنید !";
@@ -367,8 +365,6 @@ function add_member() {
             "password": password,
             "username": username,
             "phone": phone,
-            "gender": gender,
-            "birth": birth,
         }
         axios.post(domain+"/api/register", body).then(res => {
             localStorage.setItem("token", res.headers["x-auth-token"]);

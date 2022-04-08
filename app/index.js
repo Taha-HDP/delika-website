@@ -66,13 +66,10 @@ class Application {
         });
     }
     clear_catch() {
-        const mid_night = new Date('Sept 1, 1 22:0:0').getHours();
         setInterval(function () {
-            if (new Date().getHours() > mid_night) {
-                console.log("server going to clear unused data")
-                admin_controller.clear_catch();
-            }
-        }, 59 * 60 * 1000);
+            //console.log("server going to clear unused data")
+            admin_controller.clear_catch();
+        }, 24 * 60 * 60 * 1000);
     }
 }
 
