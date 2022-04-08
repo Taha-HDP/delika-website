@@ -404,8 +404,31 @@ module.exports = new (class Admin_controller {
         let random_code;
         if (req.body.code) {
             random_code = req.body.code;
+            const check_offer = await Offer.find({
+                offer_code: random_code
+            });
+            if (check_offer && check_offer.length > 0)
+                return res.send("invalid code");
         } else {
-            random_code = randomString(7);
+            let check = false;
+            while (check == false) {
+                random_code = randomString(7);
+                const check_offer = await Offer.find({
+                    offer_code: random_code
+                });
+                if (!check_offer || check_offer.length == 0)
+                    check = true;
+            }
+        }
+        const check_offer = await Offer.find({
+            offer_code: random_code
+        });
+        if (check_offer && check_offer.length > 0) {
+            if (req.body.code) {
+                return res.send("invalid code");
+            } else {
+                random_code = randomString(7);
+            }
         }
         const offer = new Offer({
             offer_code: random_code,
@@ -537,7 +560,7 @@ module.exports = new (class Admin_controller {
                 await Payment.findByIdAndRemove(payments[i]._id);
             }
         }
-        console.log("all failed payments & offers were deleted") ;
+        console.log("all failed payments & offers were deleted");
     }
 });
 

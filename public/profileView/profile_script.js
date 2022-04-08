@@ -60,7 +60,7 @@ function edit_profile() {
         }
         if (!info.username || !info.email || !info.phone) {
             const text = "نام کاربری ، ایمیل و شماره الزامی است";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
             load_profile_data();
         }
         axios.put(domain + "/api/profile/edit", info, {
@@ -71,12 +71,12 @@ function edit_profile() {
             .then(res => {
                 load_profile_data();
                 const text = "با موفقیت زخیره شد";
-                call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+                call_cs_popup(text, 4000, "#277539", "#DAFFE6" , "#20A740");
 
             }).catch(err => {
                 load_profile_data();
                 const text = "نام کاربری / شماره / ایمیل تکراری می باشد";
-                call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
             });
     }
 
@@ -118,13 +118,13 @@ function change_password() {
     let check_password = document.getElementById("check-password").value;
     if (!new_password || !current || !check_password) {
         const text = "شما باید همه ی گزینه هارا پر کنید";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
     } else if (new_password != check_password) {
         const text = "رمز های وارد شده مشابه نیست";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
     } else if (new_password.length < 6) {
         const text = "رمز وارد شده باید حداقل 6 حرف باشد";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
     } else {
         axios.put(domain + "/api/profile/changePassword", { new_password, current }, {
             headers: {
@@ -132,13 +132,13 @@ function change_password() {
             }
         }).then(res => {
             const text = "با موفقیت زخیره شد";
-            call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+            call_cs_popup(text, 4000, "#277539", "#DAFFE6" , "#20A740");
             document.getElementById("current-password").value = "";
             document.getElementById("new-password").value = "";
             document.getElementById("check-password").value = "";
         }).catch(err => {
             const text = "رمز وارد شده اشتباه است";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da" , "#390b1b");
         });
     }
 }

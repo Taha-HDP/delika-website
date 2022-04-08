@@ -2,7 +2,7 @@ var script = document.createElement('script');
 script.src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
 document.getElementsByTagName('body')[0].appendChild(script);
 
-const domain = "https://localhost:3000" ;
+const domain = "https://localhost:3000";
 //------------- header & footer data
 function loadHeaderAndFooter() {
     document.querySelector("header#top").innerHTML = `
@@ -154,14 +154,14 @@ function loadHeaderAndFooter() {
         document.getElementById("profile").href = "/register.html";
         document.getElementById("profile").innerHTML = "<h3> ثبت نام / ورود  </h3>";
     }
-    axios.get(domain+"/api/site_data").then(res => {
+    axios.get(domain + "/api/site_data").then(res => {
         document.getElementById("about_site").innerHTML = res.data.about;
         document.getElementById("site_instagram").innerHTML = res.data.instagram;
         document.getElementById("insta_id").innerHTML = res.data.instagram;
         document.getElementById("insta_id").style.direction = "ltr";
         document.getElementById("site_instagram").href = res.data.instagramLink;
         document.getElementById("site_instagram").style.direction = "ltr";
-        document.getElementsByClassName("call-box")[2].href = res.data.instagramLink ;
+        document.getElementsByClassName("call-box")[2].href = res.data.instagramLink;
         document.getElementById("site_email").innerHTML = res.data.email;
         document.getElementById("site_email").href = "mailto:" + res.data.email;
         document.getElementById("email_address").href = "mailto:" + res.data.email;
@@ -342,22 +342,22 @@ function add_member() {
     if (!email || !password || !username || !phone) {
         window.scroll(0, 0);
         let text = "شما باید همه ی قسمت ها را کامل کنید !";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         return false;
     } else if (document.forms["signin"]["password-check"].value != password) {
         window.scroll(0, 0);
         let text = "رمز های وارد شده یکسان نمی باشد";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         return false;
     } else if (password.length < 6) {
         window.scroll(0, 0);
         let text = "رمز عبور باید حداقل 6 حرف باشد";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         return false;
     } else if (phone.length != 11) {
         window.scroll(0, 0);
         let text = "شماره وارد شده معتبر نمی باشد";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         return false;
     } else {
         let body = {
@@ -366,7 +366,7 @@ function add_member() {
             "username": username,
             "phone": phone,
         }
-        axios.post(domain+"/api/register", body).then(res => {
+        axios.post(domain + "/api/register", body).then(res => {
             localStorage.setItem("token", res.headers["x-auth-token"]);
             localStorage.removeItem('setupTime');
             localStorage.setItem('setupTime', new Date().getDay());
@@ -375,7 +375,7 @@ function add_member() {
         }).catch(err => {
             window.scroll(0, 0);
             let text = "این شماره /ایمیل/نام کاربری قبلا در سیستم ثبت شده !";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             return false;
         });
         return false;
@@ -389,13 +389,13 @@ function login_member() {
     password = document.forms["login"]["password"].value;
     if (!username || !password) {
         let text = "شما باید همه ی قسمت ها را کامل کنید !";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else if (password.length < 6) {
         window.scroll(0, 0);
         let text = "رمز عبور باید حداقل 6 حرف باشد";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else {
-        axios.post(domain+"/api/login", { username, password }).then(res => {
+        axios.post(domain + "/api/login", { username, password }).then(res => {
             localStorage.setItem("token", res.headers["x-auth-token"]);
             localStorage.removeItem('setupTime');
             localStorage.setItem('setupTime', new Date().getDay());
@@ -403,7 +403,7 @@ function login_member() {
         }).catch(err => {
             window.scroll(0, 0);
             let text = "کاربری با این اطلاعات یافت نشد .";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         });
     }
 }
@@ -508,10 +508,10 @@ function forget_password() {
         if (user_phone.value.length != 11) {
             window.scroll(0, 0);
             let text = "شماره وارد شده معتبر نمی باشد";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             return false;
         }
-        axios.post(domain+"/api/forgetPassword", { phone: user_phone.value }, {
+        axios.post(domain + "/api/forgetPassword", { phone: user_phone.value }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -525,7 +525,7 @@ function forget_password() {
             console.log(sended_code);
         }).catch(err => {
             const text = "هیچ حسابی با این شماره ثبت نشده است";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         });
     } else if (forgetPasswordProj == 1) {
         const member_code = document.getElementsByTagName("input")[3];
@@ -536,7 +536,7 @@ function forget_password() {
             forgetPasswordProj = 2;
         } else {
             const text = "مقدار وارد شده اشتباه است !";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         }
 
     } else if (forgetPasswordProj == 2) {
@@ -544,19 +544,19 @@ function forget_password() {
         console.log(forgetPassPhone);
         if (!new_password) {
             const text = "رمز عبور خود را وارد کنید !";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         } else if (new_password.length < 6) {
             const text = "رمز عبور باید بیشتر از 6 حرف باشد";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         } else {
-            axios.put(domain+"/api/newPassword", {
+            axios.put(domain + "/api/newPassword", {
                 password: new_password,
                 phone: forgetPassPhone,
             }).then(res => {
                 window.location.href = "./register.html";
             }).catch(err => {
                 const text = "ارسال داده با خطا مواجه شد !";
-                call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             });
         }
 
@@ -603,15 +603,15 @@ function send_help_request() {
             }
         }).then(res => {
             const text = "درخواست شما با موفقیت ارسال شد";
-            call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+            call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
             window.location.href = "./profileView/help_request.html"
         }).catch(err => {
             const text = "شما یک درخواست باز دارید ، برای مشاهده ، به قسمت درخواست ها در پروفایل بروید ";
-            call_cs_popup(text, 5000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 5000, "#5D101D", "#ffd5da", "#390b1b");
         });
     } else {
         const text = "برای ارسال درخواست باید ثبت نام کنید";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     }
 }
 //------------------------ type of arts
@@ -922,7 +922,7 @@ function load_sculpture_item() {
 function load_item(mode, body, sort) {
     if (body == "all") {
         document.getElementById("ware").innerHTML = "";
-        axios.post(domain+"/api/items", { type: mode })
+        axios.post(domain + "/api/items", { type: mode })
             .then(res => {
                 let item = res.data;
                 if (sort == "news")
@@ -950,7 +950,7 @@ function load_item(mode, body, sort) {
                 console.log(err.message);
             });
     } else {
-        axios.post(domain+"/api/sorted_items", { type: mode, class: body }).then(res => {
+        axios.post(domain + "/api/sorted_items", { type: mode, class: body }).then(res => {
             let item = res.data;
             if (sort == "news")
                 item.reverse();
@@ -1052,7 +1052,7 @@ function find_item(type) {
                 }
                 break;
         }
-        axios.post(domain+"/api/admin/findItem", { wanted: result }, {
+        axios.post(domain + "/api/admin/findItem", { wanted: result }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -1075,7 +1075,7 @@ function find_item(type) {
 }
 function item_page() {
     const placeID = new URLSearchParams(window.location.search).get("place");
-    axios.get(domain+"/api/items/" + placeID).then(res => {
+    axios.get(domain + "/api/items/" + placeID).then(res => {
         document.getElementById("item_name").innerHTML = res.data.name;
         let type, Class;
         switch (res.data.type) {
@@ -1141,7 +1141,7 @@ function item_page() {
         }
     }).catch(err => {
         let text = "انتقال دیتا با خطا مواجه شده است";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     });
 }
 function add_comment() {
@@ -1151,23 +1151,23 @@ function add_comment() {
     }
     if (!body.name || !body.text) {
         let text = "شما باید نام و نظر خود را وارد کنید";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else {
         const placeID = new URLSearchParams(window.location.search).get("place");
-        axios.post(domain+"/api/items/addComment/" + placeID, body).then(res => {
+        axios.post(domain + "/api/items/addComment/" + placeID, body).then(res => {
             const text = "نظر شما با موفقیت ثبت شد و بعد از بررسی توسط ادمین نمایش داده می شود";
-            call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+            call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
             document.getElementById("name").value = "";
             document.getElementById("comment_txt").value = "";
         }).catch(err => {
             let text = "انتقال دیتا با خطا مواجه شده است";
-            call_cs_popup(text, 3000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 3000, "#5D101D", "#ffd5da", "#390b1b");
         });
     }
 
 }
 function load_intro_items() {
-    axios.post(domain+"/api/items").then(res => {
+    axios.post(domain + "/api/items").then(res => {
         res.data.reverse();
         for (let i = 0; i < 4; i++) {
             create_shop_item(res.data[i].picture, res.data[i].name, res.data[i].price, res.data[i]._id);
@@ -1224,9 +1224,9 @@ function check_out() {
         }
         if (!body.name || !body.address || !body.post_code || !body.country) {
             const text = "شما باید همه ی قسمت ها را کامل کنید";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         } else {
-            axios.post(domain+"/api/basket/checkOut", body, {
+            axios.post(domain + "/api/basket/checkOut", body, {
                 headers: {
                     'x-auth-token': localStorage.getItem("token")
                 }
@@ -1247,7 +1247,7 @@ function bill_result() {
     const Authority = new URLSearchParams(window.location.search).get("Authority");
     const Status = new URLSearchParams(window.location.search).get("Status");
     if (mode && mode == "course") {
-        axios.get(domain+"/api/course/verification?Authority=" + Authority + "&Status=" + Status, {
+        axios.get(domain + "/api/course/verification?Authority=" + Authority + "&Status=" + Status, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -1275,7 +1275,7 @@ function bill_result() {
             window.location.assign("/500.html")
         });
     } else {
-        axios.get(domain+"/api/payment/verification?Authority=" + Authority + "&Status=" + Status, {
+        axios.get(domain + "/api/payment/verification?Authority=" + Authority + "&Status=" + Status, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -1319,7 +1319,7 @@ function load_basket(mode) {
         }
     } else if (basket_item) {
         basket_item.map((item) => {
-            axios.get(domain+"/api/items/" + item).then(res => {
+            axios.get(domain + "/api/items/" + item).then(res => {
                 let type, Class;
                 switch (res.data.type) {
                     case "painting":
@@ -1432,7 +1432,7 @@ function addToBasket() {
         basket_item.push(placeID);
         localStorage.setItem("basket", JSON.stringify(basket_item));
         const text = "با موفقیت به شبد خرید اضافه شد";
-        call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+        call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
         load_basket();
     }
 }
@@ -1459,17 +1459,17 @@ function check_offer(mode) {
             load_factor("none")
         } else {
             const text = "شما باید کد تایید را وارد کنید";
-            call_cs_popup(text, 3000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 3000, "#5D101D", "#ffd5da", "#390b1b");
             factor_offer = 0;
         }
     } else {
-        axios.post(domain+"/api/payment/offer_check/" + code)
+        axios.post(domain + "/api/payment/offer_check/" + code)
             .then(res => {
                 if (res.data != 0) {
                     load_factor(parseInt(res.data));
                 } else {
                     const text = "کد وارد شده معتبر نیست";
-                    call_cs_popup(text, 3000, "black", "rgba(255, 38, 38, 0.59)");
+                    call_cs_popup(text, 3000, "#5D101D", "#ffd5da", "#390b1b");
                     document.getElementById("offer_input").value = "";
                     factor_offer = 0;
                 }
@@ -1481,7 +1481,7 @@ function load_factor(code) {
     let body = {
         country: document.getElementById("countrys").value,
     }
-    axios.post(domain+"/api/payment/factor", body)
+    axios.post(domain + "/api/payment/factor", body)
         .then(res => {
             factor_transport = res.data.transport;
             if (code != "none") {
@@ -1499,7 +1499,7 @@ function load_factor(code) {
 function send_request() {
     if (!localStorage.getItem("token")) {
         let text = "برای ثبت درخواست باید وارد حساب کاربری شوید";
-        call_cs_popup(text, 3000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 3000, "#5D101D", "#ffd5da", "#390b1b");
         return 0;
     }
     const name = document.querySelector("#coustomer_name");
@@ -1510,7 +1510,7 @@ function send_request() {
     const image = document.getElementById("image");
     if (!name.value || !type.value || !x.value || !y.value || !image.files[0]) {
         let text = "شما باید همه ی قسمت ها را کامل کنید";
-        call_cs_popup(text, 3000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 3000, "#5D101D", "#ffd5da", "#390b1b");
         return 0;
     }
     const body = new FormData();
@@ -1520,17 +1520,17 @@ function send_request() {
     body.append("y", y.value);
     body.append("info", info.value);
     body.append("picture", image.files[0]);
-    axios.post(domain+"/api/shop/sendSelfRequest", body, {
+    axios.post(domain + "/api/shop/sendSelfRequest", body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         if (res.data == false) {
             const text = "شما یک درخواست تمام نشده دارید برای مشاهده به پروفایل ، بخش طرح های شخصی بروید";
-            call_cs_popup(text, 5000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 5000, "#5D101D", "#ffd5da", "#390b1b");
         } else {
             const text = "درخواست شما با موفقیت ثبت شد";
-            call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+            call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
         }
         name.value = "";
         type.value = "none";
@@ -1546,12 +1546,19 @@ function send_request() {
 
 }
 //--------------------- notif
-function call_cs_popup(text, time, color, background) {
+function call_cs_popup(text, time, color, background, stroke) {
     const notif = document.getElementById("notfication");
-    notif.innerHTML = text;
+    document.querySelector("#notfication p").innerHTML = text;
     notif.style.color = color;
+    notif.style.border = "1px solid " + stroke;
     notif.style.backgroundColor = background;
     notif.style.transform = "translateX(0px)";
+    document.getElementById("notif_icon").style.borderLeft = "1px solid" + stroke;
+    if (background == "#DAFFE6") {
+        document.getElementById("notif_image").style.backgroundImage = "url(../public/images/cheked_icon.png)";
+    } else if (background == "#ffd5da") {
+        document.getElementById("notif_image").style.backgroundImage = "url(../public/images/wrong_icon.png)";
+    }
     if (time != 0) {
         setTimeout(() => {
             notif.style.transform = "translateX(-1000px)";

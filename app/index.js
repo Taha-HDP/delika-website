@@ -67,7 +67,7 @@ class Application {
     }
     clear_catch() {
         setInterval(function () {
-            //console.log("server going to clear unused data")
+            console.log("server going to clear unused data") ;
             admin_controller.clear_catch();
         }, 24 * 60 * 60 * 1000);
     }
