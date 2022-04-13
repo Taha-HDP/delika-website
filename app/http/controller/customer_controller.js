@@ -7,6 +7,7 @@ const Site_data = require("../../models/site_data_model");
 const Emailer = require('nodemailer');
 const bcrypt = require("bcrypt");
 const dateTime = require('node-datetime');
+const config = require("config");
 const Course_payment = require("../../models/course_payment_model");
 const Course = require("../../models/course_model");
 module.exports = new (class Customer_controller {
@@ -64,12 +65,11 @@ module.exports = new (class Customer_controller {
         if (!user)
             return res.send("not found");
         const code = Math.floor(1000 + Math.random() * 9000);
-        let Delika = await Site_data.findById("6224ae26ddaefcc2ae18ba2a");
         const transporter = Emailer.createTransport({
             service: 'gmail',
             auth: {
-                user: Delika.email,
-                pass: 'tahahdp0760484'
+                user: config.get("sender_email"),
+                pass: config.get("sender_password")
             }
         });
         const message = `
@@ -88,7 +88,7 @@ module.exports = new (class Customer_controller {
         const mailOptions = {
             from: {
                 name: 'Delika_Gallery',
-                address: Delika.email
+                address: config.get("sender_email")
             },
             to: user.email,
             subject: 'Change Password',

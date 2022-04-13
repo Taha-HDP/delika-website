@@ -5,7 +5,7 @@ const dateTime = require('node-datetime');
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const ZarinpalCheckout = require('zarinpal-checkout');
-const zarinpal = ZarinpalCheckout.create('00000000-0000-0000-0000-000000000000', true);
+const zarinpal = ZarinpalCheckout.create(config.get("zarinpal_number"), true);
 module.exports = new (class Course_controller {
     async courses(req, res) {
         const courses = await Course.find({
@@ -50,9 +50,10 @@ module.exports = new (class Course_controller {
         const user = await Customer.findById(req.user._id);
         if (!user)
             return res.status(404).send();
+        const callBack = config.get("domain")+"/bill_result.html?for=course" ;
         const result = await zarinpal.PaymentRequest({
             Amount: parseInt(course.price),
-            CallbackURL: 'http://localhost:3000/bill_result.html?for=course',
+            CallbackURL: callBack,
             Description: 'پرداخت دلیکا',
             Email: user.email,
             Mobile: user.phone,

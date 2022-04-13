@@ -9,6 +9,7 @@ const morgan = require('morgan');
 const admin_controller = require("./http/controller/admin_controller")
 const ErrorMiddleware = require("./http/middleware/error");
 const api = require("./routes/api");
+const config = require("config");
 require("express-async-errors");
 require("winston-mongodb");
 
@@ -45,7 +46,7 @@ class Application {
         app.use(ErrorMiddleware);
     }
     setup_database() {
-        mongoose.connect("mongodb://localhost:27017/delika_gallery", {
+        mongoose.connect(config.get("databaseaddress"), {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         }).then(() => {
@@ -57,8 +58,8 @@ class Application {
     setup_express() {
         const port = process.env.myPort || 3000;
         var options = {
-            key: fs.readFileSync('F:/!Taha/work out/delika website/cert/key.pem'),
-            cert: fs.readFileSync('F:/!Taha/work out/delika website/cert/cert.pem')
+            key: fs.readFileSync(config.get("key_address")),
+            cert: fs.readFileSync(config.get("cert_address"))
         };
         https.createServer(options, app).listen(port, (err) => {
             if (err) console.log(err)
