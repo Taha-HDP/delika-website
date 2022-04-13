@@ -178,7 +178,7 @@ module.exports = new (class Customer_controller {
     async send_request(req, res) {
         let check = false;
         let user = await Customer.findById(req.user._id);
-        if (!user) return res.status(404).send("کاربر مورد نظر یافت نشد");
+        if (!user) return res.status(404).send();
         const result = await Request.find({ person: user._id });
         if (result) {
             result.map((item) => {
