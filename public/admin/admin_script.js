@@ -790,7 +790,7 @@ function self_request_dateil(id) {
                 <tr>
                     <td>تصویر</td>
                     <td>
-                        <img src="../public/image/${picture}">
+                        <img src="../public/member_images/${picture}">
                     </td>
                 </tr>
             </tbody>
