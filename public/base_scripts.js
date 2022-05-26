@@ -2,7 +2,7 @@ var script = document.createElement('script');
 script.src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
 document.getElementsByTagName('body')[0].appendChild(script);
 
-const domain = "https://localhost:3000";
+const domain = "https://delikagallery.iran.liara.run";
 //------------- header & footer data
 function loadHeaderAndFooter() {
     document.querySelector("header#top").innerHTML = `
@@ -181,8 +181,7 @@ function loadHeaderAndFooter() {
             document.getElementsByClassName("contact")[0].appendChild(li)
         }
     }).catch(err => {
-        console.log("err:" + err)
-        //window.location.assign("/500.html");
+        window.location.assign("/500.html");
     });
 }
 //--------------- header popout list
@@ -985,7 +984,7 @@ function create_shop_item(pic, name, price, id) {
     //--- picture
     var box_picture = document.createElement("div");
     box_picture.className = "item-picture";
-    const array = pic.split("\\");
+    const array = pic.split("/");
     picture = array[3];
     box_picture.style.backgroundImage = "url('../public/image/" + picture + "')";
     //--- name
@@ -1115,7 +1114,7 @@ function item_page() {
         document.getElementsByClassName("item_data")[4].innerHTML = res.data.info;
         document.getElementById("Price").innerHTML = res.data.price + " تومان";
         let picture = res.data.picture;
-        const array = picture.split("\\");
+        const array = picture.split("/");
         picture = array[3];
         document.getElementsByClassName("picture")[0].style.backgroundImage = "url('../public/image/" + picture + "')";
         if (res.data.comment) {
@@ -1185,7 +1184,7 @@ function load_intro_items() {
             //--- picture
             var box_picture = document.createElement("div");
             box_picture.className = "item-picture";
-            const array = pic.split("\\");
+            const array = pic.split("/");
             picture = array[3];
             box_picture.style.backgroundImage = "url('../public/image/" + picture + "')";
             //--- name
@@ -1357,7 +1356,7 @@ function load_basket(mode) {
                     item_box.classList.add("basket_item_box");
                     document.getElementById("item_count").innerHTML = "سبد خرید : " + basket_item.length;
                     document.getElementsByClassName("total_money")[0].innerHTML = total + " تومان";
-                    const array = res.data.picture.split("\\");
+                    const array = res.data.picture.split("/");
                     const picture = array[3];
                     item_box.innerHTML = `
                     <div class="basket_item_info">
@@ -1373,7 +1372,7 @@ function load_basket(mode) {
                     const item_box = document.createElement("div");
                     item_box.classList.add("object_box");
                     document.getElementById("items_total").innerHTML = total + " تومان";
-                    const array = res.data.picture.split("\\");
+                    const array = res.data.picture.split("/");
                     const picture = array[3];
                     item_box.innerHTML = `
                     <div class="basket_object_info">

@@ -263,7 +263,7 @@ function self_request_dateil(id) {
         }
     }).then(res => {
         const request = res.data;
-        const array = request.picture.split("\\");
+        const array = request.picture.split("/");
         const picture = array[3];
         document.getElementById("requestDetail").innerHTML = `
         <h3 id="detail-head">جزئیات درخواست</h3>
@@ -389,7 +389,7 @@ function order_detail(id) {
         res.data.items.map((item) => {
             const item_box = document.createElement("div");
             item_box.classList.add("object_box");
-            const array = item.picture.split("\\");
+            const array = item.picture.split("/");
             const picture = array[3];
             let type, Class;
             switch (item.type) {

@@ -46,9 +46,10 @@ class Application {
         app.use(ErrorMiddleware);
     }
     setup_database() {
-        mongoose.connect(config.get("databaseaddress"), {
+        mongoose.connect(process.env.DATABASE_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            authSource : "admin" ,
         }).then(() => {
             console.log("db connected");
         }).catch((err) => {
@@ -57,14 +58,9 @@ class Application {
     }
     setup_express() {
         const port = process.env.myPort || 3000;
-        var options = {
-            key: fs.readFileSync(config.get("key_address")),
-            cert: fs.readFileSync(config.get("cert_address"))
-        };
-        https.createServer(options, app).listen(port, (err) => {
-            if (err) console.log(err)
-            else console.log("router listen to port :" + port);
-        });
+        app.listen(port, () => {
+            console.log(`app listening on port ${port}`)
+          })
     }
     clear_catch() {
         setInterval(function () {

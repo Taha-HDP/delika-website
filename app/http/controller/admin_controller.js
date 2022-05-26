@@ -156,7 +156,7 @@ module.exports = new (class Admin_controller {
     async add_new_item(req, res) {
         const uniqe = await Shop.findOne({ name: req.body.name });
         if (uniqe) {
-            return res.status(400).send("قبلا ثبت شده");
+            return res.status(400).send();
         }
         const new_item = new Shop({
             name: req.body.name,

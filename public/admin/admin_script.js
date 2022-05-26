@@ -214,7 +214,7 @@ function item_detail(id) {
         }
     }).then(res => {
         const item = res.data;
-        const array = item.picture.split("\\");
+        const array = item.picture.split("/");
         const picture = array[3];
         document.getElementById("itemDetail").innerHTML = `
         <h3 id="detail-head">جزئیات کالا</h3>
@@ -316,7 +316,7 @@ function edit_item() {
             document.getElementById("width").value = res.data.x;
             document.getElementById("item-information").value = res.data.info;
             let picture = res.data.picture;
-            const array = picture.split("\\");
+            const array = picture.split("/");
             picture = array[3];
             document.getElementById("uploadLabel").style.backgroundImage = "url('../public/image/" + picture + "')";
             document.getElementById("uploadLabel").style.color = "rgba(0,0,0,0)";
@@ -736,7 +736,7 @@ function self_request_dateil(id) {
         }
     }).then(res => {
         const request = res.data;
-        const array = request.picture.split("\\");
+        const array = request.picture.split("/");
         const picture = array[3];
         document.getElementById("requestDetail").innerHTML = `
         <h3 id="detail-head">جزئیات درخواست</h3>
@@ -1164,7 +1164,7 @@ function order_detail(id) {
         res.data.items.map((item) => {
             const item_box = document.createElement("div");
             item_box.classList.add("object_box");
-            const array = item.picture.split("\\");
+            const array = item.picture.split("/");
             const picture = array[3];
             let type, Class;
             switch (item.type) {
@@ -1466,7 +1466,7 @@ function courses_detail(id) {
         }
     }).then(res => {
         const course = res.data;
-        const array = course.picture.split("\\");
+        const array = course.picture.split("/");
         const picture = array[3];
         document.getElementById("courseDetail").innerHTML = `
         <h3 id="detail-head">جزئیات دوره</h3>
@@ -1576,7 +1576,7 @@ function edit_course() {
             place.value = res.data.place;
             hours.value = res.data.hours;
             start_date.value = res.data.start_date;
-            const array = res.data.picture.split("\\");
+            const array = res.data.picture.split("/");
             let picture = array[3];
             document.getElementById("uploadLabel").style.backgroundImage = "url('../public/image/" + picture + "')";
             document.getElementById("uploadLabel").style.color = "rgba(0,0,0,0)";
