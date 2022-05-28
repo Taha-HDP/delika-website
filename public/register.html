@@ -17,7 +17,12 @@
 <body onload="loadHeaderAndFooter() ,check_loged() , load_basket()">
     <header id="top"> </header>
     <article id="hiden_contact"></article>
-    <div id="notfication"></div>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
     <article id="mid">
         <div class="login">
             <h2>ورود</h2>
@@ -29,8 +34,7 @@
                 <label for="pass">رمز عبور خود را وارد کنید :</label>
                 <br>
                 <input type="password" name="password" id="pass" placeholder="رمز عبور">
-                <label for="login_eye" class="eye_lable">
-                    نمایش رمز عبور
+                <label for="login_eye" class="eye_lable"> نمایش رمز عبور
                     <input type="checkbox" name="login_eye" class="eye" onchange="password_mode(this.id)"
                         id="login_eye">
                 </label>
@@ -46,6 +50,10 @@
                 <label for="email">ایمیل خود را وارد کنید :</label>
                 <br>
                 <input type="email" name="email" id="email" placeholder="ایمیل">
+                <br>
+                <label for="phone">شماره همراه خود را وارد کنید :</label>
+                <br>
+                <input type="text" maxlength="11" name="phone" id="phone" placeholder="---- --- --09">
                 <br>
                 <label for="username">نام کاربری خود را وارد کنید :</label>
                 <br>
@@ -64,20 +72,6 @@
                     <input type="checkbox" name="signin_eye" class="eye" onchange="password_mode(this.id)"
                         id="signin_eye">
                 </label>
-                <label for="phone">شماره همراه خود را وارد کنید</label>
-                <br>
-                <input type="text" maxlength="11" name="phone" id="phone" placeholder="---- --- --09">
-                <br>
-                <label for="gender">جنسیت :</label>
-                <br>
-                <select name="gender" id="gender">
-                    <option value="male">مرد</option>
-                    <option value="female">زن</option>
-                </select>
-                <br>
-                <label for="birth">تاریخ تولد :</label>
-                <br>
-                <input type="date" name="birth" id="birth">
                 <br><br>
                 <input type="button" class="button" value="ثبت نام" onclick="add_member()">
             </form>

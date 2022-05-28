@@ -4,9 +4,10 @@ const Payment = require("../../models/payment_model");
 const Site_data = require("../../models/site_data_model");
 const Offer = require("../../models/offer_model");
 const Self_request = require("../../models/self_request_model");
+const config = require("config");
 const dateTime = require('node-datetime');
 const ZarinpalCheckout = require('zarinpal-checkout');
-const zarinpal = ZarinpalCheckout.create('00000000-0000-0000-0000-000000000000', true);
+const zarinpal = ZarinpalCheckout.create(config.get("zarinpal_number"), true);
 
 module.exports = new (class Shoping_controller {
     async get_item_list(req, res) {
@@ -110,9 +111,10 @@ module.exports = new (class Shoping_controller {
             }
             const total_money = (amount + shipping_cost_money) - offer_money;
             const final_address = req.body.country + "-" + req.body.address;
+            const callBack = config.get("domain") + "/bill_result.html";
             const result = await zarinpal.PaymentRequest({
                 Amount: total_money,
-                CallbackURL: 'http://localhost:3000/bill_result.html',
+                CallbackURL: callBack,
                 Description: 'پرداخت دلیکا',
                 Email: user.email,
                 Mobile: user.phone,
@@ -218,7 +220,7 @@ module.exports = new (class Shoping_controller {
                 }
             }
         }
-        const user = await Customer.findById(req.user._id) ;
+        const user = await Customer.findById(req.user._id);
         const new_request = new Self_request({
             name: req.body.name,
             type: req.body.type,
@@ -226,9 +228,9 @@ module.exports = new (class Shoping_controller {
             y: req.body.y,
             info: req.body.info,
             picture: req.file.path,
-            username : user.username ,
-            phone : user.phone ,
-            email : user.email ,
+            username: user.username,
+            phone: user.phone,
+            email: user.email,
             send_date: dateTime.create().format('Y-m-d'),
             member_id: user._id,
         });

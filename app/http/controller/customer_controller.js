@@ -3,10 +3,11 @@ const Shop = require("../../models/shop_model");
 const Request = require("../../models/help_request_model");
 const Payment = require("../../models/payment_model");
 const Self_request = require("../../models/self_request_model");
-const Offer = require("../../models/offer_model");
 const Site_data = require("../../models/site_data_model");
+const Emailer = require('nodemailer');
 const bcrypt = require("bcrypt");
 const dateTime = require('node-datetime');
+const config = require("config");
 const Course_payment = require("../../models/course_payment_model");
 const Course = require("../../models/course_model");
 module.exports = new (class Customer_controller {
@@ -14,7 +15,6 @@ module.exports = new (class Customer_controller {
         const data = await Site_data.find();
         res.send(data[0]);
     }
-
     async register(req, res) {
         const user_phone = await Customer.findOne({ phone: req.body.phone });
         const user_email = await Customer.findOne({ email: req.body.email });
@@ -26,9 +26,7 @@ module.exports = new (class Customer_controller {
             email: req.body.email,
             password: req.body.password,
             username: req.body.username,
-            gender: req.body.gender,
             phone: req.body.phone,
-            birth: req.body.birth,
             create_date: dateTime.create().format('Y-m-d'),
         });
         const salt = await bcrypt.genSalt(10);
@@ -63,9 +61,43 @@ module.exports = new (class Customer_controller {
 
     }
     async forgetPassword(req, res) {
-        const user = await Customer.findOne({ phone: req.body.phone });
-        if (!user) res.status(404).send("کاربری با این شماره یافت نشد");
+        const user = await Customer.findOne({ email: req.body.email });
+        if (!user)
+            return res.send("not found");
         const code = Math.floor(1000 + Math.random() * 9000);
+        const transporter = Emailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: config.get("sender_email"),
+                pass: config.get("sender_password")
+            }
+        });
+        const message = `
+        <html>
+            <body>
+                <p style="direction: ltr;width: 100%; height: fit-content;color: black !important; text-align: center;font-size: 1.5rem;">
+                Hello <strong>${user.username}</strong><br>
+                Looks like you've forgotten your password. <br><br>
+                this is your code : <strong>${code}</strong> .<br><br>
+                enter this code in website and reset your password. <br><br>
+                If you didn't make the request then simply ignore and delete this email. <br>
+                </p>
+            </body>
+        </html>
+        `
+        const mailOptions = {
+            from: {
+                name: 'Delika_Gallery',
+                address: config.get("sender_email")
+            },
+            to: user.email,
+            subject: 'Change Password',
+            html: message
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error)
+                return res.status(500).send();
+        });
         res.status(200).send({ code });
     }
     async member_info(req, res) {
@@ -95,16 +127,16 @@ module.exports = new (class Customer_controller {
     }
     async change_password(req, res) {
         let user = await Customer.findById(req.user._id);
-        if (!user) return res.status(404).send("کاربر مورد نظر یافت نشد");
+        if (!user) return res.status(404).send();
         const result = await bcrypt.compare(req.body.current, user.password);
         if (!result) {
-            return res.status(404).send("کاربری با این پسوورد یافت نشد");
+            return res.send("not found");
         } else {
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(req.body.new_password, salt);
             await user.save((err) => {
                 if (err) {
-                    return res.status(400).send();
+                    return res.status(500).send();
                 } else {
                     res.status(200).send();
                 }
@@ -112,7 +144,7 @@ module.exports = new (class Customer_controller {
         }
     }
     async newPassword(req, res) {
-        let user = await Customer.findOne({ phone: req.body.phone });
+        let user = await Customer.findOne({ email: req.body.email });
         if (!user)
             res.status(404).send("کاربر مورد نظر یافت نشد");
         const salt = await bcrypt.genSalt(10);
@@ -146,7 +178,7 @@ module.exports = new (class Customer_controller {
     async send_request(req, res) {
         let check = false;
         let user = await Customer.findById(req.user._id);
-        if (!user) return res.status(404).send("کاربر مورد نظر یافت نشد");
+        if (!user) return res.status(404).send();
         const result = await Request.find({ person: user._id });
         if (result) {
             result.map((item) => {
@@ -182,7 +214,9 @@ module.exports = new (class Customer_controller {
         res.send(requests);
     }
     async self_request_list(req, res) {
-        const requests = await Self_request.find();
+        const requests = await Self_request.find({
+            member_id: req.user._id
+        });
         res.send(requests);
     }
     async self_request_detail(req, res) {

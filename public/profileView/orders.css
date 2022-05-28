@@ -157,10 +157,16 @@ table th{
     line-height: 1.5;
 }
 
-
+#empty{
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 2rem;
+    color: rgb(116 116 116);
+}
 
 .factorObject {
     padding: 0.5rem 0;
+    line-height: 1.45;
     display: flex;
     justify-content: space-between;
 }

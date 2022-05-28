@@ -1,4 +1,6 @@
 const express = require("express");
+const https = require("https");
+const fs = require("fs");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -7,6 +9,7 @@ const morgan = require('morgan');
 const admin_controller = require("./http/controller/admin_controller")
 const ErrorMiddleware = require("./http/middleware/error");
 const api = require("./routes/api");
+const config = require("config");
 require("express-async-errors");
 require("winston-mongodb");
 
@@ -43,9 +46,10 @@ class Application {
         app.use(ErrorMiddleware);
     }
     setup_database() {
-        mongoose.connect("mongodb://localhost:27017/delika_gallery", {
+        mongoose.connect(process.env.DATABASE_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            authSource : "admin" ,
         }).then(() => {
             console.log("db connected");
         }).catch((err) => {
@@ -54,27 +58,15 @@ class Application {
     }
     setup_express() {
         const port = process.env.myPort || 3000;
-        app.listen(port, (err) => {
-            if (err) console.log(err)
-            else console.log("router listen to port :" + port);
-        });
-        /* for https
-        const port = process.env.myPort || 3000;
-        var options = {
-            key: fs.readFileSync('privateKey.key'),
-            cert: fs.readFileSync('certificate.crt')
-          };
-          https.createServer(options, app).listen(port);
-          */
+        app.listen(port, () => {
+            console.log(`app listening on port ${port}`)
+          })
     }
     clear_catch() {
-        const mid_night = new Date('Sept 1, 1 22:0:0').getHours();
         setInterval(function () {
-            if (new Date().getHours() > mid_night) {
-                console.log("server going to clear unused data")
-                admin_controller.clear_catch();
-            }
-        }, 59 * 60 * 1000);
+            console.log("server going to clear unused data") ;
+            admin_controller.clear_catch();
+        }, 24 * 60 * 60 * 1000);
     }
 }
 

@@ -1,3 +1,8 @@
 {
-    "jwtPrivetKey" : "adminHDPsecret"
+    "jwtPrivetKey" : "adminHDPsecret" ,
+    "domain" : "https://delikagallery.iran.liara.run" ,
+    "databaseaddress" : "mongodb://localhost:27017/delika_gallery" ,
+    "zarinpal_number" : "00000000-0000-0000-0000-000000000000" ,
+    "sender_email" : "taha.hoveidapour84@gmail.com" ,
+    "sender_password" : "tahahdp0760484"
 }

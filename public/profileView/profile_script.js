@@ -3,7 +3,7 @@ function load_profile_data() {
     if (!id) {
         window.location.assign("/");
     } else {
-        axios.get("http://"+domain+"/api/profile/detail", {
+        axios.get(domain + "/api/profile/detail", {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -60,10 +60,10 @@ function edit_profile() {
         }
         if (!info.username || !info.email || !info.phone) {
             const text = "نام کاربری ، ایمیل و شماره الزامی است";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             load_profile_data();
         }
-        axios.put("http://"+domain+"/api/profile/edit", info, {
+        axios.put(domain + "/api/profile/edit", info, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -71,12 +71,12 @@ function edit_profile() {
             .then(res => {
                 load_profile_data();
                 const text = "با موفقیت زخیره شد";
-                call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+                call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
 
             }).catch(err => {
                 load_profile_data();
                 const text = "نام کاربری / شماره / ایمیل تکراری می باشد";
-                call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             });
     }
 
@@ -93,7 +93,7 @@ function check_role() {
     if (!id) {
         window.location.assign("/");
     } else {
-        axios.get("http://"+domain+"/api/profile/detail", {
+        axios.get(domain + "/api/profile/detail", {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -117,28 +117,32 @@ function change_password() {
     let new_password = document.getElementById("new-password").value;
     let check_password = document.getElementById("check-password").value;
     if (!new_password || !current || !check_password) {
-        const text = "شما باید همه ی گزینه هارا پر کنید";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        const text = "شما باید همه ی گزینه ها را پر کنید";
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else if (new_password != check_password) {
         const text = "رمز های وارد شده مشابه نیست";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else if (new_password.length < 6) {
         const text = "رمز وارد شده باید حداقل 6 حرف باشد";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else {
-        axios.put("http://"+domain+"/api/profile/changePassword", { new_password, current }, {
+        axios.put(domain + "/api/profile/changePassword", { new_password, current }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
         }).then(res => {
-            const text = "با موفقیت زخیره شد";
-            call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
-            document.getElementById("current-password").value = "";
-            document.getElementById("new-password").value = "";
-            document.getElementById("check-password").value = "";
+            if(res.data == "not found"){
+                const text = "رمز وارد شده اشتباه است";
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+            }else{
+                const text = "با موفقیت زخیره شد";
+                call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
+                document.getElementById("current-password").value = "";
+                document.getElementById("new-password").value = "";
+                document.getElementById("check-password").value = "";
+            }
         }).catch(err => {
-            const text = "رمز وارد شده اشتباه است";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            window.location.assign("/500.html") ;
         });
     }
 }
@@ -147,7 +151,7 @@ function member_help_requests() {
     if (!auth)
         return window.location.assign("/");
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/profile/help_request_list", {
+    axios.get(domain + "/api/profile/help_request_list", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -190,7 +194,7 @@ function member_self_requests() {
     if (!auth)
         return window.location.assign("/");
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/profile/self_request_list", {
+    axios.get(domain + "/api/profile/self_request_list", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -243,7 +247,7 @@ function member_self_requests() {
             });
         } else {
             document.getElementsByTagName("main")[0].innerHTML = `
-            <h4 id="empty">شما هیچ درخواستی ثبت نکردید</h4>
+            <h4 id="empty">شما هیچ طرح شخصی ثبت نکردید</h4>
             `;
         }
     }).catch(err => {
@@ -253,13 +257,13 @@ function member_self_requests() {
 function self_request_dateil(id) {
     document.getElementById("self-req").style.display = "none";
     document.getElementById("requestDetail").style.display = "block";
-    axios.get("http://"+domain+"/api/profile/requestDetail/" + id, {
+    axios.get(domain + "/api/profile/requestDetail/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         const request = res.data;
-        const array = request.picture.split("\\");
+        const array = request.picture.split("/");
         const picture = array[3];
         document.getElementById("requestDetail").innerHTML = `
         <h3 id="detail-head">جزئیات درخواست</h3>
@@ -318,7 +322,7 @@ function self_request_dateil(id) {
         window.location.assign("/500.html");
     });
 }
-function backToRequests(){
+function backToRequests() {
     document.getElementById("self-req").style.display = "block";
     document.getElementById("requestDetail").style.display = "none";
 }
@@ -327,7 +331,7 @@ function load_oreder() {
     if (!auth)
         return window.location.assign("/");
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/profile/orders", {
+    axios.get(domain + "/api/profile/orders", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -352,7 +356,7 @@ function load_oreder() {
             });
         } else {
             document.getElementsByTagName("main")[0].innerHTML = `
-            <h4 id="empty">شما هیچ درخواستی ثبت نکردید</h4>
+            <h4 id="empty">شما هیچ سفارشی ثبت نکردید</h4>
             `;
         }
 
@@ -364,7 +368,7 @@ function order_detail(id) {
     document.getElementsByTagName("table")[0].style.display = "none";
     document.getElementById("orderList_header").style.display = "none";
     document.getElementById("orderPage").style.display = "block";
-    axios.get("http://"+domain+"/api/profile/orders/" + id, {
+    axios.get(domain + "/api/profile/orders/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -385,7 +389,7 @@ function order_detail(id) {
         res.data.items.map((item) => {
             const item_box = document.createElement("div");
             item_box.classList.add("object_box");
-            const array = item.picture.split("\\");
+            const array = item.picture.split("/");
             const picture = array[3];
             let type, Class;
             switch (item.type) {
@@ -444,30 +448,31 @@ function load_my_course() {
     const auth = localStorage.getItem("token");
     if (!auth)
         return window.location.assign("/");
-    axios.get("http://"+domain+"/api/profile/my_course", {
+    axios.get(domain + "/api/profile/my_course", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
-        res.data.reverse();
-        res.data.map((course, index) => {
-            var tr = document.createElement("tr");
-            tr.style.backgroundColor = "rgb(220,220,220)";
-            //----- translate section
-            let status;
-            switch (course.status) {
-                case "ongoing":
-                    status = "در حال برگزاری";
-                    break;
-                case "done":
-                    status = "تمام شده";
-                    break;
-                case "waiting":
-                    status = "به زودی";
-                    break;
-            }
-            //-------
-            tr.innerHTML = `
+        if (res.data.length > 0) {
+            res.data.reverse();
+            res.data.map((course, index) => {
+                var tr = document.createElement("tr");
+                tr.style.backgroundColor = "rgb(220,220,220)";
+                //----- translate section
+                let status;
+                switch (course.status) {
+                    case "ongoing":
+                        status = "در حال برگزاری";
+                        break;
+                    case "done":
+                        status = "تمام شده";
+                        break;
+                    case "waiting":
+                        status = "به زودی";
+                        break;
+                }
+                //-------
+                tr.innerHTML = `
                 <td>${index + 1}</td>
                 <td>${course.name}</td>
                 <td>${course.length}</td>
@@ -476,38 +481,63 @@ function load_my_course() {
                 <td>${course.hours}</td>
                 <td>${course.start_date}</td>
                 <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">جزئیات</button></a></td>`;
-            let father;
-            if (course.status == "ongoing")
-                father = document.querySelector("#ongoing_courses tbody");
-            else if (course.status == "done")
-                father = document.querySelector("#done_courses tbody");
-            else if (course.status == "waiting")
-                father = document.querySelector("#waiting_courses tbody");
-            father.appendChild(tr);
-            if (document.querySelector("#ongoing_courses tbody").innerHTML == "") {
-                document.querySelector("#ongoing_courses").style.display = "none";
-                document.getElementById("1").style.display = "none";
-            } else {
-                document.querySelector("#ongoing_courses").style.display = "table";
-                document.getElementById("1").style.display = "block";
-            }
-            if (document.querySelector("#done_courses tbody").innerHTML == "") {
-                document.querySelector("#done_courses").style.display = "none";
-                document.getElementById("2").style.display = "none";
-            } else {
-                document.querySelector("#done_courses").style.display = "table";
-                document.getElementById("2").style.display = "block";
-            }
-            if (document.querySelector("#waiting_courses tbody").innerHTML == "") {
-                document.querySelector("#waiting_courses").style.display = "none";
-                document.getElementById("0").style.display = "none";
-            } else {
-                document.querySelector("#waiting_courses").style.display = "table";
-                document.getElementById("0").style.display = "block";
-            }
-
-        });
+                let father;
+                if (course.status == "ongoing")
+                    father = document.querySelector("#ongoing_courses tbody");
+                else if (course.status == "done")
+                    father = document.querySelector("#done_courses tbody");
+                else if (course.status == "waiting")
+                    father = document.querySelector("#waiting_courses tbody");
+                father.appendChild(tr);
+                if (document.querySelector("#ongoing_courses tbody").innerHTML == "") {
+                    document.querySelector("#ongoing_courses").style.display = "none";
+                    document.getElementById("1").style.display = "none";
+                } else {
+                    document.querySelector("#ongoing_courses").style.display = "table";
+                    document.getElementById("1").style.display = "block";
+                }
+                if (document.querySelector("#done_courses tbody").innerHTML == "") {
+                    document.querySelector("#done_courses").style.display = "none";
+                    document.getElementById("2").style.display = "none";
+                } else {
+                    document.querySelector("#done_courses").style.display = "table";
+                    document.getElementById("2").style.display = "block";
+                }
+                if (document.querySelector("#waiting_courses tbody").innerHTML == "") {
+                    document.querySelector("#waiting_courses").style.display = "none";
+                    document.getElementById("0").style.display = "none";
+                } else {
+                    document.querySelector("#waiting_courses").style.display = "table";
+                    document.getElementById("0").style.display = "block";
+                }
+                if (document.querySelector("#ongoing_courses tbody").innerHTML == "") {
+                    document.querySelector("#ongoing_courses").style.display = "none";
+                }
+                else if (document.querySelector("#done_courses tbody").innerHTML == "") {
+                    document.querySelector("#done_courses").style.display = "none";
+                }
+                else if (document.querySelector("#waiting_courses tbody").innerHTML == "") {
+                    document.querySelector("#waiting_courses").style.display = "none";
+                }
+            });
+        } else {
+            document.getElementsByTagName("main")[0].innerHTML = `
+            <h4 id="empty">شما در هیچ دوره ای ثبت نام نکردید</h4>
+            `;
+        }
     }).catch(err => {
         window.location.assign("/500.html")
     });
+}
+function change_password_mode() {
+    const eye = document.getElementById("password_eye");
+    if (eye.checked == true) {
+        document.getElementById("current-password").type = "text";
+        document.getElementById("new-password").type = "text";
+        document.getElementById("check-password").type = "text";
+    } else {
+        document.getElementById("current-password").type = "password";
+        document.getElementById("new-password").type = "password";
+        document.getElementById("check-password").type = "password";
+    }
 }

@@ -12,7 +12,7 @@ function add_new_item() {
     if (!placeID) {
         if (!name.value || !price.value || !type.value || !art.value || !height.value || !width.value || !image.files[0]) {
             const text = "شما باید قسمت های ستاره دار را پر کنید !";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         } else {
             const body = new FormData();
             body.append("name", name.value);
@@ -23,13 +23,13 @@ function add_new_item() {
             body.append("price", price.value);
             body.append("info", info.value);
             body.append("picture", image.files[0]);
-            axios.post("http://"+domain+"/api/admin/add_new_item", body, {
+            axios.post(domain + "/api/admin/add_new_item", body, {
                 headers: {
                     'x-auth-token': localStorage.getItem("token")
                 }
             }).then(res => {
                 const text = "کالا با موفقیت به فروشگاه اضافه شد";
-                call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+                call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
                 name.value = "";
                 type.value = "none";
                 height.value = "";
@@ -41,13 +41,13 @@ function add_new_item() {
                 document.getElementById("uploadLabel").style.color = "black";
             }).catch(err => {
                 const text = "نام وارد شده تکراری می باشد";
-                call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             });
         }
     } else {
         if (!name.value || !price.value || !type.value || !art.value || !height.value || !width.value) {
             const text = "شما باید قسمت های ستاره دار را پر کنید !";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         } else {
             if (!image.files[0]) {
                 const body = {
@@ -59,17 +59,17 @@ function add_new_item() {
                     price: price.value,
                     info: info.value
                 }
-                axios.put("http://"+domain+"/api/admin/edit_item/" + placeID, body, {
+                axios.put(domain + "/api/admin/edit_item/" + placeID, body, {
                     headers: {
                         'x-auth-token': localStorage.getItem("token")
                     }
                 }).then(res => {
                     const text = "کالا با موفقیت ویرایش شد";
-                    call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+                    call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
                     window.location.href = "./item_list.html";
                 }).catch(err => {
                     const text = "نام وارد شده تکراری می باشد";
-                    call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+                    call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
                 });
             } else {
                 const body = new FormData();
@@ -81,17 +81,17 @@ function add_new_item() {
                 body.append("price", price.value);
                 body.append("info", info.value);
                 body.append("picture", image.files[0]);
-                axios.put("http://"+domain+"/api/admin/edit_itemP/" + placeID, body, {
+                axios.put(domain + "/api/admin/edit_itemP/" + placeID, body, {
                     headers: {
                         'x-auth-token': localStorage.getItem("token")
                     }
                 }).then(res => {
                     const text = "کالا با موفقیت ویرایش شد";
-                    call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+                    call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
                     window.location.href = "./item_list.html";
                 }).catch(err => {
                     const text = "نام وارد شده تکراری می باشد";
-                    call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+                    call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
                 });
             }
         }
@@ -144,7 +144,7 @@ function changeBackground(img) {
 function item_list() {
     const father = document.querySelector("tbody");
     father.innerHTML = "";
-    axios.get("http://"+domain+"/api/admin/items", {
+    axios.get(domain + "/api/admin/items", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -205,16 +205,16 @@ function item_list() {
         window.location.assign("/");
     });
 }
-function item_detail(id){
+function item_detail(id) {
     document.getElementById("item-list").style.display = "none";
     document.getElementById("itemDetail").style.display = "block";
-    axios.get("http://"+domain+"/api/admin/item/"+id , {
+    axios.get(domain + "/api/admin/item/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         const item = res.data;
-        const array = item.picture.split("\\");
+        const array = item.picture.split("/");
         const picture = array[3];
         document.getElementById("itemDetail").innerHTML = `
         <h3 id="detail-head">جزئیات کالا</h3>
@@ -280,13 +280,13 @@ function backToItems() {
 function delete_item(id) {
 
     if (confirm("آیا از این کار خود اطمینان دارید ؟")) {
-        axios.delete("http://"+domain+"/api/admin/remove_item/" + id, {
+        axios.delete(domain + "/api/admin/remove_item/" + id, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
         }).then(res => {
             const text = "کالا با موفقیت حذف شد";
-            call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+            call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
             item_list();
         }).catch(err => {
             window.location.assign("/");
@@ -302,7 +302,7 @@ function edit_item() {
         document.getElementById("add-item").classList.remove("active");
         document.getElementById("item_lists").classList.add("active");
         document.getElementById("mid_titr").innerText = "ویرایش";
-        axios.get("http://"+domain+"/api/admin/item/" + placeID, {
+        axios.get(domain + "/api/admin/item/" + placeID, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -316,7 +316,7 @@ function edit_item() {
             document.getElementById("width").value = res.data.x;
             document.getElementById("item-information").value = res.data.info;
             let picture = res.data.picture;
-            const array = picture.split("\\");
+            const array = picture.split("/");
             picture = array[3];
             document.getElementById("uploadLabel").style.backgroundImage = "url('../public/image/" + picture + "')";
             document.getElementById("uploadLabel").style.color = "rgba(0,0,0,0)";
@@ -352,7 +352,7 @@ function find_item() {
                 break;
             }
         }
-        axios.post("http://"+domain+"/api/admin/findItem", { wanted: result }, {
+        axios.post(domain + "/api/admin/findItem", { wanted: result }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -419,7 +419,7 @@ function find_item() {
 }
 //---- auth check
 function check_admin() {
-    axios.get("http://"+domain+"/api/admincheck", {
+    axios.get(domain + "/api/admincheck", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -430,7 +430,7 @@ function check_admin() {
 }
 //---- data
 function admin_data() {
-    axios.get("http://"+domain+"/api/admin/allData", {
+    axios.get(domain + "/api/admin/allData", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -454,7 +454,7 @@ function admin_data() {
     });
 }
 function site_data() {
-    axios.get("http://"+domain+"/api/admin/site_setting", {
+    axios.get(domain + "/api/admin/site_setting", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -478,16 +478,16 @@ function change_setting(id) {
         type: id,
         data: document.getElementById(id).value
     }
-    axios.put("http://"+domain+"/api/admin/site_setting", body, {
+    axios.put(domain + "/api/admin/site_setting", body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         const text = "با موفقیت ذخیره شد";
-        call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+        call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
     }).catch(err => {
         const text = "ارسال داده با خطا مواجه شده است";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     });
 }
 function load_aside_list(active) {
@@ -540,7 +540,7 @@ function load_aside_list(active) {
 //---- members section
 function member_list() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/memberList", {
+    axios.get(domain + "/api/admin/memberList", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -579,7 +579,7 @@ function member_list() {
 function member_detail(id) {
     document.getElementById("member-list").style.display = "none";
     document.getElementById("memberDetail").style.display = "block";
-    axios.post("http://"+domain+"/api/admin/memberdetail", { id: id }, {
+    axios.post(domain + "/api/admin/memberdetail", { id: id }, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -659,7 +659,7 @@ function back_detail() {
 //---- self requests
 function self_request_list() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/self_request_list", {
+    axios.get(domain + "/api/admin/self_request_list", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -715,28 +715,28 @@ function change_self_request(id, index) {
         "id": id,
         "status": status,
     }
-    axios.put("http://"+domain+"/api/admin/self_request_edit", body, {
+    axios.put(domain + "/api/admin/self_request_edit", body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         const text = "با موفقیت ذخیره شد";
-        call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+        call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
     }).catch(err => {
         const text = "ارسال داده با خطا مواجه شده است";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     });
 }
 function self_request_dateil(id) {
     document.getElementById("self-req").style.display = "none";
     document.getElementById("requestDetail").style.display = "block";
-    axios.get("http://"+domain+"/api/admin/requestDetail/" + id, {
+    axios.get(domain + "/api/admin/requestDetail/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         const request = res.data;
-        const array = request.picture.split("\\");
+        const array = request.picture.split("/");
         const picture = array[3];
         document.getElementById("requestDetail").innerHTML = `
         <h3 id="detail-head">جزئیات درخواست</h3>
@@ -790,7 +790,7 @@ function self_request_dateil(id) {
                 <tr>
                     <td>تصویر</td>
                     <td>
-                        <img src="../public/image/${picture}">
+                        <img src="../public/member_images/${picture}">
                     </td>
                 </tr>
             </tbody>
@@ -811,7 +811,7 @@ function find_request() {
         self_request_list();
         return 0;
     }
-    axios.get("http://"+domain+"/api/admin/request/" + search, {
+    axios.get(domain + "/api/admin/request/" + search, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -864,7 +864,7 @@ function find_request() {
 //---- help requests
 function help_request_list() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/help_request_list", {
+    axios.get(domain + "/api/admin/help_request_list", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -924,21 +924,21 @@ function change_help_request(id, index) {
         "status": status,
         "money_status": money_status,
     }
-    axios.put("http://"+domain+"/api/admin/help_request_edit", body, {
+    axios.put(domain + "/api/admin/help_request_edit", body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         const text = "با موفقیت ذخیره شد";
-        call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+        call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
     }).catch(err => {
         const text = "ارسال داده با خطا مواجه شده است";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     });
 }
 //---- role setting
 function check_super_admin(default_role, id) {
-    axios.get("http://"+domain+"/api/superAdmincheck", {
+    axios.get(domain + "/api/superAdmincheck", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -956,19 +956,19 @@ function change_role(old_role, id) {
         const body = {
             role: new_role.value
         }
-        axios.put("http://"+domain+"/api/super_admin/change_role/" + id, body, {
+        axios.put(domain + "/api/super_admin/change_role/" + id, body, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
         }).then(res => {
             const text = "نقش کاربر با موفقیت تغییر داده شد";
-            call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+            call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
             member_detail(id);
         }).catch(err => { });
     } else {
         new_role.value = old_role;
         const text = "نقش وارد شده معتبر نمی باشد";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     }
 
 }
@@ -976,7 +976,7 @@ function change_role(old_role, id) {
 function comment_list() {
     const father = document.querySelector("tbody");
     father.innerHTML = "";
-    axios.get("http://"+domain+"/api/admin/comments", {
+    axios.get(domain + "/api/admin/comments", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1010,13 +1010,13 @@ function accept_comment(id) {
     const body = {
         status: "accepted",
     }
-    axios.put("http://"+domain+"/api/admin/comments/" + id, body, {
+    axios.put(domain + "/api/admin/comments/" + id, body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         const text = "با موفقیت ذخیره شد";
-        call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+        call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
         comment_list();
     }).catch(err => {
         window.location.assign("/");
@@ -1024,13 +1024,13 @@ function accept_comment(id) {
 }
 function delete_comment(id) {
     if (confirm("ایا از این کار اطمینان دارید ؟")) {
-        axios.delete("http://"+domain+"/api/admin/comments/" + id, {
+        axios.delete(domain + "/api/admin/comments/" + id, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
         }).then(res => {
             const text = "با موفقیت حذف شد";
-            call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+            call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
             comment_list();
         }).catch(err => {
             window.location.assign("/");
@@ -1040,7 +1040,7 @@ function delete_comment(id) {
 //---- orders tab
 function order_list() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/orders", {
+    axios.get(domain + "/api/admin/orders", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1088,13 +1088,13 @@ function change_order_status(id, index) {
     const body = {
         status: document.getElementsByClassName("status_select")[index].value,
     }
-    axios.put("http://"+domain+"/api/admin/orders/" + id, body, {
+    axios.put(domain + "/api/admin/orders/" + id, body, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         const text = "با موفقیت ذخیره شد";
-        call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+        call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
     }).catch(err => {
         window.location.assign("/");
     });
@@ -1103,7 +1103,7 @@ function find_payment() {
     const father = document.querySelector("tbody");
     father.innerHTML = '';
     const search = document.getElementById("wanted").value;
-    axios.get("http://"+domain+"/api/admin/orders/" + search, {
+    axios.get(domain + "/api/admin/orders/" + search, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1143,7 +1143,7 @@ function order_detail(id) {
     document.getElementsByTagName("table")[0].style.display = "none";
     document.getElementById("orderList_header").style.display = "none";
     document.getElementById("orderPage").style.display = "block";
-    axios.get("http://"+domain+"/api/profile/orders/" + id, {
+    axios.get(domain + "/api/profile/orders/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1164,7 +1164,7 @@ function order_detail(id) {
         res.data.items.map((item) => {
             const item_box = document.createElement("div");
             item_box.classList.add("object_box");
-            const array = item.picture.split("\\");
+            const array = item.picture.split("/");
             const picture = array[3];
             let type, Class;
             switch (item.type) {
@@ -1227,24 +1227,32 @@ function create_offer() {
         value: document.getElementById("offer_value").value,
     }
     if (!body.time || !body.value) {
-        const text = "شما باید همه ی گزینه ها را پر کنید";
-        call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+        const text = "شما باید تخفیف و اعتبار کد را وارد کنید";
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+    } else if (body.time == "0" || body.value == "0") {
+        const text = "ورودی معتبر نیست";
+        call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else {
-        axios.post("http://"+domain+"/api/admin/newOffer", body, {
+        axios.post(domain + "/api/admin/newOffer", body, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
         }).then(res => {
-            document.getElementById("offer_code").value = res.data;
-            const text = "کد تخفیف با موفقیت ذخیره شد";
-            call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+            if (res.data == "invalid code") {
+                const text = "کد تخفیف وارد شده تکراری می باشد";
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+            } else {
+                document.getElementById("offer_code").value = res.data;
+                const text = "کد تخفیف با موفقیت ذخیره شد";
+                call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
+            }
         })
     }
 
 }
 function load_offer() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/offers", {
+    axios.get(domain + "/api/admin/offers", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1288,7 +1296,7 @@ function create_course() {
             !course_time.value || !course_teacher.value || !place.value || !hours.value ||
             !image.files[0] || !start_date.value) {
             const text = "شما باید قسمت های ستاره دار را پر کنید !";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         } else {
             const body = new FormData();
             body.append("name", name.value);
@@ -1302,13 +1310,13 @@ function create_course() {
             body.append("hours", hours.value);
             body.append("start_date", start_date.value);
             body.append("picture", image.files[0]);
-            axios.post("http://"+domain+"/api/admin/create_course", body, {
+            axios.post(domain + "/api/admin/create_course", body, {
                 headers: {
                     'x-auth-token': localStorage.getItem("token")
                 }
             }).then(res => {
-                const text = "کالا با موفقیت به فروشگاه اضافه شد";
-                call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+                const text = "دوره آموزشی با موفقیت ساخته شد";
+                call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
                 name.value = "";
                 type.value = "none";
                 course_leangth.value = "";
@@ -1324,7 +1332,7 @@ function create_course() {
                 document.getElementById("uploadLabel").style.color = "black";
             }).catch(err => {
                 const text = "نام وارد شده تکراری می باشد";
-                call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             });
         }
     } else {
@@ -1332,7 +1340,7 @@ function create_course() {
             !course_time.value || !course_teacher.value || !place.value ||
             !hours.value || !start_date.value) {
             const text = "شما باید قسمت های ستاره دار را پر کنید !";
-            call_cs_popup(text, 4000, "black", "rgba(255, 38, 38, 0.59)");
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
         } else {
             if (!image.files[0]) {
                 const body = {
@@ -1347,13 +1355,13 @@ function create_course() {
                     hours: hours.value,
                     start_date: start_date.value,
                 }
-                axios.put("http://"+domain+"/api/admin/edit_course/" + placeID, body, {
+                axios.put(domain + "/api/admin/edit_course/" + placeID, body, {
                     headers: {
                         'x-auth-token': localStorage.getItem("token")
                     }
                 }).then(res => {
-                    const text = "کالا با موفقیت ویرایش شد";
-                    call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+                    const text = "دوره آموزشی با موفقیت ویرایش شد";
+                    call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
                     window.location.href = "./class_list.html";
                 }).catch(err => {
                     window.location.assign("/500.html")
@@ -1371,13 +1379,13 @@ function create_course() {
                 body.append("hours", hours.value);
                 body.append("start_date", start_date.value);
                 body.append("picture", image.files[0]);
-                axios.put("http://"+domain+"/api/admin/edit_courseP/" + placeID, body, {
+                axios.put(domain + "/api/admin/edit_courseP/" + placeID, body, {
                     headers: {
                         'x-auth-token': localStorage.getItem("token")
                     }
                 }).then(res => {
-                    const text = "کالا با موفقیت ویرایش شد";
-                    call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+                    const text = "دوره آموزشی با موفقیت ویرایش شد";
+                    call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
                     window.location.href = "./class_list.html";
                 }).catch(err => {
                     window.location.assign("/500.html")
@@ -1388,7 +1396,7 @@ function create_course() {
 }
 function load_courses() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/courses", {
+    axios.get(domain + "/api/admin/courses", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1438,13 +1446,13 @@ function load_courses() {
 }
 function course_status(id, index) {
     const status = document.getElementsByClassName("select_status")[index].value
-    axios.put("http://"+domain+"/api/admin/course_status/" + id, { status }, {
+    axios.put(domain + "/api/admin/course_status/" + id, { status }, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         const text = "با موفقیت ذخیره شد";
-        call_cs_popup(text, 4000, "black", "rgb(25 215 0 / 59%)");
+        call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
     }).catch(err => {
         window.location.assign("/500.html")
     })
@@ -1452,13 +1460,13 @@ function course_status(id, index) {
 function courses_detail(id) {
     document.getElementById("class-list").style.display = "none";
     document.getElementById("courseDetail").style.display = "block";
-    axios.get("http://"+domain+"/api/admin/coursedetail/" + id, {
+    axios.get(domain + "/api/admin/coursedetail/" + id, {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
         const course = res.data;
-        const array = course.picture.split("\\");
+        const array = course.picture.split("/");
         const picture = array[3];
         document.getElementById("courseDetail").innerHTML = `
         <h3 id="detail-head">جزئیات دوره</h3>
@@ -1553,7 +1561,7 @@ function edit_course() {
         const place = document.forms["course"]["course_place"];
         const hours = document.forms["course"]["course_hours"];
         const start_date = document.forms["course"]["start_date"];
-        axios.get("http://"+domain+"/api/admin/coursedetail/" + placeID, {
+        axios.get(domain + "/api/admin/coursedetail/" + placeID, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -1568,7 +1576,7 @@ function edit_course() {
             place.value = res.data.place;
             hours.value = res.data.hours;
             start_date.value = res.data.start_date;
-            const array = res.data.picture.split("\\");
+            const array = res.data.picture.split("/");
             let picture = array[3];
             document.getElementById("uploadLabel").style.backgroundImage = "url('../public/image/" + picture + "')";
             document.getElementById("uploadLabel").style.color = "rgba(0,0,0,0)";
@@ -1580,7 +1588,7 @@ function edit_course() {
 }
 function load_course_payment() {
     const father = document.querySelector("tbody");
-    axios.get("http://"+domain+"/api/admin/courses/payments", {
+    axios.get(domain + "/api/admin/courses/payments", {
         headers: {
             'x-auth-token': localStorage.getItem("token")
         }
@@ -1614,7 +1622,7 @@ function find_course_payment() {
     if (search == "") {
         load_course_payment();
     } else {
-        axios.get("http://"+domain+"/api/admin/courses/payment/" + search, {
+        axios.get(domain + "/api/admin/courses/payment/" + search, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }

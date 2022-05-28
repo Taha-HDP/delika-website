@@ -4,7 +4,7 @@ function load_class_list() {
         window.location.href = "./learning_classes.html";
     } else {
         const father = document.getElementsByClassName("classes")[0];
-        axios.get("http://"+domain+"/api/courses/" + placeID)
+        axios.get(domain+"/api/courses/" + placeID)
             .then(res => {
                 if (res.data && res.data.length > 0) {
                     res.data.reverse();
@@ -12,7 +12,7 @@ function load_class_list() {
                         var link = document.createElement("a");
                         link.href = `./course_page.html?place=${course._id}`;
                         link.classList.add("box");
-                        const array = course.picture.split("\\");
+                        const array = course.picture.split("/");
                         const picture = array[3];
                         link.innerHTML = `
                         <div class="picture" style="background-image : url('../public/image/${picture}')"></div>
@@ -42,7 +42,7 @@ function load_course() {
     if (!placeID) {
         window.location.href = "./learning_classes.html";
     } else {
-        axios.get("http://"+domain+"/api/course_detail/" + placeID, {
+        axios.get(domain+"/api/course_detail/" + placeID, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }
@@ -84,7 +84,7 @@ function load_course() {
             document.getElementById("course_name").innerHTML = res.data.course.name;
             document.getElementById("course_info").innerHTML = res.data.course.info;
             document.getElementById("course_place").innerHTML = res.data.course.place;
-            const array = res.data.course.picture.split("\\");
+            const array = res.data.course.picture.split("/");
             const picture = array[3];
             document.getElementById("course_picture").style.backgroundImage = ` url('../public/image/${picture}')`
         }).catch(err => {
@@ -97,7 +97,7 @@ function enrolling_class() {
     if (!placeID) {
         window.location.href = "./learning_classes.html";
     } else {
-        axios.get("http://"+domain+"/api/courses/enrolling_class/" + placeID, {
+        axios.get(domain+"/api/courses/enrolling_class/" + placeID, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
             }

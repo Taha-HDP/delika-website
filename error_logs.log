@@ -26,3 +26,15 @@
 {"level":"error","message":"Cannot read properties of null (reading 'length')"}
 {"level":"error","message":"Cannot access 'payment' before initialization"}
 {"level":"error","message":"Cannot read properties of undefined (reading 'match')"}
+{"level":"error","message":"new_date is not defined"}
+{"level":"error","message":"new_date is not defined"}
+{"level":"error","message":"new_date is not defined"}
+{"level":"error","message":"new_date is not defined"}
+{"level":"error","message":"new_date is not defined"}
+{"level":"error","message":"new_date is not defined"}
+{"level":"error","message":"new_date is not defined"}
+{"level":"error","message":"new_date is not defined"}
+{"level":"error","message":"new_date is not defined"}
+{"level":"error","message":"new_date is not defined"}
+{"level":"error","message":"all_payments.save is not a function"}
+{"level":"error","message":"transporter is not defined"}
