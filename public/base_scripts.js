@@ -10,8 +10,6 @@ function loadHeaderAndFooter() {
                 <a href="/bag.html" id="bag_icon">
                     <div class="icon" id="shop">
                         <div id="bag_pic">
-                            <div id="up"></div>
-                            <div id="down"></div>
                         </div>
                         <div id="bag">
                             <h3>سبد خرید</h3>

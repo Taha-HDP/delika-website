@@ -22,12 +22,6 @@ a{
     background: rgb(241, 241, 241);
     position: relative;
 }
-@media (max-width: 47rem) {
-    .first-header{
-        height: 27px;
-    }
-}
-
 #bag_preview{
     position: absolute;
     width: 20%;
@@ -146,34 +140,20 @@ a{
     align-items: center;
 }
 #bag_pic{
-    margin-left: 0.7rem;
-    width: 20px;
-    height: 30px;
-    transition:  300ms ;
+    margin-left: 0.4rem;
+    width: 30px;
+    height: 25px;
+    transition: 300ms;
+    background-image: url(../public/images/bag.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
 }
-#down{
-    width: 100%;
-    height: 50%;
-    border: 1px solid black;
-    box-sizing: border-box;
-    transition:  300ms ;
-}
-#up{
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right:1px solid black ;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    margin-right: 26%;
-    width: 36%;
-    height: 14%;
-    transition:  300ms ;
-}
+
 #bag{
     transition:  300ms ;
 }
 
-#shop:hover #bag_pic ,
 #shop:hover #bag{
     transform: scale(1.04);
     transition:  300ms ;
@@ -259,68 +239,6 @@ a{
     transition:  300ms ;
     text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
 }
-@media (max-width: 64rem) {
-    #profile{
-        right: 17%;
-    }
-    #lang-list{
-        width: 20%;
-    }
-}
-@media (max-width: 47rem) {
-    .first-header{
-        font-size: 0.7rem ;
-    }
-    #shop{
-        right: 5%;
-        top: 16%;
-    }
-    #bag_pic{
-        width: 15px;
-        height: 20px;
-    }
-    #up{
-        margin-right: 22%; 
-    }
-    #profile{
-        right: 20%;
-        top: 35%;
-    }
-    #contact{
-        left: 20%;
-        top: 35%;
-    }
-    #lang{
-        top: 35% ;
-    }
-    #lang-list h4{
-        font-size: 0.8rem;
-    }
-}
-@media (max-width: 30rem) {
-    .first-header{
-        font-size: 0.5rem ;
-    }
-    #bag_pic{
-        width: 15px;
-        height: 20px;
-    }
-    #profile{
-        right: 28%;
-        top: 38%;
-    }
-    #contact{
-        left: 28%;
-        top: 38%;
-    }
-    #lang{
-        top: 38% ;
-    }
-    #lang-list{
-        width: 40%;
-        padding: 3%;
-    }
-}
 .middle_header{
     display: inline-block;
     width: 85% ;
@@ -352,11 +270,20 @@ a{
     font-size: 1.4rem;
     font-weight: 400;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-wrap: wrap;
     margin-bottom: 1rem;
 }
-@media (max-width: 64rem) {
+@media (max-width: 90rem) {
+    #web-name{
+        font-size: 1.8rem;
+    }
+    #profile{
+        right: 17%;
+    }
+    #lang-list{
+        width: 20%;
+    }
     #delika_logo{
         height: 5rem;
     }
@@ -364,41 +291,118 @@ a{
         font-size: 1rem;
     }
 }
-@media (max-width: 48rem) {
+@media (max-width: 64rem) {
+    .first-header{
+        height: 35px;
+        font-size: 0.7rem ;
+    }
     #web-name{
-        font-size: 1.5rem;
-        margin-top: 0.4rem;
-        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        margin-top: 0rem;
+        margin-bottom: 0;
     }
     .secound-header{
         margin-right: -5%;
+    }
+    #delika_logo{
+        vertical-align: middle;
     }
     .secound-header ul{
         font-size: 0.7rem;
+        justify-content: center;
+    }
+    .secound-header li{
+        width: 20%;
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 0.8rem;
     }
 }
-@media (max-width: 39rem) {
+@media (max-width: 47rem) {
+    .first-header{
+        height: 27px;
+        font-size: 0.5rem ;
+        margin-bottom: 0.5rem;
+    }
+    #shop{
+        right: 3%;
+        top: 16%;
+    }
+    #bag_pic{
+        width: 15px;
+        height: 20px;
+    }
+    #profile{
+        right: 20%;
+        top: 35%;
+    }
+    #contact{
+        left: 20%;
+        top: 35%;
+    }
+    #lang{
+        top: 35% ;
+    }
+    #lang-list h4{
+        font-size: 0.8rem;
+    }
+    .secound-header ul{
+        justify-content: space-around;
+        width: 110%;
+    }
     .secound-header li{
-        width: 25%;
+        width: 23%;
         text-align: center;
-        margin-top: 0.7rem;
+        margin-top: 1rem;
+        font-size: 0.8rem;
     }
 }
 @media (max-width: 30rem) {
-    #web-name{
-        font-size: 1rem;
+    .first-header{
+        font-size: 0.35rem;
+        height: 15px;
         margin-bottom: 0.3rem;
     }
-}
-@media (max-width: 26.56rem) {
+    #bag_pic{
+        width: 8px;
+        height: 10px;
+    }
+    #profile{
+        right: 28%;
+        top: 38%;
+    }
+    #contact{
+        left: 28%;
+        top: 38%;
+    }
+    #lang{
+        top: 38% ;
+    }
+    #lang-list{
+        width: 40%;
+        padding: 3%;
+    }
+    #web-name{
+        font-size: 0.8rem;
+        margin: 0;
+    }
     #delika_logo{
         height: 4rem;
+        margin: 0 2% 0 0;
+    }
+    .middle_header{
+        width: 81%;
     }
     .secound-header{
         margin-right: -5%;
+        width: 110%;
     }
     .secound-header li{
-        font-size: 0.6rem;
+        font-size: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    .secound-header ul{
+        width: 100%;
     }
 }
 #menu a:hover{
@@ -428,7 +432,7 @@ a{
 }
 
 
-article#hiden_contact{
+#hiden_contact{
     display: none;
     margin-top: 12rem;
     background: rgb(241, 241, 241);
@@ -441,9 +445,20 @@ article#hiden_contact{
     padding-top: 2rem;
     margin-bottom: 2rem;
 }
+.back{
+    margin: 1rem 20% 0 0;
+    width: 1%;
+    height: 1%;
+    transition: 500ms;
+}
 @media (max-width: 90rem) {
     #hiden_contact h2{
         padding-top: 4rem;
+    }
+    .back{
+        margin: 2rem 3% 0 0;
+        width: 2%;
+        height: 2%;
     }
 }
 @media (max-width: 64rem) {
@@ -452,32 +467,32 @@ article#hiden_contact{
         font-size: 1.5rem;
     }
 }
-.back{
-    margin: 1rem 20% 0 0;
-    width: 1%;
-    height: 1%;
-    transition: 500ms;
-}
-@media (max-width: 90rem) {
-    .back{
-        margin: 2rem 16% 0 0;
-        width: 2%;
-        height: 2%;
-    }
-}
 @media (max-width: 48rem) {
+    #hiden_contact{
+        margin-top: 7rem;
+    }
     .back{
         margin: 1.8rem 13% 1rem 0;
         width: 4%;
         height: 4%;
     }
 }
-@media (max-width: 22rem) {
-    .back{
-        width: 5%;
-        height: 5%;
+@media (max-width: 30rem) {
+   #hiden_contact{
+       margin-top: 5rem;
+   }
+   #hiden_contact h2{
+    padding-top: 2rem;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+   }
+   .back{
+    margin: 0.5rem 7% 0rem 0;
+    width: 5%;
+    height: 5%;
     }
 }
+
 .back:hover .xy ,
 .back:hover .yx{
     cursor: pointer;
@@ -503,25 +518,6 @@ article#hiden_contact{
     justify-content: center; 
     text-align: center;
 }
-@media (max-width: 90rem) {
-    #ways{
-        padding-right: 10%;
-        width: 80%;
-    }
-}
-@media (max-width: 48rem) {
-    #ways{
-        padding-right: 20%;
-        width: 60%;
-        flex-direction: column;
-    }
-}
-@media (max-width: 19.8rem) {
-    #ways{
-        padding-right: 10%;
-        width: 80%;
-    }
-}
 #hiden_contact .items{
     position: relative;
     background-color: white;
@@ -533,29 +529,13 @@ article#hiden_contact{
     align-items: center;
     height: 450px;
 }
-@media (max-width: 90rem) {
-    #hiden_contact .items{
-        width: 70%;
-    }
-}
-@media (max-width: 48rem) {
-    #hiden_contact .items{
-        width: 100%;
-        height: 400px;
-    }
-}
-@media (max-width: 20rem) {
-    #hiden_contact .items{
-        height: 300px;
-    }
-}
 .contact-picture{
     margin-top: 15%;
     margin-bottom: 20%;
     width: 25%;
     height: 20%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: 50% 50%;
 }
 #instagram .contact-picture{
@@ -567,6 +547,41 @@ article#hiden_contact{
 #call .contact-picture{
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Green_Phone_Font-Awesome.svg/512px-Green_Phone_Font-Awesome.svg.png);  
 }
+
+#ways h3{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 15%;
+} 
+#ways p {
+    line-height: 1.8;
+    font-weight: 300;
+}
+.call-box {
+    background-color: black;
+    color: white;
+    position: absolute;
+    bottom: 2%;
+    width: 60%;
+    border: 1px solid black;
+    padding: 5% 0;
+    transition: 500ms;
+    margin-bottom: 1rem;
+}
+.call-box:hover{
+    background-color: white;
+    color: black;
+    transition: 500ms;
+}
+@media (max-width: 90rem) {
+    #ways{
+        padding-right: 10%;
+        width: 80%;
+    }
+    #hiden_contact .items{
+        width: 70%;
+    }
+}
 @media (max-width: 64rem) {
     .contact-picture{
         width: 20%;
@@ -576,57 +591,46 @@ article#hiden_contact{
     }
 }
 @media (max-width: 48rem) {
+    #ways{
+        padding-right: 20%;
+        width: 60%;
+        flex-direction: column;
+    }
+    #hiden_contact .items{
+        width: 100%;
+        height: 400px;
+        margin-bottom: 0.5rem;
+    }
     .contact-picture{
         height: 22%;
         margin-bottom: 8%;
     }
-}
-@media (max-width: 41.75rem) {
-    .contact-picture{
-        height: 16%;
-    }
-}
-@media (max-width: 23.43rem) {
-    .contact-picture{
-        height: 12%;
-    }
-}
-#ways h3{
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 15%;
-} 
-@media (max-width: 48rem) {
-    #ways h3{
+    #ways h3 {
         margin-bottom: 10%;
+        font-size: 1rem;
     }
 }
-#ways p {
-    margin-bottom: 7%;
-    line-height: 1.8;
-    font-weight: 300;
-}
-@media (max-width: 48rem) {
+@media (max-width: 30rem) {
+    #ways{
+        padding-right: 15%;
+        width: 70%;
+    }
+    #hiden_contact .items{
+        height: 225px;
+    }
+    .contact-picture{
+        width: 30px;
+        height: 30px;
+    }
+    #ways h3 {
+        margin-bottom: 8%;
+    }
     #ways p{
-        margin-bottom: 10%;
+        font-size: 0.7rem;
     }
-}
-.call-box{
-    background-color: black;
-    color: white;
-    position: absolute;
-    bottom: 2%;
-    width: 60%;
-    height: 10%;
-    border: 1px solid black;
-    padding-top: 5%;
-    transition: 500ms;
-    margin-bottom: 1rem;
-}
-.call-box:hover{
-    background-color: white;
-    color: black;
-    transition: 500ms;
+    .call-box{
+        padding: 3% 0;
+    }
 }
 
 /*------------------------ footer  -------------------*/
@@ -738,14 +742,19 @@ article#hiden_contact{
 }
 @media (max-width: 30rem) {
     .ending .titr{
-        width: 90%;
-        margin: 1rem 5% 0 0;
+        width: 96%;
+        margin: 1rem 2% 0 0;
+        font-size: 0.6rem;
     }
-    .ending .titr{
-        font-size: 0.7rem;
+    .ending p ,
+    .ending li{
+        font-size: 0.4rem;
     }
     .ending li{
-        width: 29%;
+        width: 30%;
+        line-height: 1;
+        padding-top: 0;
+        padding-bottom: 0;
     }
     .contact li{
         width: 47%;

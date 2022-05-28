@@ -16,13 +16,30 @@
     width: 15%;
     height: 10rem;
     left: 0%;
+    top: 0;
     background-repeat: no-repeat; 
     background-size: cover;
     background-position: 50% 50%;
 }
+@media (max-width: 64rem) {
+    #picture-box{
+        margin-top: 135px;
+    }
+}
+@media (max-width: 48rem) {
+    #picture-box{
+        margin-top: 140px;
+        height: 640px;
+    }
+    #picture_logo{
+        width: 28%;
+        height: 7rem;
+    }
+}
 @media (max-width: 30rem) {
     #picture-box{
-        height: 500px;
+        margin-top: 75px;
+        height: 445px;
     }
 }
 #new ,
@@ -65,12 +82,48 @@
 .item-name{
     margin: 1rem 0;
     font-size: 1rem;
+    line-height: 1.5;
 }
 .item-price{
     font-size: 0.7rem;
 }
-
-
+@media (max-width: 64rem){
+    #new h2{
+        font-size: 1.5rem;
+    }
+    .items{
+        margin: 0 0.5% 1% 0.5%;
+        width: 49%;
+        height: 350px;
+    }
+    .item-picture{
+        margin: 10% 15% 3rem;
+        width: 70%;
+        height: 54%;
+    }
+}
+@media (max-width: 30rem){
+    #new h2{
+        font-size: 1rem;
+    }
+    .items{
+        margin: 0.5%;
+        width: 49%;
+        height: 150px;
+    }
+    .item-picture{
+        margin: 0.5rem 15% 1rem;
+        width: 70%;
+        height: 40%;
+    }
+    .item-name{
+        margin: 1rem 0;
+        font-size: 0.7rem;
+    }
+    .item-price{
+        font-size: 0.5rem;
+    }
+}
 .mahsoolat .button{
     text-align: center;
     font-size: 1rem;
