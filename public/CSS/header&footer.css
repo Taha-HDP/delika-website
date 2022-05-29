@@ -395,7 +395,7 @@ a{
 @media (max-width: 30rem) {
     .first-header{
         font-size: 0.35rem;
-        height: 18px;
+        height: 22px;
         margin-bottom: 0.3rem;
     }
     #bag_pic{
@@ -851,7 +851,37 @@ a{
     background-repeat: no-repeat;
     background-size: contain;
 }
-
+@media (max-width: 64rem) {
+    #notfication{
+        width: 30%;
+        font-size: 0.8rem;
+    }
+    #notfication p{
+        padding: 0.3rem 4%;
+    }
+    #notif_icon{
+        width: 10%;
+        padding: 0.2rem 1%;
+    }
+}
+@media (max-width: 47rem) {
+    #notfication{
+        width: 35%;
+        font-size: 0.5rem;
+    }
+    #notfication p{
+        padding: 0.3rem 4%;
+    }
+    #notif_icon{
+        width: 15%;
+        padding: 0.2rem 1%;
+    }
+}
+@media (max-width: 30rem) {
+    #notfication{
+        width: 40%;
+    }
+}
 #not_founded{
     width: 100%;
     text-align: center;
