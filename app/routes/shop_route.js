@@ -14,7 +14,6 @@ var storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/items", Shoping_controller.get_item_list);
-router.post("/sorted_items", Shoping_controller.getSortList);
 router.post("/items/addComment/:id", Shoping_controller.add_comment);
 router.get("/items/:id", Shoping_controller.get_one_item);
 router.post("/items/findItem", Shoping_controller.findeItem);

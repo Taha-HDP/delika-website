@@ -19,10 +19,6 @@ module.exports = new (class Shoping_controller {
             return res.send(items);
         }
     }
-    async getSortList(req, res) {
-        const items = await Shop.find({ class: req.body.class, type: req.body.type }).select("-comment");
-        res.send(items);
-    }
     async get_one_item(req, res) {
         const id = req.params.id;
         const item = await Shop.findById(id);

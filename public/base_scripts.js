@@ -41,8 +41,8 @@ function loadHeaderAndFooter() {
                     <input type="radio" name="languages" id="persian" checked>
                     <label for="languages">انگلیسی (EN)</label>
                     <input type="radio" name="languages" id="english">
-                    <label for="languages">چینی (元)</label>
-                    <input type="radio" name="languages" id="chineese">
+                    <label for="languages">عربی (AR)</label>
+                    <input type="radio" name="languages" id="arabic">
                     <button id="submit" onclick="current_lang()">تایید</button>
                 </div>
             </div>
@@ -55,11 +55,11 @@ function loadHeaderAndFooter() {
                     <ul id="menu">
                         <li> <a href="/" id="home-page">صفحه اصلی</a> </li>
                         <li id="Painting"> <a href="/paint.html" id="painting">نقاشی</a> </li>
-                        <li id="Pottery"> <a href="/pottery.html" id="pottery">سفال</a> </li>
                         <li id="Sculpture"> <a href="/sculpture.html" id="sculpture">مجسمه</a> </li>
                         <li id="Learning"> <a href="/learning_classes.html" id="learning">کلاس های حضوری</a> </li>
                         <li> <a href="/self_request.html" id="self-request">سفارش طرح شخصی</a> </li>
                         <li> <a href="/help_request.html" id="help-request">درخواست مشاوره</a> </li>
+                        <li> <a href="/about_us.html" id="about_us">درباره ما</a> </li>
                     </ul>
                 </div>
             </div>
@@ -115,7 +115,6 @@ function loadHeaderAndFooter() {
                 <ul>
                     <li> <a href="/">صفحه اصلی</a> </li>
                     <li> <a href="/paint.html" >نقاشی</a> </li>
-                    <li> <a href="/pottery.html">سفال</a> </li>
                     <li> <a href="/sculpture.html">مجسمه</a> </li>
                     <li> <a href="/learning_classes.html">کلاس های حضوری</a> </li>
                     <li> <a href="/self_request.html">سفارش طرح شخصی</a> </li>
@@ -200,97 +199,9 @@ $(document).ready(function () {
         }
     }
     $(document).mousemove(function () {
-        $("#Painting").mouseenter(function () {
-            if (window.innerWidth < 770)
-                return 0;
-            create_underline("Painting");
-            for (var i = 1; i < 40; i++) {
-                var option = document.createElement("li");
-                option.id = painting_art[i];
-                option.innerHTML = `
-                <h4>${painting_art_fa[i]}</h4>
-                ` ;
-                document.querySelector("#list").appendChild(option);
-                option.addEventListener("click", function () {
-                    localStorage.setItem("homeTypeSelected", this.id);
-                    window.location.href = "./paint.html";
-                }, false);
-            }
-            document.querySelector("#secound-header-list").style.transform = "translateY(0)";
-            document.querySelector("#secound-header-list").style.transition = "transform 400ms";
-            check_list = true;
-        })
-        $("#Pottery").mouseenter(function () {
-            if (window.innerWidth < 770)
-                return 0;
-            create_underline("Pottery");
-            for (var i = 1; i < 12; i++) {
-                var option = document.createElement("li");
-                var txt = document.createElement("h4");
-                txt.innerHTML = pottery_art_fa[i];
-                option.id = pottery_art[i];
-                option.appendChild(txt);
-                document.querySelector("#list").appendChild(option);
-                option.addEventListener("click", function () {
-                    localStorage.setItem("homeTypeSelected", this.id);
-                    window.location.href = "./pottery.html";
-                }, false);
-            }
-            document.querySelector("#secound-header-list").style.transform = "translateY(0)";
-            document.querySelector("#secound-header-list").style.transition = "transform 400ms";
-            check_list = true;
-        })
-        $("#Sculpture").mouseenter(function () {
-            if (window.innerWidth < 770)
-                return 0;
-            create_underline("Sculpture");
-            for (var i = 1; i < 10; i++) {
-                var option = document.createElement("li");
-                var txt = document.createElement("h4");
-                txt.innerHTML = sculpture_art_fa[i];
-                option.id = sculpture_art[i];
-                option.appendChild(txt);
-                document.querySelector("#list").appendChild(option);
-                option.addEventListener("click", function () {
-                    localStorage.setItem("homeTypeSelected", this.id);
-                    window.location.href = "./sculpture.html";
-                }, false);
-            }
-            document.querySelector("#secound-header-list").style.transform = "translateY(0)";
-            document.querySelector("#secound-header-list").style.transition = "transform 400ms";
-            check_list = true;
-        })
-        $("#Learning").mouseenter(function () {
-            if (window.innerWidth < 770)
-                return 0;
-            create_underline("Learning");
-            var learning_classes = [
-                "paint",
-                "pottery",
-                "sculpture",
-            ];
-            var learning_classes_fa = [
-                "کلاس های نقاشی",
-                "کلاس های نقاشی روی سفال",
-                "کلاس های مجسمه سازی",
-            ];
-            for (var i = 0; i < 3; i++) {
-                var option = document.createElement("li");
-                var txt = document.createElement("a");
-                txt.href = `../courses/course_list.html?place=${learning_classes[i]}`;
-                txt.innerHTML = learning_classes_fa[i];
-                option.id = learning_classes[i];
-                option.appendChild(txt);
-                document.querySelector("#list").appendChild(option);
-            }
-            document.querySelector("#secound-header-list").style.transform = "translateY(0)";
-            document.querySelector("#secound-header-list").style.transition = "transform 400ms";
-            check_list = true;
-        })
         $("#bag_icon").mouseenter(function () {
             if (window.innerWidth > 670) {
                 document.getElementById("bag_preview").style.transform = "translateY(0)";
-                secound_header_list_back();
             }
         })
         $("#mid").mouseenter(function () {
@@ -299,48 +210,8 @@ $(document).ready(function () {
         $(".middle_header").mouseenter(function () {
             document.getElementById("bag_preview").style.transform = "translateY(-500px)";
         })
-        if (check_list == true) {
-            $("#secound-header-list").mouseenter(function () {
-                document.querySelector("#secound-header-list").style.transform = "translateY(0)";
-                document.querySelector("#secound-header-list").style.transition = "transform 400ms";
-            }).mouseleave(secound_header_list_back);
-            $("#mid").mouseenter(secound_header_list_back);
-            $("#hiden_contact").mouseenter(secound_header_list_back);
-            $("#web-name").mouseenter(secound_header_list_back);
-        }
     });
 });
-function secound_header_list_back() {
-    if (check_list == true) {
-        var all = document.getElementById("secound-header-list");
-        var father_element = document.getElementById("list");
-        all.style.transform = "translateY(-300px)";
-        all.style.transition = "200ms";
-        father_element.innerHTML = '';
-        clear_underline();
-    }
-}
-function create_underline(id) {
-    clear_underline();
-    titr = document.getElementById(id);
-    titr.style.borderBottom = "2px solid black";
-    titr.style.paddingBottom = "0.6rem";
-    var father_element = document.getElementById("list");
-    father_element.innerHTML = '';
-}
-function clear_underline() {
-    var titr = [
-        document.getElementById("Painting"),
-        document.getElementById("Pottery"),
-        document.getElementById("Sculpture"),
-        document.getElementById("Learning"),
-        document.getElementById("Sculpture")
-    ]
-    for (var i = 0; i < titr.length; i++) {
-        titr[i].style.borderBottom = "0px solid black";
-        titr[i].style.paddingBottom = "0rem";
-    }
-}
 //--------------------- register form check
 function add_member() {
     const email = document.forms["signin"]["email"].value;
@@ -469,7 +340,7 @@ function current_lang() {
     var language = document.getElementById("lang");
     var persian = document.getElementById("persian");
     var english = document.getElementById("english");
-    var chineese = document.getElementById("chineese");
+    var arabic = document.getElementById("arabic");
     if (persian.checked) {
         language.innerHTML = "زبان : فارسی";
         window.location.href = '#fa';
@@ -478,9 +349,9 @@ function current_lang() {
         language.innerHTML = "language : english";
         window.location.href = '#en';
         lang_list_close();
-    } else if (chineese.checked) {
+    } else if (arabic.checked) {
         language.innerHTML = "زبان : فارسی";
-        window.location.href = '#ch';
+        window.location.href = '#ar';
         lang_list_close();
     }
 }
@@ -572,7 +443,7 @@ function forget_password() {
 function help_request_data() {
     const id = localStorage.getItem("token");
     if (id) {
-        axios.get(domain+"/api/requestData", {
+        axios.get(domain + "/api/requestData", {
             headers: {
                 'x-auth-token': id
             }
@@ -622,140 +493,6 @@ function send_help_request() {
         call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     }
 }
-//------------------------ type of arts
-const painting_art_fa = [
-    "همه"
-    , "رئالیسم (واقع گرایی)"
-    , "امپرسیونیسم (برداشت گرایی)"
-    , "پست-امپرسیونیسم"
-    , "نئوامپرسیونیسم"
-    , "اکسپرسیونیسم"
-    , "اکپرسیونیسم انتزاعی"
-    , "کوبیسم (حجم گری)"
-    , "فوتوریسم"
-    , "ورتیسیسم"
-    , "رومانتیسیسم"
-    , "پرسیژنیسم"
-    , "مینی‌مالیسم"
-    , "سورئالیسم"
-    , "گرافیتی"
-    , "آپ آرت"
-    , "باربیزون"
-    , "فتورئالیسم"
-    , "تونالیسم"
-    , "باروك"
-    , "استاکیسم"
-    , "آبستره (انتزاعی)"
-    , "كنستراكتیویسم"
-    , "روکوکو"
-    , "Mysore"
-    , "مینیاتور ایرانی"
-    , "مینیاتور عثمانی"
-    , "مدرنیسم (نوگرایی)"
-    , "هنر ابتدایی"
-    , "پست مدرنیسم (فرا نوین)"
-    , "آوانگارد"
-    , "ساختار گرایی"
-    , "کتاره سخت"
-    , "پوینتولیسم"
-    , "آبستره اکسپرسیونیسم"
-    , "دادا و سوررئالیسم"
-    , "سمبولیسم و آرنوو"
-    , "نئوکلا سی سیسم"
-    , "منریسم"
-    , "کلا سیسیسم"
-    , "دادائیسم"];
-const painting_art = [
-    "all"
-    , "realism"
-    , "impressionism"
-    , "post_impressionism"
-    , "neo_impressionism"
-    , "expressionism"
-    , "abstract_expressionism"
-    , "cubism"
-    , "futurism"
-    , "verticism"
-    , "romanticism"
-    , "persigenism"
-    , "minimalism"
-    , "surrealism"
-    , "graffiti"
-    , "up_art"
-    , "barbizon"
-    , "photorealism"
-    , "tunalism"
-    , "baroque"
-    , "stakism"
-    , "abstract"
-    , "constructivism"
-    , "rococo"
-    , "mysore"
-    , "iranian_miniature"
-    , "ottoman_miniature"
-    , "modernism"
-    , "elementary_art"
-    , "postmodernism"
-    , "avant_garde"
-    , "structuralism"
-    , "hard_cat"
-    , "pointolism"
-    , "abstract_expressionism"
-    , "dada_and_surrealism"
-    , "symbolism_and_arnaud"
-    , "nucleic_system"
-    , "monerism"
-    , "totalism"
-    , "dadaism"]
-const pottery_art_fa = ["همه"
-    , "نقاشی روی سفال با لعاب مخصوص"
-    , "رنگ‌آمیزی با استفاده از توری"
-    , "نقاشی روی سرامیک با حباب"
-    , "رنگ‌آمیزی با تکنیک ماندالا"
-    , "نقاشی فلوید آرت یا آبستره رزینی"
-    , "نقاشی روی سفال به روش رنگ پاشی"
-    , "نقاشی با استفاده از توری ابریشمی"
-    , "نقاشی با استفاده از نوار چسب"
-    , "نقاشی روی سفال با کاغذ رسم"
-    , "رنگ‌آمیزی با استفاده از اسفنج"
-    , "نقاشی زیر لعاب"
-    , "نقاشی آکریلیک"];
-const pottery_art = ["all"
-    , "Painting on pottery with special glaze"
-    , "Painting using lace"
-    , "Painting on ceramics with bubbles"
-    , "Painting with mandala technique"
-    , "Floyd Art Painting or Resin Abstract"
-    , "Painting on pottery by spray painting"
-    , "Painting using silk mesh"
-    , "Painting using adhesive tape"
-    , "Painting on pottery with drawing paper"
-    , "Painting using sponge"
-    , "Painting under glaze"
-    , "Acrylic Painting"]
-const sculpture_art_fa = ["همه"
-    , "کوبیسم"
-    , "انتزاعی هندسی"
-    , "سوپرماتیسم"
-    , "سازه"
-    , "دادائیسم"
-    , "سورئالیسم"
-    , "فوتوریسم"
-    , "اکسپرسیونیسم انتزاعی"
-    , "پاپ آرت"
-    , "مینیمالیسم و هنر مفهومی"];
-const sculpture_art = ["all"
-    , "Cubism"
-    , "Geometric abstrac"
-    , "Supermatism"
-    , "Structure"
-    , "Dadaism"
-    , "Surrealism"
-    , "Futurism"
-    , "Abstract expressionism"
-    , "Pop Art"
-    , "Minimalism and Conceptual Art"];
-let painting_sort = "", pottery_sort = "", sculpture_sort = "";
 //---------------------- sort list functions
 var sort_option = [
     "expensive",
@@ -802,163 +539,18 @@ function sorting_pointer(element, mode) {
         load_paint_item();
     else if (mode == "sculpture")
         load_sculpture_item();
-    else if (mode == "pottery")
-        load_pottery_item();
-}
-//----------------------- painting page type list functions
-function create_paint_list() {
-    var father = document.getElementById("painting-list");
-    for (var i = 0; i < painting_art.length; i++) {
-        var option = document.createElement("li");
-        option.id = painting_art[i];
-        var pointer = document.createElement("div");
-        pointer.className = "pointer";
-        option.appendChild(pointer);
-        var header = document.createElement("h4");
-        header.innerHTML = painting_art_fa[i];
-        option.appendChild(header);
-        father.appendChild(option);
-        option.addEventListener("click", function () {
-            painting_type_pointer(this.id);
-        }, false)
-    }
-    const homeTypeSelected = localStorage.getItem("homeTypeSelected");
-    if (homeTypeSelected) {
-        painting_type_pointer(homeTypeSelected);
-        localStorage.removeItem("homeTypeSelected");
-    }
-    else
-        painting_type_pointer("all");
-
-}
-function painting_type_pointer(element) {
-    var pointer = document.getElementsByClassName("pointer");
-    painting_sort = element;
-    for (var i = 0; i < 40; i++) {
-        if (element == painting_art[i]) {
-            pointer[i].style.display = "block";
-            continue;
-        }
-        pointer[i].style.display = "none";
-    }
-    load_paint_item();
-}
-//----------------------- pottery page type list functions
-function create_pottery_list() {
-    var father = document.getElementById("pottry-list");
-    for (var i = 0; i < pottery_art.length; i++) {
-        var option = document.createElement("li");
-        option.id = pottery_art[i];
-        var pointer = document.createElement("div");
-        pointer.className = "pointer";
-        option.appendChild(pointer);
-        var header = document.createElement("h4");
-        header.innerHTML = pottery_art_fa[i];
-        option.appendChild(header);
-        father.appendChild(option);
-        option.addEventListener("click", function () {
-            pottery_type_pointer(this.id);
-        }, false)
-    }
-    const homeTypeSelected = localStorage.getItem("homeTypeSelected");
-    if (homeTypeSelected) {
-        pottery_type_pointer(homeTypeSelected);
-        localStorage.removeItem("homeTypeSelected");
-    }
-    else
-        pottery_type_pointer("all");
-}
-function pottery_type_pointer(element) {
-    pottery_sort = element;
-    var pointer = document.getElementsByClassName("pointer");
-    for (var i = 0; i < pottery_art.length; i++) {
-        if (element == pottery_art[i]) {
-            pointer[i].style.display = "block";
-            continue;
-        }
-        pointer[i].style.display = "none";
-    }
-    load_pottery_item();
-}
-//------------------------- sculpturepage type list functions
-function create_sculpture_list() {
-    var father = document.getElementById("sculpture-list");
-    for (var i = 0; i < sculpture_art.length; i++) {
-        var option = document.createElement("li");
-        option.id = sculpture_art[i];
-        var pointer = document.createElement("div");
-        pointer.className = "pointer";
-        option.appendChild(pointer);
-        var header = document.createElement("h4");
-        header.innerHTML = sculpture_art_fa[i];
-        option.appendChild(header);
-        father.appendChild(option);
-        option.addEventListener("click", function () {
-            sculpture_type_pointer(this.id);
-        }, false)
-    }
-    const homeTypeSelected = localStorage.getItem("homeTypeSelected");
-    if (homeTypeSelected) {
-        sculpture_type_pointer(homeTypeSelected);
-        localStorage.removeItem("homeTypeSelected");
-    }
-    else
-        sculpture_type_pointer("all");
-}
-function sculpture_type_pointer(element) {
-    sculpture_sort = element;
-    var pointer = document.getElementsByClassName("pointer");
-    for (var i = 0; i < sculpture_art.length; i++) {
-        if (element == sculpture_art[i]) {
-            pointer[i].style.display = "block";
-            continue;
-        }
-        pointer[i].style.display = "none";
-    }
-    load_sculpture_item();
 }
 //------------------------ shop
 function load_paint_item() {
-    load_item("painting", painting_sort, item_sort);
-}
-function load_pottery_item() {
-    load_item("pottery", pottery_sort, item_sort);
+    load_item("painting", item_sort);
 }
 function load_sculpture_item() {
-    load_item("sculpture", sculpture_sort, item_sort);
+    load_item("sculpture", item_sort);
 }
-function load_item(mode, body, sort) {
-    if (body == "all") {
-        document.getElementById("ware").innerHTML = "";
-        axios.post(domain + "/api/items", { type: mode })
-            .then(res => {
-                let item = res.data;
-                if (sort == "news")
-                    item.reverse();
-                else if (sort == "expensive") {
-                    item.sort((a, b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0))
-                    item.reverse();
-                } else if (sort == "cheapest") {
-                    item.sort((a, b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0))
-                } else if (sort == "bestselling") {
-                    item.sort((a, b) => (a.salesNumber > b.salesNumber) ? 1 : ((b.salesNumber > a.salesNumber) ? -1 : 0))
-                    item.reverse();
-                }
-                if (item.length > 0) {
-                    document.getElementById("ware").innerHTML = "";
-                    for (i in item) {
-                        create_shop_item(item[i].picture, item[i].name, item[i].price, item[i]._id);
-                    }
-                } else {
-                    document.getElementById("ware").innerHTML = `
-                    <h3 id="not_founded">کالایی یافت نشد</h3>
-                    ` ;
-                }
-            }).catch(err => {
-                console.log(err.message);
-            });
-    } else {
-        axios.post(domain + "/api/sorted_items", { type: mode, class: body }).then(res => {
+function load_item(mode, sort) {
+    document.getElementById("ware").innerHTML = "";
+    axios.post(domain + "/api/items", { type: mode })
+        .then(res => {
             let item = res.data;
             if (sort == "news")
                 item.reverse();
@@ -982,10 +574,8 @@ function load_item(mode, body, sort) {
                     ` ;
             }
         }).catch(err => {
-            console.log(err.message);
+            window.location.href = "/500.html";
         });
-    }
-
 }
 function create_shop_item(pic, name, price, id) {
     var father = document.getElementById("ware");
@@ -1023,9 +613,6 @@ function find_item(type) {
             case "paint":
                 load_paint_item();
                 break;
-            case "pottery":
-                load_pottery_item();
-                break;
             case "sculpture":
                 load_sculpture_item();
                 break;
@@ -1039,14 +626,6 @@ function find_item(type) {
                 for (var i = 0; i < painting_art.length; i++) {
                     if (result == painting_art_fa[i]) {
                         result = painting_art[i];
-                        break;
-                    }
-                }
-                break;
-            case "pottery":
-                for (var i = 0; i < pottery_art.length; i++) {
-                    if (result == pottery_art_fa[i]) {
-                        result = pottery_art[i];
                         break;
                     }
                 }
@@ -1089,34 +668,13 @@ function item_page() {
         switch (res.data.type) {
             case "painting":
                 type = "نقاشی";
-                for (var i = 0; i < painting_art.length; i++) {
-                    if (res.data.class == painting_art[i]) {
-                        Class = painting_art_fa[i];
-                        break;
-                    }
-                }
-                break;
-            case "pottery":
-                type = "سفال";
-                for (var i = 0; i < pottery_art.length; i++) {
-                    if (res.data.class == pottery_art[i]) {
-                        Class = pottery_art_fa[i];
-                        break;
-                    }
-                }
                 break;
             case "sculpture":
                 type = "مجسمه";
-                for (var i = 0; i < sculpture_art.length; i++) {
-                    if (res.data.class == sculpture_art[i]) {
-                        Class = sculpture_art_fa[i];
-                        break;
-                    }
-                }
                 break;
         }
         document.getElementsByClassName("item_data")[0].innerHTML = type;
-        document.getElementsByClassName("item_data")[1].innerHTML = Class;
+        document.getElementsByClassName("item_data")[1].innerHTML = res.data.class;
         document.getElementsByClassName("item_data")[2].innerHTML = res.data.x;
         document.getElementsByClassName("item_data")[3].innerHTML = res.data.y;
         document.getElementsByClassName("item_data")[4].innerHTML = res.data.info;
@@ -1331,34 +889,13 @@ function load_basket(mode) {
     } else if (basket_item) {
         basket_item.map((item) => {
             axios.get(domain + "/api/items/" + item).then(res => {
-                let type, Class;
+                let type;
                 switch (res.data.type) {
                     case "painting":
                         type = "نقاشی";
-                        for (var i = 0; i < painting_art.length; i++) {
-                            if (res.data.class == painting_art[i]) {
-                                Class = painting_art_fa[i];
-                                break;
-                            }
-                        }
-                        break;
-                    case "pottery":
-                        type = "سفال";
-                        for (var i = 0; i < pottery_art.length; i++) {
-                            if (res.data.class == pottery_art[i]) {
-                                Class = pottery_art_fa[i];
-                                break;
-                            }
-                        }
                         break;
                     case "sculpture":
                         type = "مجسمه";
-                        for (var i = 0; i < sculpture_art.length; i++) {
-                            if (res.data.class == sculpture_art[i]) {
-                                Class = sculpture_art_fa[i];
-                                break;
-                            }
-                        }
                         break;
                 }
                 total += parseInt(res.data.price);
@@ -1373,7 +910,7 @@ function load_basket(mode) {
                     <div class="basket_item_info">
                         <h4 class="box_name">${res.data.name}</h4>
                         <h4 class="box_type">دسته بندی : ${type}</h4>
-                        <h4 class="box_class">سبک : ${Class}</h4>
+                        <h4 class="box_class">سبک : ${res.data.class}</h4>
                     </div>
                     <div class="box_picture" style="background-image : url('../public/image/${picture}')"></div>
                     <h4 class="box_price">${res.data.price} تومان</h4>

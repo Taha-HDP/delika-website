@@ -361,7 +361,7 @@ a{
     }
     #shop{
         right: 3%;
-        top: 16%;
+        top: 20%;
     }
     #bag_pic{
         width: 15px;
@@ -381,12 +381,15 @@ a{
     #lang-list h4{
         font-size: 0.8rem;
     }
+    .secound-header{
+        margin-right: -7%;
+    }
     .secound-header ul{
         justify-content: space-around;
         width: 110%;
     }
     .secound-header li{
-        width: 23%;
+        width: 24%;
         text-align: center;
         margin-top: 1rem;
         font-size: 0.8rem;
@@ -401,6 +404,12 @@ a{
     #bag_pic{
         width: 8px;
         height: 10px;
+    }
+    .secound-header{
+        margin-right: -8%;
+    }
+    #bag {
+        margin-top: 0.2rem;
     }
     #profile{
         right: 28%;

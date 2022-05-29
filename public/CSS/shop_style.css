@@ -1,5 +1,5 @@
 #search_box {
-    width: 19%;
+    width: 21.5%;
     margin: 0px 2%;
     position: relative;
     display: inline-block;
@@ -43,37 +43,33 @@
     border-radius: 0;
     background-position: 100% center;
 }
-
-
-
-
-
 #shop_name{
     font-size: 2rem;
     font-weight: 600;
-    margin: 14rem 25% 0 0;
+    margin: 14rem 23% 0 0;
     display: inline-block;
 }
 #mid{
     margin-top: 2rem ;
     display: flex;
+    flex-wrap: wrap;
 }
 .side{
-    width: 30%;
+    width: 100%;
 }
 .typs ,
 .sort{
     background: rgb(241, 241, 241);
     display: inline-flex;
-    width: 98%;
+    width: 30%;
     text-align: center;
-    padding: 2% 2% 5% 0;
-    margin: 0 2%;
+    padding-bottom: 1rem;
+    margin: 0 2.2% 1rem;
     flex-direction: column;
 }
 .side h3{
     border-bottom: 1px solid black;
-    padding: 2%;
+    padding: 1rem 2%;
 }
 .side ul{
     list-style: disc;
@@ -81,9 +77,9 @@
 }
 .side li{
     display: inline-flex;
-    text-align: right ;
-    margin-top: 4%;
-    width: 45%;
+    text-align: right;
+    margin-top: 1rem;
+    width: 24%;
     transition: 300ms;
 }
 .side h4:hover{
@@ -96,7 +92,7 @@ li .pointer ,
 .sort_pointer{
     display: none;
     border-bottom: 8px solid black;
-    width: 3%;
+    width: 8px;
     margin-left: 4%;
     margin-bottom: 2%;
 }
@@ -104,13 +100,13 @@ li .pointer ,
     display: inline-flex;
     flex-wrap: wrap;
     margin-right: 2%;
-    width: 66%;
+    width: 96%;
 }
 .items{
     background: rgb(241, 241, 241);
-    margin: 0 0.5% 2rem 0.5%;
-    width: 32%;
-    height: 400px;
+    margin: 0 0.25% 2rem 0.25%;
+    width: 24.5%;
+    height: 430px;
     text-align: center;
     align-items: center;
 }
@@ -131,4 +127,109 @@ li .pointer ,
 .item-price{
     font-size: 0.7rem;
 }
-
+@media (max-width : 90rem) {
+    .items{
+        height: 360px;
+    }
+    .side ul {
+        font-size: 0.8rem;
+    }
+}
+@media (max-width : 90rem) {
+    #shop_name {
+        font-size: 1.3rem;
+        margin: 10rem 23% 0 0;
+    }
+    .search__input{
+        padding: 0.2rem 20%;
+        font-size: 0.6rem;
+    }
+    #search_button{
+        width: 15px;
+        height: 15px;
+    }
+    #mid {
+        margin-top: 1rem;
+    }
+    .side h3 {
+        padding: 0.7rem 2%;
+        font-size: 0.8rem;
+    }
+    .side ul {
+        font-size: 0.6rem;
+    }
+    .items{
+        height: 300px;
+    }
+    .item-name {
+        margin: 0.5rem 0;
+        font-size: 0.7rem;
+    }
+    .item-price {
+        font-size: 0.5rem;
+    }
+    li .pointer, .sort_pointer {
+        border-bottom: 5px solid black;
+        width: 5px;
+    }
+}
+@media (max-width : 47rem) {
+    .items{
+        height: 220px;
+    }
+    .side ul {
+        font-size: 0.5rem;
+    }
+    .sort{
+        width: 35%;
+    }
+}
+@media (max-width : 30rem) {
+    #shop_name {
+        font-size: 0.7rem;
+        margin: 6.5rem 22% 0 0;
+    }
+    .search__input {
+        padding: 0.1rem 20%;
+        font-weight: 400;
+        font-size: 0.4rem;
+    }
+    #search_button {
+        width: 10px;
+        height: 10px;
+        top: 30%;
+    }
+    #mid {
+        margin-top: 0.5rem;
+    }
+    .side h3 {
+        padding: 0.4rem 2%;
+        font-size: 0.5rem;
+    }
+    .sort{
+        margin: 0 2.2% 0.4rem ;
+        padding-bottom: 0.3rem;
+        width: 47.5%;
+    }
+    .side ul {
+        font-size: 0.35rem;
+    }
+    .side li{
+        margin-top: 0.2rem;
+    }
+    .items {
+        width: 49.5%;
+        margin: 0 0.25% 0.3rem 0.25%;
+    }
+    .item-name {
+        font-size: 0.6rem;
+    }
+    .item-price {
+        font-size: 0.4rem;
+    }
+    li .pointer, .sort_pointer {
+        border-bottom: 3px solid black;
+        width: 3px;
+        margin-bottom: 1px;
+    }
+}

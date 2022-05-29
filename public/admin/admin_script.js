@@ -102,26 +102,19 @@ function typeOfArt() {
     var father_element = document.getElementById("item-art");
     father_element.innerHTML = '';
     if (mode == "painting") {
-        for (var i = 1; i < 40; i++) {
-            var option = document.createElement("option");
-            option.innerHTML = painting_art_fa[i];
-            option.value = painting_art[i];
-            father_element.appendChild(option);
-        }
-    } else if (mode == "pottery") {
-        for (var i = 1; i < 12; i++) {
-            var option = document.createElement("option");
-            option.innerHTML = pottery_art_fa[i];
-            option.value = pottery_art[i];
-            father_element.appendChild(option);
-        }
+        var option = document.createElement("option");
+        option.innerHTML = "ابستره";
+        option.value = "abstract";
+        father_element.appendChild(option);
     } else if (mode == "sculpture") {
-        for (var i = 1; i < 10; i++) {
-            var option = document.createElement("option");
-            option.innerHTML = sculpture_art_fa[i];
-            option.value = sculpture_art[i];
-            father_element.appendChild(option);
-        }
+        var option = document.createElement("option");
+        option.innerHTML = "پاپیه ماشه";
+        option.value = "Papier's trigger";
+        father_element.appendChild(option);
+        var option = document.createElement("option");
+        option.innerHTML = "گچی";
+        option.value = "gypsum base";
+        father_element.appendChild(option);
     }
 }
 function change_item_picture(elem) {
@@ -157,34 +150,13 @@ function item_list() {
             } else {
                 tr.style.backgroundColor = "rgb(241, 241, 241)";
             }
-            let type, Class;
+            let type
             switch (item.type) {
                 case "painting":
                     type = "نقاشی";
-                    for (var i = 0; i < painting_art.length; i++) {
-                        if (item.class == painting_art[i]) {
-                            Class = painting_art_fa[i];
-                            break;
-                        }
-                    }
-                    break;
-                case "pottery":
-                    type = "سفال";
-                    for (var i = 0; i < pottery_art.length; i++) {
-                        if (item.class == pottery_art[i]) {
-                            Class = pottery_art_fa[i];
-                            break;
-                        }
-                    }
                     break;
                 case "sculpture":
                     type = "مجسمه";
-                    for (var i = 0; i < sculpture_art.length; i++) {
-                        if (item.class == sculpture_art[i]) {
-                            Class = sculpture_art_fa[i];
-                            break;
-                        }
-                    }
                     break;
             }
             const href = `../item_detail.html?place=${item._id}`;
@@ -192,7 +164,7 @@ function item_list() {
             <td>${index + 1}</td>
             <td><a href="${href}">${item.name}</a></td>
             <td>${type}</td>
-            <td>${Class}</td>
+            <td>${res.data.class}</td>
             <td>${item.price} تومان</td>
             <td>
                 <button class="delete_button" onclick="delete_item('${item._id}')">حذف</button>
@@ -278,7 +250,6 @@ function backToItems() {
     document.getElementById("itemDetail").style.display = "none";
 }
 function delete_item(id) {
-
     if (confirm("آیا از این کار خود اطمینان دارید ؟")) {
         axios.delete(domain + "/api/admin/remove_item/" + id, {
             headers: {
@@ -334,24 +305,12 @@ function find_item() {
         const father = document.querySelector("tbody");
         father.innerHTML = "";
         let result = search_box.value;
-        for (var i = 0; i < painting_art.length; i++) {
-            if (result == painting_art_fa[i]) {
-                result = painting_art[i];
-                break;
-            }
-        }
-        for (var i = 0; i < pottery_art.length; i++) {
-            if (result == pottery_art_fa[i]) {
-                result = pottery_art[i];
-                break;
-            }
-        }
-        for (var i = 0; i < sculpture_art.length; i++) {
-            if (result == sculpture_art_fa[i]) {
-                result = sculpture_art[i];
-                break;
-            }
-        }
+        if (result == "ابستره")
+            result = "abstract";
+        else if (result == "پاپیه ماشه")
+            result = "Papier's trigger";
+        else if (result == "گچی")
+            result = "gypsum base";
         axios.post(domain + "/api/admin/findItem", { wanted: result }, {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
@@ -367,34 +326,12 @@ function find_item() {
                     } else {
                         tr.style.backgroundColor = "rgb(241, 241, 241)";
                     }
-                    let type, Class;
+                    let type;
                     switch (item.type) {
                         case "painting":
                             type = "نقاشی";
-                            for (var i = 0; i < painting_art.length; i++) {
-                                if (item.class == painting_art[i]) {
-                                    Class = painting_art_fa[i];
-                                    break;
-                                }
-                            }
-                            break;
-                        case "pottery":
-                            type = "سفال";
-                            for (var i = 0; i < pottery_art.length; i++) {
-                                if (item.class == pottery_art[i]) {
-                                    Class = pottery_art_fa[i];
-                                    break;
-                                }
-                            }
-                            break;
                         case "sculpture":
                             type = "مجسمه";
-                            for (var i = 0; i < sculpture_art.length; i++) {
-                                if (item.class == sculpture_art[i]) {
-                                    Class = sculpture_art_fa[i];
-                                    break;
-                                }
-                            }
                             break;
                     }
                     const href = `../item_detail.html?place=${item._id}`;
@@ -402,7 +339,7 @@ function find_item() {
                     <td>${index + 1}</td>
                     <td><a href="${href}">${item.name}</a></td>
                     <td>${type}</td>
-                    <td>${Class}</td>
+                    <td>${item.class}</td>
                     <td>${item.price} تومان</td>
                     <td>
                         <button class="delete_button" onclick="delete_item('${item._id}')">حذف</button>
@@ -1170,31 +1107,8 @@ function order_detail(id) {
             switch (item.type) {
                 case "painting":
                     type = "نقاشی";
-                    for (var i = 0; i < painting_art.length; i++) {
-                        if (item.class == painting_art[i]) {
-                            Class = painting_art_fa[i];
-                            break;
-                        }
-                    }
-                    break;
-                case "pottery":
-                    type = "سفال";
-                    for (var i = 0; i < pottery_art.length; i++) {
-                        if (item.class == pottery_art[i]) {
-                            Class = pottery_art_fa[i];
-                            break;
-                        }
-                    }
-                    break;
                 case "sculpture":
                     type = "مجسمه";
-                    for (var i = 0; i < sculpture_art.length; i++) {
-                        if (item.class == sculpture_art[i]) {
-                            Class = sculpture_art_fa[i];
-                            break;
-                        }
-                    }
-                    break;
             }
             item_box.innerHTML = `
                     <div class="basket_object_info">
@@ -1413,9 +1327,6 @@ function load_courses() {
             switch (item.type) {
                 case "paint":
                     type = "نقاشی";
-                    break;
-                case "pottery":
-                    type = "سفال";
                     break;
                 case "sculpture":
                     type = "مجسمه";
