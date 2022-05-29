@@ -11,10 +11,10 @@
     width: 65%;
     display: flex;
     flex-wrap: wrap;
-    padding: 0 0 0 5%;
+    height: fit-content;
 }
 .item_picture{
-    width: 30%;
+    width: 35%;
 }
 .picture{
     margin-top: 2rem;
@@ -23,7 +23,7 @@
     background: white;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 .item_detail h2{
     width: 100%;
@@ -43,20 +43,24 @@
     width: 90%;
     color: rgb(88 88 88);
 }
-.shape_box ,
+#scale{
+    width: 90%;
+    margin-right: 5%;
+    font-size: 1.3rem;
+}
+.NM{
+    margin-top: 0.3rem !important;
+}
 .info_box{
-    width: 100%;
+    width: 100% !important;
 }
-.shape_box .item_data{
+.item_data{
     display: inline-block;
-    width: 37%;
-}
-.x{
-    margin-left: 5%;
+    width: 90%;
 }
 .info_data{
     line-height: 1.5;
-    height: 5rem;
+    height: 10rem;
 }
 .item_price{
     margin: 2rem 5%;
@@ -90,7 +94,6 @@
     transition: 400ms;
     cursor: pointer;
 }
-
 .comments{
     margin: 1rem 5% 0 5%;
     width: 85%;
@@ -105,11 +108,11 @@
 }
 #comment_pic{
     display: inline-block;
-    width: 3%;
+    width: 60px;
     height: 48px;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-image: url("../public/images/comment_icon.png");
 }
 .new_comment{
@@ -119,17 +122,17 @@
     border-left: 1px solid rgb(112 112 112);
 }
 #name_lable{
-    width: 20%;
+    width: max-content;
     display: inline-block;
     margin-bottom: 2rem;
 }
 .new_comment input{
     font-family: inherit;
     border: none;
-    width: 50%;
+    width: 90%;
     height: 3rem;
     padding-right: 1%;
-    transition : 400ms ;
+    transition: 400ms;
 }
 .new_comment input:hover ,
 .new_comment textarea:hover{
@@ -137,15 +140,15 @@
     transition : 400ms ;
 }
 #comment_lable{
-    margin-bottom: 1rem;
+    margin: 2rem 0 1rem 0;
     display: inline-block;
 }
 .new_comment textarea{
     font-family: inherit;
     resize: none;
     border: none;
-    width: 80%;
-    transition : 400ms ;
+    width: 91%;
+    transition: 400ms;
 }
 .new_comment button{
     font-family: inherit;
@@ -153,9 +156,10 @@
     background: black;
     color: white;
     margin-top: 1.5rem;
-    width: 45%;
+    margin-right: 20%;
+    width: 50%;
     padding: 0.7rem 0;
-    transition : 400ms ;
+    transition: 400ms;
 }
 .new_comment button:hover {
     background-color: white;
@@ -207,5 +211,192 @@
     background-color: white;
     transition: 400ms;
     cursor: pointer;
+}
+@media (max-width : 64rem) {
+    .item_detail h2 {
+        font-size: 1.3rem;
+        margin: 1rem 5% 0 0;
+    }
+    .item_box h4 {
+        font-size: 0.9rem;
+        
+    }
+    #scale{
+        font-size: 1rem;
+    }
+    .item_information {
+        padding: 0 0 0 0%;
+    }
+    .item_picture {
+        width: 35%;
+    }
+    .picture{
+        height: 300px;
+    }
+    .item_price h4 ,
+    .item_price p{
+        font-size: 0.8rem;
+        vertical-align: bottom;
+    }
+    .info_box{
+        width: 84%;
+        margin-top: 0rem;
+    }
+    .item_data{
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+    .item_picture button{
+        width: 90% !important;
+        margin: 1rem 5%;
+        height: 3rem;
+    }
+
+    #comment_header {
+        font-size: 1.2rem;
+    }
+    #comment_pic {
+        width: 40px;
+        height: 38px;
+    }
+    #name_lable {
+        font-size: 0.9rem;
+        margin-bottom: 0.7rem;
+    }
+    #comment_lable {
+        margin: 1rem 0 0.7rem 0;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    .new_comment button {
+        margin-right: 15%;
+        width: 60%;
+    }
+    .posted_comment {
+        width: 56%;
+        padding-right: 2%;
+    }
+    .new_comment input {
+        height: 2rem;
+        padding-right: 2%;
+    }
+    .new_comment textarea {
+        height: 6rem;
+    }
+    .sender_name ,
+    .comment_txt_box {
+        font-size: 0.8rem;
+    }
+    .comment_box p {
+        font-size: 0.6rem;
+    }
+}
+@media (max-width : 30rem) {
+    .item_information {
+        width: 100%;
+    }
+    .item_detail{
+        margin: 6rem 2% 0;
+        width: 91%;
+        padding: 2%;
+    }
+    .item_detail h2 {
+        font-size: 0.9rem;
+        margin: 0.5rem 5% 0 0;
+    }
+    .item_box h4 {
+        font-size: 0.7rem;
+        font-weight: 300;
+        margin: 0.5rem 0;
+    }
+    #scale{
+        font-size: 0.7rem;
+    }
+    .item_picture {
+        width: 90%;
+        margin-right: 5%;
+    }
+    .picture{
+        height: 250px;
+    }
+    .item_price{
+        padding: 0.5rem 5%;
+        margin: 1rem 5%;
+    }
+    .item_price h4 ,
+    .item_price p{
+        font-size: 0.6rem;
+        vertical-align: middle;
+    }
+    .item_box{
+        margin: 0.3rem 5% 1rem 5%;
+    }
+    .item_data{
+        font-size: 0.5rem;
+        padding: 0.5rem 5%;
+        line-height: 1.5;
+    }
+    .item_picture button{
+        width: 90% !important;
+        margin: 0.2rem 5%;
+        height: 1.5rem;
+        font-size: 0.6rem;
+    }
+    .info_data{
+        height: 6rem;
+    }
+
+    #comment_header {
+        font-size: 0.8rem;
+    }
+    #comment_pic {
+        width: 30px;
+        height: 22px;
+        vertical-align: bottom;
+    }
+    .new_comment {
+        width: 100%;
+        margin: 1rem 0;
+        border-left: none;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid;
+    }
+    #name_lable {
+        font-size: 0.6rem;
+        margin-bottom: 0.7rem;
+    }
+    #comment_lable {
+        margin: 1rem 0 0.7rem 0;
+        font-size: 0.6rem;
+    }
+    .new_comment input {
+        width: 98%;
+        height: 1.5rem;
+        font-size: 0.6rem;
+        padding-right: 2%;
+    }
+    .new_comment textarea {
+        font-size: 0.6rem;
+        width: 99%;
+        height: 4rem;
+    }
+    .new_comment button {
+        margin-right: 20%;
+        width: 60%;
+        font-size: 0.6rem;
+        margin-top: 0.5rem;
+        padding: 0.3rem 0;
+    }
+    .posted_comment {
+        width: 100%;
+        padding-right: 0%;
+    }
+    .sender_name ,
+    .comment_txt_box {
+        font-size: 0.6rem;
+    }
+    .comment_box p {
+        font-size: 0.4rem;
+    }
 }
 

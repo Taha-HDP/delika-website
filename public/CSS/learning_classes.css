@@ -27,7 +27,7 @@
     margin: 0 5%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-image: url(../public/images/cartoon_painting.png);
 }
 #paintin-picture{
@@ -53,6 +53,7 @@
 .class_info{
     width: 80%;
     line-height: 1.8;
+    text-align: right;
 }
 #classes button{
     border: 1px solid black;
@@ -83,6 +84,21 @@
     }
 }
 @media (max-width: 64rem) {
+    #mid{
+        margin-top: 10rem;
+    }
+    #mid h2{
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+    .class_name{
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+    }
+    .class_info{
+        font-size: 0.8rem;
+        
+    }
     .class_pic{
         width: 30%;
         height: 20rem;
@@ -108,33 +124,13 @@
         width: 63%;
     }
 }
-@media (max-width: 34.75rem) {
-    .class_pic{
-        width: 25%;
-        height: 10rem;
-        margin: 0 6%;
-    }
-    .class_txt{
-        width: 63%;
-        font-size: 0.7rem;
-    }
-    .class_name{
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-    }
-    #classes button{
-        font-size: 0.6rem;
-        width: 50%;
-        margin: 5% 10%;
-    }
-}
-@media (max-width: 26.5625rem) {
+@media (max-width: 30rem) {
     #mid{
-        margin-top: 9rem;
+        margin-top: 6rem;
     }
     #mid h2{
-        font-size: 1.2rem;
-        font-weight: 600;
+        font-size: 0.8rem;
+        font-weight: 500;
     }
     .class_pic{
         width: 55%;
@@ -147,18 +143,20 @@
     .class_txt{
         width: 90%;
         margin-right: 5%;
-        font-size: 0.7rem;
-        text-align: right;
         padding-top: 0rem;
     }
     .class_name{
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
     }
     .class_info{
-        padding-right: 5%;
-        width: 90%;
-        line-height: 1.8;
+        padding-right: 0%;
+        width: 100%;
+        font-size: 0.6rem;
+    }
+    #classes button{
+        font-size: 0.6rem;
     }
 }
 @media (max-width: 20rem) {

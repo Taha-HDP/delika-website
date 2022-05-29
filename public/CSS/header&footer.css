@@ -22,9 +22,10 @@ a{
     background: rgb(241, 241, 241);
     position: relative;
 }
+/*  bag prevew section */
 #bag_preview{
     position: absolute;
-    width: 20%;
+    width: 23%;
     background-color: rgb(241,241,241);
     top: 2.7rem;
     right: 2%;
@@ -48,7 +49,6 @@ a{
     border-radius: 100px;
     background-color: #727272;
 }
-  
 #bag_preview h3{
     text-align: center;
     font-size: 1.3rem;
@@ -92,7 +92,6 @@ a{
     margin-top: 0.6rem;
     margin-right: auto;
 }
-
 .checkout_box{
     border-top: 2px solid black;
     padding: 1rem 5%;
@@ -118,7 +117,7 @@ a{
     border: 1px solid black;
     background-color: black;
     color: white;
-    height: 3rem;
+    padding: 0.5rem 0;
     transition: 400ms;
     width: 100%;
 }
@@ -128,9 +127,45 @@ a{
     cursor: pointer;
     transition: 400ms;
 }
-
-
-
+@media (max-width: 90rem) {
+    #bag_preview h3,
+    .total{
+        font-size: 1rem;
+    }
+    #bag_preview{
+        width: 33%;
+    }
+}
+@media (max-width: 64rem) {
+    #bag_preview h3,
+    .total{
+        font-size: 0.8rem;
+    }
+    #bag_preview{
+        width: 38%;
+    }
+    .box_name{
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 48rem) {
+    #bag_preview h3,
+    .total{
+        font-size: 0.7rem;
+    }
+    #bag_preview{
+        width: 42%;
+        top: 2rem;
+    }
+    .box_name{
+        font-size: 0.5rem;
+    }
+    .checkout_box button{
+        padding: 0.5rem 0;
+        font-size: 0.7rem;
+    }
+}
+/* header section*/
 #shop{
     top: 20%;
     right: 2%;
@@ -360,7 +395,7 @@ a{
 @media (max-width: 30rem) {
     .first-header{
         font-size: 0.35rem;
-        height: 15px;
+        height: 18px;
         margin-bottom: 0.3rem;
     }
     #bag_pic{
@@ -408,7 +443,6 @@ a{
 #menu a:hover{
     color: rgb(95, 95, 95);
 }
-
 #secound-header-list{
     font-size: 0.9rem;
     width: 100%;
@@ -418,6 +452,11 @@ a{
     position: absolute;
     transform: translateY(-300px);
     transition: 500ms ;
+}
+@media (max-width: 64rem) {
+    #secound-header-list{
+        font-size: 0.7rem;
+    }
 }
 #list li{
     display: inline-flex;

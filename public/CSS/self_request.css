@@ -81,7 +81,7 @@
     margin-right: 15% !important;
     margin-top: 1.5rem ;
     padding: 0.7rem 0 ;
-    border: 1px solid ;
+    border: 1px solid black;
     transition: 400ms;
 }
 #send_button:hover{
@@ -104,4 +104,105 @@
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: contain;
+}
+@media (max-width: 64rem) {
+    #mid{
+        margin-top: 10rem;
+    }
+    #mid h2{
+        font-size: 1.2rem;
+        padding: 1rem 0;
+    }
+    #mid p{
+        padding: 1rem 2%;
+        width: 80%;
+        margin:0 8% 1rem 8%;
+        font-size: 0.8rem;
+    }
+    .right label{
+        font-size: 0.8rem;
+    }
+    #coustomer_name {
+        width: 85% !important;
+    }
+    #mid select {
+        width: 87.5%;
+    }
+    #shapes_x ,
+    #shapes_y{
+        padding-right: 2%;
+        height: 2rem;
+        width: 39%;
+    }
+    #mid textarea{
+        width: 85%;
+    }
+    #send_button{
+        width: 55%;
+        margin-top: 1rem;
+    }
+    #uploadLabel {
+        margin: 4rem 2% 1rem 0;
+        background-color: white;
+        padding: 11rem 0;
+        width: 48%;
+    }
+}
+@media (max-width: 47rem) {
+    #uploadLabel {
+        margin: 4rem 2% 1rem 0;
+        background-color: white;
+        padding: 11rem 0;
+        width: 48%;
+    }
+}
+@media (max-width: 30rem) {
+    #mid{
+        margin-top: 5rem;
+    }
+    #mid h2{
+        font-size: 0.8rem;
+        padding: 1rem 0;
+    }
+    #mid p{
+        padding: 0.5rem 2%;
+        width: 90%;
+        margin:0 3% 0.5rem 3%;
+        font-size: 0.6rem;
+    }
+    #request_data{
+        width: 90%;
+        margin-right: 3%;
+    }
+    .right label,
+    #mid select ,
+    #coustomer_name ,
+    #shapes_x ,
+    #shapes_y{
+        font-size: 0.6rem;
+        margin: 0.25rem 0;
+    }
+    #mid select ,
+    #coustomer_name ,
+    #shapes_x ,
+    #shapes_y{
+        height: 1.5rem;
+    }
+    #mid textarea{
+        font-size: 0.6rem;
+        margin: 0.25rem 0;
+    }
+    #send_button{
+        width: 60%;
+        margin-top: 0.5rem;
+        font-size: 0.6rem;
+        height: 1.5rem;
+        padding: 0;
+    }
+    #uploadLabel {
+        margin: 5rem 2% 1rem 0;
+        background-color: white;
+        padding: 5rem 0;
+        width: 48%;
+    }
 }

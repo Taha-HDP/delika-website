@@ -2,7 +2,8 @@ var script = document.createElement('script');
 script.src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
 document.getElementsByTagName('body')[0].appendChild(script);
 
-const domain = "https://delikagallery.iran.liara.run";
+//const domain = "https://delikagallery.iran.liara.run";
+const domain = "http://localhost:3000";
 //------------- header & footer data
 function loadHeaderAndFooter() {
     document.querySelector("header#top").innerHTML = `
@@ -200,6 +201,8 @@ $(document).ready(function () {
     }
     $(document).mousemove(function () {
         $("#Painting").mouseenter(function () {
+            if (window.innerWidth < 770)
+                return 0;
             create_underline("Painting");
             for (var i = 1; i < 40; i++) {
                 var option = document.createElement("li");
@@ -218,6 +221,8 @@ $(document).ready(function () {
             check_list = true;
         })
         $("#Pottery").mouseenter(function () {
+            if (window.innerWidth < 770)
+                return 0;
             create_underline("Pottery");
             for (var i = 1; i < 12; i++) {
                 var option = document.createElement("li");
@@ -236,6 +241,8 @@ $(document).ready(function () {
             check_list = true;
         })
         $("#Sculpture").mouseenter(function () {
+            if (window.innerWidth < 770)
+                return 0;
             create_underline("Sculpture");
             for (var i = 1; i < 10; i++) {
                 var option = document.createElement("li");
@@ -254,6 +261,8 @@ $(document).ready(function () {
             check_list = true;
         })
         $("#Learning").mouseenter(function () {
+            if (window.innerWidth < 770)
+                return 0;
             create_underline("Learning");
             var learning_classes = [
                 "paint",
@@ -279,8 +288,10 @@ $(document).ready(function () {
             check_list = true;
         })
         $("#bag_icon").mouseenter(function () {
-            document.getElementById("bag_preview").style.transform = "translateY(0)";
-            secound_header_list_back();
+            if (window.innerWidth > 670) {
+                document.getElementById("bag_preview").style.transform = "translateY(0)";
+                secound_header_list_back();
+            }
         })
         $("#mid").mouseenter(function () {
             document.getElementById("bag_preview").style.transform = "translateY(-500px)";
@@ -551,8 +562,7 @@ function forget_password() {
                     window.location.href = "/";
                 }, 3000);
             }).catch(err => {
-                console.log(err);
-                //window.location.assign("/500.html");
+                window.location.assign("/500.html");
             });
         }
 
@@ -562,7 +572,7 @@ function forget_password() {
 function help_request_data() {
     const id = localStorage.getItem("token");
     if (id) {
-        axios.get(`http://"+domain+"/api/requestData`, {
+        axios.get(domain+"/api/requestData", {
             headers: {
                 'x-auth-token': id
             }
@@ -1313,7 +1323,10 @@ function load_basket(mode) {
             document.getElementsByClassName("total_money")[0].innerHTML = "0 تومان";
         } else {
             document.getElementsByClassName("total_money")[0].innerHTML = "0 تومان";
-            document.getElementById("Data").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 1.3rem;">سبد خرید شما خالی است</h4>`;
+            if (window.innerWidth > 1024)
+                document.getElementById("Data").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 1rem;">سبد خرید شما خالی است</h4>`;
+            else
+                document.getElementById("Data").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 0.7rem;">سبد خرید شما خالی است</h4>`;
         }
     } else if (basket_item) {
         basket_item.map((item) => {

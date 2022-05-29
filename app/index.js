@@ -46,10 +46,11 @@ class Application {
         app.use(ErrorMiddleware);
     }
     setup_database() {
-        mongoose.connect(process.env.DATABASE_URL, {
+        ////////////////process.env.DATABASE_URL
+        mongoose.connect("mongodb://localhost:27017/delika_gallery" , {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            authSource : "admin" ,
+            //authSource : "admin" ,
         }).then(() => {
             console.log("db connected");
         }).catch((err) => {

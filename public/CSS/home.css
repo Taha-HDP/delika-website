@@ -48,7 +48,6 @@
     width: 92%;
     text-align: center;
     font-size: 2rem;
-    margin-bottom: 4rem;
 }
 #new h2 ,
 #bestselling h2{
@@ -64,7 +63,7 @@
     background: rgb(241, 241, 241);
     margin: 0 0.5% 2rem 0.5%;
     width: 24%;
-    height: 400px;
+    height: 450px;
     text-align: center;
     align-items: center;
 }
@@ -124,14 +123,15 @@
         font-size: 0.5rem;
     }
 }
+
+
 .mahsoolat .button{
     text-align: center;
     font-size: 1rem;
     border: 1px solid black;
-    width: 30%;
-    height: 2.5rem;
+    width: max-content;
     margin: 2rem 80% 0 0;
-    padding-top: 1rem;
+    padding: 1rem 10%;
     transition: 500ms;
     background-color: black;
     color: white;
@@ -143,7 +143,7 @@
 }
 .mid-picture{
     background-repeat: no-repeat; 
-    background-size: cover;
+    background-size: contain;
     background-position: 50% 50%;
     width: 35%;
     height: 450px;
@@ -164,7 +164,6 @@
     font-weight: 300;
     line-height: 1.8;
 }
-
 #self_request ,
 #help_request{
     width: 90%;
@@ -190,39 +189,36 @@
     .mid-picture{
         height: 300px;
     }
-}
-@media (max-width: 48rem) {
-    .mid-picture{
-        height: 200px;
-    }
     .txt{
-        padding: 2%;
-        margin-bottom: 0rem;
+        width: 50%;
+        padding: 1%;
         font-size: 1rem;
+        font-weight: 400;
+    }
+    .mahsoolat .button{
+        font-size: 0.8rem;
+        margin: 2rem 70% 0 0;
+        padding: 1rem 7%;
     }
 }
-@media (max-width: 31rem) {
+@media (max-width: 30rem) {
     #classes,
     #self_request{
         flex-direction: column;
         align-items: center;
     }
     .mid-picture{
-        width: 60%;
+        width: 80%;
         height: 200px;
     }
-    #classes .txt{
-        margin-left: 0;
+    .txt{
+        width: 95%;
+        font-size: 0.7rem;
     }
     .mahsoolat .button{
-        font-size: 0.7rem;
-        font-weight: 400;
-        border: 1px solid black;
-        box-sizing: border-box;
-        width: 20%;
-        height: 30px;
-        margin: 0rem 70% 0 0 ;
-        padding-top: 1%;
+        font-size: 0.6rem;
+        margin: 1rem 60% 0 0;
+        padding: 0.5rem 7%;
     }
 }
 

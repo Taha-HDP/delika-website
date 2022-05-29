@@ -2,11 +2,6 @@ article{
     display: flex;
     background: rgb(241, 241, 241);
 }
-@media (max-width: 48rem) {
-    article{
-        flex-direction : column ;
-    }
-}
 article h2{
     font-weight: 500;
     font-size: 2rem;
@@ -17,33 +12,6 @@ article h2{
 .signin{
     width: 40%;
     margin: 12rem 5%;
-}
-@media (max-width: 64rem) {
-    .login ,
-    .signin{
-        margin: 12rem 3%;
-        width: 100%;
-    }
-}
-@media (max-width: 48rem) {
-    .login{
-        margin: 10rem 10% 0 0;
-        width: 80%;
-    }
-    .signin{
-        margin: 3rem 10%;
-        width: 80%;
-    }
-}
-@media (max-width: 24rem) {
-    .login{
-        margin: 8rem 5% 0 0;
-        width: 90%;
-    }
-    .signin{
-        margin: 2rem 5%;
-        width: 90%;
-    }
 }
 .login a{
     font-size: 1rem;
@@ -109,7 +77,6 @@ select{
 .button{
     font-family: inherit;
     font-size: 1rem ;
-    padding: 0.5rem;
     border: none;
     width: 99% !important;
     background-color: black !important;
@@ -132,12 +99,71 @@ select{
  .signin button{
     margin-bottom: 5%;
 }
-@media (max-width: 24rem) {
+@media (max-width: 64rem) {
+    .login ,
+    .signin{
+        margin: 12rem 3%;
+        width: 100%;
+    }
+}
+@media (max-width: 48rem) {
+    article{
+        flex-direction : column ;
+    }
+    .login{
+        margin: 10rem 10% 0 0;
+        width: 80%;
+    }
+    .signin{
+        margin: 3rem 10%;
+        width: 80%;
+    }
+    .eye{
+        height: 30px;
+        vertical-align: text-top;
+    }
+}
+@media (max-width: 30rem) {
+    .login{
+        margin: 6rem 2.5% 0 0;
+        width: 95%;
+    }
+    .signin{
+        margin: 1rem 2.5%;
+        width: 95%;
+    }
     article h2{
-        font-size: 1.5rem ;
+        font-size: 0.8rem ;
+        margin: 1rem auto;
     }
     article form{
-        font-size: 1rem ;
+        font-size: 0.6rem ;
         width: 90%;
+    }
+    input,
+    select{
+        width: 95%;
+        height: 1.5rem;
+        font-size: 0.4rem;
+        margin: 0.5rem 0%;
+    }
+    form p{
+        font-size: 0.6rem;
+    }
+    .eye_lable{
+        font-size: 0.5rem !important;
+    }
+    .eye{
+        height: 10px;
+        vertical-align: sub;
+
+    }
+    .button{
+        font-size: 0.7rem ;
+        width: 95% !important;
+    }
+    .login a{
+        font-size: 0.5rem;
+        margin-top: 0.6rem;
     }
 }
