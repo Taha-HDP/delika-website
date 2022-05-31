@@ -1,0 +1,83 @@
+#mid{
+    margin-top: 13rem;
+}
+.class{
+    width: 90%;
+    margin-right: 5%;
+    display: flex;
+    flex-wrap: wrap ;
+
+}
+.detail{
+    margin : 1rem 1% ;
+    width: 24%;
+    padding : 2% ;
+    background-color: rgb(247, 247, 247);
+    height: fit-content;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+}
+.detail button{
+    font-family: inherit;
+    background-color: black;
+    color: white;
+    margin: 2rem 20% 0;
+    width: 60%;
+    height: 3rem;
+    border: 1px solid;
+    transition: 400ms;
+}
+.detail button:hover{
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    transition: 400ms;
+}
+#mid ul{
+    border-bottom: 2px solid rgb(189 189 189);
+}
+#mid li{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    margin: 0.7rem 0;
+    color: rgb(112 112 112);
+    flex-wrap: wrap;
+}
+#mid li h4{
+    color: black;
+}
+#price{
+    font-size: 1.2rem;
+    color: black !important;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(200, 200, 200);
+}
+#course_price{
+    color : #64b837 !important;
+}
+.info{
+    margin : 1rem 1% ;
+    width: 68%;
+}
+.picture{
+    width: 100%;
+    height: 20rem;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#course_place{
+    width: 100%;
+    line-height: 1.5;
+    color: black;
+    margin-top: 1rem;
+}
+.info h3{
+    font-size: 1.7rem;
+    padding: 1%;
+}
+.info p{
+    font-size: 1rem;
+    line-height: 1.8;
+    padding: 1%;
+}

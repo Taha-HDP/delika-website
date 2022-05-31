@@ -1,0 +1,160 @@
+#mid select{
+    font-family: inherit;
+    background-color: rgba(0,0,0,0);
+    width: 80%;
+    border: none;
+}
+#saled-item{
+    margin-right: 0.8%;
+    width: 95%;
+    background: rgb(241, 241, 241);
+    padding: 1%;
+    height: fit-content;
+}
+#saled-item h3{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+#number{
+    width: 5%;
+}
+#order_name{
+    width: 20%;
+}
+#order_price,
+#order_date,
+#order_status,
+#order_detail ,
+#order_refID{
+    width: 15%;
+}
+#detail_button{
+    background-color: black;
+    color: white;
+    font-family: inherit;
+    border: 1px solid black;
+    width: 100%;
+    height: 2rem;
+    transition : 400ms ;
+}
+#detail_button:hover{
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    transition : 400ms ;
+}
+#notfication{
+    z-index: 2;
+    position: fixed;
+    left: 0%;
+    bottom: 2rem;
+    width: 15%;
+    padding: 1%;
+    transition: transform 600ms ;
+    transform: translateX(-1000px);
+}
+#orderPage{
+    display: none;
+}
+#order_header{
+    display: inline-block;
+    margin-right: 32%;
+    font-size: 1.5rem;
+}
+#back_button{
+    padding: 1%;
+    margin-right: 5%;
+    font-size: 1.2rem;
+    transition: 400ms;
+    display: inline-block;
+}
+#back_button:hover{
+    text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    transform: scale(1.04);
+    cursor: pointer;
+    transition: 400ms;
+}
+.main{
+    display: flex;
+    flex-wrap: wrap;
+}
+.send_setting ,
+.factor{
+    background-color: white;
+    width: 44%;
+    padding: 2%;
+    margin: 1rem 1% 1rem 0;
+    height: fit-content;
+}
+.send_setting h3 ,
+.factor h3{
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgb(170,170,170);
+}
+.fill_box{
+    width: 85%;
+    margin: 0.7rem 0;
+    padding: 0.7rem 2%;
+    border: 1px solid;
+}
+#send_address{
+    margin: 0.7rem 0;
+    padding: 0.7rem 2%;
+    width: 85%;
+    border: 1px solid black;
+    line-height: 1.5;
+}
+
+
+
+.factorObject {
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+#object_info{
+    margin-right: 2%;
+    width: 100%;
+    padding: 0 1%;
+    border-top: 1px solid rgb(170,170,170);
+}
+.object_box{
+    border-bottom: 1px solid rgb(170,170,170);
+    padding: 1rem 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.object_picture{
+    direction: ltr;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+.basket_object_info{
+    width: -webkit-fill-available;
+}
+.objectDetail{
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 5%;
+}
+.object_name{
+    font-size: 1.05;
+    margin-bottom: 0.5rem;
+}
+.object_type ,
+.object_class ,
+.object_shapes {
+    font-weight: 300;
+    margin-bottom: 0.7rem;
+}
+

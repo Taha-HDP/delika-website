@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="En">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="../CSS/help_request.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="stylesheet" href="./CSS/basic.css">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>Delika Gallery | Consultation request</title>
+</head>
+<body onload="loadHeaderAndFooter(), help_request_data() , load_basket()">
+    <header id="top"> </header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <article id="mid" onclick="lang_list_close()">
+        <h2>درخواست مشاوره</h2>
+        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون
+            بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع
+            با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و آینده شناخت فراوان جامعه و
+            متخصصان را می طلبد</p>
+        <form method="post" name="request_form" id="request_form">
+            <label for="name">نام و نام خانوادگی خود را وارد کنید :</label>
+            <input type="text" name="name" id="request_name" placeholder="نام و نام خانوادگی">
+            <br>
+            <label for="phone">شماره خود را وارد کنید :</label>
+            <input type="text" maxlength="11" name="phone" id="request_phone" placeholder="شماره">
+            <br>
+            <label for="type">نوع مشاوره را انتخاب کنید :</label>
+            <label for="Call" class="radio_style">
+                <input type="radio" id="Call" name="type" checked>
+                مشاوره تلفنی
+            </label>
+            <label for="See" class="radio_style">
+                <input type="radio" id="See" name="type">
+                مشاوره حضوری
+            </label>
+            <br>
+            <label for="detail">توضیحات : </label>
+            <textarea name="detail" id="request_detail" cols="30" rows="10"></textarea>
+            <br>
+            <button type="button" onclick="send_help_request()">ارسال</button>
+        </form>
+    </article>
+    <footer> </footer>
+    <script src="./jquery.js"></script>
+    <script src="./base_scripts.js"> </script>
+</body>
+
+</html>

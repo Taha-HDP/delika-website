@@ -1,5 +1,6 @@
 #mid{
     margin-top: 13rem;
+    direction: ltr;
 }
 #mid h2{
     text-align: center;
@@ -31,14 +32,13 @@
 }
 .right{
     width: 49%;
-    border-left: 2px solid rgb(180,180,180);
+    border-right: 2px solid rgb(180,180,180);
 }
 #coustomer_name ,
 #type ,
 #shapes_x ,
 #shapes_y{
     padding-right: 2%;
-    padding-left: 2%;
     font-family: inherit;
     border: none;
     height: 2rem;
@@ -54,7 +54,6 @@
 }
 #mid textarea{
     padding-right: 2%;
-    padding-left: 2%;
     font-family: inherit;
     border: none;
     margin: 1rem 0;
@@ -160,7 +159,7 @@
 }
 @media (max-width: 30rem) {
     #mid{
-        margin-top: 5.5rem;
+        margin-top: 6rem;
     }
     #mid h2{
         font-size: 0.8rem;

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="En">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="../CSS/self_request.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="stylesheet" href="./CSS/basic.css">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>Delika Gallery | Order a personal design</title>
+</head>
+
+<body onload="loadHeaderAndFooter() ,check_auth() , load_basket()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <article id="mid" dir="ltr" onclick="lang_list_close()">
+        <h2>Order a personal design</h2>
+        <p style="text-align:left ;">To personalize a product, you can proceed from this section. If you want to change the dimensions of the
+            original design, proceed from the consultation section to proceed according to your opinion, but if you
+            intend to send an image and create your desired design, complete the form below. And press the send key.
+            <br> After sending the information, you will be contacted to continue the purchase process.
+        </p>
+        <div id="request_data">
+            <form method="post">
+                <div class="right" style="border-right: 2px solid rgb(180,180,180);border-left: none">
+                    <label for="name">enter your first & last name :</label>
+                    <br>
+                    <input type="text" name="name" placeholder="F&L name" id="coustomer_name">
+                    <br>
+                    <label for="type">Choose your category:</label>
+                    <br>
+                    <select name="type" id="type">
+                        <option value="paint">paint</option>
+                        <option value="sculpture">sculpture</option>
+                    </select>
+                    <br>
+                    <label for="shapes">Dimensions :</label>
+                    <br>
+                    <input type="number" placeholder="height" name="shapes" id="shapes_y">
+                    <input type="number" placeholder="width" name="shapes" id="shapes_x">
+                    <br>
+                    <label for="info">Description :</label>
+                    <br>
+                    <textarea name="info" id="info" cols="30" rows="10" placeholder="Description"></textarea>
+                    <br>
+                    <input type="button" onclick="send_request()" id="send_button" value="Send">
+                </div>
+                <label id="uploadLabel">
+                    <input type="file" id="image" name="image" accept="image/png , image/jpeg"
+                        onchange="change_item_picture(this)">
+                    picture
+                </label>
+            </form>
+        </div>
+    </article>
+    <footer></footer>
+    <script src="../jquery.js"></script>
+    <script src="./base_scripts.js"> </script>
+</body>
+<script>
+    function change_item_picture(elem) {
+        var length = elem.files.length;
+        if (!length) {
+            return false;
+        }
+        changeBackground(elem);
+    }
+    function changeBackground(img) {
+        var reader = new FileReader();
+        reader.onload = imageIsLoaded;
+        reader.readAsDataURL(img.files[0]);
+        function imageIsLoaded(e) {
+            document.getElementById("uploadLabel").style.backgroundImage = "url(" + e.target.result + ")";
+            document.getElementById("uploadLabel").style.color = "rgba(0,0,0,0)";
+        }
+    }
+</script>
+
+</html>

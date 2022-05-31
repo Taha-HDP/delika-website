@@ -1,0 +1,31 @@
+#offer-List{
+    margin-right: 0.8%;
+    width: 95%;
+    background: rgb(241, 241, 241);
+    padding: 1%;
+    height: fit-content;
+}
+#offer-List h3{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+table{
+    text-align: center;
+}
+#number{
+    width: 5%;
+}
+#offerCode{
+    width: 20%;
+}
+#offerDays{
+    width: 20%;
+}
+#offerValue{
+    width: 20%;
+}
+#offerCreate{
+    width: 20%;
+}

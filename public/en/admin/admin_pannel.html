@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="Fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
+    <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="./basic_style.css">
+    <link rel="stylesheet" href="./admin_pannel.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+<link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>گالری دلیکا - پنل ادمین </title>
+</head>
+
+<body onload="check_admin(),loadHeaderAndFooter() ,load_aside_list('aside_pannel')  , admin_data() , load_basket()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <main onclick="lang_list_close()">
+        <aside></aside>
+        <article id="mid" onclick="lang_list_close()">
+            <div id="new-info">
+                <h3 class="header_titr">کاربر ها و نظرات</h3>
+                <div class="box">
+                    <h3>کل کاربر ها</h3>
+                    <p id="all-members"></p>
+                </div>
+                <div class="box">
+                    <h3>کاربر های این هفته</h3>
+                    <p id="new-members">0</p>
+                </div>
+                <div class="box">
+                    <h3>نظرات در انتظار</h3>
+                    <p id="waiting-comment">0</p>
+                </div>
+                <div class="box">
+                </div>
+                <h3 class="header_titr">درخواست های مشاوره</h3>
+                <div class="box">
+                    <h3>همه ی درخواست ها</h3>
+                    <p id="all-requests">0</p>
+                </div>
+                <div class="box">
+                    <h3>درخواست های این هفته</h3>
+                    <p id="new-requests">0</p>
+                </div>
+                <div class="box">
+                    <h3>درخواست های در انتظار</h3>
+                    <p id="waitting-requests">0</p>
+                </div>
+                <div class="box">
+                    <h3>درخواست های کامل شده</h3>
+                    <p id="done-requests">0</p>
+                </div>
+                <h3 class="header_titr">کالا ها</h3>
+                <div class="box">
+                    <h3>همه ی کالا ها</h3>
+                    <p id="all-items">0</p>
+                </div>
+                <div class="box">
+                    <h3>کالا های فروخته شده</h3>
+                    <p id="saled-items">0</p>
+                </div>
+                <div class="box">
+                    <h3>کالا های فروخته شده این هفته</h3>
+                    <p id="new-saled-items">0</p>
+                </div>
+                <div class="box">
+                    <h3>کالا های اضافه شده این هفته</h3>
+                    <p id="added-items">0</p>
+                </div>
+            </div>
+            <div id="create_offer">
+                <h3>ساخت کد تخفیف</h3>
+                <div class="input_box">
+                    <label for="offer_code">کد تخفیف : (اختیاری)</label>
+                    <input type="text" name="offer_code" id="offer_code" placeholder="کد تخفیف">
+                </div>
+                <div class="input_box">
+                    <label for="offer_time">مقدار اعتبار (روز) :</label>
+                    <input type="text" name="offer_time" id="offer_time" placeholder="روز">
+                </div>
+                <div class="input_box">
+                    <label for="offer_value">مقدار تخفیف (درصد) :</label>
+                    <input type="text" name="offer_value" id="offer_value" placeholder="درصد">
+                </div>
+                <div class="input_box" id="buttons">
+                    <input id="create_button" type="button" value="ساخت کد" onclick="create_offer()">
+                </div>
+            </div>
+        </article>
+    </main>
+    <footer></footer>
+    <script src="../jquery.js"></script>
+    <script src="../base_scripts.js"> </script>
+    <script src="./admin_script.js"></script>
+</body>
+</html>

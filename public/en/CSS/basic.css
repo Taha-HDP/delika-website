@@ -1,0 +1,24 @@
+#web-name{
+    font-weight: 600;
+}
+#profile {
+    top: 34%;
+}
+#contact {
+    top: 36%;
+}
+#lang {
+    top: 38%;
+}
+#lang-list{
+    direction: ltr;
+}
+footer {
+    direction: ltr;
+}
+.ending .titr {
+    margin: 1rem 0% 0 3%;
+}
+#notfication{
+    text-align: left;
+}

@@ -1,0 +1,11 @@
+#self_request, #help_request {
+    direction: ltr;
+}
+#classes{
+    direction: ltr;
+}
+#classes .txt {
+    margin-left: 0%;
+    margin-right: 5%;
+    direction: ltr;
+}

@@ -1,0 +1,139 @@
+#mid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 77%;
+    margin-top: 13rem;
+}
+#new-info{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    height: fit-content;
+}
+.box{
+    width: 24%;
+    height: fit-content;
+    background: rgb(241, 241, 241);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.box h3{
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1.2rem 0;
+}
+.box p{
+    padding: 1rem 0;
+    font-size: 1.7rem;
+}
+#last-orders{
+    margin-top: 1rem;
+    margin-right: 0.8%;
+    width: 55%;
+    background: rgb(241, 241, 241);
+    padding: 1%;
+    height: fit-content;
+}
+#last-orders h3 ,
+#talk-request h3{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+table td {
+    border: 1px solid black;
+    padding-right: 1%;
+    padding-top: 1.5rem;
+}
+table th{
+    border: 1px solid black;
+    text-align: center;
+    padding: 1rem 0;
+}
+#last-orders #number{
+    width: 5%;
+}
+#last-orders #item-name{
+    width: 30%;
+}
+#last-orders #item-price{
+    width: 15%;
+    text-align: center;
+}
+#last-orders #type{
+    width: 15%;
+}
+#last-orders #member-name ,
+#last-orders #date{
+    width: 20% ;
+}
+#talk-request td{
+    border: 1px solid black;
+    padding-right: 1%;
+    padding-top: 1.2rem;
+}
+#talk-request{
+    margin-top: 1rem;
+    margin-left: 0.8%;
+    width: 39%;
+    background: rgb(241, 241, 241);
+    padding: 1%;
+    height: fit-content;
+}
+#talk-request #number{
+    width: 10%;
+}
+#talk-request #member-name{
+    width: 20%;
+}
+#talk-request #member-phone{
+    width: 30%;
+}
+#talk-request #date{
+    width: 15%;
+}
+#talk-request #status{
+    width: 25%;
+}
+
+#create_offer{
+    background: rgb(241,241,241);
+    padding: 2%;
+    margin: 2rem 1%;
+    width: 94%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+#create_offer h3{
+    width: 100%;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+.input_box{
+    width: 25%;
+}
+#create_offer input{
+    font-family: inherit;
+    border: none;
+    padding: 0 2%;
+    height: 2rem;
+    margin-right: 2%;
+    width: 50%;
+    transition: 400ms;
+}
+#create_button{
+    background-color: black;
+    color: white; 
+    margin-right: 25% !important;
+    border: 1px solid !important;
+}
+#create_button:hover{
+    cursor: pointer;
+    color: black;
+    background-color: white; 
+    transition: 400ms;
+}

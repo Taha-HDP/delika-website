@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="Fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
+    <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="stylesheet" href="./basic_style.css">
+    <link rel="stylesheet" href="./create_class.css">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>گالری دلیکا - لیست کاربران</title>
+</head>
+
+<body onload="check_admin(),loadHeaderAndFooter() ,load_aside_list('aside_create_class'),edit_course() , load_basket()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <main onclick="lang_list_close()">
+        <aside></aside>
+        <article id="mid" onclick="lang_list_close()">
+            <div id="create_class">
+                <h3 id="mid_titr">برگزاری دوره</h3>
+                <form name="course" method="post">
+                    <label id="uploadLabel">
+                        <input type="file" id="course_image" name="course_image" accept="image/png , image/jpeg"
+                            onchange="change_item_picture(this)">
+                        تصویر *
+                    </label>
+                    <div id="filld">
+                        <div class="left">
+                            <label for="course_name">نام دوره *</label>
+                            <br>
+                            <input type="text" name="course_name" placeholder="نام دوره">
+                            <br>
+                            <label for="course_type">دسته بندی *</label>
+                            <br>
+                            <select name="course_type" id="course_type">
+                                <option value="none">انتخاب کنید</option>
+                                <option value="paint">نقاشی</option>
+                                <option value="sculpture">مجسمه</option>
+                            </select>
+                            <br>
+                            <label for="course_time">مدت زمان دوره *</label>
+                            <br>
+                            <input type="text" name="course_time" placeholder="1ماه / 3 ماه / ...">
+                            <br>
+                            <label for="course_teacher">مدرس *</label>
+                            <br>
+                            <input type="text" name="course_teacher" placeholder="نام مدرس">
+                            <br>
+                            <label for="course_place">محل برگزاری *</label>
+                            <br>
+                            <textarea type="text" name="course_place" placeholder="آدرس"></textarea>
+                            <br>
+                            <input type="button" id="submit_button" class="button" value="افزودن"
+                                onclick="create_course()">
+                        </div>
+                        <div class="right">
+                            <label for="course_price">هزینه ثبت نام (تومان) *</label>
+                            <br>
+                            <input type="number" name="course_price" placeholder="هزینه ثبت نام">
+                            <br>
+                            <label for="course_leangth">تعداد جلسات *</label>
+                            <br>
+                            <input type="number" name="course_leangth" placeholder="تعداد جلسات">
+                            <br>
+                            <label for="course_hours">ساعات برگزاری *</label>
+                            <br>
+                            <input type="text" name="course_hours" placeholder="12:30 - 14:00">
+                            <br>
+                            <label for="start_date">تاریخ شروع دوره *</label>
+                            <br>
+                            <input type="text" name="start_date" placeholder="تاریخ شروع">
+                            <br>
+                            <label for="course_information">توضیحات</label>
+                            <br>
+                            <textarea type="text" name="course_information" placeholder="توضیحات"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </article>
+    </main>
+    <footer></footer>
+    <script src="../jquery.js"></script>
+    <script src="../base_scripts.js"> </script>
+    <script src="./admin_script.js"></script>
+</body>
+</html>

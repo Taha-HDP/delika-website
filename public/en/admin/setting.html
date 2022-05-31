@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="Fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
+    <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="./basic_style.css">
+    <link rel="stylesheet" href="./setting.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>گالری دلیکا - لیست کالا های فروخته شده</title>
+</head>
+
+<body onload="check_admin(),loadHeaderAndFooter() ,load_aside_list('aside_setting') , load_basket() , site_data()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <main onclick="lang_list_close()">
+        <aside></aside>
+        <article id="mid" onclick="lang_list_close()">
+            <h2>تنظیمات سایت</h2>
+            <div class="site_information">
+                <div class="site_info_box">
+                    <label for="siteEmail">ایمیل :</label>
+                    <br>
+                    <input dir="ltr" onchange="change_setting(this.id)" type="email" name="siteEmail" id="siteEmail"
+                        placeholder="ایمیل">
+                </div>
+                <div class="site_info_box" style="border: none; background-color: white;">
+                </div>
+                <div class="site_info_box">
+                    <label for="siteInstagram">آی دی اینستاگرام :</label>
+                    <br>
+                    <input dir="ltr" onchange="change_setting(this.id)" type="text" name="siteInstagram"
+                        id="siteInstagram" placeholder="آی دی اینستاگرام">
+                </div>
+                <div class="site_info_box">
+                    <label for="siteInstagramLink">لینک اینستاگرام :</label>
+                    <br>
+                    <input dir="ltr" onchange="change_setting(this.id)" type="text" name="siteInstagramLink"
+                        id="siteInstagramLink" placeholder="لینک اینستاگرام">
+                </div>
+                <div class="site_info_box">
+                    <label for="sitePhone">شماره تلفن :</label>
+                    <br>
+                    <input dir="ltr" onchange="change_setting(this.id)" type="text" name="sitePhone" id="sitePhone"
+                        placeholder="تلفن">
+                </div>
+                <div class="site_info_box">
+                    <label for="sitePhone2">شماره تلفن 2 :</label>
+                    <br>
+                    <input dir="ltr" onchange="change_setting(this.id)" type="text" name="sitePhone2" id="sitePhone2"
+                        placeholder="تلفن">
+                </div>
+                <div class="site_info_box">
+                    <label for="siteAdresss">آدرس :</label>
+                    <br>
+                    <input onchange="change_setting(this.id)" type="text" name="siteAdresss" id="siteAdresss"
+                        placeholder="آدرس">
+                </div>
+                <div class="site_info_box">
+                    <label for="siteAdresss2">آدرس 2 :</label>
+                    <br>
+                    <input onchange="change_setting(this.id)" type="text" name="siteAdresss2" id="siteAdresss2"
+                        placeholder="آدرس">
+                </div>
+                <div class="site_info_box">
+                    <label for="localTransport">هزینه ارسال داخلی :</label>
+                    <br>
+                    <input dir="ltr" onchange="change_setting(this.id)" type="text" name="localTransport"
+                        id="localTransport" placeholder="هزینه ارسال داخلی">
+                </div>
+                <div class="site_info_box">
+                    <label for="globalTransprot">هزینه ارسال خارجی :</label>
+                    <br>
+                    <input dir="ltr" onchange="change_setting(this.id)" type="text" name="globalTransprot"
+                        id="globalTransprot" placeholder="هزینه ارسال خارجی">
+                </div>
+                <div class="site_info_box delika_info">
+                    <label for="about_delika">درباره دلیکا :</label>
+                    <br>
+                    <textarea dir="ltr" onchange="change_setting(this.id)" type="text" name="about_delika"
+                        id="about_delika" placeholder="درباره دلیکا"></textarea>
+                </div>
+            </div>
+            <div>
+                <button id="accept">ذخیره</button>
+            </div>
+        </article>
+    </main>
+    <footer></footer>
+    <script src="../jquery.js"></script>
+    <script src="../base_scripts.js"> </script>
+    <script src="./admin_script.js"></script>
+</body>
+
+</html>

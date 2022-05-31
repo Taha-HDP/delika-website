@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="En">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="../CSS/bill_result.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="stylesheet" href="./CSS/basic.css">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>Delika Gallery | bill result</title>
+</head>
+
+<body onload="loadHeaderAndFooter() , load_basket() , bill_result()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <article id="mid" onclick="lang_list_close()">
+        <h2>factor</h2>
+        <h3 id="pay_status"></h3>
+        <div id="payment_emoji"></div>
+        <div id="payment_information">
+            <div class="textLine">
+                <h4>Name</h4>
+                <p id="memberName"></p>
+            </div>
+            <div class="textLine">
+                <h4>Price</h4>
+                <p id="payed"></p>
+            </div>
+            <div class="textLine">
+                <h4>Pay status</h4>
+                <p id="payedStatus"></p>
+            </div>
+            <div class="textLine">
+                <h4>tracking number</h4>
+                <p id="paymentCode"></p>
+            </div>
+            <a id="gotoHome" href="/">
+                <button id="gotoHome_button">back to home</button>
+            </a>
+            <a id="gotoprofile" href="./profileView/orders.html">
+                <button id="gotoprofile_button">Orders section</button>
+            </a>
+        </div>
+    </article>
+    <footer></footer>
+    <script src="../jquery.js"></script>
+    <script src="./base_scripts.js"> </script>
+</body>
+</html>

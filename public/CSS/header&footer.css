@@ -1,5 +1,5 @@
 html{
-    font-family: Vazir , Shabnam , sans-serif;
+    font-family: Vazir , Shabnam , AktivGrotesk , sans-serif;
     font-size: 100%;
     scroll-behavior: smooth;
 }
@@ -241,7 +241,7 @@ a{
 }
 #lang-list h4{
     width: 100%;
-    font-size: 1rem;
+    font-size: 1rem !important;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid black;
 }
@@ -251,6 +251,8 @@ a{
 }
 #lang-list input{
     margin-top: 1rem;
+    height: auto !important;
+    width: max-content !important;
 }
 #lang-list button{
     border: none;
@@ -289,7 +291,6 @@ a{
 }
 #web-name{
     width: 85%;
-    font-family: Vazir;
     font-size: 2.3rem;
     font-weight: 500;
     text-align: center;

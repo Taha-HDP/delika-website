@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="En">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../CSS/reset.css">
+    <link rel="stylesheet" href="./course_list.css">
+    <link rel="stylesheet" href="../../CSS/header&footer.css">
+    <link rel="stylesheet" href="../CSS/basic.css">
+    <link rel="icon" href="../../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>Delika Gallery | courses list</title>
+</head>
+
+<body onload="loadHeaderAndFooter() , load_basket() , load_class_list()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <article id="mid" onclick="lang_list_close()">
+        <h2>List of courses</h2>
+        <div class="classes"></div>
+    </article>
+    <footer> </footer>
+    <script src="../../jquery.js"></script>
+    <script src="../base_scripts.js"> </script>
+    <script src="./course_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+#edit-painting{
+    width: 100%;
+    background: rgb(241, 241, 241);
+}
+#edit-painting h2{
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-top: 1rem;
+    text-align: center;
+}
+#edit-painting .info{
+    padding: 2% 5%;
+    font-size: 1rem;
+    
+}
+.info h3{
+    font-size: 1.5rem;
+}
+#edit-painting form{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+}
+#item-image{
+    display: none;
+}
+#uploadLabel {
+    background-color: white;
+    width: 36%;
+    padding: 18% 0;
+    text-align: center;
+    cursor: pointer;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+#filld{
+    margin-top: 1rem;
+    width: 60%;
+}
+#filld .alert{
+    color: rgb(243, 21, 21);
+    font-size: 1rem ;
+    margin-bottom: 1% ;
+    display: none ;
+}
+#filld input ,
+#filld select ,
+#filld textarea{
+    width: 40%;
+    height: 33px;
+    margin: 1.5% 0;
+    padding-right: 2%;
+    border: none;
+    font-family: inherit;
+    background-color: white;
+    transition: 400ms;
+}
+#filld textarea{
+    resize: none;
+    height: 5rem;
+}
+#filld #item-information{
+    width: 82.5%;
+}
+#filld input:hover ,
+#filld select:hover ,
+#filld textarea:hover{
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.5);
+    transition: 400ms;
+}
+input.button{
+    margin: 1% 0 !important;
+    width: 40% !important;
+    height: 40px !important;
+    margin: 1.5% 0 !important;
+    border: 1px solid black !important;
+    font-family: inherit;
+    background-color: black !important;
+    color: white !important;
+    transition: 400ms !important;
+}
+input.button:hover{
+    background-color: white !important;
+    color: black !important;
+    transition: 400ms;
+}

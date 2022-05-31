@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="En">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../CSS/reset.css">
+    <link rel="stylesheet" href="./course_page.css">
+    <link rel="stylesheet" href="../../CSS/header&footer.css">
+    <link rel="stylesheet" href="../CSS/basic.css">
+    <link rel="icon" href="../../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>Delika Gallery | course</title>
+</head>
+
+<body onload="loadHeaderAndFooter() , load_basket() ,load_course()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <article id="mid" onclick="lang_list_close()">
+        <div class="class">
+            <div class="detail">
+                <ul>
+                    <li id="price">Price :
+                        <h4 id="course_price"></h4>
+                    </li>
+                    <li>Teacher name :
+                        <h4 id="course_teacher_name"></h4>
+                    </li>
+                    <li>Course duration :
+                        <h4 id="course_time"></h4>
+                    </li>
+                    <li>Number of sessions:
+                        <h4 id="course_length"></h4>
+                    </li>
+                    <li>Hours:
+                        <h4 id="course_hours"></h4>
+                    </li>
+                    <li>Course status :
+                        <h4 id="course_status"></h4>
+                    </li>
+                    <li>Start date:
+                        <h4 id="course_start_date"></h4>
+                    </li>
+                    <li>Venue :
+                        <p id="course_place"></p>
+                    </li>
+                </ul>
+                <button id="enrolling_button" onclick="enrolling_class()">enrollment</button>
+            </div>
+            <div class="info">
+                <div class="picture" id="course_picture"></div>
+                <h3 id="course_name"></h3>
+                <p id="course_info"></p>
+            </div>
+        </div>
+    </article>
+    <footer> </footer>
+    <script src="../jquery.js"></script>
+    <script src="../base_scripts.js"> </script>
+    <script src="./course_script.js"></script>
+</body>
+</html>

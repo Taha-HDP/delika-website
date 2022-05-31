@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="En">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="../CSS/shop_style.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="stylesheet" href="./CSS/basic.css">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>Delika Gallery | Paint</title>
+</head>
+
+<body onload="loadHeaderAndFooter() ,create_sorting_list('paint') , load_basket()">
+    <header id="top"></header>
+    <article id="hiden_contact"> </article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <article onclick="lang_list_close()">
+        <div id="search_box">
+            <div id="search_button" onclick="find_item('paint')"></div>
+            <input onchange="find_item('paint')" id="wanted" class="search__input" type="text" placeholder="Search">
+        </div>
+        <h2 id="shop_name">Paint</h2>
+        <div id="mid">
+            <div class="side">
+                <div class="sort">
+                    <h3>Sort by :</h3>
+                    <ul id="sorting"> </ul>
+                </div>
+            </div>
+            <div id="ware"></div>
+        </div>
+    </article>
+    <footer> </footer>
+    <script src="../jquery.js"></script>
+    <script src="./base_scripts.js"> </script>
+</body>
+</html>
+<html>
+
+</html>

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="Fa">
+<html dir="rtl" lang="En">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./public/fonts/vazir/vazir_font.css">
-    <link rel="stylesheet" href="./public/fonts/shabnam/shabnam_font.css">
-    <link rel="icon" href="./public/images/DELIKA-01.png" sizes="32X32" type="image/png">
-    <link rel="stylesheet" href="./CSS/reset.css">
-    <link rel="stylesheet" href="./CSS/item_detail.css">
-    <link rel="stylesheet" href="./CSS/header&footer.css">
-    <title>گالری دلیکا - جزییات کالا</title>
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="../CSS/item_detail.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="stylesheet" href="./CSS/basic.css">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>Delika Gallery | Item_datail</title>
 </head>
 
 <body onload="loadHeaderAndFooter(), item_page() , load_basket()">
@@ -28,57 +27,57 @@
             <div class="item_information">
                 <h2 id="item_name"></h2>
                 <div class="item_box">
-                    <h4>دسته بندی :</h4>
+                    <h4>Catrgory :</h4>
                     <p class="item_data"></p>
                 </div>
                 <div class="item_box">
-                    <h4>سبک :</h4>
+                    <h4>Style :</h4>
                     <p class="item_data"></p>
                 </div>
-                <h4 id="scale">ابعاد :</h4>
+                <h4 id="scale">Dimensions :</h4>
                 <div class="item_box NM">
-                    <h4>طول</h4>
+                    <h4>width</h4>
                     <p class="item_data x"></p>
                 </div>
                 <div class="item_box NM">
-                    <h4>عرض</h4>
+                    <h4>height</h4>
                     <p class="item_data y"></p>
                 </div>
                 <div class="item_box info_box">
-                    <h4>توضیحات</h4>
+                    <h4>Description</h4>
                     <p class="item_data info_data"></p>
                 </div>
             </div>
             <div class="item_picture">
                 <div class="picture"></div>
                 <div class="item_price">
-                    <h4>قیمت :</h4>
+                    <h4>Price :</h4>
                     <p id="Price"></p>
                 </div>
-                <button onclick="addToBasket()">افزودن به سبد خرید</button>
+                <button onclick="addToBasket()">Add To Shopping Bag</button>
             </div>
         </div>
         <div class="comments">
             <div id="comment_icon">
                 <div id="comment_pic"></div>
-                <h3 id="comment_header">نظرات</h3>
+                <h3 id="comment_header">Comments</h3>
             </div>
             <div class="new_comment">
-                <label for="comment_name" id="name_lable">نام خود را وارد کنید :</label>
+                <label for="comment_name" id="name_lable">enter your name :</label>
                 <br>
-                <input type="text" name="comment_name" id="name" placeholder="نام">
+                <input type="text" name="comment_name" id="name" placeholder="name">
                 <br>
-                <label for="comment_txt" id="comment_lable">نظر خود را در قسمت زیر وارد کنید :</label>
+                <label for="comment_txt" id="comment_lable">enter your comment :</label>
                 <br>
                 <textarea name="comment_txt" id="comment_txt" maxlength="500" cols="30" rows="10"></textarea>
                 <br>
-                <button onclick="add_comment()">ثبت نظر</button>
+                <button onclick="add_comment()">Send</button>
             </div>
             <div class="posted_comment"> </div>
         </div>
     </article>
     <footer> </footer>
-    <script src="./jquery.js"></script>
+    <script src="../jquery.js"></script>
     <script src="./base_scripts.js"> </script>
 </body>
 </html>

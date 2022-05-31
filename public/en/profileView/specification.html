@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="Fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
+    <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="./specification.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>گالری دلیکا - حساب کاربری </title>
+</head>
+
+<body onload="loadHeaderAndFooter() , load_profile_data() , load_basket()  , check_role()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <article id="mid" onclick="lang_list_close()">
+        <aside>
+            <h2>پروفایل</h2>
+            <ul id="side_list">
+                <li class="active">مشخصات</li>
+                <li><a href="../bag.html">سبد خرید</a> </li>
+                <li><a href="./orders.html">تاریخچه سفارشات</a> </li>
+                <li><a href="./my_courses.html">دوره های من</a> </li>
+                <li><a href="./help_request.html">درخواست ها</a> </li>
+                <li><a href="./self_request.html">طرح های شخصی</a> </li>
+                <li id="admin_option"><a href="../admin/admin_pannel.html">پنل ادمین</a></li>
+                <li><a href="./change_password.html">تغییر رمز</a> </li>
+                <li onclick="exit_req()">خروج</li>
+            </ul>
+        </aside>
+        <main>
+            <h3 id="username"></h3>
+            <div id="information">
+                <form name="member-detail" method="post">
+                    <div id="right_side">
+                        <label for="first-name">نام :</label>
+                        <br>
+                        <input type="text" name="first-name" placeholder="نام">
+                        <br>
+                        <label for="username">نام کاربری :</label>
+                        <br>
+                        <input type="text" name="username" placeholder="نام کاربری">
+                        <br>
+                        <label for="email">ایمیل :</label>
+                        <br>
+                        <input type="email" name="email" placeholder="ایمیل">
+                        <br>
+                        <label for="address">آدرس :</label>
+                        <br>
+                        <textarea name="address" id="address" cols="30" rows="5" maxlength="120"></textarea>
+                        <br>
+                        <input id="button" type="button" onclick="edit_profile()" value="ذخیره">
+                    </div>
+                    <div id="left_side">
+                        <label for="last-name">نام خانوادگی :</label>
+                        <br>
+                        <input type="text" name="last-name" placeholder="نام خانوادگی">
+                        <br>
+                        <label for="phone">شماره :</label>
+                        <br>
+                        <input type="text" name="phone" placeholder="شماره">
+                        <br>
+                        <label for="birth">تاریخ تولد :</label>
+                        <br>
+                        <input type="date" name="birth">
+                        <br>
+                        <label for="gender">جنسیت :</label>
+                        <br>
+                        <select name="gender">
+                            <option value="male">مرد</option>
+                            <option value="female">زن</option>
+                            <option value="another">سایر</option>
+                        </select>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </article>
+    <footer></footer>
+    <script src="../jquery.js"></script>
+    <script src="../base_scripts.js"> </script>
+    <script src="./profile_script.js"> </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="Fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
+    <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="./orders.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>گالری دلیکا - تاریخچه سفارشات</title>
+</head>
+
+<body onload="loadHeaderAndFooter() , load_basket()  , check_role() , load_oreder()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <article id="mid" onclick="lang_list_close()">
+        <aside>
+            <h2>پروفایل</h2>
+            <ul id="side_list">
+                <li><a href="./specification.html">مشخصات</a></li>
+                <li><a href="../bag.html">سبد خرید</a> </li>
+                <li class="active"><a href="./orders.html">تاریخچه سفارشات</a> </li>
+                <li><a href="./my_courses.html">دوره های من</a> </li>
+                <li><a href="./help_request.html">درخواست ها</a> </li>
+                <li><a href="./self_request.html">طرح های شخصی</a> </li>
+                <li id="admin_option"><a href="../admin/admin_pannel.html">پنل ادمین</a></li>
+                <li><a href="./change_password.html">تغییر رمز</a> </li>
+                <li onclick="exit_req()">خروج</li>
+            </ul>
+        </aside>
+        <main>
+            <h3 id="orderList_header">سفارشات</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th id="number">ردیف</th>
+                        <th id="order_refID">کد رهگیری</th>
+                        <th id="order_name">نام وارد شده</th>
+                        <th id="order_price">مبلغ</th>
+                        <th id="order_date">تاریخ سفارش</th>
+                        <th id="order_status">وضعیت</th>
+                        <th id="order_detail">جزئیات</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="orderPage">
+                <h4 id="back_button" onclick="backToOrders()">بازگشت</h4>
+                <h3 id="order_header">جزئیات سفارش</h3>
+                <div class="main">
+                    <div class="send_setting">
+                        <h3>اطلاعات</h3>
+                        <label for="name">نام و نام خانوادگی :</label>
+                        <br>
+                        <div class="fill_box" name="name" id="F&Lname">دیتا</div>
+                        <br>
+                        <label for="address">آدرس :</label>
+                        <br>
+                        <div id="send_address" name="send_address" >دیتا</div>
+                        <br>
+                        <label for="post_code">کد پستی :</label>
+                        <br>
+                        <div class="fill_box" id="post_code" name="post_code">دیتا</div>
+                    </div>
+                    <div class="factor">
+                        <h3>فاکتور</h3>
+                        <div class="factorObject">
+                            <h4>جمع کالا</h4>
+                            <p id="items_total">0</p>
+                        </div>
+                        <div class="factorObject">
+                            <h4>هزینه ارسال</h4>
+                            <p id="send_money">0</p>
+                        </div>
+                        <div class="factorObject">
+                            <h4>تخفیف</h4>
+                            <p id="offer">0</p>
+                        </div>
+                        <div class="factorObject">
+                            <h4>مجموع</h4>
+                            <p id="final_total">0</p>
+                        </div>
+                        <div class="factorObject">
+                            <h4>کد رهگیری</h4>
+                            <p id="refID">0</p>
+                        </div>
+                        <div class="factorObject">
+                            <h4>تاریخ سفارش</h4>
+                            <p id="date">0</p>
+                        </div>
+                        <div class="factorObject">
+                            <h4>وضعیت سفارش</h4>
+                            <p id="status">0</p>
+                        </div>
+                    </div>
+                    <div id="object_info">
+                        <h3>محصولات سفارش داده شده </h3>  
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+    <footer></footer>
+    <script src="../jquery.js"></script>
+    <script src="../base_scripts.js"> </script>
+    <script src="./profile_script.js"> </script>
+</body>
+</html>

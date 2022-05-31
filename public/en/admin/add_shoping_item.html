@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="Fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
+    <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="./add_shoping_item.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="stylesheet" href="./basic_style.css">
+<link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>گالری دلیکا - افزودن کالا</title>
+</head>
+
+<body onload="check_admin(),loadHeaderAndFooter() ,load_aside_list('add-item') , edit_item() , load_basket()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <main onclick="lang_list_close()">
+        <aside></aside>
+        <article id="mid">
+            <div class="admin-view edit-shop" id="edit-painting">
+                <h2 id="mid_titr">افزودن کالا</h2>
+                <div class="info">
+                    <h3>اطلاعات</h3>
+                    <form name="item-info" method="post" >
+                        <label id="uploadLabel">
+                            <input type="file" id="item-image" name="item-image" accept="image/png , image/jpeg"
+                                onchange="change_item_picture(this)">
+                            تصویر *
+                        </label>
+                        <div id="filld">
+                            <label for="item-name">نام کالا *</label>
+                            <br>
+                            <input type="text" name="item-name" id="item-name" placeholder="نام">
+                            <br>
+                            <label for="item-price">قیمت (تومان) *</label>
+                            <br>
+                            <input type="number" name="item-price" id="item-price" placeholder="قیمت">
+                            <br>
+                            <label for="item-type">دسته بندی *</label>
+                            <br>
+                            <select name="item-type" id="item-type" onchange="typeOfArt()">
+                                <option value="none">انتخاب کنید</option>
+                                <option value="painting">نقاشی</option>
+                                <option value="sculpture">مجسمه</option>
+
+                            </select>
+                            <br>
+                            <label for="item-art">سبک *</label>
+                            <br>
+                            <select name="item-art" id="item-art"></select>
+                            <br>
+                            <label for="item-height">(cm) ابعاد *</label>
+                            <br>
+                            <input type="text" name="item-height" id="height" placeholder="طول">
+                            x
+                            <input type="text" name="item-width" id="width" placeholder="عرض">
+                            <br>
+                            <label for="item-information">توضیحات</label>
+                            <br>
+                            <textarea type="text" name="item-information" id="item-information" maxlength="70"
+                                placeholder="توضیحات"></textarea>
+                            <br><br>
+                            <input type="button" id="submit_button" class="button" value="افزودن" onclick="add_new_item()">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </article>
+    </main> 
+    <footer></footer>
+    <script src="../jquery.js"></script>
+    <script src="../base_scripts.js"> </script>
+    <script src="./admin_script.js"></script>
+</body>
+</html>

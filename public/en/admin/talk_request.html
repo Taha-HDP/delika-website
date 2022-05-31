@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="Fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
+    <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="./talk_request.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="stylesheet" href="./basic_style.css">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>گالری دلیکا - لیسا درخواست ها</title>
+</head>
+
+<body onload="check_admin() ,loadHeaderAndFooter() , help_request_list(),load_aside_list('aside_helps') , load_basket()">
+    <header id="top"></header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <main onclick="lang_list_close()">
+        <aside></aside>
+        <article id="mid">
+            <div id="talk-req">
+                <h3>درخواست ها</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="number">ردیف</th>
+                            <th id="member-name">نام متقاضی</th>
+                            <th id="member-phone">شماره متقاضی</th>
+                            <th id="date">تاریخ درخواست</th>
+                            <th id="final-date">تاریخ هماهنگ شده</th>
+                            <th id="status">وضعیت</th>
+                            <th id="money-status">وضعیت پرداخت</th>
+                            <th id="detail">توضیحات</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </article>
+    </main>
+    <footer></footer>
+    <script src="../jquery.js"></script>
+    <script src="../base_scripts.js"> </script>
+    <script src="./admin_script.js"></script>
+</body>
+</html>

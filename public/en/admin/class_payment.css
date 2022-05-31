@@ -1,0 +1,38 @@
+#class-payment{
+    margin-right: 0.8%;
+    width: 95%;
+    background: rgb(241, 241, 241);
+    padding: 1%;
+    height: fit-content;
+}
+table{
+    text-align: center !important;
+}
+#class-payment h3{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+#mid select{
+    font-family: inherit;
+    width: 80%;
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+#number{
+    width: 5% ;
+}
+#payment_price ,
+#payment_name{
+    width: 12%;
+}
+#member_ID ,
+#course_ID {
+    width: 20% ;
+}
+#payment_refID ,
+
+#payment_date{
+    width:15% ;
+}

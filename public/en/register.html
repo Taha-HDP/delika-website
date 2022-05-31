@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="En">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <link rel="stylesheet" href="../CSS/reset.css">
+    <link rel="stylesheet" href="../CSS/register.css">
+    <link rel="stylesheet" href="./CSS/register.css">
+    <link rel="stylesheet" href="../CSS/header&footer.css">
+    <link rel="stylesheet" href="./CSS/basic.css">
+    <title>Delika Gallery | Sign in</title>
+</head>
+
+<body onload="loadHeaderAndFooter() ,check_loged() , load_basket()">
+    <header id="top"> </header>
+    <article id="hiden_contact"></article>
+    <div id="notfication">
+        <div id="notif_icon">
+            <div id="notif_image"></div>
+        </div>
+        <p></p>
+    </div>
+    <article id="mid">
+        <div class="login">
+            <h2>Login</h2>
+            <form name="login" method="post">
+                <label for="user">enter your username or phone number or email :</label>
+                <br>
+                <input type="text" name="username" id="user" placeholder="username / email / phone">
+                <br>
+                <label for="pass">enter your password :</label>
+                <br>
+                <input type="password" name="password" id="pass" placeholder="password">
+                <label for="login_eye" class="eye_lable"> show password
+                    <input type="checkbox" name="login_eye" class="eye" onchange="password_mode(this.id)"
+                        id="login_eye">
+                </label>
+                <input type="button" class="button" value="login" onclick="login_member()">
+                <a href="./forget_password.html">forget your password ?</a>
+            </form>
+        </div>
+        <div class="signin">
+            <h2>Sign Up</h2>
+            <form name="signin" method="post" autocomplete="off">
+                <p class="alert">* you must to complete all part !</p>
+                <p class="alert">* A user with this number / email / user is already registered</p>
+                <label for="email">enter your email :</label>
+                <br>
+                <input type="email" name="email" id="email" placeholder="email">
+                <br>
+                <label for="phone">enter your phone number :</label>
+                <br>
+                <input type="text" maxlength="11" name="phone" id="phone" placeholder="---- --- ----">
+                <br>
+                <label for="username">enter your username:</label>
+                <br>
+                <input type="text" name="username" id="username" placeholder="username">
+                <br>
+                <label for="password">enter your password :</label>
+                <br>
+                <input type="password" autocomplete="off" name="password" id="password" placeholder="password">
+                <br>
+                <label for="password-check">Repeat your password :</label>
+                <br>
+                <input type="password" name="password-check" id="password-check" placeholder="reapeat password">
+                <br>
+                <label for="signin_eye" class="eye_lable">
+                    shoe password
+                    <input type="checkbox" name="signin_eye" class="eye" onchange="password_mode(this.id)"
+                        id="signin_eye">
+                </label>
+                <br><br>
+                <input type="button" class="button" value="Sign up" onclick="add_member()">
+            </form>
+        </div>
+    </article>
+    <footer></footer>
+    <script src="../jquery.js"></script>
+    <script src="./base_scripts.js"> </script>
+</body>
+
+</html>
