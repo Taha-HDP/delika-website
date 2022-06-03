@@ -40,7 +40,6 @@ main{
     width: 75%;
     margin-right: 2%;
     background: rgb(241, 241, 241);
-    padding-bottom: 3rem;
 }
 main h3{
     font-size: 1.7rem;
@@ -119,6 +118,8 @@ main h3{
     width: 2% !important;
     height: unset !important;
     margin: 0 0 1.5rem 0 !important;
+    vertical-align: sub;
+    margin-right: 1% !important;
 }
 #password_eye:hover ,
 #eye_lable:hover{
@@ -134,4 +135,142 @@ main h3{
 }
 #forget:hover{
     color: rgb(39, 1, 143);
+}
+@media (max-width : 64rem) {
+    #mid{
+        margin-top: 9rem;
+    }
+    aside {
+        width: 18%;
+    }
+    #side_list {
+        font-size: 0.8rem;
+    }
+    aside h2 {
+        font-size: 0.9rem;
+    }
+    main h3 {
+        font-size: 1.3rem;
+    }
+    #information form label{
+        font-size: 0.9rem;
+    }
+    #information input, #information select, #information #address {
+        height: 2.5rem;
+        width: 80%;
+        font-size: 0.8rem;
+    }
+    #information #address {
+        height: 7rem;
+    }
+    #button {
+        width: 50% !important;
+    }
+    #information select {
+        width: 84%;
+    }
+    #change-password input {
+        width: 45%;
+    }
+}
+@media (max-width : 47rem) {
+    aside {
+        width: 21%;
+        padding: 0.7% 1%;
+    }
+    #information form {
+        width: 100%;
+        margin-right: 1%;
+    }
+    main h3 {
+        font-size: 1.1rem;
+        padding: 3% 2% 1%;
+    }
+    #left_side, #right_side {
+        padding: 2% 1%;
+    }
+    #information form label{
+        font-size: 0.8rem;
+    }
+    #information input, #information select, #information #address {
+        height: 2.2rem;
+        width: 85%;
+        font-size: 0.7rem;
+    }
+    #information #address {
+        height: 4rem;
+    }
+    #button {
+        width: 65% !important;
+        margin-right: 5% !important;
+    }
+    #information select {
+        width: 89% !important;
+    }
+    #change-password label{
+        font-size: 0.8rem;
+    }
+    #change-password input {
+        width: 50%;
+        font-size: 0.7rem;
+        height: 2.2rem;
+        margin: 0.6rem 0;
+    }
+    #forget {
+        font-size: 0.7rem;
+    }
+    #button{
+        width: 50% !important;
+    }
+}
+@media (max-width : 30rem) {
+    #mid{
+        margin-top: 6.3rem;
+    }
+    aside h2{
+        font-size: 0.6rem;
+        font-weight: 500;
+    }
+    #side_list {
+        font-size: 0.5rem;
+    }
+    aside li {
+        padding: 0.2rem;
+        margin: 0;
+    }
+    .active {
+        border-radius: 8px;
+    }
+    main h3 {
+        font-size: 0.7rem;
+    }
+    #information form label{
+        font-size: 0.5rem;
+    }
+    #information input, #information select, #information #address ,#change-password input {
+        height: 1.2rem;
+        width: 90%;
+        font-size: 0.4rem;
+        margin: 0.5rem 0;
+    }
+    #information #address {
+        height: 4rem;
+    }
+    #button {
+        width: 80% !important;
+    }
+    #information select {
+        width: 94% !important;
+    }
+    #change-password label {
+        font-size: 0.6rem;
+    }
+    #forget {
+        font-size: 0.5rem;
+    }
+    #password_eye{
+        height: 8px !important;
+        width: 3% !important;
+        margin-bottom: 0.6rem !important;
+    }
 }

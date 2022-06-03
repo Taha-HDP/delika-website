@@ -68,7 +68,7 @@ a{
 .box_name{
     width: 100%;
     font-size: 1.05rem;
-    text-align: left;
+    text-align: right;
     font-weight: 500;
     margin-bottom: 1rem ;
 }
@@ -167,7 +167,7 @@ a{
 }
 /* header section*/
 #shop{
-    top: 20%;
+    top: 25%;
     right: 2%;
     position: absolute;
     display: inline-flex;
@@ -332,6 +332,9 @@ a{
         height: 35px;
         font-size: 0.7rem ;
     }
+    #shop {
+        top: 20%;
+    }
     #web-name{
         font-size: 1.4rem;
         margin-top: 0rem;
@@ -360,9 +363,9 @@ a{
         font-size: 0.5rem ;
         margin-bottom: 0.5rem;
     }
-    #shop{
+    #shop {
         right: 3%;
-        top: 20%;
+        top: 10%;
     }
     #bag_pic{
         width: 15px;
@@ -411,6 +414,9 @@ a{
     }
     #bag {
         margin-top: 0.2rem;
+    }
+    #shop {
+        top: 15%;
     }
     #profile{
         right: 28%;

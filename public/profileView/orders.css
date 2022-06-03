@@ -82,7 +82,7 @@ table th{
     background-color: black;
     color: white;
     font-family: inherit;
-    border: 1px solid;
+    border: 1px solid black;
     width: 100%;
     height: 2rem;
     transition : 400ms ;
@@ -210,4 +210,164 @@ table th{
 .object_shapes {
     font-weight: 300;
     margin-bottom: 0.7rem;
+}
+@media (max-width : 64rem) {
+    #mid{
+        margin-top: 9rem;
+    }
+    main{
+        margin-right: 1%;
+        padding: 1%;
+        width: 75%;
+    }
+    aside {
+        width: 18%;
+    }
+    #side_list {
+        font-size: 0.8rem;
+    }
+    aside h2 {
+        font-size: 0.9rem;
+    }
+    table{
+        font-size: 0.7rem;
+        line-height: 1.5
+    }
+    #orderList_header, main h3 {
+        font-size: 1.1rem;
+    }
+    #detail_button{
+        font-size: 0.6rem;
+    }
+    #order_header {
+        margin-right: 25%;
+        font-size: 1.2rem;
+    }
+    .send_setting h3, .factor h3 {
+        font-size: 1rem;
+    }
+    #back_button {
+        font-size: 0.9rem;
+    }
+    .fill_box , #send_address{
+        font-size: 0.8rem;
+        margin: 0.7rem 0 0.25rem;
+    }
+    .send_setting label{
+        font-size: 0.8rem;
+    }
+    .factorObject {
+        font-size: 0.8rem;
+    }
+
+    .object_box {
+        padding: 0.7rem 0%;
+    }
+    #object_info {
+        padding: 0;
+        width: 95%;
+    }
+    .objectDetail {
+        margin-right: 3%;
+    }
+    .object_name {
+        font-size: 0.8rem;
+    }
+    .object_type, .object_class, .object_shapes {
+        font-size: 0.8rem;
+    }
+    .object_price {
+        font-size: 0.8rem;
+        margin-top: 1rem;
+    }
+    .object_picture{
+        width: 80px;
+        height: 80px;
+    }
+}
+@media (max-width : 47rem) {
+    aside {
+        width: 21%;
+        padding: 0.7% 1%;
+    }
+    main{
+        width: 74%;
+    }
+    #order_name {
+        display: none;
+    }
+}
+@media (max-width : 30rem) {
+    #mid{
+        margin-top: 6.3rem;
+    }
+    aside h2{
+        font-size: 0.6rem;
+        font-weight: 500;
+    }
+    #side_list {
+        font-size: 0.5rem;
+    }
+    aside li {
+        padding: 0.2rem;
+        margin: 0;
+    }
+    .active {
+        border-radius: 8px;
+    }
+    #orderList_header, main h3 {
+        font-size: 0.7rem;
+        font-weight: 500;
+        padding: 0.5rem;
+    }
+    table{
+        font-size: 0.4rem;
+    }
+    #detail_button{
+        font-size: 0.4rem;
+    }
+    table th {
+        padding: 0.4rem 0;
+    }
+    #order_date{
+        display: none;
+    }
+    #back_button {
+        font-size: 0.6rem;
+    }
+    #order_header {
+        margin-right: 15%;
+        font-size: 0.8rem;
+    }
+    .send_setting, .factor {
+        width: 94%;
+        margin: 0.5rem 1% 0 0;
+    }
+    .send_setting h3, .factor h3 {
+        font-size: 0.7rem;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .send_setting label {
+        font-size: 0.6rem;
+    }
+    .fill_box, #send_address {
+        font-size: 0.6rem;
+        margin: 0.5rem 0 0.25rem;
+        padding: 0.5rem 2%;
+    }
+    .factorObject {
+        font-size: 0.6rem;
+    }
+    .object_picture{
+        width: 60px;
+        height: 60px;
+    }
+    .object_type, .object_class, .object_shapes ,.object_name {
+        font-size: 0.6rem;
+    }
+    .object_price {
+        font-size: 0.6rem;
+        margin-top: 0.5rem;
+    }
 }

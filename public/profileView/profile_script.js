@@ -92,7 +92,7 @@ function check_role() {
     const id = localStorage.getItem("token");
     if (!id) {
         window.location.assign("/");
-    } else {
+    } else if(window.innerWidth >= 1024) {
         axios.get(domain + "/api/profile/detail", {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
@@ -344,14 +344,31 @@ function load_oreder() {
                     status_color = "rgb(79 255 85 / 92%)";
                 }
                 var tr = document.createElement("tr");
-                tr.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${item.refID}</td>
-                <td>${item.buyer_name}</td>
-                <td>${item.total_price} تومان</td>
-                <td>${item.date}</td>
-                <td style="background : ${status_color}">${item.status}</td>
-                <td><button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button></td>`
+                if(window.innerWidth > 750){
+                    tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.refID}</td>
+                    <td>${item.buyer_name}</td>
+                    <td>${item.total_price} تومان</td>
+                    <td>${item.date}</td>
+                    <td style="background : ${status_color}">${item.status}</td>
+                    <td><button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button></td>`
+                }else if (window.innerWidth > 480){
+                    tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.refID}</td>
+                    <td>${item.total_price} تومان</td>
+                    <td>${item.date}</td>
+                    <td style="background : ${status_color}">${item.status}</td>
+                    <td><button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button></td>`
+                }else{
+                    tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.refID}</td>
+                    <td>${item.total_price} تومان</td>
+                    <td style="background : ${status_color}">${item.status}</td>
+                    <td><button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button></td>`
+                }
                 father.appendChild(tr);
             });
         } else {
@@ -391,34 +408,13 @@ function order_detail(id) {
             item_box.classList.add("object_box");
             const array = item.picture.split("/");
             const picture = array[3];
-            let type, Class;
+            let type ;
             switch (item.type) {
                 case "painting":
                     type = "نقاشی";
-                    for (var i = 0; i < painting_art.length; i++) {
-                        if (item.class == painting_art[i]) {
-                            Class = painting_art_fa[i];
-                            break;
-                        }
-                    }
-                    break;
-                case "pottery":
-                    type = "سفال";
-                    for (var i = 0; i < pottery_art.length; i++) {
-                        if (item.class == pottery_art[i]) {
-                            Class = pottery_art_fa[i];
-                            break;
-                        }
-                    }
                     break;
                 case "sculpture":
                     type = "مجسمه";
-                    for (var i = 0; i < sculpture_art.length; i++) {
-                        if (item.class == sculpture_art[i]) {
-                            Class = sculpture_art_fa[i];
-                            break;
-                        }
-                    }
                     break;
             }
             item_box.innerHTML = `
@@ -427,11 +423,11 @@ function order_detail(id) {
                         <div class="objectDetail">
                             <h4 class="object_name">${item.name}</h4>
                             <h4 class="object_type">دسته بندی : ${type}</h4>
-                            <h4 class="object_class">سبک : ${Class}</h4>
+                            <h4 class="object_class">سبک : ${res.data.class}</h4>
                             <h4 class="object_shapes">ابعاد : ${item.x}x${item.y}</h4>
                         </div>
                     </div>
-                    <h4 class="object_price">${item.price}</h4>
+                    <h4 class="object_price">${item.price} تومان</h4>
                     ` ;
             document.getElementById("object_info").appendChild(item_box);
         })

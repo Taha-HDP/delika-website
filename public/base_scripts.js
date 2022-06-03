@@ -200,7 +200,7 @@ $(document).ready(function () {
     }
     $(document).mousemove(function () {
         $("#bag_icon").mouseenter(function () {
-            if (window.innerWidth > 670) {
+            if (window.innerWidth > 670 && window.location.href != domain+"/bag.html") {
                 document.getElementById("bag_preview").style.transform = "translateY(0)";
             }
         })
@@ -471,7 +471,7 @@ function send_help_request() {
             "type": type,
             "info": info,
         }
-        axios.post(domain+"/api/sendRequest", body, {
+        axios.post(domain + "/api/sendRequest", body, {
             headers: {
                 'x-auth-token': id
             }
@@ -785,7 +785,7 @@ function check_out() {
                 window.location.assign(res.data);
             }).catch(err => {
                 //window.location.assign("/500.html")
-                console.log(err) ;
+                console.log(err);
             });
         }
     }
@@ -863,7 +863,13 @@ function load_basket(mode) {
     const basket_item = (JSON.parse(localStorage.getItem('basket')));
     if (!basket_item || basket_item.length == 0) {
         if (mode == "page") {
-            document.getElementById("object_info").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 1.3rem;">سبد خرید شما خالی است</h4>`;
+            if (window.innerWidth <= 320)
+                document.getElementById("object_info").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 0.7rem;">سبد خرید شما خالی است</h4>`;
+            else if (window.innerWidth <= 1024)
+                document.getElementById("object_info").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 1.3rem;">سبد خرید شما خالی است</h4>`;
+            else
+                document.getElementById("object_info").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 1rem;">سبد خرید شما خالی است</h4>`;
+            document.getElementById("items_total").innerHTML = "0 تومان";
             document.getElementsByClassName("total_money")[0].innerHTML = "0 تومان";
         } else {
             document.getElementsByClassName("total_money")[0].innerHTML = "0 تومان";
@@ -874,6 +880,8 @@ function load_basket(mode) {
         }
     } else if (basket_item) {
         basket_item.map((item) => {
+            if (mode == "page")
+                document.getElementById("object_info").innerHTML = "";
             axios.get(domain + "/api/items/" + item).then(res => {
                 let type;
                 switch (res.data.type) {
@@ -918,11 +926,14 @@ function load_basket(mode) {
                             <h4 class="object_shapes">ابعاد : ${res.data.x}x${res.data.y}</h4>
                         </div>
                     </div>
-                    <div class="remove_object" onclick = "remove_basket('${item}')">
+                    <div class="left">
+                        <h4 class="object_price">${res.data.price} تومان</h4>
+                        <div class="remove_object" onclick = "remove_basket('${item}')">
                         <div class="close"></div>
-                        <h3>حذف</h3>
+                            <h3>حذف</h3>
+                        </div>
                     </div>
-                    <h4 class="object_price">${res.data.price} تومان</h4>
+                    
                     ` ;
                     document.getElementById("object_info").appendChild(item_box);
                     load_factor("none")
@@ -931,30 +942,28 @@ function load_basket(mode) {
                 window.location.assign("/500.html");
             });
         });
-        if (mode == "page") {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                document.getElementById("checkout").innerHTML = "ورود / ثبت نام";
-                document.getElementById("checkout").onclick = () => { window.location.href = "./register.html"; };
-            } else {
-                document.getElementById("checkout").innerHTML = "پرداخت";
-                document.getElementById("checkout").onclick = () => { check_out() };
-                document.getElementById("object_info").innerHTML = "";
-                axios.get(domain+"/api/profile/detail", {
-                    headers: {
-                        'x-auth-token': localStorage.getItem("token")
-                    }
-                }).then(res => {
-                    if (res.data.first_name && res.data.last_name)
-                        document.getElementById("F&Lname").value = res.data.first_name + " " + res.data.last_name;
-                    if (res.data.address)
-                        document.getElementById("send_address").value = res.data.address;
-                });
-            }
-        } else {
-            document.getElementById("Data").innerHTML = "";
-        }
     }
+    if (mode == "page") {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            document.getElementById("checkout").innerHTML = "ورود / ثبت نام";
+            document.getElementById("checkout").onclick = () => { window.location.href = "./register.html"; };
+        } else {
+            document.getElementById("checkout").innerHTML = "پرداخت";
+            document.getElementById("checkout").onclick = () => { check_out() };
+            document.getElementById("object_info").innerHTML = "";
+            axios.get(domain + "/api/profile/detail", {
+                headers: {
+                    'x-auth-token': localStorage.getItem("token")
+                }
+            }).then(res => {
+                if (res.data.first_name && res.data.last_name)
+                    document.getElementById("F&Lname").value = res.data.first_name + " " + res.data.last_name;
+                if (res.data.address)
+                    document.getElementById("send_address").value = res.data.address;
+            });
+        }
+    } 
 }
 function addToBasket() {
     const placeID = new URLSearchParams(window.location.search).get("place");

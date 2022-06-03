@@ -47,11 +47,11 @@ class Application {
     }
     setup_database() {
         ////////////////process.env.DATABASE_URL
-        mongoose.connect("mongodb://localhost:27017/delika_gallery" , {
+        mongoose.connect("mongodb://localhost:27017/delika_gallery", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             //authSource : "admin" ,
-        }).then(() => {
+        }).then(() => { 
             console.log("db connected");
         }).catch((err) => {
             console.log("db not connected", err);

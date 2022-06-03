@@ -113,7 +113,7 @@ function loadHeaderAndFooter() {
                 <h3>Site sections</h3>
                 <hr>
                 <ul>
-                    <li> <a href="/en">Home/a> </li>
+                    <li> <a href="/en">Home</a> </li>
                     <li> <a href="/en/paint.html" >Paint</a> </li>
                     <li> <a href="/en/sculpture.html">sculpture</a> </li>
                     <li> <a href="/en/learning_classes.html">Attendance classes</a> </li>
@@ -200,7 +200,7 @@ $(document).ready(function () {
     }
     $(document).mousemove(function () {
         $("#bag_icon").mouseenter(function () {
-            if (window.innerWidth > 670) {
+            if (window.innerWidth > 670 && window.location.href != domain+"/en/bag.html") {
                 document.getElementById("bag_preview").style.transform = "translateY(0)";
             }
         })
@@ -837,17 +837,25 @@ function load_basket(mode) {
     const basket_item = (JSON.parse(localStorage.getItem('basket')));
     if (!basket_item || basket_item.length == 0) {
         if (mode == "page") {
-            document.getElementById("object_info").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 1.3rem;">Your shopping bag is empty</h4>`;
+            if (window.innerWidth <= 320)
+                document.getElementById("object_info").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 0.7rem;">your shopping bag is empty</h4>`;
+            else if (window.innerWidth <= 1024)
+                document.getElementById("object_info").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 1.3rem;">your shopping bag is empty</h4>`;
+            else
+                document.getElementById("object_info").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 1rem;">your shopping bag is empty</h4>`;
+            document.getElementById("items_total").innerHTML = "0 $";
             document.getElementsByClassName("total_money")[0].innerHTML = "0 $";
         } else {
             document.getElementsByClassName("total_money")[0].innerHTML = "0 $";
             if (window.innerWidth > 1024)
-                document.getElementById("Data").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 1rem;">Your shopping bag is empty</h4>`;
+                document.getElementById("Data").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 1rem;">your shopping bag is empty</h4>`;
             else
-                document.getElementById("Data").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 0.7rem;">Your shopping bag is empty</h4>`;
+                document.getElementById("Data").innerHTML = `<h4 style="padding: 5%; text-align: center; font-size: 0.7rem;">your shopping bag is empty</h4>`;
         }
     } else if (basket_item) {
         basket_item.map((item) => {
+            if (mode == "page")
+                document.getElementById("object_info").innerHTML = "";
             axios.get(domain + "/api/items/" + item).then(res => {
                 total += parseInt(res.data.price);
                 if (mode != "page") {
@@ -860,8 +868,8 @@ function load_basket(mode) {
                     item_box.innerHTML = `
                     <div class="basket_item_info">
                         <h4 class="box_name">${res.data.name}</h4>
-                        <h4 class="box_type">Grouping : ${res.data.type}</h4>
-                        <h4 class="box_class">Style : ${res.data.class}</h4>
+                        <h4 class="box_type">category : ${res.data.type}</h4>
+                        <h4 class="box_class">style : ${res.data.class}</h4>
                     </div>
                     <div class="box_picture" style="background-image : url('../public/image/${picture}')"></div>
                     <h4 class="box_price">${res.data.price} $</h4>
@@ -878,46 +886,47 @@ function load_basket(mode) {
                         <div class="object_picture" style="background-image : url('../public/image/${picture}')"></div>
                         <div class="objectDetail">
                             <h4 class="object_name">${res.data.name}</h4>
-                            <h4 class="object_type">Grouping : ${res.data.type}</h4>
-                            <h4 class="object_class">Style : ${res.data.class}</h4>
+                            <h4 class="object_type">category : ${res.data.type}</h4>
+                            <h4 class="object_class">style : ${res.data.class}</h4>
                             <h4 class="object_shapes">Dimensions : ${res.data.x}x${res.data.y}</h4>
                         </div>
                     </div>
-                    <div class="remove_object" onclick = "remove_basket('${item}')">
+                    <div class="left">
+                        <h4 class="object_price">${res.data.price} $</h4>
+                        <div class="remove_object" onclick = "remove_basket('${item}')">
                         <div class="close"></div>
-                        <h3>remove</h3>
+                            <h3>remove</h3>
+                        </div>
                     </div>
-                    <h4 class="object_price">${res.data.price} $</h4>
+                    
                     ` ;
                     document.getElementById("object_info").appendChild(item_box);
                     load_factor("none")
                 }
             }).catch(err => {
-                window.location.assign("../500.html");
+                window.location.assign("/en/500.html");
             });
         });
-        if (mode == "page") {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                document.getElementById("checkout").innerHTML = "login / sign up";
-                document.getElementById("checkout").onclick = () => { window.location.href = "/en/register.html"; };
-            } else {
-                document.getElementById("checkout").innerHTML = "Pay";
-                document.getElementById("checkout").onclick = () => { check_out() };
-                document.getElementById("object_info").innerHTML = "";
-                axios.get(domain+"/api/profile/detail", {
-                    headers: {
-                        'x-auth-token': localStorage.getItem("token")
-                    }
-                }).then(res => {
-                    if (res.data.first_name && res.data.last_name)
-                        document.getElementById("F&Lname").value = res.data.first_name + " " + res.data.last_name;
-                    if (res.data.address)
-                        document.getElementById("send_address").value = res.data.address;
-                });
-            }
+    }
+    if (mode == "page") {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            document.getElementById("checkout").innerHTML = "login / signup";
+            document.getElementById("checkout").onclick = () => { window.location.href = "./register.html"; };
         } else {
-            document.getElementById("Data").innerHTML = "";
+            document.getElementById("checkout").innerHTML = "Pay";
+            document.getElementById("checkout").onclick = () => { check_out() };
+            document.getElementById("object_info").innerHTML = "";
+            axios.get(domain + "/api/profile/detail", {
+                headers: {
+                    'x-auth-token': localStorage.getItem("token")
+                }
+            }).then(res => {
+                if (res.data.first_name && res.data.last_name)
+                    document.getElementById("F&Lname").value = res.data.first_name + " " + res.data.last_name;
+                if (res.data.address)
+                    document.getElementById("send_address").value = res.data.address;
+            });
         }
     }
 }
