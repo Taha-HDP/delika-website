@@ -463,7 +463,13 @@ function send_help_request() {
         const name = document.getElementById("request_name").value;
         const phone = document.getElementById("request_phone").value;
         const type = type_check;
-        const info = document.getElementById("request_detail").value;
+        let info = document.getElementById("request_detail").value;
+        if(!name || !phone || !info){
+            const text = "you must coplete all fields";
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+            return 0 ;
+        }
+        info= info.replace(/(?:\r|\n|\r\n)/g, '<br>');
         const body = {
             "name": name,
             "phone": phone,
@@ -672,7 +678,7 @@ function item_page() {
     });
 }
 function add_comment() {
-    const body = {
+    let body = {
         name: document.getElementById("name").value,
         text: document.getElementById("comment_txt").value,
     }
@@ -680,6 +686,7 @@ function add_comment() {
         let text = "You must enter your name and comment";
         call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else {
+        body.text = body.text.replace(/(?:\r|\n|\r\n)/g, '<br>');
         const placeID = new URLSearchParams(window.location.search).get("place");
         axios.post(domain + "/api/items/addComment/" + placeID, body).then(res => {
             const text = "Your comment has been successfully submitted and will be displayed by the admin after review";
@@ -1013,13 +1020,14 @@ function send_request() {
     const type = document.querySelector("#type");
     const x = document.querySelector("#shapes_x");
     const y = document.querySelector("#shapes_y");
-    const info = document.querySelector("#info");
+    let info = document.querySelector("#info");
     const image = document.getElementById("image");
     if (!name.value || !type.value || !x.value || !y.value || !image.files[0]) {
         let text = "You have to complete all the parts";
         call_cs_popup(text, 3000, "#5D101D", "#ffd5da", "#390b1b");
         return 0;
     }
+    info = info.replace(/(?:\r|\n|\r\n)/g, '<br>');
     const body = new FormData();
     body.append("name", name.value);
     body.append("type", type.value);

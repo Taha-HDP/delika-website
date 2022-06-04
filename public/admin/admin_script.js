@@ -7,12 +7,74 @@ function add_new_item() {
     const art = document.forms["item-info"]["item-art"];
     const height = document.forms["item-info"]["item-height"];
     const width = document.forms["item-info"]["item-width"];
-    const info = document.forms["item-info"]["item-information"];
+    let info = document.forms["item-info"]["item-information"];
     const image = document.getElementById("item-image");
+    if (info.value)
+        info.value = info.value.replace(/(?:\r|\n|\r\n)/g, '<br>');
     if (!placeID) {
         if (!name.value || !price.value || !type.value || !art.value || !height.value || !width.value || !image.files[0]) {
             const text = "شما باید قسمت های ستاره دار را پر کنید !";
             call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+            return 0
+        }
+        const body = new FormData();
+        body.append("name", name.value);
+        body.append("type", type.value);
+        body.append("class", art.value);
+        body.append("y", height.value);
+        body.append("x", width.value);
+        body.append("price", price.value);
+        body.append("info", info.value);
+        body.append("picture", image.files[0]);
+        axios.post(domain + "/api/admin/add_new_item", body, {
+            headers: {
+                'x-auth-token': localStorage.getItem("token")
+            }
+        }).then(res => {
+            const text = "کالا با موفقیت به فروشگاه اضافه شد";
+            call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
+            name.value = "";
+            type.value = "none";
+            height.value = "";
+            width.value = "";
+            price.value = "";
+            info.value = "";
+            image.files[0] = "";
+            document.getElementById("uploadLabel").style.backgroundImage = "none";
+            document.getElementById("uploadLabel").style.color = "black";
+        }).catch(err => {
+            const text = "نام وارد شده تکراری می باشد";
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+        });
+
+    } else {
+        if (!name.value || !price.value || !type.value || !art.value || !height.value || !width.value) {
+            const text = "شما باید قسمت های ستاره دار را پر کنید !";
+            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+            return 0
+        }
+        if (!image.files[0]) {
+            const body = {
+                name: name.value,
+                type: type.value,
+                class: art.value,
+                y: height.value,
+                x: width.value,
+                price: price.value,
+                info: info.value
+            }
+            axios.put(domain + "/api/admin/edit_item/" + placeID, body, {
+                headers: {
+                    'x-auth-token': localStorage.getItem("token")
+                }
+            }).then(res => {
+                const text = "کالا با موفقیت ویرایش شد";
+                call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
+                window.location.href = "./item_list.html";
+            }).catch(err => {
+                const text = "نام وارد شده تکراری می باشد";
+                call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
+            });
         } else {
             const body = new FormData();
             body.append("name", name.value);
@@ -23,77 +85,18 @@ function add_new_item() {
             body.append("price", price.value);
             body.append("info", info.value);
             body.append("picture", image.files[0]);
-            axios.post(domain + "/api/admin/add_new_item", body, {
+            axios.put(domain + "/api/admin/edit_itemP/" + placeID, body, {
                 headers: {
                     'x-auth-token': localStorage.getItem("token")
                 }
             }).then(res => {
-                const text = "کالا با موفقیت به فروشگاه اضافه شد";
+                const text = "کالا با موفقیت ویرایش شد";
                 call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
-                name.value = "";
-                type.value = "none";
-                height.value = "";
-                width.value = "";
-                price.value = "";
-                info.value = "";
-                image.files[0] = "";
-                document.getElementById("uploadLabel").style.backgroundImage = "none";
-                document.getElementById("uploadLabel").style.color = "black";
+                window.location.href = "./item_list.html";
             }).catch(err => {
                 const text = "نام وارد شده تکراری می باشد";
                 call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             });
-        }
-    } else {
-        if (!name.value || !price.value || !type.value || !art.value || !height.value || !width.value) {
-            const text = "شما باید قسمت های ستاره دار را پر کنید !";
-            call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
-        } else {
-            if (!image.files[0]) {
-                const body = {
-                    name: name.value,
-                    type: type.value,
-                    class: art.value,
-                    y: height.value,
-                    x: width.value,
-                    price: price.value,
-                    info: info.value
-                }
-                axios.put(domain + "/api/admin/edit_item/" + placeID, body, {
-                    headers: {
-                        'x-auth-token': localStorage.getItem("token")
-                    }
-                }).then(res => {
-                    const text = "کالا با موفقیت ویرایش شد";
-                    call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
-                    window.location.href = "./item_list.html";
-                }).catch(err => {
-                    const text = "نام وارد شده تکراری می باشد";
-                    call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
-                });
-            } else {
-                const body = new FormData();
-                body.append("name", name.value);
-                body.append("type", type.value);
-                body.append("class", art.value);
-                body.append("y", height.value);
-                body.append("x", width.value);
-                body.append("price", price.value);
-                body.append("info", info.value);
-                body.append("picture", image.files[0]);
-                axios.put(domain + "/api/admin/edit_itemP/" + placeID, body, {
-                    headers: {
-                        'x-auth-token': localStorage.getItem("token")
-                    }
-                }).then(res => {
-                    const text = "کالا با موفقیت ویرایش شد";
-                    call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
-                    window.location.href = "./item_list.html";
-                }).catch(err => {
-                    const text = "نام وارد شده تکراری می باشد";
-                    call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
-                });
-            }
         }
     }
 }
@@ -285,7 +288,11 @@ function edit_item() {
             document.getElementById("item-art").value = res.data.class;
             document.getElementById("height").value = res.data.y;
             document.getElementById("width").value = res.data.x;
-            document.getElementById("item-information").value = res.data.info;
+            let text = res.data.info;
+            if (text) {
+                text = text.replace(/<br>/g, '\n');
+            }
+            document.getElementById("item-information").value = text;
             let picture = res.data.picture;
             const array = picture.split("/");
             picture = array[3];
@@ -361,9 +368,9 @@ function check_admin() {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
-        
-        if(window.innerWidth <= 1024){
-            document.getElementsByTagName("main")[0].innerHTML = "" ;
+
+        if (window.innerWidth <= 1024) {
+            document.getElementsByTagName("main")[0].innerHTML = "";
         }
     }).catch(err => {
         window.location.assign("/");
@@ -409,15 +416,26 @@ function site_data() {
         document.getElementById("siteAdresss2").value = res.data.address_2;
         document.getElementById("localTransport").value = res.data.local_transport;
         document.getElementById("globalTransprot").value = res.data.global_transport;
-        document.getElementById("about_delika").value = res.data.about;
+        let text = res.data.about;
+        if (text) {
+            text = text.replace(/<br>/g, '\n');
+        }
+        document.getElementById("about_delika").value = text;
     }).catch(err => {
         window.location.assign("/500.html")
     })
 }
 function change_setting(id) {
+    let text;
+    if (id == "about_delika") {
+        text = document.getElementById(id).value;
+        text = text.replace(/(?:\r|\n|\r\n)/g, '<br>');
+    } else {
+        text = document.getElementById(id).value;
+    }
     const body = {
         type: id,
-        data: document.getElementById(id).value
+        data: text
     }
     axios.put(domain + "/api/admin/site_setting", body, {
         headers: {
@@ -1204,11 +1222,13 @@ function create_course() {
     const course_leangth = document.forms["course"]["course_leangth"];
     const course_time = document.forms["course"]["course_time"];
     const course_teacher = document.forms["course"]["course_teacher"];
-    const info = document.forms["course"]["course_information"];
+    let info = document.forms["course"]["course_information"];
     const place = document.forms["course"]["course_place"];
     const hours = document.forms["course"]["course_hours"];
     const start_date = document.forms["course"]["start_date"];
     const image = document.getElementById("course_image");
+    if (info.value)
+        info.value = info.value.replace(/(?:\r|\n|\r\n)/g, '<br>');
     if (!placeID) {
         if (!name.value || !price.value || !type.value || !course_leangth.value ||
             !course_time.value || !course_teacher.value || !place.value || !hours.value ||
@@ -1487,7 +1507,11 @@ function edit_course() {
             course_leangth.value = res.data.length;
             course_time.value = res.data.time;
             course_teacher.value = res.data.teacher;
-            info.value = res.data.info;
+            let text = res.data.info;
+            if (text) {
+                text = text.replace(/<br>/g, '\n');
+            }
+            info.value = text;
             place.value = res.data.place;
             hours.value = res.data.hours;
             start_date.value = res.data.start_date;
