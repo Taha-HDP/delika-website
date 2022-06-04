@@ -361,6 +361,10 @@ function check_admin() {
             'x-auth-token': localStorage.getItem("token")
         }
     }).then(res => {
+        
+        if(window.innerWidth <= 1024){
+            document.getElementsByTagName("main")[0].innerHTML = "" ;
+        }
     }).catch(err => {
         window.location.assign("/");
     });

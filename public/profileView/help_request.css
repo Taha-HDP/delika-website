@@ -56,27 +56,28 @@ table td {
     border: 1px solid black;
     padding: 1%;
     vertical-align: middle;
+    line-height: 1.5;
+    text-align: center;
 }
 table th{
     border: 1px solid black;
     text-align: center;
     padding: 1rem 0;
+    vertical-align: middle;
+    line-height: 1.5;
 }
 
 #number{
     width: 5%;
 }
 #member-name{
-    width: 10%;
-}
-#member-phone{
-    width: 10%;
+    width: 15%;
 }
 #date{
-    width: 15%;
+    width: 10%;
 }
 #final-date{
-    width: 15%;
+    width: 10%;
 }
 #status{
     width: 10%;
@@ -85,12 +86,188 @@ table th{
     width: 10%;
 }
 #detail{
-    width: 25%;
+    width: 10%;
+    text-align: center;
+}
+.detail_button{
+    font-family: inherit;
+    border: 1px solid black;
+    background-color: black ;
+    color: white;
+    padding: 0.5rem 0;
+    width: 80%;
+    transition : 400ms
+}
+.detail_button:hover{
+    cursor: pointer ;
+    color: rgb(0, 0, 0);
+    background-color: white !important;
+    transition : 400ms
 }
 
+#requestDetail{
+    display: none;
+    background: rgb(241, 241, 241);
+}
+#requestDetail table{
+    text-align: right !important;
+}
+#detail-head {
+    font-size: 1.7rem;
+    margin: 0 3% 0rem;
+    display: inline-block;
+}
+#back-button{
+    font-size: 1.2rem;
+    transition: 400ms;
+    text-align: left;
+    margin-bottom: 1rem;
+    padding: 0 0 0 2%;
+}
+#back-button:hover{
+    cursor: pointer;
+    text-shadow: 0px 0px 5px rgba(0,0,0,.5);
+    transition: 400ms;
+}
 #empty{
     text-align: center;
     margin-top: 5rem;
     font-size: 2rem;
     color: rgb(116 116 116);
+}
+
+@media (max-width : 64rem) {
+    #mid{
+        margin-top: 9rem;
+    }
+    main{
+        margin-right: 1%;
+        padding: 1%;
+        width: 75%;
+    }
+    aside {
+        width: 18%;
+    }
+    #side_list {
+        font-size: 0.8rem;
+    }
+    aside h2 {
+        font-size: 0.9rem;
+    }
+    table{
+        font-size: 0.7rem;
+        line-height: 1.5
+    }
+    main h2{
+        padding: 0.7rem;
+        font-size: 1.2rem;
+    }
+    main h3 {
+        padding: 0.7rem;
+        font-size: 1rem;
+    }
+    table th {
+        padding: 0.7rem 0;
+    }
+    .detail_button {
+        font-size: 0.7rem;
+        padding: 0.3rem 0;
+        width: 100%;
+    }
+    #detail-head {
+        font-size: 1.2rem;
+    }
+    #back-button {
+        font-size: 0.9rem;
+    }
+    #empty {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width : 47rem) {
+    aside {
+        width: 21%;
+        padding: 0.7% 1%;
+    }
+    main{
+        width: 74%;
+    }
+    main h2 {
+        padding: 0.7rem 0 0;
+        font-size: 1rem;
+    }
+    main h3 {
+        font-size: 0.8rem;
+    }
+    table{
+        font-size: 0.5rem;
+        line-height: 1.5
+    }
+    table th {
+        padding: 0.5rem 0;
+    }
+    .detail_button {
+        font-size: 0.5rem;
+        padding: 0.2rem 0;
+    }
+    #detail-head {
+        font-size: 0.9rem;
+    }
+    #back-button {
+        font-size: 0.7rem;
+    }
+    #empty {
+        font-size: 1rem;
+    }
+}
+@media (max-width : 30rem) {
+    #mid{
+        margin-top: 6.3rem;
+    }
+    main h2 {
+        padding: 0.6rem 0 0;
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+    main h3 {
+        font-size: 0.5rem;
+    }
+    aside h2{
+        font-size: 0.6rem;
+        font-weight: 500;
+    }
+    #side_list {
+        font-size: 0.5rem;
+    }
+    aside li {
+        padding: 0.2rem;
+        margin: 0;
+    }
+    .active {
+        border-radius: 8px;
+    }
+    table{
+        font-size: 0.4rem;
+    }
+    table th {
+        padding: 0.4rem 0;
+    }
+    .detail_button {
+        font-size: 0.4rem;
+        padding: 0.15rem 0;
+    }
+    #detail-head {
+        font-size: 0.7rem;
+        font-weight: 500;
+    }
+    #back-button {
+        font-size: 0.5rem;
+        margin-bottom: 0.6rem;
+    }
+    #date{
+        display: none;
+    }
+    #empty {
+        font-size: 0.8rem;
+    }
 }

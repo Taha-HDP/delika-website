@@ -213,6 +213,12 @@ module.exports = new (class Customer_controller {
         const requests = await Request.find({ person: user._id });
         res.send(requests);
     }
+    async help_request_detail(req, res) {
+        const request = await Request.findById(req.params.id);
+        if (!request)
+            return res.status(404).send();
+        res.send(request);
+    }
     async self_request_list(req, res) {
         const requests = await Self_request.find({
             member_id: req.user._id

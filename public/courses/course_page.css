@@ -23,7 +23,7 @@
     margin: 2rem 20% 0;
     width: 60%;
     height: 3rem;
-    border: 1px solid;
+    border: 1px solid black;
     transition: 400ms;
 }
 .detail button:hover{
@@ -80,4 +80,83 @@
     font-size: 1rem;
     line-height: 1.8;
     padding: 1%;
+}
+@media (max-width : 90rem) {
+    .class {
+        width: 99%;
+        margin-right: 1%;
+    }
+    .detail{
+        width: 27%;
+    }
+    .info{
+        width: 63%;
+    }
+}
+@media (max-width : 64rem) {
+    .detail{
+        width: 30%;
+    }
+    .info{
+        width: 60%;
+    }
+    #mid {
+        margin-top: 9rem;
+    }
+    #price {
+        font-size: 0.9rem !important;
+    }
+    #mid li {
+        font-size: 0.8rem;
+    }
+    .info h3 {
+        font-size: 1.3rem;
+    }
+    .info p {
+        font-size: 0.8rem;
+    }
+}
+@media (max-width : 47rem) {
+    .detail {
+        width: 93%;
+    }
+    .info{
+        width: 98%;
+    }
+    #mid {
+        margin-top: 9rem;
+    }
+    .class {
+        flex-direction: column-reverse;
+    }
+    .picture{
+        height: 16rem;
+    }
+}
+@media (max-width : 30rem) {
+    #mid {
+        margin-top: 5rem;
+    }
+    #price {
+        font-size: 0.7rem !important;
+        padding-bottom: 0.5rem;
+    }
+    #mid li {
+        font-size: 0.6rem;
+        margin: 0.5rem 0;
+    }
+    .info h3 {
+        font-size: 0.9rem;
+    }
+    .info p {
+        font-size: 0.6rem;
+    }
+    .picture{
+        height: 10rem;
+    }
+    .detail button{
+        margin: 1rem 20% 0;
+        height: 2rem;
+        font-size: 0.7rem;
+    }
 }

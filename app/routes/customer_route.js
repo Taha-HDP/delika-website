@@ -11,6 +11,7 @@ router.put("/profile/changePassword" , auth , Customer_controller.change_passwor
 router.get("/profile/help_request_list", auth , Customer_controller.help_request_list);
 router.get("/profile/self_request_list", auth , Customer_controller.self_request_list);
 router.get("/profile/requestDetail/:id", auth , Customer_controller.self_request_detail);
+router.get("/profile/helpDetail/:id", auth , Customer_controller.help_request_detail);
 
 router.post("/register", Customer_controller.register);
 router.post("/login", Customer_controller.login);

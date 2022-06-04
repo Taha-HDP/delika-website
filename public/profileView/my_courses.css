@@ -67,6 +67,7 @@ table th{
     border: 1px solid black;
     text-align: center;
     padding: 1rem 0;
+    vertical-align: middle;
 }
 table button{
     border: 1px solid black;
@@ -86,18 +87,22 @@ table button:hover{
 .number{
     width: 5% ;
 }
-
 .class_length ,
 .class_time ,
 .class_price ,
 .class_detail{
     width: 10% ;
 }
-.class_hours ,
-.class_start_date ,
-.class_status ,
+.class_start_date,
+.class_hours{
+    width: 15%;
+}
+
 .class_name{
-    width:15% ;
+    width: 20%;
+}
+.class_status{
+    width:10% ;
 }
 
 #detail_button{
@@ -123,3 +128,119 @@ table button:hover{
     color: rgb(116 116 116);
 }
 
+@media (max-width : 64rem) {
+    #mid{
+        margin-top: 9rem;
+    }
+    main{
+        margin-right: 1%;
+        padding: 1%;
+        width: 75%;
+    }
+    aside {
+        width: 18%;
+    }
+    #side_list {
+        font-size: 0.8rem;
+    }
+    aside h2 {
+        font-size: 0.9rem;
+    }
+    table{
+        font-size: 0.7rem;
+        line-height: 1.5
+    }
+    main h2{
+        padding: 0.7rem;
+        font-size: 1.2rem;
+    }
+    main h3 {
+        padding: 0.7rem;
+        font-size: 1rem;
+    }
+    table button {
+        font-size: 0.7rem;
+    }
+    table th {
+        padding: 0.7rem 0;
+    }
+    #empty {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width : 47rem) {
+    aside {
+        width: 21%;
+        padding: 0.7% 1%;
+    }
+    main{
+        width: 74%;
+    }
+    main h2 {
+        padding: 0.7rem 0 0;
+        font-size: 1rem;
+    }
+    main h3 {
+        font-size: 0.8rem;
+    }
+    table button {
+        font-size: 0.5rem;
+        width: 100%;
+    }
+    .class_length{
+        display: none;
+    }
+    table{
+        font-size: 0.5rem;
+        line-height: 1.5
+    }
+    table th {
+        padding: 0.5rem 0;
+    }
+    #empty {
+        font-size: 1rem;
+    }
+}
+@media (max-width : 30rem) {
+    #mid{
+        margin-top: 6.3rem;
+    }
+    main h2 {
+        padding: 0.6rem 0 0;
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+    main h3 {
+        font-size: 0.5rem;
+    }
+    aside h2{
+        font-size: 0.6rem;
+        font-weight: 500;
+    }
+    #side_list {
+        font-size: 0.5rem;
+    }
+    aside li {
+        padding: 0.2rem;
+        margin: 0;
+    }
+    .active {
+        border-radius: 8px;
+    }
+    table{
+        font-size: 0.4rem;
+    }
+    table button {
+        font-size: 0.4rem;
+        padding: 0.2rem 0;
+    }
+    table th {
+        padding: 0.4rem 0;
+    }
+    .class_hours{
+        display: none;
+    }
+    #empty {
+        font-size: 0.8rem;
+    }
+}

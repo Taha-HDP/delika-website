@@ -92,7 +92,7 @@ function check_role() {
     const id = localStorage.getItem("token");
     if (!id) {
         window.location.assign("/");
-    } else if(window.innerWidth >= 1024) {
+    } else if (window.innerWidth >= 1024) {
         axios.get(domain + "/api/profile/detail", {
             headers: {
                 'x-auth-token': localStorage.getItem("token")
@@ -131,10 +131,10 @@ function change_password() {
                 'x-auth-token': localStorage.getItem("token")
             }
         }).then(res => {
-            if(res.data == "not found"){
+            if (res.data == "not found") {
                 const text = "رمز وارد شده اشتباه است";
                 call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
-            }else{
+            } else {
                 const text = "با موفقیت زخیره شد";
                 call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
                 document.getElementById("current-password").value = "";
@@ -142,7 +142,7 @@ function change_password() {
                 document.getElementById("check-password").value = "";
             }
         }).catch(err => {
-            window.location.assign("/500.html") ;
+            window.location.assign("/500.html");
         });
     }
 }
@@ -168,15 +168,25 @@ function member_help_requests() {
                     status_color = "rgb(79 255 85 / 92%)";
                 }
                 var tr = document.createElement("tr");
-                tr.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${item.name}</td>
-                <td>${item.phone}</td>
-                <td>${item.create_date}</td>
-                <td>${item.final_date}</td>
-                <td style="background : ${status_color}">${item.status}</td>
-                <td style="background : ${money_color}">${item.money_status}</td>
-                <td>${item.info}</td>`
+                if(window.innerWidth > 480){
+                    tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.name}</td>
+                    <td>${item.create_date}</td>
+                    <td>${item.final_date}</td>
+                    <td style="background : ${status_color}">${item.status}</td>
+                    <td style="background : ${money_color}">${item.money_status}</td>
+                    <td><button class="detail_button" onclick="help_request_dateil('${item._id}')">جزئیات</button></td>`;
+                }else{
+                    tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.name}</td>
+                    <td>${item.final_date}</td>
+                    <td style="background : ${status_color}">${item.status}</td>
+                    <td style="background : ${money_color}">${item.money_status}</td>
+                    <td><button class="detail_button" onclick="help_request_dateil('${item._id}')">جزئیات</button></td>`;
+                }
+                
                 father.appendChild(tr);
             });
         } else {
@@ -187,6 +197,68 @@ function member_help_requests() {
 
     }).catch(err => {
         window.location.assign("/");
+    });
+}
+function help_request_dateil(id) {
+    document.getElementById("self-req").style.display = "none";
+    document.getElementById("requestDetail").style.display = "block";
+    axios.get(domain + "/api/profile/helpDetail/" + id, {
+        headers: {
+            'x-auth-token': localStorage.getItem("token")
+        }
+    }).then(res => {
+        const request = res.data;
+        let type;
+        if (request.type == "see")
+            type = "حضوری";
+        else
+            type = "تلفنی" ;
+        document.getElementById("requestDetail").innerHTML = `
+        <h3 id="detail-head">جزئیات درخواست</h3>
+        <h3 id="back-button" onclick="backToRequests()">بازگشت</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>آی دی درخواست</td>
+                    <td>${request._id}</td>
+                </tr>
+                <tr>
+                    <td>نام و نام خانوادگی</td>
+                    <td>${request.name}</td>
+                </tr>
+                <tr>
+                    <td>شماره ثبت شده</td>
+                    <td>${request.phone}</td>
+                </tr>
+                <tr>
+                    <td>تاریخ درخواست</td>
+                    <td>${request.create_date}</td>
+                </tr>
+                <tr>
+                    <td>تاریخ معین شئه</td>
+                    <td>${request.final_date}</td>
+                </tr>
+                <tr>
+                    <td>نوع مشاوره</td>
+                    <td>${type}</td>
+                </tr>
+                <tr>
+                    <td>وضعیت</td>
+                    <td>${request.status}</td>
+                </tr>
+                <tr>
+                    <td>وضعیت پرداخت</td>
+                    <td>${request.money_status}</td>
+                </tr>
+                <tr>
+                    <td>توضیحات</td>
+                    <td>${request.info}</td>
+                </tr>
+            </tbody>
+        </table> ` ;
+    }).catch(err => {
+        // window.location.assign("/500.html");
+        console.log(err)
     });
 }
 function member_self_requests() {
@@ -233,16 +305,26 @@ function member_self_requests() {
                 } else {
                     tr.style.backgroundColor = "rgb(241, 241, 241)";
                 }
-                tr.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${request.name}</td>
-            <td>${type}</td>
-            <td>
-                طول = ${request.x} | عرض = ${request.y}
-            </td>
-            <td style="background : ${status_color}">${status}</td>
-            <td>${request.send_date}</td>
-            <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">جزئیات</button></td>`;
+                if (window, innerWidth > 480) {
+                    tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${request.name}</td>
+                    <td>${type}</td>
+                    <td>
+                        طول = ${request.x} | عرض = ${request.y}
+                    </td>
+                    <td style="background : ${status_color}">${status}</td>
+                    <td>${request.send_date}</td>
+                    <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">جزئیات</button></td>`;
+                } else {
+                    tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${request.name}</td>
+                    <td>${type}</td>
+                    <td style="background : ${status_color}">${status}</td>
+                    <td>${request.send_date}</td>
+                    <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">جزئیات</button></td>`;
+                }
                 father.appendChild(tr);
             });
         } else {
@@ -265,6 +347,29 @@ function self_request_dateil(id) {
         const request = res.data;
         const array = request.picture.split("/");
         const picture = array[3];
+        let type, status;
+        switch (request.status) {
+            case "checking":
+                status = "درحال بررسی";
+                break;
+            case "creating":
+                status = "در حال ساخت";
+                break;
+            case "sended":
+                status = "ارسال شده";
+                break;
+            case "done":
+                status = "انجام شده";
+                break;
+        }
+        switch (request.type) {
+            case "painting":
+                type = "نقاشی";
+                break;
+            case "sculpture":
+                type = "مجسمه";
+                break;
+        }
         document.getElementById("requestDetail").innerHTML = `
         <h3 id="detail-head">جزئیات درخواست</h3>
         <h3 id="back-button" onclick="backToRequests()">بازگشت</h3>
@@ -288,11 +393,11 @@ function self_request_dateil(id) {
                 </tr>
                 <tr>
                     <td>دسته بندی</td>
-                    <td>${request.type}</td>
+                    <td>${type}</td>
                 </tr>
                 <tr>
                     <td>وضعیت</td>
-                    <td>${request.status}</td>
+                    <td>${status}</td>
                 </tr>
                 <tr>
                     <td>طول</td>
@@ -344,7 +449,7 @@ function load_oreder() {
                     status_color = "rgb(79 255 85 / 92%)";
                 }
                 var tr = document.createElement("tr");
-                if(window.innerWidth > 750){
+                if (window.innerWidth > 750) {
                     tr.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${item.refID}</td>
@@ -353,7 +458,7 @@ function load_oreder() {
                     <td>${item.date}</td>
                     <td style="background : ${status_color}">${item.status}</td>
                     <td><button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button></td>`
-                }else if (window.innerWidth > 480){
+                } else if (window.innerWidth > 480) {
                     tr.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${item.refID}</td>
@@ -361,7 +466,7 @@ function load_oreder() {
                     <td>${item.date}</td>
                     <td style="background : ${status_color}">${item.status}</td>
                     <td><button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button></td>`
-                }else{
+                } else {
                     tr.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${item.refID}</td>
@@ -408,7 +513,7 @@ function order_detail(id) {
             item_box.classList.add("object_box");
             const array = item.picture.split("/");
             const picture = array[3];
-            let type ;
+            let type;
             switch (item.type) {
                 case "painting":
                     type = "نقاشی";
@@ -468,15 +573,34 @@ function load_my_course() {
                         break;
                 }
                 //-------
-                tr.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${course.name}</td>
-                <td>${course.length}</td>
-                <td>${course.time}</td>
-                <td>${status}</td>
-                <td>${course.hours}</td>
-                <td>${course.start_date}</td>
-                <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">جزئیات</button></a></td>`;
+                if (window.innerWidth > 750) {
+                    tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${course.name}</td>
+                    <td>${course.length}</td>
+                    <td>${course.time}</td>
+                    <td>${status}</td>
+                    <td>${course.hours}</td>
+                    <td>${course.start_date}</td>
+                    <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">جزئیات</button></a></td>`;
+                } else if (window.innerWidth > 480) {
+                    tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${course.name}</td>
+                    <td>${course.time}</td>
+                    <td>${status}</td>
+                    <td>${course.hours}</td>
+                    <td>${course.start_date}</td>
+                    <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">جزئیات</button></a></td>`;
+                } else {
+                    tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${course.name}</td>
+                    <td>${course.time}</td>
+                    <td>${status}</td>
+                    <td>${course.start_date}</td>
+                    <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">جزئیات</button></a></td>`;
+                }
                 let father;
                 if (course.status == "ongoing")
                     father = document.querySelector("#ongoing_courses tbody");

@@ -284,6 +284,9 @@ table th{
         width: 80px;
         height: 80px;
     }
+    #empty {
+        font-size: 1.5rem;
+    }
 }
 @media (max-width : 47rem) {
     aside {
@@ -295,6 +298,9 @@ table th{
     }
     #order_name {
         display: none;
+    }
+    #empty {
+        font-size: 1rem;
     }
 }
 @media (max-width : 30rem) {
@@ -369,5 +375,8 @@ table th{
     .object_price {
         font-size: 0.6rem;
         margin-top: 0.5rem;
+    }
+    #empty {
+        font-size: 0.8rem;
     }
 }
