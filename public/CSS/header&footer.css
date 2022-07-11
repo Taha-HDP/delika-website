@@ -174,15 +174,9 @@ a{
     justify-content: space-evenly;
     align-items: center;
 }
-#bag_pic{
-    margin-left: 0.4rem;
-    width: 30px;
-    height: 25px;
-    transition: 300ms;
-    background-image: url(../public/images/bag.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: 50% 50%;
+.icon span{
+    font-size: 1.3rem;
+    margin-left: 10px;
 }
 
 #bag{
@@ -365,11 +359,10 @@ a{
     }
     #shop {
         right: 3%;
-        top: 10%;
+        top: 25%;
     }
-    #bag_pic{
-        width: 15px;
-        height: 20px;
+    .icon span{
+        font-size: 0.8rem;
     }
     #profile{
         right: 20%;
@@ -405,10 +398,6 @@ a{
         height: 22px;
         margin-bottom: 0.3rem;
     }
-    #bag_pic{
-        width: 8px;
-        height: 10px;
-    }
     .secound-header{
         margin-right: -8%;
     }
@@ -416,7 +405,11 @@ a{
         margin-top: 0.2rem;
     }
     #shop {
-        top: 15%;
+        top: 20%;
+    }
+    .icon span{
+        font-size: 0.5rem;
+        margin-left: 5px;
     }
     #profile{
         right: 28%;

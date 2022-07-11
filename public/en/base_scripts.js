@@ -1,19 +1,21 @@
-var script = document.createElement('script');
+let script = document.createElement('script');
 script.src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
 document.getElementsByTagName('body')[0].appendChild(script);
-
+let icon_script = document.createElement('script');
+icon_script.src = "https://kit.fontawesome.com/bcc0880e82.js";
+icon_script.crossOrigin = "anonymous";
+document.getElementsByTagName("head")[0].appendChild(icon_script);
 //const domain = "https://delikagallery.iran.liara.run";
 const domain = "http://localhost:3000";
 //------------- header & footer data
 function loadHeaderAndFooter() {
     document.querySelector("header#top").innerHTML = `
             <div class="first-header">
-                <a href="/en/bag.html" id="bag_icon">
+                <a href="/bag.html" id="bag_icon">
                     <div class="icon" id="shop">
-                        <div id="bag_pic">
-                        </div>
+                        <span class="fa fa-shopping-bag"></span>
                         <div id="bag">
-                            <h3>shopping bag</h3>
+                            <h3>Shoping Bag</h3>
                         </div>
                     </div>
                 </a>
@@ -200,7 +202,7 @@ $(document).ready(function () {
     }
     $(document).mousemove(function () {
         $("#bag_icon").mouseenter(function () {
-            if (window.innerWidth > 670 && window.location.href != domain+"/en/bag.html") {
+            if (window.innerWidth > 670 && window.location.href != domain + "/en/bag.html") {
                 document.getElementById("bag_preview").style.transform = "translateY(0)";
             }
         })
@@ -464,19 +466,19 @@ function send_help_request() {
         const phone = document.getElementById("request_phone").value;
         const type = type_check;
         let info = document.getElementById("request_detail").value;
-        if(!name || !phone || !info){
+        if (!name || !phone || !info) {
             const text = "you must coplete all fields";
             call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
-            return 0 ;
+            return 0;
         }
-        info= info.replace(/(?:\r|\n|\r\n)/g, '<br>');
+        info = info.replace(/(?:\r|\n|\r\n)/g, '<br>');
         const body = {
             "name": name,
             "phone": phone,
             "type": type,
             "info": info,
         }
-        axios.post(domain+"/api/sendRequest", body, {
+        axios.post(domain + "/api/sendRequest", body, {
             headers: {
                 'x-auth-token': id
             }
@@ -578,7 +580,7 @@ function create_shop_item(pic, name, price, id) {
     //--- picture
     var box_picture = document.createElement("div");
     box_picture.className = "item-picture";
-    const array = pic.split("/");
+    const array = pic.split("\\");
     picture = array[3];
     box_picture.style.backgroundImage = "url('../public/image/" + picture + "')";
     //--- name
@@ -647,7 +649,7 @@ function item_page() {
         document.getElementsByClassName("item_data")[4].innerHTML = res.data.info;
         document.getElementById("Price").innerHTML = res.data.price + " $";
         let picture = res.data.picture;
-        const array = picture.split("/");
+        const array = picture.split("\\");
         picture = array[3];
         document.getElementsByClassName("picture")[0].style.backgroundImage = "url('../public/image/" + picture + "')";
         if (res.data.comment) {
@@ -717,7 +719,7 @@ function load_intro_items() {
             //--- picture
             var box_picture = document.createElement("div");
             box_picture.className = "item-picture";
-            const array = pic.split("/");
+            const array = pic.split("\\");
             picture = array[3];
             box_picture.style.backgroundImage = "url('../public/image/" + picture + "')";
             //--- name
@@ -870,7 +872,7 @@ function load_basket(mode) {
                     item_box.classList.add("basket_item_box");
                     document.getElementById("item_count").innerHTML = "shopping bag : " + basket_item.length;
                     document.getElementsByClassName("total_money")[0].innerHTML = total + " $";
-                    const array = res.data.picture.split("/");
+                    const array = res.data.picture.split("\\");
                     const picture = array[3];
                     item_box.innerHTML = `
                     <div class="basket_item_info">
@@ -886,7 +888,7 @@ function load_basket(mode) {
                     const item_box = document.createElement("div");
                     item_box.classList.add("object_box");
                     document.getElementById("items_total").innerHTML = total + " $";
-                    const array = res.data.picture.split("/");
+                    const array = res.data.picture.split("\\");
                     const picture = array[3];
                     item_box.innerHTML = `
                     <div class="basket_object_info">

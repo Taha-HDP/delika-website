@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="Fa">
-
+<html dir="rtl" lang="En">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
-    <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
-    <link rel="stylesheet" href="../CSS/reset.css">
-    <link rel="stylesheet" href="./specification.css">
-    <link rel="stylesheet" href="../CSS/header&footer.css">
-    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
-    <title>گالری دلیکا - حساب کاربری </title>
+    <link rel="stylesheet" href="../../CSS/reset.css">
+    <link rel="stylesheet" href="../../profileView/specification.css">
+    <link rel="stylesheet" href="../../CSS/header&footer.css">
+    <link rel="stylesheet" href="../CSS/basic.css">
+    <link rel="icon" href="../../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>Delika Gallery | Profile</title>
 </head>
 
 <body onload="loadHeaderAndFooter() , load_profile_data() , load_basket()  , check_role()">
@@ -25,17 +23,17 @@
     </div>
     <article id="mid" onclick="lang_list_close()">
         <aside>
-            <h2>پروفایل</h2>
+            <h2>Profile</h2>
             <ul id="side_list">
-                <li class="active">مشخصات</li>
-                <li><a href="../bag.html">سبد خرید</a> </li>
-                <li><a href="./orders.html">تاریخچه سفارشات</a> </li>
-                <li><a href="./my_courses.html">دوره های من</a> </li>
-                <li><a href="./help_request.html">درخواست ها</a> </li>
-                <li><a href="./self_request.html">طرح های شخصی</a> </li>
-                <li id="admin_option"><a href="../admin/admin_pannel.html">پنل ادمین</a></li>
-                <li><a href="./change_password.html">تغییر رمز</a> </li>
-                <li onclick="exit_req()">خروج</li>
+                <li class="active"><a href="/en/profileView/specification.html">specification</a> </li>
+                <li><a href="/en/bag.html">shopping bag</a> </li>
+                <li><a href="/en/profileView/orders.html">orders</a> </li>
+                <li><a href="/en/profileView/my_courses.html">my courses</a> </li>
+                <li><a href="/en/profileView/help_request.html">Consulting requests</a> </li>
+                <li><a href="/en/profileView/self_request.html">Personal designs</a> </li>
+                <li id="admin_option"><a href="/en/admin/admin_pannel.html">Admin pannel</a></li>
+                <li><a href="/en/profileView/change_password.html">change Password</a> </li>
+                <li onclick="exit_req()">Exit</li>
             </ul>
         </aside>
         <main>
@@ -43,43 +41,43 @@
             <div id="information">
                 <form name="member-detail" method="post">
                     <div id="right_side">
-                        <label for="first-name">نام :</label>
+                        <label for="first-name">First Name :</label>
                         <br>
-                        <input type="text" name="first-name" placeholder="نام">
+                        <input type="text" name="first-name" placeholder="First name">
                         <br>
-                        <label for="username">نام کاربری :</label>
+                        <label for="username">Username:</label>
                         <br>
-                        <input type="text" name="username" placeholder="نام کاربری">
+                        <input type="text" name="username" placeholder="Username">
                         <br>
-                        <label for="email">ایمیل :</label>
+                        <label for="email">Email :</label>
                         <br>
-                        <input type="email" name="email" placeholder="ایمیل">
+                        <input type="email" name="email" placeholder="Email">
                         <br>
-                        <label for="address">آدرس :</label>
+                        <label for="address">Adsress :</label>
                         <br>
                         <textarea name="address" id="address" cols="30" rows="5" maxlength="120"></textarea>
                         <br>
-                        <input id="button" type="button" onclick="edit_profile()" value="ذخیره">
+                        <input id="button" type="button" onclick="edit_profile()" value="Save">
                     </div>
                     <div id="left_side">
-                        <label for="last-name">نام خانوادگی :</label>
+                        <label for="last-name">Last name :</label>
                         <br>
-                        <input type="text" name="last-name" placeholder="نام خانوادگی">
+                        <input type="text" name="last-name" placeholder="Last name">
                         <br>
-                        <label for="phone">شماره :</label>
+                        <label for="phone">Phone number :</label>
                         <br>
-                        <input type="text" name="phone" placeholder="شماره">
+                        <input type="text" name="phone" placeholder="Phone number">
                         <br>
-                        <label for="birth">تاریخ تولد :</label>
+                        <label for="birth">birthday :</label>
                         <br>
                         <input type="date" name="birth">
                         <br>
-                        <label for="gender">جنسیت :</label>
+                        <label for="gender">Gender :</label>
                         <br>
                         <select name="gender">
-                            <option value="male">مرد</option>
-                            <option value="female">زن</option>
-                            <option value="another">سایر</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="another">another</option>
                         </select>
                         <br>
                     </div>
@@ -88,7 +86,7 @@
         </main>
     </article>
     <footer></footer>
-    <script src="../jquery.js"></script>
+    <script src="../../jquery.js"></script>
     <script src="../base_scripts.js"> </script>
     <script src="./profile_script.js"> </script>
 </body>

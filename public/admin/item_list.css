@@ -20,42 +20,37 @@
 }
 #item-price ,
 #item-type{
-    width: 12%;
+    width: 15%;
 }
 #item-name ,
 #item-class {
-    width: 20%;
+    width: 25%;
 }
 #item-buttons{
-    width: 21%;
+    width: 10%;
 }
-.delete_button ,
+
 .detail_button ,
-.info_button{
-    padding: 0.5rem 2%;
-    width: 26%;
-    border: none;
-    font-family: inherit;
-    font-size: 0.7rem;
-    margin: 0 2.5%;
-    transition: 400ms;
+.info_button ,
+.delete_button{
+    font-size: 1.5rem;
+    margin: 0 5px;
+    cursor: pointer;
+    align-items: center;
 }
 .detail_button{
-    background-color: rgb(139, 255, 93);
+    color: rgb(90, 170, 59);
 }
 .delete_button{
-    background-color: rgb(255, 73, 73);
+    color: rgb(204, 0, 0);
 }
 .info_button{
-    background-color: rgb(73, 146, 255);
+    color: rgb(73, 146, 255);
 }
-.delete_button:hover ,
-.info_button:hover ,
-.detail_button:hover{
-    cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-    transition: 400ms;
+.center{
+    text-align: center;
 }
+
 
 #itemDetail{
     display: none;

@@ -17,6 +17,9 @@
     font-size: 1.2rem;
     font-weight: 600;
 }
+.center{
+    text-align: center;
+}
 #number{
     width: 5%;
 }
@@ -24,27 +27,22 @@
     width: 20%;
 }
 #order_price,
-#order_date,
-#order_status,
-#order_detail ,
-#order_refID{
+#order_status{
     width: 15%;
 }
+#order_date,
+#order_refID{
+    width: 20%;
+}
+#order_detail{
+    width: 5%;
+}
 #detail_button{
-    background-color: black;
-    color: white;
-    font-family: inherit;
-    border: 1px solid black;
-    width: 100%;
-    height: 2rem;
-    transition : 400ms ;
-}
-#detail_button:hover{
+    color: rgb(73, 146, 255);
+    font-size: 1.5rem;
     cursor: pointer;
-    color: black;
-    background-color: white;
-    transition : 400ms ;
 }
+
 #notfication{
     z-index: 2;
     position: fixed;

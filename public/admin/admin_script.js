@@ -166,13 +166,13 @@ function item_list() {
             tr.innerHTML = `
             <td>${index + 1}</td>
             <td><a href="${href}">${item.name}</a></td>
-            <td>${type}</td>
+            <td  class="center">${type}</td>
             <td>${res.data.class}</td>
-            <td>${item.price} تومان</td>
-            <td>
-                <button class="delete_button" onclick="delete_item('${item._id}')">حذف</button>
-                <button class="info_button" onclick="gotoEditItem('${item._id}')">ویرایش</button>
-                <button class="detail_button" onclick="item_detail('${item._id}')">جزئیات</button>
+            <td  class="center">${item.price} تومان</td>
+            <td class="center">
+                <i class="delete_button fa-regular fa-trash-can" onclick="delete_item('${item._id}')"></i>
+                <i class="info_button fa-regular fa-pen-to-square" onclick="gotoEditItem('${item._id}')"></i>
+                <i class="fa-solid fa-circle-info detail_button" onclick="item_detail('${item._id}')"></i>
             </td>`
             father.appendChild(tr);
         });
@@ -528,7 +528,9 @@ function member_list() {
             <td>${gender}</td>
             <td>${user.birth}</td>
             <td>${user.purchases_number}</td>
-            <td><button class="detail" onclick="member_detail('${user._id}')">جزئیات</button></td>`
+            <td>
+                <i class="detail fa-solid fa-circle-info" onclick="member_detail('${user._id}')"></i>
+            </td>`
             father.appendChild(tr);
         });
     }).catch(err => {
@@ -660,7 +662,9 @@ function self_request_list() {
                     <option class="request_done" value="done">انجام شده</option>
                 </select>
             </td>
-            <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">جزئیات</button></td>`;
+            <td>
+                <i class="detail_button fa-solid fa-circle-info" onclick="self_request_dateil('${request._id}')"></i>
+            </td>`;
             father.appendChild(tr);
             document.getElementsByClassName("request_" + request.status)[index].selected = true;
         });
@@ -950,14 +954,14 @@ function comment_list() {
                 tr.style.backgroundColor = "rgb(241, 241, 241)";
             }
             tr.innerHTML = `
-            <td>${index + 1}</td>
+            <td class="center">${index + 1}</td>
             <td>${item.name}</td>
             <td>${item.text}</td>
-            <td>${item.create_date}</td>
-            <td>${item.father_id}</td>
-            <td>
-                <button class="delete_button" onclick="delete_comment('${item._id}')">حذف</button> 
-                <button class="accept_button" onclick="accept_comment('${item._id}')">تایید</button>
+            <td class="center">${item.create_date}</td>
+            <td class="center">${item.father_id}</td>
+            <td class="center">
+                <i class="delete_button fa-regular fa-trash-can" onclick="delete_comment('${item._id}')"></i>
+                <i class="fa-regular fa-circle-check accept_button" onclick="accept_comment('${item._id}')"></i>
             </td>`
             father.appendChild(tr);
         });
@@ -1018,12 +1022,12 @@ function order_list() {
                     tr.style.backgroundColor = "rgb(241, 241, 241)";
                 }
                 tr.innerHTML = `
-                    <td>${index + 1}</td>
+                    <td class="center">${index + 1}</td>
                     <td>${item.refID}</td>
                     <td>${item.buyer_name}</td>
-                    <td>${item.total_price} تومان</td>
-                    <td>${item.date}</td>
-                    <td style="background : ${status_color}">
+                    <td class="center">${item.total_price} تومان</td>
+                    <td class="center">${item.date}</td>
+                    <td class="center" style="background : ${status_color}">
                         <select class="status_select" onchange="change_order_status('${item._id}','${index}')">
                             <option value="${item.status}" selected disabled hidden>${item.status}</option>
                             <option value="انجام شده"> انجام شده</option>
@@ -1032,8 +1036,8 @@ function order_list() {
                             <option value="در حال بررسی">در حال بررسی</option>
                         </select>
                     </td>
-                    <td>
-                        <button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button>
+                    <td class="center">
+                        <i id="detail_button" class="fa-solid fa-circle-info" onclick="order_detail('${item._id}')"></i>
                     </td>` ;
                 father.appendChild(tr);
             });
@@ -1371,7 +1375,10 @@ function load_courses() {
                     </select>
                 </td>
                 <td>${item.price} تومان</td>
-                <td><button class="detail_button" onclick="courses_detail('${item._id}')">جزئیات</button> <button class="info_button" onclick="gotoEditCourse('${item._id}')">ویرایش</button></td>`;
+                <td>
+                    <i class="info_button fa-regular fa-pen-to-square" onclick="gotoEditCourse('${item._id}')"></i>
+                    <i class="fa-solid fa-circle-info detail_button" onclick="item_detail('${item._id}')"></i>
+                </td>`;
             father.appendChild(tr);
             document.getElementsByClassName(item.status)[index].selected = true;
         });

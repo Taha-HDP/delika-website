@@ -26,39 +26,36 @@ table{
 #class_type ,
 #class_member ,
 #class_length ,
-#class_time ,
-#class_price{
-    width: 10% ;
+#class_time{
+    width: 10%;
 }
-#class_detail ,
-#class_status ,
+#class_price{
+    width: 12% ;
+}
+#class_detail{
+    width: 8%;
+}
+#class_status{
+    width: 10%;
+}
 #class_name{
-    width:15% ;
+    width:20% ;
+}
+.detail_button ,
+.info_button{
+    font-size: 1.5rem;
+    margin: 0 5px;
+    cursor: pointer;
+    align-items: center;
 }
 .detail_button{
-    padding: 0.5rem 5%;
-    width: 40%;
-    border: none;
-    background-color: rgb(95, 255, 108);
-    font-family: inherit;
-    font-size: 0.7rem;
-    margin-left: 10%;
-    transition: 400ms;
+    color: rgb(90, 170, 59);
 }
 .info_button{
-    padding: 0.5rem 5%;
-    width: 40%;
-    border: none;
-    background-color: rgb(73, 146, 255);
-    font-family: inherit;
-    font-size: 0.7rem;
-    transition: 400ms;
+    color: rgb(73, 146, 255);
 }
-.detail_button:hover ,
-.info_button:hover{
-    cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-    transition: 400ms;
+.center{
+    text-align: center;
 }
 #courseDetail{
     display: none;

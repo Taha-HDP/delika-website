@@ -1,6 +1,4 @@
 const express = require("express");
-const https = require("https");
-const fs = require("fs");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -46,11 +44,9 @@ class Application {
         app.use(ErrorMiddleware);
     }
     setup_database() {
-        ////////////////process.env.DATABASE_URL
-        mongoose.connect("mongodb://localhost:27017/delika_gallery", {
+        mongoose.connect(config.get("databaseAddress"), {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            //authSource : "admin" ,
         }).then(() => { 
             console.log("db connected");
         }).catch((err) => {

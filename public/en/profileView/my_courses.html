@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="Fa">
-
+<html dir="rtl" lang="En">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
-    <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
-    <link rel="stylesheet" href="../CSS/reset.css">
-    <link rel="stylesheet" href="./my_courses.css">
-    <link rel="stylesheet" href="../CSS/header&footer.css">
-    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
-    <title>گالری دلیکا - دوره های من</title>
+    <link rel="stylesheet" href="../../CSS/reset.css">
+    <link rel="stylesheet" href="../../profileView/my_courses.css">
+    <link rel="stylesheet" href="../../CSS/header&footer.css">
+    <link rel="stylesheet" href="../CSS/basic.css">
+    <link rel="icon" href="../../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>Delika Gallery | My courses</title>
 </head>
 
 <body onload="loadHeaderAndFooter() , load_basket()  , check_role() , load_my_course()">
@@ -25,65 +23,65 @@
     </div>
     <article id="mid" onclick="lang_list_close()">
         <aside>
-            <h2>پروفایل</h2>
+            <h2>Profile</h2>
             <ul id="side_list">
-                <li><a href="./specification.html">مشخصات</a></li>
-                <li><a href="../bag.html">سبد خرید</a> </li>
-                <li><a href="./orders.html">تاریخچه سفارشات</a> </li>
-                <li class="active"><a href="./my_courses.html">دوره های من</a> </li>
-                <li><a href="./help_request.html">درخواست ها</a> </li>
-                <li><a href="./self_request.html">طرح های شخصی</a> </li>
-                <li id="admin_option"><a href="../admin/admin_pannel.html">پنل ادمین</a></li>
-                <li><a href="./change_password.html">تغییر رمز</a> </li>
-                <li onclick="exit_req()">خروج</li>
+                <li><a href="/en/profileView/specification.html">specification</a> </li>
+                <li><a href="/en/bag.html">shopping bag</a> </li>
+                <li><a href="/en/profileView/orders.html">orders</a> </li>
+                <li class="active"><a href="/en/profileView/my_courses.html">my courses</a> </li>
+                <li><a href="/en/profileView/help_request.html">Consulting requests</a> </li>
+                <li><a href="/en/profileView/self_request.html">Personal designs</a> </li>
+                <li id="admin_option"><a href="/en/admin/admin_pannel.html">Admin pannel</a></li>
+                <li><a href="/en/profileView/change_password.html">change Password</a> </li>
+                <li onclick="exit_req()">Exit</li>
             </ul>
         </aside>
         <main>
-            <h2 id="orderList_header">دوره های من</h2>
-            <h3 id="0">دوره های در انتظار</h3>
+            <h2 id="orderList_header">My courses</h2>
+            <h3 id="0">Awaiting Courses</h3>
             <table id="waiting_courses">
                 <thead>
                     <tr>
-                        <th class="number">ردیف</th>
-                        <th class="class_name">نام دوره</th>
-                        <th class="class_length">تعداد جلسات</th>
-                        <th class="class_time">زمان دوره</th>
-                        <th class="class_status">وضعیت دوره</th>
-                        <th class="class_hours">ساعت برگزاری</th>
-                        <th class="class_start_date">تاریخ شروع دوره</th>
-                        <th class="class_detail">جزئیات</th>
+                        <th class="number">Number</th>
+                        <th class="class_name">Course Name</th>
+                        <th class="class_length">Parts</th>
+                        <th class="class_time">length</th>
+                        <th class="class_status">Status</th>
+                        <th class="class_hours">Class hours</th>
+                        <th class="class_start_date">ُStart Time</th>
+                        <th class="class_detail">detail</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
-            <h3 id="1">دوره های در حال برگزاری</h3>
+            <h3 id="1">Ongoing Courses</h3>
             <table id="ongoing_courses">
                 <thead>
                     <tr>
-                        <th class="number">ردیف</th>
-                        <th class="class_name">نام دوره</th>
-                        <th class="class_length">تعداد جلسات</th>
-                        <th class="class_time">زمان دوره</th>
-                        <th class="class_status">وضعیت دوره</th>
-                        <th class="class_hours">ساعت برگزاری</th>
-                        <th class="class_start_date">تاریخ شروع دوره</th>
-                        <th class="class_detail">جزئیات</th>
+                        <th class="number">Number</th>
+                        <th class="class_name">Course Name</th>
+                        <th class="class_length">Parts</th>
+                        <th class="class_time">length</th>
+                        <th class="class_status">ُStatus</th>
+                        <th class="class_hours">Class hours</th>
+                        <th class="class_start_date">ُStart Time</th>
+                        <th class="class_detail">detail</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
-            <h3 id="2">دوره های تمام شده</h3>
+            <h3 id="2">Completed Courses </h3>
             <table id="done_courses">
                 <thead>
                     <tr>
-                        <th class="number">ردیف</th>
-                        <th class="class_name">نام دوره</th>
-                        <th class="class_length">تعداد جلسات</th>
-                        <th class="class_time">زمان دوره</th>
-                        <th class="class_status">وضعیت دوره</th>
-                        <th class="class_hours">ساعت برگزاری</th>
-                        <th class="class_start_date">تاریخ شروع دوره</th>
-                        <th class="class_detail">جزئیات</th>
+                        <th class="number">Number</th>
+                        <th class="class_name">Course Name</th>
+                        <th class="class_length">Parts</th>
+                        <th class="class_time">length</th>
+                        <th class="class_status">ُStatus</th>
+                        <th class="class_hours">Class hours</th>
+                        <th class="class_start_date">ُStart Time</th>
+                        <th class="class_detail">detail</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -91,7 +89,7 @@
         </main>
     </article>
     <footer> </footer>
-    <script src="../jquery.js"></script>
+    <script src="../../jquery.js"></script>
     <script src="../base_scripts.js"> </script>
     <script src="./profile_script.js"> </script>
 </body>

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="Fa">
+<html dir="rtl" lang="En">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/fonts/vazir/vazir_font.css">
-    <link rel="stylesheet" href="../public/fonts/shabnam/shabnam_font.css">
-    <link rel="stylesheet" href="../CSS/reset.css">
-    <link rel="stylesheet" href="./help_request.css">
-    <link rel="stylesheet" href="../CSS/header&footer.css">
-    <link rel="icon" href="../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
-    <title>گالری دلیکا - درخواست ها</title>
+    <link rel="stylesheet" href="../../CSS/reset.css">
+    <link rel="stylesheet" href="../../profileView/help_request.css">
+    <link rel="stylesheet" href="../../CSS/header&footer.css">
+    <link rel="stylesheet" href="../CSS/basic.css">
+    <link rel="icon" href="../../public/images/DELIKA-01.png" sizes="32X32" type="image/png">
+    <title>Delika Gallery | Consulting</title>
 </head>
 
 <body onload="loadHeaderAndFooter() ,check_role(), load_basket()  , member_help_requests()">
@@ -25,41 +24,44 @@
     </div>
     <article id="mid" onclick="lang_list_close()">
         <aside>
-            <h2>پروفایل</h2>
+            <h2>Profile</h2>
             <ul id="side_list">
-                <li><a href="./specification.html">مشخصات</a></li>
-                <li><a href="../bag.html">سبد خرید</a> </li>
-                <li><a href="./orders.html">تاریخچه سفارشات</a> </li>
-                <li><a href="./my_courses.html">دوره های من</a> </li>
-                <li class="active"><a href="./help_request.html">درخواست ها</a> </li>
-                <li><a href="./self_request.html">طرح های شخصی</a> </li>
-                <li id="admin_option"><a href="../admin/admin_pannel.html">پنل ادمین</a></li>
-                <li><a href="./change_password.html">تغییر رمز</a> </li>
-                <li onclick="exit_req()">خروج</li>
+                <li><a href="/en/profileView/specification.html">specification</a> </li>
+                <li><a href="/en/bag.html">shopping bag</a> </li>
+                <li><a href="/en/profileView/orders.html">orders</a> </li>
+                <li><a href="/en/profileView/my_courses.html">my courses</a> </li>
+                <li class="active"><a href="/en/profileView/help_request.html">Consulting requests</a> </li>
+                <li><a href="/en/profileView/self_request.html">Personal designs</a> </li>
+                <li id="admin_option"><a href="/en/admin/admin_pannel.html">Admin pannel</a></li>
+                <li><a href="/en/profileView/change_password.html">change Password</a> </li>
+                <li onclick="exit_req()">Exit</li>
             </ul>
         </aside>
         <main>
-            <h3>درخواست ها</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th id="number">ردیف</th>
-                        <th id="member-name">نام وارد شده</th>
-                        <th id="member-phone">شماره وارد شده</th>
-                        <th id="date">تاریخ درخواست</th>
-                        <th id="final-date">تاریخ هماهنگ شده</th>
-                        <th id="status">وضعیت</th>
-                        <th id="money-status">وضعیت پرداخت</th>
-                        <th id="detail">توضیحات</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div id="self-req">
+                <h3>requests</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="number">Number</th>
+                            <th id="member-name">Entered name</th>
+                            <th id="date">request date</th>
+                            <th id="final-date">Specified date</th>
+                            <th id="status">Status</th>
+                            <th id="money-status">Payment Status</th>
+                            <th id="detail">description</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="requestDetail"></div>
         </main>
     </article>
     <footer></footer>
-    <script src="../jquery.js"></script>
+    <script src="../../jquery.js"></script>
     <script src="../base_scripts.js"> </script>
     <script src="./profile_script.js"> </script>
 </body>
+
 </html>

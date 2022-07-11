@@ -70,7 +70,7 @@ function edit_profile() {
         })
             .then(res => {
                 load_profile_data();
-                const text = "با موفقیت زخیره شد";
+                const text = "با موفقیت ذخیره شد";
                 call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
 
             }).catch(err => {
@@ -135,7 +135,7 @@ function change_password() {
                 const text = "رمز وارد شده اشتباه است";
                 call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             } else {
-                const text = "با موفقیت زخیره شد";
+                const text = "با موفقیت ذخیره شد";
                 call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
                 document.getElementById("current-password").value = "";
                 document.getElementById("new-password").value = "";
@@ -235,7 +235,7 @@ function help_request_dateil(id) {
                     <td>${request.create_date}</td>
                 </tr>
                 <tr>
-                    <td>تاریخ معین شئه</td>
+                    <td>تاریخ معین شده</td>
                     <td>${request.final_date}</td>
                 </tr>
                 <tr>

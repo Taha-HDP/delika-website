@@ -12,10 +12,14 @@
     font-weight: 600;
 }
 #number ,
-#member-gender ,
-#member-purchases ,
-#member-detail{
+#member-gender{
     width: 5%;
+}
+#member-purchases{
+    width: 6%;
+}
+#member-detail{
+    width: 4%;
 }
 #member-firstname ,
 #member-phone ,
@@ -30,20 +34,11 @@
     width: 25% ;
 }
 .detail{
-    font-size: 0.7rem;
-    border : 1px solid black ;
-    font-family: inherit;
-    background-color: black;
-    color: white;
-    transition: 400ms;
-}
-.detail:hover{
+    font-size: 1.5rem;
+    color: rgb(73, 146, 255);
     cursor: pointer;
-    color: black;
-    background-color: white ;
-    transition: 400ms;
-    
 }
+
 #memberDetail{
     display: none;
     background: rgb(241, 241, 241);

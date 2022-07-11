@@ -59,7 +59,7 @@ function edit_profile() {
             birth: document.forms["member-detail"]["birth"].value,
         }
         if (!info.username || !info.email || !info.phone) {
-            const text = "نام کاربری ، ایمیل و شماره الزامی است";
+            const text = "username , Email & Phone number is required";
             call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             load_profile_data();
         }
@@ -70,19 +70,19 @@ function edit_profile() {
         })
             .then(res => {
                 load_profile_data();
-                const text = "با موفقیت زخیره شد";
+                const text = "Successfully saved";
                 call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
 
             }).catch(err => {
                 load_profile_data();
-                const text = "نام کاربری / شماره / ایمیل تکراری می باشد";
+                const text = "Username / Phone number / email is duplicate ";
                 call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             });
     }
 
 }
 function exit_req() {
-    if (confirm("میخواهید از حساب کاربری خود خارج شوید ؟")) {
+    if (confirm("Do you want to log out of your account?")) {
         localStorage.removeItem("token");
         localStorage.removeItem('basket');
         window.location.assign("/");
@@ -117,13 +117,13 @@ function change_password() {
     let new_password = document.getElementById("new-password").value;
     let check_password = document.getElementById("check-password").value;
     if (!new_password || !current || !check_password) {
-        const text = "شما باید همه ی گزینه ها را پر کنید";
+        const text = "You have to fill in all the options";
         call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else if (new_password != check_password) {
-        const text = "رمز های وارد شده مشابه نیست";
+        const text = "The passwords entered are not the same";
         call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else if (new_password.length < 6) {
-        const text = "رمز وارد شده باید حداقل 6 حرف باشد";
+        const text = "The password must be at least 6 characters long";
         call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
     } else {
         axios.put(domain + "/api/profile/changePassword", { new_password, current }, {
@@ -132,10 +132,10 @@ function change_password() {
             }
         }).then(res => {
             if (res.data == "not found") {
-                const text = "رمز وارد شده اشتباه است";
+                const text = "The password entered is incorrect";
                 call_cs_popup(text, 4000, "#5D101D", "#ffd5da", "#390b1b");
             } else {
-                const text = "با موفقیت زخیره شد";
+                const text = "Successfully saved";
                 call_cs_popup(text, 4000, "#277539", "#DAFFE6", "#20A740");
                 document.getElementById("current-password").value = "";
                 document.getElementById("new-password").value = "";
@@ -176,7 +176,7 @@ function member_help_requests() {
                     <td>${item.final_date}</td>
                     <td style="background : ${status_color}">${item.status}</td>
                     <td style="background : ${money_color}">${item.money_status}</td>
-                    <td><button class="detail_button" onclick="help_request_dateil('${item._id}')">جزئیات</button></td>`;
+                    <td><button class="detail_button" onclick="help_request_dateil('${item._id}')">detail</button></td>`;
                 }else{
                     tr.innerHTML = `
                     <td>${index + 1}</td>
@@ -184,14 +184,14 @@ function member_help_requests() {
                     <td>${item.final_date}</td>
                     <td style="background : ${status_color}">${item.status}</td>
                     <td style="background : ${money_color}">${item.money_status}</td>
-                    <td><button class="detail_button" onclick="help_request_dateil('${item._id}')">جزئیات</button></td>`;
+                    <td><button class="detail_button" onclick="help_request_dateil('${item._id}')">detail</button></td>`;
                 }
                 
                 father.appendChild(tr);
             });
         } else {
             document.getElementsByTagName("main")[0].innerHTML = `
-            <h4 id="empty">شما هیچ درخواستی ثبت نکردید</h4>
+            <h4 id="empty">You have not submitted any requests</h4>
             `;
         }
 
@@ -210,55 +210,54 @@ function help_request_dateil(id) {
         const request = res.data;
         let type;
         if (request.type == "see")
-            type = "حضوری";
+            type = "Presence";
         else
-            type = "تلفنی" ;
+            type = "Telephone" ;
         document.getElementById("requestDetail").innerHTML = `
-        <h3 id="detail-head">جزئیات درخواست</h3>
-        <h3 id="back-button" onclick="backToRequests()">بازگشت</h3>
+        <h3 id="detail-head">Consulting detail</h3>
+        <h3 id="back-button" onclick="backToRequests()">Back</h3>
         <table>
             <tbody>
                 <tr>
-                    <td>آی دی درخواست</td>
+                    <td>request ID</td>
                     <td>${request._id}</td>
                 </tr>
                 <tr>
-                    <td>نام و نام خانوادگی</td>
+                    <td>First & Last name</td>
                     <td>${request.name}</td>
                 </tr>
                 <tr>
-                    <td>شماره ثبت شده</td>
+                    <td>Phone number entered</td>
                     <td>${request.phone}</td>
                 </tr>
                 <tr>
-                    <td>تاریخ درخواست</td>
+                    <td>date of request</td>
                     <td>${request.create_date}</td>
                 </tr>
                 <tr>
-                    <td>تاریخ معین شئه</td>
+                    <td>Specified date</td>
                     <td>${request.final_date}</td>
                 </tr>
                 <tr>
-                    <td>نوع مشاوره</td>
+                    <td>Type of Consulting</td>
                     <td>${type}</td>
                 </tr>
                 <tr>
-                    <td>وضعیت</td>
+                    <td>Status</td>
                     <td>${request.status}</td>
                 </tr>
                 <tr>
-                    <td>وضعیت پرداخت</td>
+                    <td>Payment status</td>
                     <td>${request.money_status}</td>
                 </tr>
                 <tr>
-                    <td>توضیحات</td>
+                    <td>Description</td>
                     <td>${request.info}</td>
                 </tr>
             </tbody>
         </table> ` ;
     }).catch(err => {
-        // window.location.assign("/500.html");
-        console.log(err)
+         window.location.assign("/500.html");
     });
 }
 function member_self_requests() {
@@ -274,30 +273,20 @@ function member_self_requests() {
         if (res.data.length > 0) {
             res.data.reverse();
             res.data.map((request, index) => {
-                let status_color, status;
+                let status_color;
                 switch (request.status) {
                     case "checking":
                         status_color = "rgb(255 182 108 / 92%)";
-                        status = "درحال بررسی";
                         break;
                     case "creating":
                         status_color = "rgb(233 243 86 / 92%)";
-                        status = "در حال ساخت";
                         break;
                     case "sended":
                         status_color = "rgb(102 207 247 / 92%)";
-                        status = "ارسال شده";
                         break;
                     case "done":
                         status_color = "rgb(79 255 85 / 92%)";
-                        status = "انجام شده";
                         break;
-                }
-                let type;
-                if (request.type == "paint") {
-                    type = "نقاشی";
-                } else {
-                    type = "سفال";
                 }
                 var tr = document.createElement("tr");
                 if (index % 2 == 0) {
@@ -309,27 +298,27 @@ function member_self_requests() {
                     tr.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${request.name}</td>
-                    <td>${type}</td>
+                    <td>${request.type}</td>
                     <td>
-                        طول = ${request.x} | عرض = ${request.y}
+                        width = ${request.x} | height = ${request.y}
                     </td>
-                    <td style="background : ${status_color}">${status}</td>
+                    <td style="background : ${status_color}">${request.status}</td>
                     <td>${request.send_date}</td>
-                    <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">جزئیات</button></td>`;
+                    <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">detail</button></td>`;
                 } else {
                     tr.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${request.name}</td>
-                    <td>${type}</td>
-                    <td style="background : ${status_color}">${status}</td>
+                    <td>${request.type}</td>
+                    <td style="background : ${status_color}">${request.status}</td>
                     <td>${request.send_date}</td>
-                    <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">جزئیات</button></td>`;
+                    <td><button class="detail_button" onclick="self_request_dateil('${request._id}')">detail</button></td>`;
                 }
                 father.appendChild(tr);
             });
         } else {
             document.getElementsByTagName("main")[0].innerHTML = `
-            <h4 id="empty">شما هیچ طرح شخصی ثبت نکردید</h4>
+            <h4 id="empty">You did not submit any personal details</h4>
             `;
         }
     }).catch(err => {
@@ -347,76 +336,53 @@ function self_request_dateil(id) {
         const request = res.data;
         const array = request.picture.split("/");
         const picture = array[3];
-        let type, status;
-        switch (request.status) {
-            case "checking":
-                status = "درحال بررسی";
-                break;
-            case "creating":
-                status = "در حال ساخت";
-                break;
-            case "sended":
-                status = "ارسال شده";
-                break;
-            case "done":
-                status = "انجام شده";
-                break;
-        }
-        switch (request.type) {
-            case "painting":
-                type = "نقاشی";
-                break;
-            case "sculpture":
-                type = "مجسمه";
-                break;
-        }
         document.getElementById("requestDetail").innerHTML = `
-        <h3 id="detail-head">جزئیات درخواست</h3>
-        <h3 id="back-button" onclick="backToRequests()">بازگشت</h3>
+        <h3 id="detail-head">request detail</h3>
+        <h3 id="back-button" onclick="backToRequests()">Back</h3>
         <table>
             <tbody>
                 <tr>
-                    <td>آی دی درخواست</td>
+                    <td>request ID</td>
                     <td>${request._id}</td>
                 </tr>
                 <tr>
-                    <td>نام و نام خانوادگی</td>
+                    <td>first & last name</td>
                     <td>${request.name}</td>
                 </tr>
                 <tr>
-                    <td>شماره</td>
+                    <td>Phone number</td>
                     <td>${request.phone}</td>
                 </tr>
                 <tr>
-                    <td>ایمیل</td>
+                    <td>Email</td>
                     <td>${request.email}</td>
                 </tr>
                 <tr>
-                    <td>دسته بندی</td>
-                    <td>${type}</td>
+                    <td>Category</td>
+                    <td>${request.type}</td>
                 </tr>
                 <tr>
-                    <td>وضعیت</td>
-                    <td>${status}</td>
+                    <td>Status</td>
+                    <td>${request.status}</td>
                 </tr>
                 <tr>
-                    <td>طول</td>
+                    <td>width</td>
                     <td>${request.x}</td>
                 </tr>
                 <tr>
-                    <td>عرض</td>
+                    <td>height</td>
                     <td>${request.y}</td>
                 </tr>
                 <tr>
-                    <td>تاریخ ارسال</td>
+                    <td>sended date</td>
                     <td>${request.send_date}</td>
                 </tr>
                 <tr>
-                    <td>توضیحات</td>
+                    <td>Description</td>
                     <td>${request.info}</td>
                 </tr>
                 <tr>
-                    <td>تصویر</td>
+                    <td>Picture</td>
                     <td>
                         <img src="../public/image/${picture}">
                     </td>
@@ -454,31 +420,31 @@ function load_oreder() {
                     <td>${index + 1}</td>
                     <td>${item.refID}</td>
                     <td>${item.buyer_name}</td>
-                    <td>${item.total_price} تومان</td>
+                    <td>${item.total_price} $</td>
                     <td>${item.date}</td>
                     <td style="background : ${status_color}">${item.status}</td>
-                    <td><button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button></td>`
+                    <td><button id="detail_button" onclick="order_detail('${item._id}')">detail</button></td>`
                 } else if (window.innerWidth > 480) {
                     tr.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${item.refID}</td>
-                    <td>${item.total_price} تومان</td>
+                    <td>${item.total_price} $</td>
                     <td>${item.date}</td>
                     <td style="background : ${status_color}">${item.status}</td>
-                    <td><button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button></td>`
+                    <td><button id="detail_button" onclick="order_detail('${item._id}')">detail</button></td>`
                 } else {
                     tr.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${item.refID}</td>
-                    <td>${item.total_price} تومان</td>
+                    <td>${item.total_price} $</td>
                     <td style="background : ${status_color}">${item.status}</td>
-                    <td><button id="detail_button" onclick="order_detail('${item._id}')">مشاهده جزئیات</button></td>`
+                    <td><button id="detail_button" onclick="order_detail('${item._id}')">detail</button></td>`
                 }
                 father.appendChild(tr);
             });
         } else {
             document.getElementsByTagName("main")[0].innerHTML = `
-            <h4 id="empty">شما هیچ سفارشی ثبت نکردید</h4>
+            <h4 id="empty">You have not registered any orders</h4>
             `;
         }
 
@@ -498,41 +464,32 @@ function order_detail(id) {
         document.getElementById("F&Lname").innerHTML = res.data.name;
         document.getElementById("send_address").innerHTML = res.data.address;
         document.getElementById("post_code").innerHTML = res.data.post_code;
-        document.getElementById("send_money").innerHTML = res.data.shipping_cost + " تومان";
-        document.getElementById("offer").innerHTML = res.data.offer + " تومان";
-        document.getElementById("final_total").innerHTML = res.data.total_price + " تومان";
+        document.getElementById("send_money").innerHTML = res.data.shipping_cost + " $";
+        document.getElementById("offer").innerHTML = res.data.offer + " $";
+        document.getElementById("final_total").innerHTML = res.data.total_price + " $";
         document.getElementById("refID").innerHTML = res.data.refID;
         document.getElementById("date").innerHTML = res.data.date;
         document.getElementById("status").innerHTML = res.data.status;
-        document.getElementById("items_total").innerHTML = (res.data.total_price - res.data.shipping_cost - res.data.offer) + " تومان";
+        document.getElementById("items_total").innerHTML = (res.data.total_price - res.data.shipping_cost - res.data.offer) + " $";
         document.getElementById("object_info").innerHTML = `
-        <h3>محصولات سفارش داده شده </h3>  
+        <h3>Ordered products</h3>  
         ` ;
         res.data.items.map((item) => {
             const item_box = document.createElement("div");
             item_box.classList.add("object_box");
             const array = item.picture.split("/");
             const picture = array[3];
-            let type;
-            switch (item.type) {
-                case "painting":
-                    type = "نقاشی";
-                    break;
-                case "sculpture":
-                    type = "مجسمه";
-                    break;
-            }
             item_box.innerHTML = `
                     <div class="basket_object_info">
                         <div class="object_picture" style="background-image : url('../public/image/${picture}')"></div>
                         <div class="objectDetail">
                             <h4 class="object_name">${item.name}</h4>
-                            <h4 class="object_type">دسته بندی : ${type}</h4>
+                            <h4 class="object_type">دسته بندی : ${item.type}</h4>
                             <h4 class="object_class">سبک : ${res.data.class}</h4>
                             <h4 class="object_shapes">ابعاد : ${item.x}x${item.y}</h4>
                         </div>
                     </div>
-                    <h4 class="object_price">${item.price} تومان</h4>
+                    <h4 class="object_price">${item.price} $</h4>
                     ` ;
             document.getElementById("object_info").appendChild(item_box);
         })
@@ -559,47 +516,33 @@ function load_my_course() {
             res.data.map((course, index) => {
                 var tr = document.createElement("tr");
                 tr.style.backgroundColor = "rgb(220,220,220)";
-                //----- translate section
-                let status;
-                switch (course.status) {
-                    case "ongoing":
-                        status = "در حال برگزاری";
-                        break;
-                    case "done":
-                        status = "تمام شده";
-                        break;
-                    case "waiting":
-                        status = "به زودی";
-                        break;
-                }
-                //-------
                 if (window.innerWidth > 750) {
                     tr.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${course.name}</td>
                     <td>${course.length}</td>
                     <td>${course.time}</td>
-                    <td>${status}</td>
+                    <td>${course.status}</td>
                     <td>${course.hours}</td>
                     <td>${course.start_date}</td>
-                    <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">جزئیات</button></a></td>`;
+                    <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">detail</button></a></td>`;
                 } else if (window.innerWidth > 480) {
                     tr.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${course.name}</td>
                     <td>${course.time}</td>
-                    <td>${status}</td>
+                    <td>${course.status}</td>
                     <td>${course.hours}</td>
                     <td>${course.start_date}</td>
-                    <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">جزئیات</button></a></td>`;
+                    <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">detail</button></a></td>`;
                 } else {
                     tr.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${course.name}</td>
                     <td>${course.time}</td>
-                    <td>${status}</td>
+                    <td>${course.status}</td>
                     <td>${course.start_date}</td>
-                    <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">جزئیات</button></a></td>`;
+                    <td><a href="../courses/course_page.html?place=${course._id}"><button class="detail_button">detail</button></a></td>`;
                 }
                 let father;
                 if (course.status == "ongoing")
@@ -642,7 +585,7 @@ function load_my_course() {
             });
         } else {
             document.getElementsByTagName("main")[0].innerHTML = `
-            <h4 id="empty">شما در هیچ دوره ای ثبت نام نکردید</h4>
+            <h4 id="empty">You did not enroll in any course</h4>
             `;
         }
     }).catch(err => {

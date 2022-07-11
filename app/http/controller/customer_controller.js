@@ -56,9 +56,6 @@ module.exports = new (class Customer_controller {
         } else {
             return res.status(404).send("کاربری با این نام یا پسوورد یافت نشد");
         }
-
-
-
     }
     async forgetPassword(req, res) {
         const user = await Customer.findOne({ email: req.body.email });
@@ -123,7 +120,6 @@ module.exports = new (class Customer_controller {
                 res.status(200).send();
             }
         });
-
     }
     async change_password(req, res) {
         let user = await Customer.findById(req.user._id);
