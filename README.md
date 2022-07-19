@@ -1,0 +1,3 @@
+# delika-website is a complete, responsive, and multi-language  online store website for painting gallery with many APIs like authentication, purchase, admin panel, learning classes, and...
+This project is powered by Node.js and MongoDB database
+To run this project locally, you need to download and install Node.js - MongoDB - npm, then install the npm libraries and run the server.js file.
